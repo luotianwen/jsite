@@ -1,0 +1,29 @@
+<% var productName = @Global.getProperty('productName'); %>
+<!-- Logo -->
+    <a href="#" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><b>B</b>W</span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b>Base </b>Web</span>
+    </a>
+
+<nav class="navbar navbar-static-top">
+	<!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+      
+      <!-- Navbar Right Menu -->
+	<div class="navbar-custom-menu">
+		<ul class="nav navbar-nav">
+			<li><a href="javascript:" id="fullScreen" title="全屏"><i class="fa fa-arrows-alt"></i></a></li>
+			<li><a href="javascript:" id="switchSkin" title="切换主题" style="margin-top:-1px;"><i class="fa fa-dashboard"></i></a></li>
+			<% //include('/modules/sys/sysIndex/topMenuLang.html'){} %>
+			<% include('/modules/sys/sysIndex/topMenuOnline.html'){} %>
+			<% //include('/modules/sys/sysIndex/topMenuMsg.html'){} %>
+			<% //include('/modules/sys/sysIndex/topMenuNotify.html'){} %>
+			<% //include('/modules/sys/sysIndex/topMenuTask.html'){} %>
+			<% include('/modules/sys/sysIndex/topMenuUser.html'){} %>
+		</ul>
+	</div>
+</nav>

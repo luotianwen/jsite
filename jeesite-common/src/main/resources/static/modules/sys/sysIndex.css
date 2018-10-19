@@ -1,0 +1,6 @@
+.sidebar-menu>li>a{overflow:hidden;text-overflow:ellipsis}
+.sidebar-menu>li>a{padding:12px 15px 12px 12px;font-size:14px}
+.sidebar-menu .treeview-menu>li>a{padding:10px 5px 10px 20px}
+.navbar-nav>.user-menu>.dropdown-menu{width:auto}
+.user-panel>.image>img{width:45px;height:45px;background:#fff}
+.sidebar-collapse .user-panel>.image>img{width:27px;height:27px}

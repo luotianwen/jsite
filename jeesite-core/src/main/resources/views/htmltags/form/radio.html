@@ -1,0 +1,19 @@
+<%
+
+	var p = {
+		path: path,                // 绑定form上model中属性的值
+		class:class,				// 绑定input上的class属性值
+		dictType:dictType,
+		isSubTag:(isSubTag!"true")=="true"?true:false // 是否是嵌套在自定义标签#form里面
+	};
+	
+	var dictList = @DictUtils.getDictList(p.dictType);
+	
+	
+%>
+<span class="icheck">
+<%for(dict in dictList) {%>
+	<label><input type="radio" id="${p.path}" name="${p.path}" class="${p.class}" value="${dict.value}"/> ${dict.label}</label>
+<%}%>
+</span>
+	

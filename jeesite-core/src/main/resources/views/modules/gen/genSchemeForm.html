@@ -1,0 +1,184 @@
+<% layout('/template/layout/default.html', {title: '生产方案详情', libs: ['validate','icheck']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header with-border">
+			<div class="box-title">
+				<i class="fa fa-pencil-square-o"></i> ${genScheme.isNewRecord?'新增生产方案':'编辑生产方案'}
+			</div>
+			<div class="box-tools pull-right">
+				<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+			</div>
+		</div>
+		<#form:form id="inputForm" model="${genScheme}" action="${ctx}/gen/genScheme/save" method="post" class="form-horizontal">
+			<div class="box-body">
+				<#form:hidden path="id"/>
+				<#form:hidden path="flag"/>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<label class="control-label col-sm-2" title="">
+								<span class="required hide">*</span> 方案名称:<i class="fa icon-question hide"></i>
+							</label>
+							<div class="col-sm-8">
+								<#form:input path="name" maxlength="200" class="form-control required "/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<label class="control-label col-sm-2" title="">
+								<span class="required hide">*</span> 模板分类:<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:select path="category" name="label" value="value" data="${config.categoryList}" class="form-control required " />
+								<span class="help-inline"> 生成结构：{包名}/{模块名}/{分层(dao,entity,service,web)}/{子模块名}/{java类}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<label class="control-label col-sm-2" title=""> 业务表名:</label>
+							<div class="col-sm-8">
+								<#form:select path="genTable.id" name="nameAndComments" value="id" data="${tableList}" class="form-control required " />
+								<span class="help-inline">生成的数据表，一对多情况下请选择主表。</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<label class="control-label col-sm-2" title="">
+								<span class="required hide">*</span> 生成包路径:<i class="fa icon-question hide"></i>
+							</label>
+							<div class="col-sm-8">
+								<#form:input path="packageName" maxlength="500" class="form-control required " />
+								<span class="help-inline">建议模块包：com.thinkgem.jeesite.modules</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<label class="control-label col-sm-2" title="">
+								<span class="required hide">*</span> 生成模块名:<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="moduleName" maxlength="500" class="form-control required " />
+								<span class="help-inline">可理解为子系统名，例如 sys</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<label class="control-label col-sm-2" title=""> 生成子模块名:</label>
+							<div class="col-sm-8">
+								<#form:input path="subModuleName" maxlength="500" class="form-control " />
+								<span class="help-inline">可选，分层下的文件夹，例如 </span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<label class="control-label col-sm-2" title="">
+								<span class="required hide">*</span> 生成功能描述:<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="functionName" maxlength="500" class="form-control required " />
+								<span class="help-inline">将设置到类描述</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<label class="control-label col-sm-2" title="">
+								<span class="required hide">*</span> 生成功能名:<i class="fa icon-question hide"></i>
+							</label>
+							<div class="col-sm-8">
+								<#form:input path="functionNameSimple" maxlength="500" class="form-control required " />
+								<span class="help-inline">用作功能提示，如：保存“某某”成功</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<label class="control-label col-sm-2" title="">
+								<span class="required hide">*</span> 生成功能作者:<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="functionAuthor" maxlength="64" class="form-control required " />
+								<span class="help-inline">功能开发者</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<label class="control-label col-sm-2" title=""> 备注信息：</label>
+							<div class="col-sm-8">
+								<#form:textarea path="remarks" rows="4" maxlength="255" class="form-control input-xxlarge "/>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<label class="control-label col-sm-2" title=""> 生成选项：</label>
+							<div class="col-sm-8">
+								<span class="icheck">
+									<label><input type="checkbox" id="replaceFile" name="replaceFile" class="form-control" value="1" />是否替换现有文件</label>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="box-footer">
+				<div class="row">
+					<div class="col-sm-offset-2 col-sm-10">
+						<% if (hasPermi('gen:genScheme:edit')){ %>
+							<button type="submit" class="btn btn-sm btn-primary" id="btnSubmit" onclick="$('#flag').val('0');"><i class="fa fa-check"></i> 保存方案</button>
+							<button type="submit" class="btn btn-sm btn-danger" id="btnSubmit" onclick="$('#flag').val('1');"><i class="fa fa-check"></i> 保存并生成方案</button>
+						<% } %>
+						<button type="button" class="btn btn-sm btn-default" id="btnCancel" onclick="window.parent.closeCurrentTabPage()"><i class="fa fa-reply-all"></i> 关 闭</button>
+					</div>
+				</div>
+			</div>
+		</#form:form>
+	</div>
+</div>
+<% } %>
+
+<script type="text/javascript">
+	$("#inputForm").validate({
+		submitHandler: function(form){
+			js.ajaxSubmitForm($(form), function(data){
+				js.showMessage(data.message);
+				if(data.result == 'true'){
+					window.parent.closeCurrentTabPage(window.parent.refreshTab);
+				}
+			}, "json");
+	    }
+	});
+</script>

@@ -1,0 +1,54 @@
+<%
+	var meunData = "";
+	var rightContainer = "<span class='pull-right-container'><i class='fa fa-angle-left pull-right'></i></span></a><ul class='treeview-menu'> \n";
+	var href = "";
+	var menuList = @UserUtils.getMenuList();
+	for(menu in menuList!) {
+		if(menu.parentId == "0" && menu.isShow == "1") {// 一级菜单isEmpty(menu.parent.id)
+			href = isEmpty(menu.href)?"blank":menu.href;
+			meunData = meunData + "<li class='treeview'><a title='" + menu.name + "' href='javascript:' data-href='" + href + "' class='addTabPage'><i class='" + menu.icon + "'></i> <span>" + menu.name + "</span> \n";
+			meunData = meunData + rightContainer;
+			
+			for(menu1 in menuList!) {
+				if(menu1.parentId == menu.id && menu1.isShow == "1") {// 二级菜单
+					href = isEmpty(menu1.href)?"blank":menu1.href;
+					var temp = isEmpty(menu1.href)?rightContainer:"</a>";
+					meunData = meunData + "<li class='treeview'><a title='" + menu1.name + "' href='javascript:' data-href='" + href + "' class='addTabPage'><i class='" + menu1.icon + "'></i> <span>" + menu1.name + "</span> \n";
+					meunData = meunData + temp;
+					
+					for(menu2 in menuList!) {
+						if(menu2.parentId == menu1.id && menu2.isShow == "1") {// 三级菜单
+							href = isEmpty(menu2.href)?"blank":menu2.href;
+							meunData = meunData + "<li class='treeview'><a title='" + menu2.name + "' href='javascript:' data-href='" + href + "' class='addTabPage'><i class='" + menu2.icon + "'></i> <span>" + menu2.name + "</span> \n";
+							// TODO 4级菜单 ... 
+							
+							meunData = meunData + "</a></li>";
+						}
+					}
+					
+					var end = isEmpty(menu1.href)?"</ul>":"";
+					meunData = meunData + end + "</li>";
+				}
+			}
+			
+			meunData = meunData + "</ul></li>";
+		}
+	}
+
+	var p = {html: meunData};
+	return p;
+%>
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html> -->

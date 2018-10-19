@@ -1,0 +1,85 @@
+<% layout('/layout/default.html', {title: '个人中心', libs: ['validate']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header">
+			<div class="box-title">
+				<i class="fa fa-sitemap"></i>修改密码
+			</div>
+		</div>
+		<#form:form id="inputForm" model="${user}" class="form-horizontal" action="${ctx}/sys/user/modifyPwd" method="post">
+			<div class="box-body">
+				<#form:hidden path="id"/>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<label class="control-label col-sm-3" title="旧密码">
+								<span class="required " aria-required="true">*</span> 旧密码: <i class="fa icon-question hide"></i></label>
+							<div class="col-sm-7">
+								<input id="oldPassword" name="oldPassword" type="password" value="" maxlength="50" minlength="3" class="form-control required"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<label class="control-label col-sm-3" title="新密码">
+								<span class="required " aria-required="true">*</span> 新密码:<i class="fa icon-question hide"></i>
+							</label>
+							<div class="col-sm-7">
+								<input id="newPassword" name="newPassword" type="password" value="" maxlength="50" minlength="3" class="form-control required"/>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<label class="control-label col-sm-3" title="类型">
+								<span class="required " aria-required="true">*</span> 确认新密码<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-7">
+								<input id="confirmNewPassword" name="confirmNewPassword" type="password" value="" maxlength="50" minlength="3" class="form-control required" equalTo="#newPassword"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<div class="box-footer">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<div class="col-sm-3"></div>
+							<div class="col-sm-7">
+								<% if (hasPermi('sys:user:edit')){ %>
+									<button type="submit" class="btn btn-sm btn-primary" id="btnSubmit"><i class="fa fa-check"></i> 保 存</button>
+								<% } %>
+								<button type="button" class="btn btn-sm btn-default" id="btnCancel" onclick="window.parent.closeCurrentTabPage();"><i class="fa fa-reply-all"></i> 关 闭</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+			</div>
+		</#form:form>
+	</div>
+</div>
+<% } %>
+<script>
+$("#inputForm").validate({
+	submitHandler: function(form){
+		js.loading('正在提交，请稍等...');
+		form.submit();
+	}
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	var msg = "${message}";
+	if(msg != null && msg != "") {
+		js.showMessage(msg);
+	}
+});
+</script>

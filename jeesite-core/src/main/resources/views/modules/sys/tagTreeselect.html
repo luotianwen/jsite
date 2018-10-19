@@ -1,0 +1,78 @@
+<% layout('/layout/default.html', {title: '数据选择', libs: ['zTree']}){ %>
+<div class="main-content" style="overflow: hidden;">
+	<div id="tree" class="ztree" style="padding:15px 20px; overflow: hidden;" ></div>
+</div>
+<% } %>
+			    		
+<script type="text/javascript">
+		var key, lastValue = "", nodeList = [], type = getQueryString("type", "${url}");
+		var tree, setting = {view:{selectedMulti:false,dblClickExpand:false},check:{enable:"${checked}",nocheckInherit:true},
+				async:{enable:(type==3),url:"${ctx}/sys/user/treeData",autoParam:["id=officeId"]},
+				data:{simpleData:{enable:true}},callback:{
+					
+					onClick:function(event, treeId, treeNode){
+						tree.expandNode(treeNode);
+					},onCheck: function(e, treeId, treeNode){
+						var nodes = tree.getCheckedNodes(true);
+						for (var i=0, l=nodes.length; i<l; i++) {
+							tree.expandNode(nodes[i], true, false, false);
+						}
+						return false;
+					},onAsyncSuccess: function(event, treeId, treeNode, msg){
+						var nodes = tree.getNodesByParam("pId", treeNode.id, null);
+						for (var i=0, l=nodes.length; i<l; i++) {
+							try{tree.checkNode(nodes[i], treeNode.checked, true);}catch(e){}
+							//tree.selectNode(nodes[i], false);
+						}
+						selectCheckNode();
+					},onDblClick: function(){
+						parent.layer.$('#' + window.name).closest('.layui-layer')
+			    		.find(".layui-layer-btn0").trigger("click"); 
+					}
+				}
+			};
+		function expandNodes(nodes) {
+			if (!nodes) return;
+			for (var i=0, l=nodes.length; i<l; i++) {
+				tree.expandNode(nodes[i], true, false, false);
+				if (nodes[i].isParent && nodes[i].zAsync) {
+					expandNodes(nodes[i].children);
+				}
+			}
+		}
+		$(document).ready(function(){
+			var url = "${url}";
+			url += (url.indexOf("?")==-1?"?":"&") + "&extId=${extId}&isAll=${isAll}&module=${module}&t=" + new Date().getTime();
+			$.get(("${ctx}"+url) , function(zNodes){
+				// 初始化树结构
+				tree = $.fn.zTree.init($("#tree"), setting, zNodes);
+				
+				// 默认展开一级节点
+				var nodes = tree.getNodesByParam("level", 0);
+				for(var i=0; i<nodes.length; i++) {
+					tree.expandNode(nodes[i], true, false, false);
+				}
+				//异步加载子节点（加载用户）
+				var nodesOne = tree.getNodesByParam("isParent", true);
+				for(var j=0; j<nodesOne.length; j++) {
+					tree.reAsyncChildNodes(nodesOne[j],"!refresh",true);
+				}
+				selectCheckNode();
+			});
+		});
+		
+		// 默认选择节点
+		function selectCheckNode(){
+			var ids = "${selectIds}".split(",");
+			for(var i=0; i<ids.length; i++) {
+				var node = tree.getNodeByParam("id", (type==3?"u_":"")+ids[i]);
+				if("${checked}" == "true"){
+					try{tree.checkNode(node, true, true);}catch(e){}
+					tree.selectNode(node, false);
+				}else{
+					tree.selectNode(node, true);
+				}
+			}
+		}
+		
+	</script>

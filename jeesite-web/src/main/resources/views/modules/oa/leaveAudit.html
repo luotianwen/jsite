@@ -1,0 +1,80 @@
+<% layout('/layout/default.html', {title: '请假申请', libs: ['validate']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header">
+			<div class="box-title">
+				<i class="fa fa-sitemap"></i>请假申请
+			</div>
+		</div>
+		<#form:form id="inputForm" model="${leave}" class="form-horizontal" action="${ctx}/oa/leave/saveAudit" method="post">
+			<div class="box-body">
+				<#form:hidden path="id"/>
+				<#form:hidden path="act.taskId" value="${leave.act.taskId}"/>
+				<#form:hidden path="act.taskName" value="${leave.act.taskName}"/>
+				<#form:hidden path="act.taskDefKey" value="${leave.act.taskDefKey}"/>
+				<#form:hidden path="act.procInsId" value="${leave.act.procInsId}"/>
+				<#form:hidden path="act.procDefId" value="${leave.act.procDefId}"/>
+				<#form:hidden id="flag" path="act.flag"/>
+				
+				<table class="table-form">
+					<tr>
+						<td class="tit">请假类型</td><td colspan="3"> ${@DictUtils.getDictLabel(leave.leaveType, 'oa_leave_type', '')}</td>
+					</tr>
+					<tr>
+						<td class="tit">开始时间</td><td>	${leave.startTime, dateFormat='yyyy-MM-dd HH:mm:ss'}</td>
+						<td class="tit">结束时间</td><td>	${leave.endTime, dateFormat='yyyy-MM-dd HH:mm:ss'}</td>
+					</tr>
+					<tr>
+						<td class="tit" >请假原因</td>
+						<td colspan="3" >	${leave.reason}</td>
+					</tr>
+					<tr>
+						<td class="tit" >部门领导意见</td>
+						<td colspan="3" >	${leave.deptLeadText}</td>
+					</tr>
+					<tr>
+						<td class="tit" >人力资源部意见</td>
+						<td colspan="3" >	${leave.hrText}</td>
+					</tr>
+					
+					<tr>
+					<td class="tit">您的意见</td>
+					<td colspan="3">
+						<textarea name="act.comment" class="form-control required" rows="3" />
+					</td>
+				</tr>
+				</table>
+				
+			</div>
+			<div class="box-footer">
+				<div class="row">
+					<div class="col-sm-offset-1 col-sm-11">
+					<% if (hasPermi('oa:leave:edit')){ %>
+						<button type="submit" class="btn btn-sm btn-primary" id="btnSubmit" onclick="$('#flag').val('yes')" ><i class="fa fa-check"></i> 同  意</button>
+						<button type="submit" class="btn btn-sm btn-danger" id="btnSubmit" onclick="$('#flag').val('no')" ><i class="fa fa-check"></i> 驳  回</button>
+					<% } %>
+						<button type="button" class="btn btn-sm btn-default" id="btnCancel" onclick="window.parent.closeCurrentTabPage();"><i class="fa fa-reply-all"></i> 关 闭</button>
+					</div>
+				</div>
+			</div>
+			
+		</#form:form>
+		
+		<#form:histoicFlow procInsId="${leave.act.procInsId}" isSubTag="false"/>
+	</div>
+</div>
+<% } %>
+<script>
+$("#inputForm").validate({
+	submitHandler: function(form){
+		js.ajaxSubmitForm($(form), function(data){
+			js.showMessage(data.message);
+			if(data.result == 'true'){
+				window.parent.closeCurrentTabPage(window.parent.refreshTab);
+			}
+		}, "json");
+    }
+});
+</script>
+		
+

@@ -1,0 +1,36 @@
+
+
+<%
+
+	var p = {
+
+    // 标签参数
+    procInsId: procInsId,               // 元素ID，如果不填写，则与name相同
+    startAct:startAct!"",
+    endAct:endAct!"",
+    isSubTag:(isSubTag!"true")=="true"?true:false // 是否是嵌套在自定义标签#form里面
+	};
+
+%>
+
+
+	<div class="box-header">
+		<div class="box-title">
+			<i class="fa fa-superpowers"></i>流转信息
+		</div>
+	</div>
+	<div id="histoicFlowList" class="box-body" />
+
+<script type="text/javascript">
+<% if(p.isSubTag) { %>
+<![CDATA[
+<%}%>
+
+	$.get("${ctx}/act/task/histoicFlow?procInsId=${p.procInsId}&startAct=${p.startAct}&endAct=${p.endAct}&t="+new Date().getTime(), function(data){
+		$("#histoicFlowList").html(data);
+	});
+	
+<% if(p.isSubTag) { %>
+]]>
+<%}%>
+</script>

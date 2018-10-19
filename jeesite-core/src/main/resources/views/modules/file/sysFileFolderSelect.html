@@ -1,0 +1,48 @@
+<% layout('/template/layout/default.html', {title: '选择文件夹', libs: ['zTree']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-body">
+			<input type="hidden" id="fileTreeId" value="" />
+			<label>已选择文件夹：</label><input type="text" id ="fileTreeName" value="" />
+			<div id="tree" class="ztree"></div>
+		</div>
+	</div>
+</div>
+<% } %>
+<script>
+//树结构初始化加载
+var setting = {
+	check: {
+		enable: true,
+		chkStyle: "radio",
+		radioType: "all"
+	},
+	view:{selectedMulti:false},
+	data:{key:{title:"title"},simpleData:{enable:true}},
+	callback:{
+		onCheck: function(event, treeId, treeNode){
+			tree.expandNode(treeNode);
+			$("#fileTreeId").val(treeNode.id);
+			$("#fileTreeName").val(treeNode.name);
+			js.layer.msg("已选择文件夹"+treeNode.name);
+		}
+	}
+}, tree, loadTree = function(){
+	js.ajaxSubmit("${ctx}/filetree/sysFileTree/treeData", {ctrlPermi:'2'/*1拥有的权限 2管理的权限*/}, function(data){
+		tree = $.fn.zTree.init($("#tree"), setting, data);//.expandAll(true);
+		// 展开第一级节点
+		var nodes = tree.getNodesByParam("level", 0);
+		for(var i=0; i<nodes.length; i++) {
+			tree.expandNode(nodes[i], true, false, false);
+		}
+		// 展开第二级节点
+ 		nodes = tree.getNodesByParam("level", 1);
+ 		for(var i=0; i<nodes.length; i++) {
+ 			tree.expandNode(nodes[i], true, false, false);
+ 		}
+	}, null, null, js.text('loading.message'));
+};loadTree();
+function backData(){
+	return $("#fileTreeId").val();
+}
+</script>

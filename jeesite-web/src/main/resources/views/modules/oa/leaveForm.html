@@ -1,0 +1,100 @@
+<% layout('/layout/default.html', {title: '请假申请', libs: ['validate']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header">
+			<div class="box-title">
+				<i class="fa fa-sitemap"></i>请假申请
+			</div>
+		</div>
+		<#form:form id="inputForm" model="${leave}" class="form-horizontal" action="${ctx}/oa/leave/save" method="post">
+			<div class="box-body">
+				<#form:hidden path="id"/>
+				<#form:hidden path="act.taskId" value="${leave.act.taskId}"/>
+				<#form:hidden path="act.taskName" value="${leave.act.taskName}"/>
+				<#form:hidden path="act.taskDefKey" value="${leave.act.taskDefKey}"/>
+				<#form:hidden path="act.procInsId" value="${leave.act.procInsId}"/>
+				<#form:hidden path="act.procDefId" value="${leave.act.procDefId}"/>
+				<#form:hidden id="flag" path="act.flag"/>
+				
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="form-group">
+								<label class="control-label col-sm-2" title="请假类型：">
+									<span class="required " aria-required="true">*</span> 请假类型： <i class="fa icon-question hide"></i></label>
+								<div class="col-sm-4">
+									<#form:select path="leaveType" data="getDictList:oa_leave_type" name="label" class="form-control required "/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="form-group">
+								<label class="control-label col-sm-2" title="开始时间">
+									<span class="required " aria-required="true">*</span> 开始时间：<i class="fa icon-question hide"></i></label>
+								<div class="col-sm-4">
+									<input id="startTime" name="startTime"  maxlength="64" readonly="readonly" class="form-control required" value="" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-6">
+							<div class="form-group">
+								<label class="control-label col-sm-4" title="结束时间">
+									<span class="required " aria-required="true">*</span> 结束时间：<i class="fa icon-question hide"></i></label>
+								<div class="col-sm-8">
+									<input id="endTime" name="endTime"  maxlength="64" readonly="readonly" class="form-control required" value="" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="form-group">
+								<label class="control-label col-sm-2" title="请假原因">
+									<span class="required " aria-required="true">*</span>请假原因：<i class="fa icon-question hide"></i>
+								</label>
+								<div class="col-sm-10">
+									<#form:textarea path="reason" rows="3" cols="32"  class="form-control required"></#form:textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+			</div>
+			<div class="box-footer">
+				<div class="row">
+					<div class="col-sm-offset-2 col-sm-10">
+					<% if (hasPermi('oa:leave:edit')){ %>
+						<button type="submit" class="btn btn-sm btn-primary" id="btnSubmit" onclick="$('#flag').val('yes')" ><i class="fa fa-check"></i> 发起流程</button>
+						
+						<% if (!isEmpty(leave.id)){ %>
+							<button type="submit" class="btn btn-sm btn-danger" id="btnSubmit" onclick="$('#flag').val('no')" ><i class="fa fa-check"></i> 结束流程</button>
+						<% } %>
+						
+					<% } %>
+						<button type="button" class="btn btn-sm btn-default" id="btnCancel" onclick="window.parent.closeCurrentTabPage();"><i class="fa fa-reply-all"></i> 关 闭</button>
+					</div>
+				</div>
+			</div>
+		</#form:form>
+		<% if (!isEmpty(leave.id)){ %>
+			<#form:histoicFlow procInsId="${leave.act.procInsId}" isSubTag="false"/>
+		<% } %>
+	</div>
+</div>
+<% } %>
+<script>
+$("#inputForm").validate({
+	submitHandler: function(form){
+		js.ajaxSubmitForm($(form), function(data){
+			js.showMessage(data.message);
+			if(data.result == 'true'){
+				window.parent.closeCurrentTabPage(window.parent.refreshTab);
+			}
+		}, "json");
+    }
+});
+</script>
+		
+
