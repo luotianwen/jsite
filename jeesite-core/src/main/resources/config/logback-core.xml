@@ -51,8 +51,8 @@
     <!-- log4j.logger.org.activiti.engine.impl.persistence=DEBUG -->
     <!-- log4j.logger.org.apache.shiro=DEBUG -->
     <logger name="com.jeesite" level="DEBUG" />
-    <logger name="com.jeesite.common.security.shiro" level="WARN" />
-    <logger name="com.jeesite.common.utils.JedisUtils" level="WARN" />
+    <logger name="com.jeesite.common.security.shiro" level="DEBUG" />
+    <logger name="com.jeesite.common.utils.JedisUtils" level="DEBUG" />
     <logger name="com.jeesite.modules.sys.web.LoginController" level="DEBUG" />
     <logger name="com.jeesite.modules.oa.dao.OaNotifyDao.findCount" level="WARN" />
 

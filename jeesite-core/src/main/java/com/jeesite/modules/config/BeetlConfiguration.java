@@ -19,12 +19,8 @@ import org.springframework.core.io.support.ResourcePatternUtils;
 public class BeetlConfiguration {
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
-//    @Value("${web.view.prefix}")
-//    private String viewPreFix;
-
     @Value("${web.view.suffix}")
     private String viewSuffix;
-
 
     @Autowired
     protected ResourceLoader resourceLoader;

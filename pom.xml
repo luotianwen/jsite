@@ -110,13 +110,7 @@
             <version>${jackson.version}</version>
         </dependency>
 
-        <!-- WEB begin -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <!-- WEB end -->
+
 
 
     </dependencies>

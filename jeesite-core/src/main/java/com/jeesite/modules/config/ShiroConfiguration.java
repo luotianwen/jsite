@@ -5,7 +5,6 @@ import com.jeesite.common.security.shiro.session.CacheSessionDAO;
 import com.jeesite.common.security.shiro.session.SessionManager;
 import com.jeesite.modules.sys.security.FormAuthenticationFilter;
 import com.jeesite.modules.sys.security.SystemAuthorizingRealm;
-import net.sf.ehcache.CacheManager;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.cas.CasFilter;
 import org.apache.shiro.mgt.SecurityManager;
@@ -18,12 +17,8 @@ import org.apache.shiro.web.servlet.SimpleCookie;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ResourceLoader;
-import org.springframework.core.io.support.ResourcePatternResolver;
-import org.springframework.core.io.support.ResourcePatternUtils;
 
 import javax.servlet.Filter;
 import java.util.HashMap;
@@ -34,16 +29,13 @@ import java.util.Map;
 public class ShiroConfiguration {
 
     @Autowired
-    protected ResourceLoader resourceLoader;
+    protected EhCacheManager shiroCacheManager;
 
     @Autowired
     protected SystemAuthorizingRealm systemAuthorizingRealm;
 
     @Autowired
     protected FormAuthenticationFilter formAuthenticationFilter;
-
-    @Value("${ehcache.configFile}")
-    private String configFile;
 
     @Value("${session.sessionTimeout}")
     private String sessionTimeout;
@@ -53,12 +45,6 @@ public class ShiroConfiguration {
 
     @Value("${adminPath}")
     private String adminPath;
-
-    @Bean
-    public static LifecycleBeanPostProcessor getLifecycleBeanPostProcessor(){
-        return new LifecycleBeanPostProcessor();
-    }
-
 
     /**
      * ShiroFilterFactoryBean 处理拦截资源文件问题。
@@ -97,51 +83,35 @@ public class ShiroConfiguration {
     }
 
     @Bean(name="securityManager")
-    public SecurityManager securityManager(){
+    public SecurityManager securityManager(SessionManager sessionManager){
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         //设置realm.
         securityManager.setRealm(systemAuthorizingRealm);
         // 自定义缓存实现 使用redis
-        securityManager.setCacheManager(shiroCacheManager());
+        securityManager.setCacheManager(shiroCacheManager);
         // 自定义session管理 使用redis
-        securityManager.setSessionManager(sessionManager());
+        securityManager.setSessionManager(sessionManager);
         return securityManager;
     }
 
     @Bean
-    public EhCacheManager shiroCacheManager() {
-        EhCacheManager ehCacheManager = new EhCacheManager();
-        ehCacheManager.setCacheManager(cacheManager());
-        return ehCacheManager;
-    }
-
-    @Bean
-    public CacheManager cacheManager() {
-        EhCacheManagerFactoryBean ehCacheManagerFactoryBean = new EhCacheManagerFactoryBean();
-        ResourcePatternResolver resource = ResourcePatternUtils.getResourcePatternResolver(resourceLoader);
-        ehCacheManagerFactoryBean.setConfigLocation(resource.getResource("classpath:" + configFile));
-
-        return ehCacheManagerFactoryBean.getObject();
-    }
-
-    @Bean
-    public SessionManager sessionManager() {
+    public SessionManager sessionManager(CacheSessionDAO sessionDAO, Cookie sessionIdCookie) {
         SessionManager sessionManager = new SessionManager();
-        sessionManager.setSessionDAO(sessionDAO());
+        sessionManager.setSessionDAO(sessionDAO);
         sessionManager.setGlobalSessionTimeout(Long.valueOf(sessionTimeout));
         sessionManager.setSessionValidationInterval(Long.valueOf(sessionTimeoutClean));
         sessionManager.setSessionValidationSchedulerEnabled(true);
-        sessionManager.setSessionIdCookie(sessionIdCookie());
+        sessionManager.setSessionIdCookie(sessionIdCookie);
         sessionManager.setSessionIdCookieEnabled(true);
         return sessionManager;
     }
 
     @Bean
-    public CacheSessionDAO sessionDAO() {
+    public CacheSessionDAO sessionDAO(IdGenerate idGenerate) {
         CacheSessionDAO cacheSessionDAO = new CacheSessionDAO();
-        cacheSessionDAO.setSessionIdGenerator(idGenerate());
+        cacheSessionDAO.setSessionIdGenerator(idGenerate);
         cacheSessionDAO.setActiveSessionsCacheName("activeSessionsCache");
-        cacheSessionDAO.setCacheManager(shiroCacheManager());
+        cacheSessionDAO.setCacheManager(shiroCacheManager);
         return cacheSessionDAO;
     }
 
@@ -163,6 +133,11 @@ public class ShiroConfiguration {
         CasFilter casFilter = new CasFilter();
         casFilter.setFailureUrl("");
         return casFilter;
+    }
+
+    @Bean
+    public static LifecycleBeanPostProcessor getLifecycleBeanPostProcessor(){
+        return new LifecycleBeanPostProcessor();
     }
 
     @Bean
