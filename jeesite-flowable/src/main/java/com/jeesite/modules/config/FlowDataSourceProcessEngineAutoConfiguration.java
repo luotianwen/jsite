@@ -16,6 +16,7 @@ import org.flowable.spring.boot.process.Process;
 import org.flowable.spring.boot.process.ProcessAsync;
 import org.flowable.spring.boot.process.ProcessAsyncHistory;
 import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,6 +28,15 @@ import java.io.IOException;
 @Configuration
 @EnableConfigurationProperties(FlowableProperties.class)
 public class FlowDataSourceProcessEngineAutoConfiguration extends ProcessEngineAutoConfiguration {
+
+    @Value("${activiti.diagram.activityFontName}")
+    private String activityFontName;
+
+    @Value("${activiti.diagram.labelFontName}")
+    private String labelFontName;
+
+    @Value("${activiti.diagram.annotationFontName}")
+    private String annotationFontName;
 
     public FlowDataSourceProcessEngineAutoConfiguration(FlowableProperties flowableProperties,
                                                         FlowableProcessProperties processProperties, FlowableAppProperties appProperties, FlowableIdmProperties idmProperties,
@@ -43,9 +53,9 @@ public class FlowDataSourceProcessEngineAutoConfiguration extends ProcessEngineA
 
         SpringProcessEngineConfiguration conf = super.springProcessEngineConfiguration(dataSource, platformTransactionManager, processIdGenerator, globalIdGenerator, asyncExecutorProvider, asyncHistoryExecutorProvider);
         conf.setIdmEngineConfigurator(idmEngineConfigurator(dataSource));
-        conf.setActivityFontName("宋体");
-        conf.setLabelFontName("宋体");
-        conf.setAnnotationFontName("宋体");
+        conf.setActivityFontName(activityFontName);
+        conf.setLabelFontName(labelFontName);
+        conf.setAnnotationFontName(annotationFontName);
 
         return conf;
     }
