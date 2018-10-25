@@ -25,15 +25,15 @@ if (isBlank(message)){
 }
 
 // 如果是异步请求或是手机端，则直接返回信息
-if (@ServletUtils.isAjaxRequest(request)) {
-	print(@ServletUtils.renderResult(@Global.FALSE, message));
+if (@Servlets.isAjaxRequest(request)) {
+	print(@Servlets.renderResult(@Global.FALSE, message));
 }
 
 // 输出异常信息页面
 else {
 %>
 <% layout('/layout/default.html', {title: '500 - '+text('sys.error.500.title')}){ %>
-<link rel="stylesheet" href="${ctxStatic}/common/error.css?${_version}">
+<link rel="stylesheet" href="${ctxStatic}/common/error.css">
 <div class="error-page">
 	<div class="headline text-red">500</div>
 	<div class="error-content">
@@ -43,14 +43,14 @@ else {
 			class="fa fa-reply-all"></i> ${text('sys.error.returnButton')}</button>
 	</div>
 	<div class="copyright">
-		&copy; ${@DateUtils.getYear()} ${@Global.getConfig('productName')} - Powered By <a
-			href="http://jeesite.com">JeeSite ${@Global.getProperty('jeesiteVersion')}</a>
+		&copy; ${@DateUtils.getYear()} ${@Global.getProperty('productName')} - Powered By <a
+			href="http://www.baidu.com">JSite ${@Global.getProperty('version')}</a>
 	</div>
 </div>
-<% if (@ObjectUtils.toBoolean(@Global.getConfig('error.page.printErrorInfo', 'true'))){ %>
+<% if (@ObjectUtils.toBoolean(@Global.getProperty('error.page.printErrorInfo', 'true'))){ %>
 <div class="box mt20">
 	${@StringUtils.toHtml(@ExceptionUtils.getStackTraceAsString(ex))}<br/>
-	此异常信息若不想输出，可打开jeesite.yml文件，设置error.page.printErrorInfo=false即可
+	此异常信息若不想输出，可打开jeesite-core.properties文件，设置error.page.printErrorInfo=false即可
 </div>
 <% } %>
 <% } %>

@@ -76,7 +76,7 @@ public class BeetlConfiguration {
         BeetlSpringViewResolver beetlSpringViewResolver = new BeetlSpringViewResolver();
         beetlSpringViewResolver.setContentType("text/html;charset=UTF-8");
         beetlSpringViewResolver.setOrder(0);
-        beetlSpringViewResolver.setViewNames("modules/**");
+        beetlSpringViewResolver.setViewNames("modules/**", "error/**");
 //        beetlSpringViewResolver.setPrefix("modules/");
         beetlSpringViewResolver.setSuffix(viewSuffix);
         beetlSpringViewResolver.setConfig(beetlGroupUtilConfiguration);

@@ -151,18 +151,6 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
         return new SpringContextHolder();
     }
 
-//    @Bean
-//    public SimpleMappingExceptionResolver simpleMappingExceptionResolver() {
-//        SimpleMappingExceptionResolver simpleMappingExceptionResolver = new SimpleMappingExceptionResolver();
-//        Properties properties = new Properties();
-//        properties.setProperty("org.apache.shiro.authz.UnauthorizedException", "views/error/403");
-//        properties.setProperty("java.lang.Throwable", "views/error/500");
-//
-//        simpleMappingExceptionResolver.setExceptionMappings(properties);
-//
-//        return simpleMappingExceptionResolver;
-//    }
-
     //拦截器
     @Override
     public void addInterceptors(InterceptorRegistry registry){
@@ -199,11 +187,23 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
 
-
 //    @Bean
 //    public MultipartResolver multipartResolver() {
 //        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
 //        multipartResolver.setMaxUploadSize(500 * 1024 * 1024);
 //        return multipartResolver;
 //    }
+
+//    @Bean
+//    public SimpleMappingExceptionResolver simpleMappingExceptionResolver() {
+//        SimpleMappingExceptionResolver simpleMappingExceptionResolver = new SimpleMappingExceptionResolver();
+//        Properties properties = new Properties();
+//        properties.setProperty("org.apache.shiro.authz.UnauthorizedException", "error/403");
+//        properties.setProperty("java.lang.Throwable", "error/500");
+//
+//        simpleMappingExceptionResolver.setExceptionMappings(properties);
+//
+//        return simpleMappingExceptionResolver;
+//    }
+
 }
