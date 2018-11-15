@@ -16,9 +16,11 @@ import com.alibaba.druid.pool.DruidDataSource;
 import com.jeesite.common.config.Global;
 import com.jeesite.common.lang.ObjectUtils;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.ibatis.io.VFS;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.mybatis.spring.boot.autoconfigure.SpringBootVFS;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -102,9 +104,12 @@ public class DatabaseConfiguration {
     @Bean
     @Primary
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) {
+        VFS.addImplClass(SpringBootVFS.class);
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource);
-        sqlSessionFactoryBean.setTypeAliasesPackage("com.jeesite");
+        //解决myBatis下 不能嵌套jar文件的问题
+//        sqlSessionFactoryBean.setVfs(SpringBootVFS.class);
+        sqlSessionFactoryBean.setTypeAliasesPackage("com.jeesite.modules");
 		sqlSessionFactoryBean.setTypeAliasesSuperType(com.jeesite.common.persistence.BaseEntity.class);
         sqlSessionFactoryBean.setConfigLocation(new ClassPathResource("mybatis/mybatis-config.xml"));
         
@@ -159,7 +164,7 @@ public class DatabaseConfiguration {
     @Bean
 	public MapperScannerConfigurer mapperScannerConfigurer(SqlSessionFactory sqlSessionFactory) {
 		MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
-		mapperScannerConfigurer.setBasePackage("com.jeesite");
+		mapperScannerConfigurer.setBasePackage("com.jeesite.modules");
 		mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactory");
 		mapperScannerConfigurer.setAnnotationClass(com.jeesite.common.persistence.annotation.MyBatisDao.class);
 		return mapperScannerConfigurer;

@@ -333,19 +333,19 @@
 	        	if (!$.isEmptyObject(historyInstanceId)) {
 	        	   request = $.ajax({
                         type: 'get',
-                        url: '/baseWeb/app/rest/admin/process-instances/' + historyInstanceId + '/history-model-json?processDefinitionId=' + definitionId + '&nocaching=' + new Date().getTime()
+                        url: '/jsite/app/rest/admin/process-instances/' + historyInstanceId + '/history-model-json?processDefinitionId=' + definitionId + '&nocaching=' + new Date().getTime()
                     });
                     
 	        	} else if (!$.isEmptyObject(instanceId)) {
 					request = $.ajax({
 					    type: 'get',
-					    url: '/baseWeb/app/rest/admin/process-instances/' + instanceId + '/model-json?processDefinitionId=' + definitionId + '&nocaching=' + new Date().getTime()
+					    url: '/jsite/app/rest/admin/process-instances/' + instanceId + '/model-json?processDefinitionId=' + definitionId + '&nocaching=' + new Date().getTime()
 					});
 					
 	        	} else {
 					request = $.ajax({
 					    type: 'get',
-					    url: '/baseWeb/app/rest/admin/process-definitions/' + definitionId + '/model-json?nocaching=' + new Date().getTime()
+					    url: '/jsite/app/rest/admin/process-definitions/' + definitionId + '/model-json?nocaching=' + new Date().getTime()
 					});
 	        	}
 	
@@ -440,7 +440,7 @@
                             confirm: function () {
                                 $.ajax({
                                     type: 'post',
-                                    url: '/baseWeb/app/rest/admin/process-instances/' + instanceId + '/change-state',
+                                    url: '/jsite/app/rest/admin/process-instances/' + instanceId + '/change-state',
                                     contentType: 'application/json; charset=utf-8',
                                     data: JSON.stringify({
                                         cancelActivityIds: changeStateStartElementIds,

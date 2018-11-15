@@ -1,6 +1,7 @@
 package com.jeesite.modules.config;
 
 
+import org.beetl.core.misc.BeetlUtil;
 import org.beetl.core.resource.ClasspathResourceLoader;
 import org.beetl.ext.spring.BeetlGroupUtilConfiguration;
 import org.beetl.ext.spring.BeetlSpringViewResolver;
@@ -14,6 +15,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternUtils;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 @Configuration
 public class BeetlConfiguration {
@@ -42,9 +47,20 @@ public class BeetlConfiguration {
 
         logger.debug("BEETL templatesPath------------------" + templatesPath);
         logger.debug("BEETL rootPath------------------" + cploder.getRoot());
-
+        try {
+            String path = BeetlUtil.class.getClassLoader().getResource("").toURI().getPath();
+            logger.debug("BEETL path------------------" + path);
+            File file = new File(path);
+            if(file.getParentFile()!=null&&file.getParentFile().getParentFile()!=null) {
+                String webRoot = file.getParentFile().getParentFile().getCanonicalPath();
+                logger.debug("BEETL webRoot------------------" + webRoot);
+            }
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         beetlGroupUtilConfiguration.setResourceLoader(cploder);
-        logger.debug("BEETL rootPath------------------" + cploder.getInfo());
         beetlGroupUtilConfiguration.init();
 //        //如果使用了优化编译器，涉及到字节码操作，需要添加ClassLoader
 //        beetlGroupUtilConfiguration.getGroupTemplate().setClassLoader(loader);

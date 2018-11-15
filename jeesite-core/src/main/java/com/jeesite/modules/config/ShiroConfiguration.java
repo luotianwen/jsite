@@ -20,11 +20,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.server.ErrorPageRegistrar;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 
 import javax.servlet.Filter;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Properties;
 
 @Configuration
 public class ShiroConfiguration {
@@ -165,6 +167,16 @@ public class ShiroConfiguration {
 //    public HandlerExceptionResolver handlerExceptionResolver() {
 //        return new MyExceptionHandler();
 //    }
+    @Bean
+    public SimpleMappingExceptionResolver simpleMappingExceptionResolver() {
+        SimpleMappingExceptionResolver simpleMappingExceptionResolver=new SimpleMappingExceptionResolver();
+        Properties properties=new Properties();
+        //这里的 /unauthorized 是页面，不是访问的路径
+        properties.setProperty("org.apache.shiro.authz.UnauthorizedException","/unauthorized");
+        properties.setProperty("org.apache.shiro.authz.UnauthenticatedException","/unauthorized");
+        simpleMappingExceptionResolver.setExceptionMappings(properties);
+        return simpleMappingExceptionResolver;
+    }
 
     @Bean
     public ErrorPageRegistrar errorPageRegistrar() {

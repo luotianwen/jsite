@@ -22,7 +22,7 @@ FLOWABLE.APP_URL = {
 
     getAccountUrl: function () {
         // return FLOWABLE.CONFIG.contextRoot + '/app/rest/account';
-        return '/baseWeb/a/act/model/account';
+        return '/jsite/a/act/model/account';
     },
 
     getLogoutUrl: function () {

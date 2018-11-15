@@ -7,6 +7,7 @@
         <groupId>com.jeesite</groupId>
         <artifactId>jeesite-root</artifactId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>jeesite-common</artifactId>
@@ -104,6 +105,33 @@
         </dependency>
 
 
+        <!-- jackson json -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-jaxb-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
         <!-- pojo copy -->
         <dependency>
             <groupId>net.sf.dozer</groupId>
@@ -187,19 +215,5 @@
         </plugins>
     </build>
 
-    <developers>
-        <developer>
-            <id>liuruijun</id>
-            <name>Ruijun</name>
-            <email>lruijun.cug at gmail.com</email>
-            <roles><role>Project lead</role></roles>
-            <timezone>+8</timezone>
-        </developer>
-    </developers>
-
-    <organization>
-        <name>JeeSite</name>
-        <url>http://xxx.com</url>
-    </organization>
 
 </project>

@@ -23,7 +23,7 @@ FLOWABLE.CONFIG = {
 	'onPremise' : true,
 	// 'contextRoot' : pathname,
 	// 'webContextRoot' : pathname,
-    'contextRoot' : '/baseWeb',
-    'webContextRoot' : '/baseWeb/static/modler',
+    'contextRoot' : '/jsite',
+    'webContextRoot' : '/jsite/static/modler',
 	'datesLocalization' : false
 };
