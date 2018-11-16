@@ -1,0 +1,101 @@
+<% layout('/layout/default.html', {title: '文件管理', libs: ['dataGrid']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header">
+			<div class="box-title">
+				<i class="fa fa-sitemap"></i> 文件管理
+			</div>
+			<div class="box-tools pull-right">
+				<a href="#" class="btn btn-default" id="btnSearch" title="查询"><i class="fa fa-filter"></i> 查询</a>
+				<a href="#" class="btn btn-default" onclick="reFreshTable()"  id="reFreshTree" title="刷新"><i class="fa fa-refresh"></i> 刷新 </a>
+				<% if(hasPermi('file:sysFile:edit')){ %>
+					<a href="#" onclick="checkBeforeUpload()" class="btn btn-default" title="上传文件"><i class="fa fa-plus"></i>上传文件</a>
+				<% } %>
+			</div>
+		</div>
+		<div class="box-body">
+			<#form:form id="searchForm" model="${sysFile}" action="${ctx}/file/sysFile/listData" method="post" class="form-inline "
+					data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
+				<div class="form-group">
+					<label class="control-label">文件名称：</label>
+					<div class="control-inline">
+						<input name="name" maxlength="64" class="form-control"/>
+						<input name="fileTreeId" id="fileTreeId" type="hidden"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-sm">查询</button>
+					<button type="reset" class="btn btn-default btn-sm" onclick="resetForm()">重置</button>
+				</div>
+			</#form:form>
+			<script type="text/javascript">
+				function reFreshTable(){
+					$("#fileTreeId").val("");
+					$("#searchForm").submit();
+				}
+			</script>			
+			<table id="dataGrid"></table>
+			<div id="dataGridPage"></div>
+		</div>
+	</div>
+</div>
+<% } %>
+<script>
+// 初始化DataGrid对象
+$('#dataGrid').dataGrid({
+		searchForm: $("#searchForm"),
+		columnModel: [
+			{header:'文件夹id', name:'fileTreeId',index:"a.file_tree_id",hidden:true},
+			{header:'文件夹名称', name:'fileTreeName', index:'a.file_tree_name', width:100, align:"center"},
+			{header:'文件名称', name:'name', index:'a.name', width:100, align:"center"},
+			{header:'文件大小', name:'fileSize', index:'a.file_size', width:100, align:"center"},
+			{header:'文件路径', name:'path', index:'a.path', width:100, align:"center"},
+			{header:'上传时间', name:'createDate', index:'a.create_date', width:80, align:"center",formatter:"date"},
+			{header:'备注', name:'remarks', index:'a.remarks', width:80, align:"center"},
+			{header:'操作', name:'actions', width:70,align:"center", sortable:false, title:false, formatter: function(val, obj, row, act){
+				var actions = [];
+				<% if(hasPermi('file:sysFile:edit')){ %>
+					actions.push('<a href="${ctx}/file/sysFile/download?id='+row.id+'" title="下载"><i class="fa fa-download"></i></a>');
+					actions.push('<a href="${ctx}/file/sysFile/delete?id='+row.id+'" class="btnList" title="删除" data-confirm="确认要删除该文件吗?"><i class="fa fa-trash-o"></i></a>');
+					actions.push('<a href="/file/sysFile/move?id='+row.id+'" class="btnList" title="移动文件"><i class="glyphicon glyphicon-share-alt"></i></a>&nbsp;');
+				<% } %>
+				return actions.join('');
+			}}
+		],
+		// 加载成功后执行事件
+		ajaxSuccess: function(data){
+			
+		}
+	});
+	
+	function checkBeforeUpload(obj){
+		js.layer.open({
+			  type: 2,
+			  area: ['20%', '65%'],
+			  fixed: true, //不固定
+			  maxmin: true,
+			  title:'选择上传文件夹',
+			  content: ['${ctx}/file/sysFile/fileTreeSelect','auto'],
+			  btn: ['确认','取消'],
+			  yes: function(index, layero){
+				  var fileTreeId = $(layero).find("iframe")[0].contentWindow.backData();
+				  if(fileTreeId!=""){
+					  js.layer.close(index);
+					  parent.layer.open({
+						  type: 2,
+						  area: ['65%', '50%'],
+						  fixed: true, //不固定
+						  maxmin: true,
+						  title:'文件上传',
+						  content: ['${ctx}/file/sysFile/uploadFile?fileTreeId='+fileTreeId,'auto'],
+						  end:function(){
+							  dataGrid.refresh();
+						  }
+						});
+				  }else{
+					  js.showMessage("未选择文件夹，请选择上传的文件夹");
+				  }
+			  }
+		});
+	}
+</script>

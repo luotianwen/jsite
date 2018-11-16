@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jsite.modules.flowable.dao.DeModelDao">
+
+
+	<sql id="deModelColumns">
+		a.id,
+		a.name,
+		a.model_key AS "key",
+		a.description,
+		a.model_comment AS "comment",
+		a.created,
+		a.created_by AS "createdBy",
+		a.last_updated AS "lastUpdated",
+		a.last_updated_by AS "lastUpdatedBy",
+		a.version,
+		a.model_editor_json AS "modelEditorJson",
+		a.thumbnail,
+		a.model_type AS "modelType",
+		a.tenant_id AS "tenantId"
+		
+	</sql>
+
+	<select id="findList" resultType="DeModel">
+		SELECT  
+		<include refid="deModelColumns"/> 
+		 FROM ACT_DE_MODEL a 
+		 <where>
+			1=1 
+			<if test="key != null and key != ''">
+				AND a.model_key LIKE 
+					<if test="dbName == 'oracle'">'%'||#{key}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{key}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{key},'%')</if>
+			</if>
+			<if test="name != null and name != ''">
+				AND a.name LIKE 
+					<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.created DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="get" resultType="DeModel">
+		SELECT
+			<include refid="deModelColumns"/>
+		FROM ACT_DE_MODEL a WHERE a.id = #{id}
+	</select>
+	
+	<delete id="delete" >
+        delete from ACT_DE_MODEL where id = #{id}
+    </delete>
+	
+</mapper>

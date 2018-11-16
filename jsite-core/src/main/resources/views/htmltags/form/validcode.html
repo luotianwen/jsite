@@ -1,0 +1,23 @@
+<div class="input-group">
+	<span class="input-group-addon">验证码：</span>
+	<input type="text" id="${name}" name="${name}" class="form-control" required="true" style="font-weight:bold;" remote="${ctxPath}/servlet/validateCodeServlet" data-msg-required="请填写验证码" data-msg-remote="验证码不正确."/>
+	<span class="input-group-addon p0">
+		<img id="validCodeImg" class="validCodeImg" title="看不清，点击图片刷新" src="${ctxPath}/servlet/validateCodeServlet" alt="" style="width:100px;height:32px"/>
+	</span>
+</div>
+<script>
+
+$('#validCodeImg').click(function(){
+	var src = '${ctxPath}/servlet/validateCodeServlet?'+new Date().getTime();
+	$('#validCodeImg').attr('src',src).removeClass('hide');
+	$('#${name}').val('').focus();
+});
+/* $('#${name}').focus(function(){
+	if($('#validCodeImg').attr('src')==''){
+		$('#validCodeImg').click();
+	}
+}); */
+/* setTimeout(function(){
+	$('#validCodeImg').click();
+}, 1000); */
+</script>

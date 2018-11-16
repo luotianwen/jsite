@@ -1,0 +1,82 @@
+<% layout('/layout/default.html', {title: '文件夹管理', libs: ['validate']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header">
+			<div class="box-title">
+				<i class="fa fa-sitemap"></i>添加子级文件夹
+			</div>
+		</div>
+		<#form:form id="inputForm" model="${sysFileTree}" class="form-horizontal" action="${ctx}/filetree/sysFileTree/save" method="post">
+			<div class="box-body">
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="父级文件夹名称">
+								<span class="required " aria-required="true">*</span> 父级文件夹名称：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<div class="form-control" readonly="readonly">${sysFileTree.parentName}</div>
+								<input name="parentId" type="hidden" value="${sysFileTree.parentId}" /> 
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="文件夹名称">
+								<span class="required " aria-required="true">*</span> 文件夹名称：<i class="fa icon-question hide"></i>
+							</label>
+							<div class="col-sm-8">
+								<input name="name" maxlength="64" class="form-control required "/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="排序">
+								<span class="required " aria-required="true">*</span> 排序：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<input name="sort" type="text" maxlength="64"  class="form-control required "/> 
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<label class="control-label col-sm-2" title="机房备注信息">
+								备注信息：<i class="fa icon-question hide"></i>
+							</label>
+							<div class="col-sm-10">
+								<textarea name="remarks" rows="3" cols="32"  class="form-control"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="box-footer">
+				<div class="row">
+					<div class="col-sm-offset-2 col-sm-10">
+					<% if (hasPermi('filetree:sysFileTree:edit')){ %>
+						<button type="submit" class="btn btn-sm btn-primary" id="btnSubmit"><i class="fa fa-check"></i> 保 存</button>
+					<% } %>
+						<button type="button" class="btn btn-sm btn-default" id="btnCancel" onclick="window.parent.closeCurrentTabPage();"><i class="fa fa-reply-all"></i> 关 闭</button>
+					</div>
+				</div>
+			</div>
+		</#form:form>
+	</div>
+</div>
+<% } %>
+<script>
+$("#inputForm").validate({
+	submitHandler: function(form){
+		js.ajaxSubmitForm($(form), function(data){
+			js.showMessage(data.message);
+			if(data.result == 'true'){
+				window.parent.closeCurrentTabPage(window.parent.refreshTab);
+			}
+		}, "json");
+    }
+});
+</script>

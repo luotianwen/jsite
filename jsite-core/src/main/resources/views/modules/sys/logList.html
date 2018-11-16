@@ -1,0 +1,95 @@
+<% layout('/layout/default.html', {title: '日志查询', libs: ['dataGrid']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header">
+			<div class="box-title">
+				<i class="fa fa-sitemap"></i> 日志查询
+			</div>
+			<div class="box-tools pull-right">
+				<a href="#" class="btn btn-default" id="btnSearch" title="查询"><i class="fa fa-filter"></i> 查询</a>
+				<a href="#" class="btn btn-default" id="btnRefresh" title="刷新"><i class="fa fa-refresh"></i> 刷新</a>
+			</div>
+		</div>
+		<div class="box-body">
+			<form id="searchForm" action="${ctx}/sys/log/listData" class="form-inline hide">
+				<div class="form-group">
+					<label class="control-label">操作菜单:</label>
+					<div class="control-inline">
+						<input name="title" maxlength="64" class="form-control"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">用户ID: </label>
+					<div class="control-inline">
+						<input name="createBy.id"  maxlength="5" class="form-control"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">URI：</label>
+					<div class="control-inline">
+						<input name="requestUri" maxlength="11" class="form-control"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">日期范围：</label>
+					<div class="control-inline">
+						<input name="beginDate"  onClick="WdatePicker()"  maxlength="30" class="form-control"/>
+						<input name="endDate"  onClick="WdatePicker()" maxlength="30" class="form-control"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">只查询异常信息:</label>
+					<div class="control-inline">
+						<input name="exception" type="checkbox" />
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-sm">查询</button>
+					<button type="reset" class="btn btn-default btn-sm">重置</button>
+				</div>
+			</form>			
+			<table id="dataGrid"></table>
+			<div id="dataGridPage"></div>
+		</div>
+	</div>
+</div>
+<% } %>
+<script>
+//初始化DataGrid对象
+	$('#dataGrid').dataGrid({
+		searchForm: $("#searchForm"),
+		subGrid: true,
+		subGridRowExpanded: showChildGrid,
+		columnModel: [
+			{header:'操作菜单', name:'title', index:'a.title', width:100, align:"center"},
+			{header:'操作用户', name:'operatorName', index:'u.name', width:50, align:"center"},
+			{header:'所在公司', name:'companyName', index:'c.name', width:60, align:"center"},
+			{header:'所在部门', name:'deptName', index:'o.name', width:50, align:"center"},
+			{header:'URI', name:'requestUri', index:'a.requestUri', width:100, align:"center"},
+			{header:'提交方式', name:'method', index:'a.method', width:50, align:"center"},
+			{header:'操作者IP', name:'remoteAddr', index:'a.remoteAddr', width:80, align:"center"},
+			{header:'操作时间', name:'createDate', index:'a.createDate', width:60, align:"center",formatter:"date"},
+			{header:'异常信息', name:'exception', index:'a.exception', width:50, align:"center",formatter:function(val, obj, row, act){
+				 return val==""?"无":"有";
+			}}
+		],
+		// 加载成功后执行事件
+		ajaxSuccess: function(data){
+			
+		}
+	});
+	
+	function showChildGrid(parentRowID,parentRowKey){
+			//显示异常信息内容
+		 $.ajax({
+             url: '${ctx}/sys/log/form',
+             type: "post",
+             data:{'id':parentRowKey},
+             datatype:'json',
+             success: function (data) {
+            	 var html = data.exception==""?"无异常日志记录":data.exception;
+            	 $("#" + parentRowID).append(html);
+             }
+         });
+	}
+</script>

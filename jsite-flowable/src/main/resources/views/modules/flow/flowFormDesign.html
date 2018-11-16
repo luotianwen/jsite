@@ -1,0 +1,17 @@
+<% layout('/layout/default.html', {title: '流程分类', libs: ['ckeditor']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <form>
+            <textarea name="editor1" id="editor1" rows="10" cols="80">
+                This is my textarea to be replaced with CKEditor.
+            </textarea>
+        </form>
+    </div>
+</div>
+<% } %>
+
+<script>
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace( 'editor1' );
+</script>

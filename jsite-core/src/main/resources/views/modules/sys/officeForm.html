@@ -1,0 +1,242 @@
+<% layout('/layout/default.html', {title: '机构管理', libs: ['validate']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header">
+			<div class="box-title">
+				<i class="fa fa-sitemap"></i>${office.isNewRecord?'添加机构':'修改机构信息'}
+			</div>
+		</div>
+		<#form:form id="inputForm" model="${office}" class="form-horizontal" action="${ctx}/sys/office/save" method="post">
+			<div class="box-body">
+				<#form:hidden path="id"/>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="上级区域">
+								上级机构:
+							</label>
+							<div class="col-sm-8">
+								<div class="form-control" readonly="readonly">
+									<% if(isEmpty(office.parentId)|| office.parentId == "0") {%>
+										根机构
+									<% } else{ %>
+										<#form:hidden path="parentId"/>
+										${office.parentName}
+									<% } %>
+								</div>
+							</div>
+						</div>
+					</div>			
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="归属区域">
+								 <span class="required " aria-required="true">*</span>归属区域:<i class="fa icon-question hide"></i>
+							</label>
+							<div class="col-sm-8">
+								<#form:treeselect id="area" name="areaId" value="${office.areaId!}" labelName="office.areaName" labelValue="${office.areaName!}"
+										title="归属区域" url="/sys/area/treeData?type=3" cssClass="required" allowClear="true" notAllowSelectParent="false"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="机构名称">
+								<span class="required" aria-required="true">*</span> 机构名称:<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="name" maxlength="64" class="form-control required" />
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="机构编码">
+								 机构编码：
+							</label>
+							<div class="col-sm-8">
+								<#form:input path="code"  maxlength="64" class="form-control" /> 
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="机构类型">
+								<span class="required " aria-required="true">*</span> 机构类型:<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:select path="type" name="label" data="getDictList:sys_office_type" class="form-control required">
+								</#form:select>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="机构级别">
+                                <span class="required " aria-required="true">*</span> 机构级别:<i class="fa icon-question hide"></i>
+							</label>
+							<div class="col-sm-8">
+								<#form:select path="grade" name="label" data="getDictList:sys_office_grade" class="form-control required">
+								</#form:select>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="主负责人">
+								主负责人:</label>
+							<div class="col-sm-8">
+								<#form:treeselect id="primaryPerson" name="primaryPerson" value="${office.primaryPerson.id!}" labelName="office.primaryPerson.name" labelValue="${office.primaryPerson.name!}"
+										title="主负责人" url="/sys/office/treeData?type=3"  allowClear="true" notAllowSelectParent="true"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="副负责人">
+								 副负责人:
+							</label>
+							<div class="col-sm-8">
+								<#form:treeselect id="deputyPerson" name="deputyPerson" value="${office.deputyPerson.id!}" labelName="office.deputyPerson.name" labelValue="${office.deputyPerson.name!}"
+										title="副负责人" url="/sys/office/treeData?type=3" allowClear="true" notAllowSelectParent="true"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title=" 联系地址">
+								 联系地址:</label>
+							<div class="col-sm-8">
+								<#form:input path="address" class="form-control" maxlength="50" />
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="邮政编码">
+								邮政编码:
+							</label>
+							<div class="col-sm-8">
+								<#form:input path="zipCode" class="form-control" maxlength="50" />
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="负责人">
+								 负责人:</label>
+							<div class="col-sm-8">
+								<#form:input path="master" class="form-control" maxlength="50" />
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="电话">
+								电话:
+							</label>
+							<div class="col-sm-8">
+								<#form:input path="phone" class="form-control" maxlength="50" />
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="传真">
+								 传真:</label>
+							<div class="col-sm-8">
+								<#form:input path="fax" class="form-control" maxlength="50" />
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="邮箱">
+								邮箱:
+							</label>
+							<div class="col-sm-8">
+								<#form:input path="email" class="form-control" maxlength="50" />
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="是否可用">
+								是否可用:
+							</label>
+							<div class="col-sm-8">
+								<#form:select path="useable" name="label" data="getDictList:yes_no" class="form-control">
+								</#form:select>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="排序">
+								<span class="required " aria-required="true">*</span> 排序:<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="sort" class="form-control required" maxlength="50" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<label class="control-label col-sm-2" title="备注信息">
+								备注：<i class="fa icon-question hide"></i>
+							</label>
+							<div class="col-sm-10">
+								<#form:textarea path="remarks" rows="3" cols="32"  class="form-control" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="box-footer">
+				<div class="row">
+					<div class="col-sm-offset-2 col-sm-10">
+					<% if (hasPermi('sys:office:edit')){ %>
+						<button type="submit" class="btn btn-sm btn-primary" id="btnSubmit"><i class="fa fa-check"></i> 保 存</button>
+					<% } %>
+						<button type="button" class="btn btn-sm btn-default" id="btnCancel" onclick="window.parent.closeCurrentTabPage();"><i class="fa fa-reply-all"></i> 关 闭</button>
+					</div>
+				</div>
+			</div>
+		</#form:form>
+	</div>
+</div>
+<% } %>
+<script>
+$("#inputForm").validate({
+	submitHandler: function(form){
+		js.ajaxSubmitForm($(form), function(data){
+			js.showMessage(data.message);
+			console.log(data.message);
+			if(data.result == 'true'){
+				window.parent.closeCurrentTabPage(window.parent.refreshTab);
+			}
+		}, "json");
+    }
+});
+</script>

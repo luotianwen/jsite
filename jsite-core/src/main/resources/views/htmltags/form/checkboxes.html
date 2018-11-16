@@ -1,0 +1,32 @@
+<%
+	var p = {
+		// 标签参数
+		id: id!,					// 元素ID，如果不填写，则与name相同
+		path: path!,				// 绑定form上model中属性的值
+		name: name!,				// 元素名称，不填写
+		value: value!,				// 元素值
+		data:data!,                 //表单固有数据
+		 
+		dictType: dictType!'',		// 字典类型，从字典里获取，自动设置items、itemLabel、itemValue
+		items: items!([]),			// 列表数据，可接受对象集合，如：List<DictData>
+		itemLabel: itemLabel!'',	// 指定列表数据中的什么属性名作为option的标签名
+		itemValue: itemValue!'',	// 指定列表数据中的什么属性名作为option的value值
+		class:class,				// 绑定input上的class属性值
+		label: label!				// 只有一个复选按钮的情况下设
+	
+	};
+	
+		
+%>
+<span class="icheck">
+	<% var i=0;%>
+	<% for(val in p.items) {
+		i++;
+		var name =  @ObjMapper.getObjectFieldValue(val,p.itemLabel);
+		var value = @ObjMapper.getObjectFieldValue(val,p.itemValue);
+		var flag = @ListUtils.inString(value,p.data);
+	%>
+		<label><input type="checkbox" id="${p.path}${i}" name="${p.path}" class="${p.class}" value="${value}" ${flag==true?'checked="checked"':''}/>${name}</label>
+	<%}%>
+</span>
+	

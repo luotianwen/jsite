@@ -1,0 +1,20 @@
+<% layout('/layout/default.html', {title: '文件管理', libs: ['fileupload']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-body">
+			<div id="uploaderDiv" >
+				<#form:fileUploader url="${ctx}/file/sysFile/up" dirName="common/${fileTreeId}" param1="${fileTreeId}"/>
+			</div>
+		</div>
+	</div>
+</div>
+<% } %>
+<script>
+// 上传成功，回调刷新
+function webuploaderCallback(data) {
+	if(data.result == "true") {
+		js.showMessage(data.message);
+		dataGrid.refresh();
+	}
+}
+</script>

@@ -1,0 +1,275 @@
+<% layout('/layout/default.html', {title: '', libs: ['chart', 'validate']}){ %>
+<div class="content pb0">
+	<!-- Info boxes -->
+	<div class="row">
+		<div class="col-md-3 col-sm-6 col-xs-12">
+			<div class="info-box">
+				<span class="info-box-icon bg-aqua"><i class="fa fa-building"></i></span>
+				<div class="info-box-content">
+					<span class="info-box-text">机房数量（个）</span>
+					<!-- <span class="info-box-number">个</span> -->
+				</div>
+				<!-- /.info-box-content -->
+			</div>
+			<!-- /.info-box -->
+		</div>
+		<!-- /.col -->
+		<div class="col-md-3 col-sm-6 col-xs-12">
+			<div class="info-box">
+				<span class="info-box-icon bg-red"><i class="fa fa-tv"></i></span>
+				<div class="info-box-content">
+				<span class="info-box-text">设备数量（个）</span>
+				<!-- <span class="info-box-number">个</span> -->
+				</div>
+				<!-- /.info-box-content -->
+			</div>
+			<!-- /.info-box -->
+		</div>
+		<!-- /.col -->
+
+		<!-- fix for small devices only -->
+		<div class="clearfix visible-sm-block"></div>
+
+		<div class="col-md-3 col-sm-6 col-xs-12">
+			<div class="info-box">
+				<span class="info-box-icon bg-green"><i class="fa fa-th"></i></span>
+				<div class="info-box-content">
+				<span class="info-box-text">机柜数量（个）</span>
+				<!-- <span class="info-box-number">个</span>  -->
+				</div>
+				<!-- /.info-box-content -->
+			</div>
+			<!-- /.info-box -->
+		</div>
+		<!-- /.col -->
+		<div class="col-md-3 col-sm-6 col-xs-12">
+			<div class="info-box">
+				<span class="info-box-icon bg-yellow"><i class="fa fa-object-group"></i></span>
+
+				<div class="info-box-content">
+					<span class="info-box-text">应用系统数量（套）</span>
+					<!-- <span class="info-box-number">套</span> -->
+				</div>
+				<!-- /.info-box-content -->
+			</div>
+			<!-- /.info-box -->
+		</div>
+		<!-- /.col -->
+	</div>
+	<!-- /.row -->
+	<div class="row">
+		<div class="col-md-12">
+			<div class="box">
+				<div class="box-header with-border">
+					<h3 class="box-title">合同详情</h3>
+					<div class="box-tools pull-right">
+						<button type="button" class="btn btn-box-tool" data-widget="collapse">
+							<i class="fa fa-minus"></i>
+						</button>
+						<div class="btn-group">
+							<button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
+								<i class="fa fa-wrench"></i></button>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">导出Excel</a></li>
+								<li><a href="#">导出Word</a></li>
+								<li class="divider"></li>
+								<li><a href="#">基本设置</a></li>
+							</ul>
+						</div>
+						<button type="button" class="btn btn-box-tool" data-widget="remove">
+							<i class="fa fa-times"></i>
+						</button>
+					</div>
+				</div>
+				<!-- /.box-header -->
+				<div class="box-body">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="chart">
+								<div id="myChart" style="height:230px;width:98%"></div>
+							</div>
+							<!-- /.chart-responsive -->
+						</div>
+						</div>
+						<!-- /.col -->
+					</div>
+					<!-- /.row -->
+									<div class="box-footer">
+					<div class="row">
+						<div class="col-sm-2 col-xs-0">
+							<div class="description-block border-right">
+								<span class="description-percentage text-green"></span>
+								<h5 class="description-header"></h5>
+								<span class="description-text"></span>
+							</div>
+							<!-- /.description-block -->
+						</div>
+						<!-- /.col -->
+						<div class="col-sm-3 col-xs-12">
+							<div class="description-block border-right">
+								<!-- <span class="description-percentage text-yellow" id="changeColor1"><i class="fa fa-caret-left" id="changeStamp1"></i> 0%</span> -->
+								<!-- <h5 class="description-header"></h5> -->
+								<span class="description-text">合同总金额</span>
+							</div>
+							<!-- /.description-block -->
+						</div>
+						<!-- /.col -->
+						<div class="col-sm-3 col-xs-12">
+							<div class="description-block border-right">
+								<!-- <span class="description-percentage text-yellow" id="changeColor2"><i class="fa fa-caret-left" id="changeStamp2"></i> 0%</span> -->
+								<!-- <h5 class="description-header">￥</h5> -->
+								<span class="description-text">付款总金额</span>
+							</div>
+							<!-- /.description-block -->
+						</div>
+						<!-- /.col -->
+						<div class="col-sm-3 col-xs-12">
+							<div class="description-block border-right">
+								<!-- <span class="description-percentage text-yellow" id="changeColor3"><i class="fa fa-caret-left" id="changeStamp3"></i> 0%</span> -->
+								<!-- <h5 class="description-header">个</h5> -->
+								<span class="description-text">合同总数量</span>
+							</div>
+							<!-- /.description-block -->
+						</div>
+						<!-- /.col -->
+						<div class="col-sm-0 col-xs-0">
+							<div class="description-block">
+								<span class="description-percentage text-red"></span>
+								<h5 class="description-header"></h5>
+								<span class="description-text"></span>
+							</div>
+							<!-- /.description-block -->
+				</div>
+				<!-- ./box-body -->
+
+				</div>
+					</div>
+					<!-- /.row -->
+						</div>
+							<!-- /.info-box -->
+							<div class="box box-default">		
+					            <div class="box-header with-border">
+					              <h3 class="box-title">设备信息</h3>
+					
+					              <div class="box-tools pull-right">
+					                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+					                </button>
+					                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+					              </div>
+					            </div>
+					            <!-- /.box-header -->
+					            <div class="box-body">
+					              <div class="row">
+					              
+									    <div class="col-sm-1 col-xs-1">
+											<div class="description-block border-right">
+												<span class="description-percentage text-green"></span>
+												<h5 class="description-header"></h5>
+												<span class="description-text"></span>
+											</div>
+											<!-- /.description-block -->
+										</div>					              
+					              
+					              		<div class="col-md-4" height="300" width="200">
+											<p class="text-center">
+												<strong>机房剩余容量</strong>
+											</p>
+											
+											<div class="progress-group">
+												<!-- <span class="progress-text"></span>
+												<span class="progress-number"><b></b>/200</span> -->
+												<div class="progress sm">
+													<div class="progress-bar progress-bar-aqua" style="width: 0%" id="p1"></div>
+												</div>
+											</div>
+												<!-- /.progress-group -->
+											<div class="progress-group">
+												<!-- <span class="progress-text"></span>
+												<span class="progress-number"><b></b>/200</span> -->
+												<div class="progress sm">
+													<div class="progress-bar progress-bar-red" style="width: 0%" id="p2"></div>
+												</div>
+											</div>
+											<!-- /.progress-group -->
+											<div class="progress-group">
+												<!-- <span class="progress-text"></span>
+												<span class="progress-number"><b></b>/200</span> -->
+												<div class="progress sm">
+													<div class="progress-bar progress-bar-green" style="width: 0%" id="p3"></div>
+													
+												</div>
+											</div>
+											<!-- /.progress-group -->
+											<div class="progress-group">
+											<!-- 	<span class="progress-text"></span>
+												<span class="progress-number"><b></b>/200</span> -->
+												<div class="progress sm">
+													<div class="progress-bar progress-bar-yellow" style="width: 0%" id="p4"></div>
+												</div>
+											</div>
+									      </div>
+									      <!-- /.progress-group -->
+									     
+					                <!-- /.col -->  
+					              	
+					              
+					                <div class="col-md-5">
+					                  <div class="chart-responsive">
+					                    <canvas id="pieChart" height="190" width="190" style="width: 190x; height: 190px;"></canvas>
+					                  </div>
+					                  <!-- ./chart-responsive -->
+					                </div>
+					               	 <span class="info-box-number"><strong>设备种类</strong></span>
+					                <!-- /.col -->
+					                <hr></hr>
+					                <div class="col-md-2">
+					                  <ul class="chart-legend clearfix">
+					                  <!--   <li><i class="fa fa-circle-o text-red"></i> 资源池:</li>
+					                    <li><i class="fa fa-circle-o text-green"></i> 物理机:</li>
+					                    <li><i class="fa fa-circle-o text-yellow"></i> 虚拟机:</li>
+					                    <li><i class="fa fa-circle-o text-aqua"></i> 网络设备:</li>
+					                    <li><i class="fa fa-circle-o text-light-blue"></i> 安全设备:</li>
+					                    <li><i class="fa fa-circle-o text-purple"></i> 存储设备:</li>
+					                    <li><i class="fa fa-circle-o text-gray"></i> 备份设备:</li> -->
+					                  </ul>
+					                </div>
+					                
+					                
+
+					              </div>
+					              <!-- /.row -->
+<!-- 					             <div class="box-footer no-padding col-md-6">
+					              <ul class="nav nav-pills nav-stacked">
+					                <li><a href="#">机房一容量
+					                  <span class="pull-right text-red"><i class="fa fa-angle-down"></i> 12%</span></a></li>
+					                <li><a href="#">机房二容量 <span class="pull-right text-green"><i class="fa fa-angle-up"></i> 4%</span></a>
+					                </li>
+					                <li><a href="#">机房三容量
+					                  <span class="pull-right text-yellow"><i class="fa fa-angle-right"></i> 0%</span></a></li>
+					              </ul>
+					            </div>				           
+					          	  /.footer	 -->
+					 		</div>
+							<!-- /.box-body -->
+					 </div>
+					 <!-- /.box -->	
+			</div>
+			<!-- /.col -->
+	</div>
+	<!-- /.row -->
+</div>
+<footer class="main-footer m0">
+	<% var productName = @Global.getProperty('productName'), productVersion = @Global.getProperty('version'); %>
+	<div class="pull-right hidden-xs">当前版本： ${productVersion}</div>
+	&copy; ${@DateUtils.getYear()} ${productName} - Powered By <a href="http://www.cloudtds.com.cn/">云科数据</a>.
+</footer>
+<% } %>
+
+<script type="text/javascript">
+	$(window).resize(function(){
+		var footerHeight  = $('.main-footer').outerHeight() || 0;
+		var windowHeight  = $(window).height();
+		$('.content').css('min-height', windowHeight - footerHeight)
+	}).resize();
+</script>
+

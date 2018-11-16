@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+	<name>viewForm</name>
+	<filePath>src/main/resources/views/${lastPackageName}/${moduleName}/${subModuleName}</filePath>
+	<fileName>${className}Form.html</fileName>
+	<content><![CDATA[
+	
+<% layout('/layout/default.html', {title: '${functionNameSimple}详情', libs: ['validate']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header with-border">
+			<div class="box-title">
+				<i class="fa fa-pencil-square-o"></i> ${"${"+className+".isNewRecord?'新增${functionNameSimple}':'编辑${functionNameSimple}'}"}
+			</div>
+			<div class="box-tools pull-right">
+				<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+			</div>
+		</div>
+		<${'#'}form:form id="inputForm" model="${"$"}{${className}}" action="${r"${ctx}"}/${urlPrefix}/save" method="post" class="form-horizontal">
+			<div class="box-body">
+				<${'#'}form:hidden path="id"/>
+				<#assign showcount=-1 />
+				<#assign isclose=false />
+				<#list table.columnList as c>
+				<#if c.isEdit?? && c.isEdit == "1" && (c.isNotBaseField || c.simpleJavaField == 'remarks')>
+				<#assign showcount=showcount+1 />
+				<#if showcount%2 == 0 >
+				<div class="row">
+				<#assign isclose=false />
+				</#if>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+							<#if c.isNull != "1"><span class="required hide">*</span></#if> ${c.comments}：<#if c.isNull != "1"><i class="fa icon-question hide"></i></#if>
+							</label>
+							<div class="col-sm-8">
+							<#if c.showType == "input">
+								<${'#'}form:input path="${c.javaFieldId}" <#if c.dataLength != "0"> maxlength="${c.dataLength}"</#if> class="form-control <#if c.isNull != "1">required </#if> <#if c.javaType == "Long" || c.javaType == "Integer"> digits</#if><#if c.javaType == "Double"> number</#if>"/>
+							<#elseif c.showType == "textarea">
+								<${'#'}form:textarea path="${c.javaFieldId}" rows="4" <#if c.dataLength != "0"> maxlength="${c.dataLength}"</#if> class="form-control input-xxlarge "/>
+							<#elseif c.showType == "select">
+								<${'#'}form:select path="${c.javaFieldId}" name="" data="" class="form-control <#if c.isNull != "1">required</#if> " />
+							<#elseif c.showType == "dateselect">
+								<input id="${c.javaFieldId}" type="text" name="${c.javaFieldId}" maxlength="20" readonly="readonly" class="form-control <#if c.isNull != "1">required</#if> "
+										value="${"$"}{${className}.${c.javaFieldId}}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});" />
+							<#elseif c.showType == "userselect">
+								<${'#'}form:treeselect id="${c.javaFieldId}" name="${c.javaFieldId}" value="${"$"}{${className}.${c.javaFieldId}}" labelName="${c.javaFieldName}" 
+										labelValue="${"$"}{${className}.${c.javaFieldName}}" title="用户" url="/sys/office/treeData?type=3" cssClass="<#if c.isNull != "1">required</#if>" notAllowSelectParent="true" />
+							<#elseif c.showType == "officeselect">
+								<${'#'}form:treeselect id="${c.javaFieldId}" name="${c.javaFieldId}" value="${"$"}{${className}.${c.javaFieldId}}" labelName="${c.javaFieldName}" 
+										labelValue="${"$"}{${className}.${c.javaFieldName}}" title="部门" url="/sys/office/treeData?type=2" cssClass="<#if c.isNull != "1">required</#if>" notAllowSelectParent="true" />
+							<#elseif c.showType == "areaselect">
+								<${'#'}form:treeselect id="${c.javaFieldId}" name="${c.javaFieldId}" value="${"$"}{${className}.${c.javaFieldId}}" labelName="${c.javaFieldName}" 
+										labelValue="${"$"}{${className}.${c.javaFieldName}}" title="区域" url="/sys/area/treeData" cssClass="<#if c.isNull != "1">required</#if>" notAllowSelectParent="true" />
+							</#if>
+							</div>
+						</div>
+					</div>
+				<#if showcount%2 != 0 >
+				</div>
+				<#assign isclose=true />
+				</#if>
+				</#if>
+				</#list>
+				<#if !isclose >
+				</div>
+				<#assign isclose=true />
+				</#if>
+			</div>
+			
+			<div class="box-footer">
+				<div class="row">
+					<div class="col-sm-offset-2 col-sm-10">
+						<% if (hasPermi('${permissionPrefix}:edit')){ %>
+							<button type="submit" class="btn btn-sm btn-primary" id="btnSubmit"><i class="fa fa-check"></i> 保 存</button>
+						<% } %>
+						<button type="button" class="btn btn-sm btn-default" id="btnCancel" onclick="window.parent.closeCurrentTabPage()"><i class="fa fa-reply-all"></i> 关 闭</button>
+					</div>
+				</div>
+			</div>
+		</${'#'}form:form>
+	</div>
+</div>
+<% } %>
+
+<script type="text/javascript">
+	$("#inputForm").validate({
+		submitHandler: function(form){
+			js.ajaxSubmitForm($(form), function(data){
+				js.showMessage(data.message);
+				if(data.result == 'true'){
+					window.parent.closeCurrentTabPage(window.parent.refreshTab);
+				}
+			}, "json");
+	    }
+	});
+</script> ]]>
+	</content>
+</template>

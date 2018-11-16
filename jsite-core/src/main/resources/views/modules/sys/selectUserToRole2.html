@@ -1,0 +1,113 @@
+<% layout('/layout/default.html', {title: '角色分配', libs: ['zTree']}){ %>
+
+<div id="assignRole" class="row-fluid span12">
+		<div class="span4" style="border-right: 1px solid #A8A8A8;">
+			<p>所在部门：</p>
+			<div id="officeTree" class="ztree"></div>
+		</div>
+		<div class="span3">
+			<p>待选人员：</p>
+			<div id="userTree" class="ztree"></div>
+		</div>
+		<div class="span3" style="padding-left:16px;border-left: 1px solid #A8A8A8;">
+			<p>已选人员：</p>
+			<div id="selectedTree" class="ztree"></div>
+		</div>
+</div>
+
+<% } %>
+
+<script type="text/javascript">
+	
+		var officeTree;
+		var selectedTree;//zTree已选择对象
+		
+		// 初始化
+		$(document).ready(function(){
+			officeTree = $.fn.zTree.init($("#officeTree"), setting, officeNodes);
+			selectedTree = $.fn.zTree.init($("#selectedTree"), setting, selectedNodes);
+		});
+
+		var setting = {view: {selectedMulti:false,nameIsHTML:true,showTitle:false,dblClickExpand:false},
+				data: {simpleData: {enable: true}},
+				callback: {onClick: treeOnClick}};
+		
+		var officeNodes=[
+				<% for(office in officeList) { %>
+					{id:"${office.id}", pId:"${office.parentId!0}", name:"${office.name}"},
+				<% }%>
+			];
+		var pre_selectedNodes =[
+				<% for(user in userList) { %>
+					{id:"${user.id}", pId:"0", name:"<font color='red' style='font-weight:bold;'>${user.name}</font>"},
+				<% }%>
+			];
+		var selectedNodes =[
+				<% for(user in userList) { %>
+					{id:"${user.id}", pId:"0", name:"<font color='red' style='font-weight:bold;'>${user.name}</font>"},
+				<% }%>
+			];
+		
+		var pre_ids = "${selectIds}".split(",");
+		var ids = "${selectIds}".split(",");
+		
+		//点击选择项回调
+		function treeOnClick(event, treeId, treeNode, clickFlag){
+			$.fn.zTree.getZTreeObj(treeId).expandNode(treeNode);
+			if("officeTree"==treeId){
+				$.get("${ctx}/sys/role/users?officeId=" + treeNode.id, function(userNodes){
+					$.fn.zTree.init($("#userTree"), setting, userNodes);
+				});
+			}
+			if("userTree"==treeId){
+				if($.inArray(String(treeNode.id), ids)<0){
+					selectedTree.addNodes(null, treeNode);
+					ids.push(String(treeNode.id));
+				}
+			};
+			if("selectedTree"==treeId){
+				if($.inArray(String(treeNode.id), pre_ids)<0){
+					selectedTree.removeNode(treeNode);
+					ids.splice($.inArray(String(treeNode.id), ids), 1);
+				}else{
+					js.showWarningMessage("角色原有成员不能清除！");
+				}
+			}
+		};
+		function clearAssign(){
+			var submit = function (v) {
+			    if (v == 'ok'){
+					var tips="", type="";
+					if(pre_ids.sort().toString() == ids.sort().toString()){
+						tips = "未给角色【${role.name}】分配新成员！";
+						type = "warning";
+					}else{
+						tips = "已选人员清除成功！";
+						type = "success";
+					}
+					ids=pre_ids.slice(0);
+					selectedNodes=pre_selectedNodes;
+					$.fn.zTree.init($("#selectedTree"), setting, selectedNodes);
+					js.showMessage(tips, null, type);
+			    } else if (v == 'cancel'){
+			    	// 取消
+			    	js.showWarningMessage("取消清除操作！");
+			    }
+			    return true;
+			};
+			
+			var options = {
+					
+	                icon: 3,
+	                hadeClose: true,
+	                btn: ['清除确认','取消']
+	            };
+			layer.confirm("确定清除角色【${role.name}】下的已选人员？", options, function(index) {
+                if (index == 0) {
+                	submit("ok");
+                }
+                js.layer.close(index)
+            });
+			
+		};
+	</script>

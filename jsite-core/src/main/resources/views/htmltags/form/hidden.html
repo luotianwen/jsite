@@ -1,0 +1,13 @@
+<%
+
+	var p = {
+
+    // 标签参数
+    path: path,               // 元素ID，如果不填写，则与name相同
+    id:id!path,
+    value:value!""
+	};
+
+%>
+
+<input type="hidden" id="${p.id}" name="${p.path}" <% if(!isEmpty(p.value)) {%> value="${p.value}" <%}%>/>

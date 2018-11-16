@@ -3,20 +3,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.jeesite</groupId>
-    <artifactId>jeesite-root</artifactId>
+    <groupId>com.jsite</groupId>
+    <artifactId>jsite-root</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>jeesite-common</module>
-        <module>jeesite-flowable</module>
-        <module>jeesite-core</module>
-        <module>jeesite-web</module>
+        <module>jsite-common</module>
+        <module>jsite-flowable</module>
+        <module>jsite-core</module>
+        <module>jsite-web</module>
     </modules>
 
-    <name>Jeesite</name>
-    <description>Jeesite for Spring Boot</description>
+    <name>JSite</name>
+    <description>JSite for Spring Boot</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -123,7 +123,7 @@
                             <finalName>${finalName}</finalName>
                             <outputDirectory>${project.build.directory}/${project.artifactId}/WEB-INF/lib</outputDirectory>
                             <includes>
-                                <include>com/thinkgem/jeesite/**</include>
+                                <include>com/jsite/**</include>
                             </includes> -->
                             <archive>
                                 <manifest>
