@@ -194,7 +194,7 @@ public class GenUtils {
 	@SuppressWarnings("unchecked")
 	public static <T> T fileToObject(String fileName, Class<?> clazz){
 		try {
-			String pathName = "/templates/modules/gen/" + fileName;
+			String pathName = "/template/modules/gen/" + fileName;
 //			logger.debug("File to object: {}", pathName);
 			Resource resource = new ClassPathResource(pathName);
 			InputStream is = resource.getInputStream();
