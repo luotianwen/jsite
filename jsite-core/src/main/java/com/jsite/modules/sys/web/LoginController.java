@@ -46,11 +46,11 @@ public class LoginController extends BaseController{
 	@RequestMapping(value = "${adminPath:/a}/login", method = RequestMethod.GET)
 	public String login(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
 		// 地址中如果包含JSESSIONID，则跳转一次，去掉JSESSIONID信息。
-		if (StringUtils.containsIgnoreCase(request.getRequestURI(), ";JSESSIONID=")) {
-			String queryString = request.getQueryString();
-			queryString = queryString == null ? "" : "?" + queryString;
-			return "redirect:" + adminPath + "/login" + queryString;
-		}
+//		if (StringUtils.containsIgnoreCase(request.getRequestURI(), ";JSESSIONID=")) {
+//			String queryString = request.getQueryString();
+//			queryString = queryString == null ? "" : "?" + queryString;
+//			return "redirect:" + adminPath + "/login" + queryString;
+//		}
 		
 		Principal principal = UserUtils.getPrincipal();
 

@@ -86,7 +86,7 @@
                     <div class="col-xs-6">
                     </div>
                 </div>
-                <div class="row ">
+                <div class="row " style="margin-right: 0px;">
                     <div class="box-header-in">
                         <div class="box-title">
                             <i class="fa fa-sitemap"></i>字段列表
@@ -94,7 +94,7 @@
                     </div>
                 </div>
                     <div style="overflow-x:auto;">
-                    <table id="contentTable" class="table table-striped table-bordered table-condensed" style="margin-left:5px;margin-right:5px;">
+                    <table id="contentTable" class="table table-striped table-bordered table-condensed" >
                         <thead><tr><th title="数据库字段名">列名</th><th title="默认读取数据库字段备注">说明</th><th title="数据库中设置的字段类型及长度">物理类型</th><th title="实体对象的属性字段类型">Java类型</th>
                             <th title="实体对象的属性字段（对象名.属性名|属性名2|属性名3，例如：用户user.id|name|loginName，属性名2和属性名3为Join时关联查询的字段）">Java属性名称 <i class="icon-question-sign"></i></th>
                             <th title="流程业务相关表使用，页面布局是否独占一行">独占一行 <i class="icon-question-sign"></i></th>
@@ -171,7 +171,7 @@
                             <input type="text" name="columnList[${index}].dictType" value="${column.dictType}" maxlength="200" class="form-control "/>
                         </td>
                         <td>
-                            <input type="text" name="columnList[${index}].sort" value="${column.sort}" maxlength="200" class="form-control required input-min digits"/>
+                            <input type="text" name="columnList[${index}].sort" value="${column.sort}" maxlength="200" class="form-control required digits"/>
                         </td>
                         </tr>
                         <% } %>

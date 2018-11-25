@@ -94,9 +94,7 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
             return null;
         }
 		
-        AuthorizationInfo info = null;
-
-        info = (AuthorizationInfo)UserUtils.getCache(UserUtils.CACHE_AUTH_INFO);
+        AuthorizationInfo info = (AuthorizationInfo)UserUtils.getCache(UserUtils.CACHE_AUTH_INFO);
 
         if (info == null) {
             info = doGetAuthorizationInfo(principals);

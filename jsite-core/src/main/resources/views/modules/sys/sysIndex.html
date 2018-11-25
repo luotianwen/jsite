@@ -29,4 +29,14 @@ var bodyClass = 'fixed noscroll sidebar-mini ' + sidebarCollapse + skinName;
 <script src="${ctxStatic}/jquery-plugin/jquery.slimscroll.js"></script>
 <script src="${ctxStatic}/modules/sys/sysIndex.js"></script>
 
+<script language="JavaScript">
+    //判断当前窗口是否有顶级窗口，如果有就让当前的窗口的地址栏发生变化，
+    //这样就可以让登陆窗口显示在整个窗口了
+
+    $(function () {
+        if (window.top!=null && window.top.document.URL!=document.URL){
+            window.top.location= document.URL;
+        }
+    });
+</script>
 <% } %>

@@ -32,7 +32,7 @@ public class FilterConfig {
 
 	/**
 	 * Apache Shiro Filter
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	@Bean
 	@Order(3000)
@@ -44,6 +44,7 @@ public class FilterConfig {
 		bean.addUrlPatterns("/*");
 		return bean;
 	}
+
 
 //	@Bean
 //	@Order(3000)

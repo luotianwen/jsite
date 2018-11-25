@@ -52,10 +52,10 @@ public class CacheSessionDAO extends EnterpriseCacheSessionDAO implements Sessio
 			// 手动控制不更新SESSION
 			String updateSession = request.getParameter("__updateSession");
 			if (Global.FALSE.equals(updateSession) || Global.NO.equals(updateSession)){
+				logger.debug("update 手动控制 不更新session {} {}", session.getId(), request != null ? request.getRequestURI() : "");
 				return;
 			}
 		}
-        logger.debug("doCreate {} {} {}", session, session.getTimeout(), request != null ? request.getRequestURI() : "");
     	super.doUpdate(session);
     	logger.debug("update {} {}", session.getId(), request != null ? request.getRequestURI() : "");
     }
@@ -81,7 +81,7 @@ public class CacheSessionDAO extends EnterpriseCacheSessionDAO implements Sessio
 			}
 		}
 		super.doCreate(session);
-		logger.debug("doCreate {} {} {}", session, session.getTimeout(), request != null ? request.getRequestURI() : "");
+		logger.debug("doCreate {} {}", session.getTimeout(), request != null ? request.getRequestURI() : "");
     	return session.getId();
     }
 
@@ -109,7 +109,7 @@ public class CacheSessionDAO extends EnterpriseCacheSessionDAO implements Sessio
 
     		Session session = super.readSession(sessionId);
     		logger.debug("readSession {} {}", sessionId, request != null ? request.getRequestURI() : "");
-    		
+
     		if (request != null && session != null){
     			request.setAttribute("session_"+sessionId, session);
     		}

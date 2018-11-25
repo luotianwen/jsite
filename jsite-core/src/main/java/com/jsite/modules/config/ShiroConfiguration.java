@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.server.ErrorPageRegistrar;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 
 import javax.servlet.Filter;
@@ -32,13 +33,13 @@ import java.util.Properties;
 public class ShiroConfiguration {
 
     @Autowired
-    protected EhCacheManager shiroCacheManager;
-
-    @Autowired
     protected SystemAuthorizingRealm systemAuthorizingRealm;
 
     @Autowired
     protected FormAuthenticationFilter formAuthenticationFilter;
+
+    @Value("${ehcache.configFile}")
+    private String configFile;
 
     @Value("${session.sessionTimeout}")
     private String sessionTimeout;
@@ -66,6 +67,7 @@ public class ShiroConfiguration {
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         shiroFilterFactoryBean.setLoginUrl(adminPath+"/login");
         shiroFilterFactoryBean.setSuccessUrl(adminPath+"?login");
+//        shiroFilterFactoryBean.setUnauthorizedUrl("/user/unauth");
 
         Map<String, Filter> filterMap = new HashMap<>();
         filterMap.put("cas", casFilter());
@@ -86,36 +88,45 @@ public class ShiroConfiguration {
     }
 
     @Bean(name="securityManager")
-    public SecurityManager securityManager(SessionManager sessionManager){
+    public SecurityManager securityManager(){
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         //设置realm.
         securityManager.setRealm(systemAuthorizingRealm);
         // 自定义缓存实现 使用redis
-        securityManager.setCacheManager(shiroCacheManager);
+        securityManager.setCacheManager(shiroCacheManager());
         // 自定义session管理 使用redis
-        securityManager.setSessionManager(sessionManager);
+        securityManager.setSessionManager(sessionManager());
         return securityManager;
     }
 
     @Bean
-    public SessionManager sessionManager(CacheSessionDAO sessionDAO, Cookie sessionIdCookie) {
+    public SessionManager sessionManager() {
         SessionManager sessionManager = new SessionManager();
-        sessionManager.setSessionDAO(sessionDAO);
+        sessionManager.setSessionDAO(sessionDAO());
         sessionManager.setGlobalSessionTimeout(Long.valueOf(sessionTimeout));
         sessionManager.setSessionValidationInterval(Long.valueOf(sessionTimeoutClean));
+        //是否开启删除无效的session对象  默认为true
+        sessionManager.setDeleteInvalidSessions(true);
         sessionManager.setSessionValidationSchedulerEnabled(true);
-        sessionManager.setSessionIdCookie(sessionIdCookie);
+        sessionManager.setSessionIdCookie(sessionIdCookie());
         sessionManager.setSessionIdCookieEnabled(true);
         return sessionManager;
     }
 
     @Bean
-    public CacheSessionDAO sessionDAO(IdGenerate idGenerate) {
+    public CacheSessionDAO sessionDAO() {
         CacheSessionDAO cacheSessionDAO = new CacheSessionDAO();
-        cacheSessionDAO.setSessionIdGenerator(idGenerate);
+        cacheSessionDAO.setSessionIdGenerator(idGenerate());
         cacheSessionDAO.setActiveSessionsCacheName("activeSessionsCache");
-        cacheSessionDAO.setCacheManager(shiroCacheManager);
+        cacheSessionDAO.setCacheManager(shiroCacheManager());
         return cacheSessionDAO;
+    }
+
+    @Bean(name="shiroCacheManager")
+    public EhCacheManager shiroCacheManager() {
+        EhCacheManager ehCacheManager = new EhCacheManager();
+        ehCacheManager.setCacheManagerConfigFile("classpath:" + configFile);
+        return ehCacheManager;
     }
 
     @Bean
@@ -138,12 +149,13 @@ public class ShiroConfiguration {
         return casFilter;
     }
 
-    @Bean
-    public static LifecycleBeanPostProcessor getLifecycleBeanPostProcessor(){
+    @Bean(name="lifecycleBeanPostProcessor")
+    public static LifecycleBeanPostProcessor lifecycleBeanPostProcessor(){
         return new LifecycleBeanPostProcessor();
     }
 
     @Bean
+    @DependsOn({ "lifecycleBeanPostProcessor" })
     public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
         DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
         defaultAdvisorAutoProxyCreator.setProxyTargetClass(true);
@@ -172,8 +184,9 @@ public class ShiroConfiguration {
         SimpleMappingExceptionResolver simpleMappingExceptionResolver=new SimpleMappingExceptionResolver();
         Properties properties=new Properties();
         //这里的 /unauthorized 是页面，不是访问的路径
-        properties.setProperty("org.apache.shiro.authz.UnauthorizedException","/unauthorized");
-        properties.setProperty("org.apache.shiro.authz.UnauthenticatedException","/unauthorized");
+        properties.setProperty("org.apache.shiro.authz.UnauthorizedException","error/403");
+        properties.setProperty("org.apache.shiro.authz.UnauthenticatedException","error/403");
+        properties.setProperty("java.lang.Throwable", "error/500");
         simpleMappingExceptionResolver.setExceptionMappings(properties);
         return simpleMappingExceptionResolver;
     }
