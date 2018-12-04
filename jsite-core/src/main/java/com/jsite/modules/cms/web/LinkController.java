@@ -77,11 +77,11 @@ public class LinkController extends BaseController {
 	@RequiresPermissions("cms:link:edit")
 	@RequestMapping(value = "save")
 	public String save(Link link, Model model, RedirectAttributes redirectAttributes) {
-		if (!beanValidator(model, link)){
-			return form(link, model);
-		}
+//		if (!beanValidator(model, link)){
+//			return form(link, model);
+//		}
 		linkService.save(link);
-		addMessage(redirectAttributes, "保存链接'" + StringUtils.abbr(link.getTitle(),50) + "'成功");
+//		addMessage(redirectAttributes, "保存链接'" + StringUtils.abbr(link.getTitle(),50) + "'成功");
 		return "redirect:" + adminPath + "/cms/link/?repage&category.id="+link.getCategory().getId();
 	}
 	
@@ -89,7 +89,7 @@ public class LinkController extends BaseController {
 	@RequestMapping(value = "delete")
 	public String delete(Link link, String categoryId, @RequestParam(required=false) Boolean isRe, RedirectAttributes redirectAttributes) {
 		linkService.delete(link, isRe);
-		addMessage(redirectAttributes, (isRe!=null&&isRe?"发布":"删除")+"链接成功");
+//		addMessage(redirectAttributes, (isRe!=null&&isRe?"发布":"删除")+"链接成功");
 		return "redirect:" + adminPath + "/cms/link/?repage&category.id="+categoryId;
 	}
 

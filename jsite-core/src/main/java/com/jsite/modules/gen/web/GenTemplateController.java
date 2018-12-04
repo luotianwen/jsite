@@ -61,11 +61,11 @@ public class GenTemplateController extends BaseController {
 	@RequiresPermissions("gen:genTemplate:edit")
 	@RequestMapping(value = "save")
 	public String save(GenTemplate genTemplate, Model model, RedirectAttributes redirectAttributes) {
-		if (!beanValidator(model, genTemplate)){
-			return form(genTemplate, model);
-		}
+//		if (!beanValidator(model, genTemplate)){
+//			return form(genTemplate, model);
+//		}
 		genTemplateService.save(genTemplate);
-		addMessage(redirectAttributes, "保存代码模板'" + genTemplate.getName() + "'成功");
+//		addMessage(redirectAttributes, "保存代码模板'" + genTemplate.getName() + "'成功");
 		return "redirect:" + adminPath + "/gen/gen?repage";
 	}
 	
@@ -73,7 +73,7 @@ public class GenTemplateController extends BaseController {
 	@RequestMapping(value = "delete")
 	public String delete(GenTemplate genTemplate, RedirectAttributes redirectAttributes) {
 		genTemplateService.delete(genTemplate);
-		addMessage(redirectAttributes, "删除代码模板成功");
+//		addMessage(redirectAttributes, "删除代码模板成功");
 		return "redirect:" + adminPath + "/gen/gen?repage";
 	}
 

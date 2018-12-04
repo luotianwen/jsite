@@ -70,7 +70,7 @@ public class GenTableController extends BaseController {
 		model.addAttribute("tableList", tableList);
 		// 验证表是否存在
 		if (StringUtils.isBlank(genTable.getId()) && !genTableService.checkTableName(genTable.getName())){
-			addMessage(model, "下一步失败！" + genTable.getName() + " 表已经添加！");
+//			addMessage(model, "下一步失败！" + genTable.getName() + " 表已经添加！");
 			genTable.setName("");
 		}
 		// 获取物理表字段
@@ -85,17 +85,17 @@ public class GenTableController extends BaseController {
 	@RequiresPermissions("gen:genTable:edit")
 	@RequestMapping(value = "save")
 	public String save(GenTable genTable, Model model, RedirectAttributes redirectAttributes) {
-		if (!beanValidator(model, genTable)){
-			return form(genTable, model);
-		}
+//		if (!beanValidator(model, genTable)){
+//			return form(genTable, model);
+//		}
 		// 验证表是否已经存在
 		if (StringUtils.isBlank(genTable.getId()) && !genTableService.checkTableName(genTable.getName())){
-			addMessage(model, "保存失败！" + genTable.getName() + " 表已经存在！");
+//			addMessage(model, "保存失败！" + genTable.getName() + " 表已经存在！");
 			genTable.setName("");
 			return form(genTable, model);
 		}
 		genTableService.save(genTable);
-		addMessage(redirectAttributes, "保存业务表'" + genTable.getName() + "'成功");
+//		addMessage(redirectAttributes, "保存业务表'" + genTable.getName() + "'成功");
 		return "redirect:" + adminPath + "/gen/genTable/?repage";
 	}
 	
@@ -103,7 +103,7 @@ public class GenTableController extends BaseController {
 	@RequestMapping(value = "delete")
 	public String delete(GenTable genTable, RedirectAttributes redirectAttributes) {
 		genTableService.delete(genTable);
-		addMessage(redirectAttributes, "删除业务表成功");
+//		addMessage(redirectAttributes, "删除业务表成功");
 		return "redirect:" + adminPath + "/gen/genTable/?repage";
 	}
 

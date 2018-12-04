@@ -96,11 +96,11 @@ public class ArticleController extends BaseController {
 	@RequiresPermissions("cms:article:edit")
 	@RequestMapping(value = "save")
 	public String save(Article article, Model model, RedirectAttributes redirectAttributes) {
-		if (!beanValidator(model, article)){
-			return form(article, model);
-		}
+//		if (!beanValidator(model, article)){
+//			return form(article, model);
+//		}
 		articleService.save(article);
-		addMessage(redirectAttributes, "保存文章'" + StringUtils.abbr(article.getTitle(),50) + "'成功");
+//		addMessage(redirectAttributes, "保存文章'" + StringUtils.abbr(article.getTitle(),50) + "'成功");
 		String categoryId = article.getCategory()!=null?article.getCategory().getId():null;
 		return "redirect:" + adminPath + "/cms/article/?repage&category.id="+(categoryId!=null?categoryId:"");
 	}
@@ -110,10 +110,10 @@ public class ArticleController extends BaseController {
 	public String delete(Article article, String categoryId, @RequestParam(required=false) Boolean isRe, RedirectAttributes redirectAttributes) {
 		// 如果没有审核权限，则不允许删除或发布。
 		if (!UserUtils.getSubject().isPermitted("cms:article:audit")){
-			addMessage(redirectAttributes, "你没有删除或发布权限");
+//			addMessage(redirectAttributes, "你没有删除或发布权限");
 		}
 		articleService.delete(article, isRe);
-		addMessage(redirectAttributes, (isRe!=null&&isRe?"发布":"删除")+"文章成功");
+//		addMessage(redirectAttributes, (isRe!=null&&isRe?"发布":"删除")+"文章成功");
 		return "redirect:" + adminPath + "/cms/article/?repage&category.id="+(categoryId!=null?categoryId:"");
 	}
 

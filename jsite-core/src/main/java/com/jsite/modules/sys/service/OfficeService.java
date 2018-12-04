@@ -3,6 +3,7 @@ package com.jsite.modules.sys.service;
 import com.jsite.common.service.CrudService;
 import com.jsite.modules.sys.dao.OfficeDao;
 import com.jsite.modules.sys.entity.Office;
+import com.jsite.modules.sys.utils.AreaOfficeUtils;
 import com.jsite.modules.sys.utils.UserUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,14 +20,14 @@ import java.util.List;
 public class OfficeService extends CrudService<OfficeDao, Office> {
 
 	public List<Office> findAll(){
-		return UserUtils.getOfficeList();
+		return AreaOfficeUtils.getOfficeList();
 	}
 
 	public List<Office> findList(Boolean isAll){
 		if (isAll != null && isAll){
-			return UserUtils.getOfficeAllList();
+			return AreaOfficeUtils.getOfficeAllList();
 		}else{
-			return UserUtils.getOfficeList();
+			return AreaOfficeUtils.getOfficeList();
 		}
 	}
 	

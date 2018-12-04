@@ -3,6 +3,7 @@ package com.jsite.modules.sys.service;
 import com.jsite.common.service.CrudService;
 import com.jsite.modules.sys.dao.AreaDao;
 import com.jsite.modules.sys.entity.Area;
+import com.jsite.modules.sys.utils.AreaOfficeUtils;
 import com.jsite.modules.sys.utils.UserUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +24,7 @@ public class AreaService extends CrudService<AreaDao, Area> {
 	}
 	
 	public List<Area> findAll(){
-		return UserUtils.getAreaList();
+		return AreaOfficeUtils.getAreaList();
 	}
 
 	@Transactional(readOnly = false)

@@ -59,7 +59,7 @@ public class FrontGuestbookController extends BaseController{
 				guestbook.setCreateDate(new Date());
 				guestbook.setDelFlag(Guestbook.DEL_FLAG_AUDIT);
 				guestbookService.save(guestbook);
-				addMessage(redirectAttributes, "提交成功，谢谢！");
+//				addMessage(redirectAttributes, "提交成功，谢谢！");
 //			}else{
 //				addMessage(redirectAttributes, "验证码不正确。");
 //			}

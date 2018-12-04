@@ -8,7 +8,7 @@ import com.jsite.common.lang.StringUtils;
 import com.jsite.common.lang.TimeUtils;
 import com.jsite.common.security.shiro.session.SessionDAO;
 import com.jsite.common.web.BaseController;
-import com.jsite.modules.sys.security.SystemAuthorizingRealm.Principal;
+import com.jsite.modules.sys.entity.Principal;
 import com.jsite.modules.sys.utils.UserUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.session.Session;

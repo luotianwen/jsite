@@ -86,14 +86,14 @@ public class CategoryController extends BaseController {
 	@RequestMapping(value = "save")
 	public String save(Category category, Model model, RedirectAttributes redirectAttributes) {
 		if(Global.isDemoMode()){
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
+//			addMessage(redirectAttributes, "演示模式，不允许操作！");
 			return "redirect:" + adminPath + "/cms/category/";
 		}
-		if (!beanValidator(model, category)){
-			return form(category, model);
-		}
+//		if (!beanValidator(model, category)){
+//			return form(category, model);
+//		}
 		categoryService.save(category);
-		addMessage(redirectAttributes, "保存栏目'" + category.getName() + "'成功");
+//		addMessage(redirectAttributes, "保存栏目'" + category.getName() + "'成功");
 		return "redirect:" + adminPath + "/cms/category/";
 	}
 	
@@ -101,14 +101,14 @@ public class CategoryController extends BaseController {
 	@RequestMapping(value = "delete")
 	public String delete(Category category, RedirectAttributes redirectAttributes) {
 		if(Global.isDemoMode()){
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
+//			addMessage(redirectAttributes, "演示模式，不允许操作！");
 			return "redirect:" + adminPath + "/cms/category/";
 		}
 		if (Category.isRoot(category.getId())){
-			addMessage(redirectAttributes, "删除栏目失败, 不允许删除顶级栏目或编号为空");
+//			addMessage(redirectAttributes, "删除栏目失败, 不允许删除顶级栏目或编号为空");
 		}else{
 			categoryService.delete(category);
-			addMessage(redirectAttributes, "删除栏目成功");
+//			addMessage(redirectAttributes, "删除栏目成功");
 		}
 		return "redirect:" + adminPath + "/cms/category/";
 	}
@@ -126,7 +126,7 @@ public class CategoryController extends BaseController {
     		entitys[i].setSort(sorts[i]);
     		categoryService.save(entitys[i]);
     	}
-    	addMessage(redirectAttributes, "保存栏目排序成功!");
+//    	addMessage(redirectAttributes, "保存栏目排序成功!");
 		return "redirect:" + adminPath + "/cms/category/";
 	}
 	

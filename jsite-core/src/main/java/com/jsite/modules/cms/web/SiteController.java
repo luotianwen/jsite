@@ -60,14 +60,14 @@ public class SiteController extends BaseController {
 	@RequestMapping(value = "save")
 	public String save(Site site, Model model, RedirectAttributes redirectAttributes) {
 		if(Global.isDemoMode()){
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
+//			addMessage(redirectAttributes, "演示模式，不允许操作！");
 			return "redirect:" + adminPath + "/cms/site/?repage";
 		}
-		if (!beanValidator(model, site)){
-			return form(site, model);
-		}
+//		if (!beanValidator(model, site)){
+//			return form(site, model);
+//		}
 		siteService.save(site);
-		addMessage(redirectAttributes, "保存站点'" + site.getName() + "'成功");
+//		addMessage(redirectAttributes, "保存站点'" + site.getName() + "'成功");
 		return "redirect:" + adminPath + "/cms/site/?repage";
 	}
 	
@@ -75,14 +75,14 @@ public class SiteController extends BaseController {
 	@RequestMapping(value = "delete")
 	public String delete(Site site, @RequestParam(required=false) Boolean isRe, RedirectAttributes redirectAttributes) {
 		if(Global.isDemoMode()){
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
+//			addMessage(redirectAttributes, "演示模式，不允许操作！");
 			return "redirect:" + adminPath + "/cms/site/?repage";
 		}
 		if (Site.isDefault(site.getId())){
-			addMessage(redirectAttributes, "删除站点失败, 不允许删除默认站点");
+//			addMessage(redirectAttributes, "删除站点失败, 不允许删除默认站点");
 		}else{
 			siteService.delete(site, isRe);
-			addMessage(redirectAttributes, (isRe!=null&&isRe?"恢复":"")+"删除站点成功");
+//			addMessage(redirectAttributes, (isRe!=null&&isRe?"恢复":"")+"删除站点成功");
 		}
 		return "redirect:" + adminPath + "/cms/site/?repage";
 	}
