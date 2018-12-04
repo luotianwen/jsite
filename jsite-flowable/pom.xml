@@ -21,7 +21,7 @@
 
         <dependency>
             <groupId>com.jsite</groupId>
-            <artifactId>jsite-core</artifactId>
+            <artifactId>jsite-framework</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 

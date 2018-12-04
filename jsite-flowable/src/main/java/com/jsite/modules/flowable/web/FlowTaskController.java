@@ -297,10 +297,10 @@ public class FlowTaskController extends BaseController {
 	@RequestMapping(value = "deleteTask")
 	public String deleteTask(String taskId, String reason, RedirectAttributes redirectAttributes) {
 		if (StringUtils.isBlank(reason)){
-			addMessage(redirectAttributes, "请填写删除原因");
+//			addMessage(redirectAttributes, "请填写删除原因");
 		}else{
 			actTaskService.deleteTask(taskId, reason);
-			addMessage(redirectAttributes, "删除任务成功，任务ID=" + taskId);
+//			addMessage(redirectAttributes, "删除任务成功，任务ID=" + taskId);
 		}
 		return "redirect:" + adminPath + "/act/task";
 	}
