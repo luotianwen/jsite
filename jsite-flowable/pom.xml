@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.jsite</groupId>
+        <groupId>cn.org.jsite</groupId>
         <artifactId>jsite-root</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
@@ -20,7 +20,7 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.jsite</groupId>
+            <groupId>cn.org.jsite</groupId>
             <artifactId>jsite-framework</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>

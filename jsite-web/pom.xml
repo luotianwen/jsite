@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.jsite</groupId>
+        <groupId>cn.org.jsite</groupId>
         <artifactId>jsite-root</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
@@ -34,13 +34,13 @@
         </dependency>
 
         <dependency>
-            <groupId>com.jsite</groupId>
+            <groupId>cn.org.jsite</groupId>
             <artifactId>jsite-core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>
-            <groupId>com.jsite</groupId>
+            <groupId>cn.org.jsite</groupId>
             <artifactId>jsite-flowable</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
