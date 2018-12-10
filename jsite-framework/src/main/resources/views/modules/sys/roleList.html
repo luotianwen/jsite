@@ -1,0 +1,61 @@
+<% layout('/layout/default.html', {title: '角色管理', libs: ['dataGrid']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header">
+			<div class="box-title">
+				<i class="fa fa-cubes"></i> 角色管理
+			</div>
+			<div class="box-tools pull-right">
+				<% if(hasPermi('sys:role:edit')){ %>
+					<a href="/sys/role/form" class="btn btn-default btnTool"  title="新增角色"><i class="fa fa-plus"></i> 新增</a>
+				<% } %>
+			</div>
+		</div>
+		<div class="box-body">
+			<form id="searchForm" action="${ctx}/sys/role/listData" method="post" class="form-inline hide" >
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-sm">查询</button>
+					<button type="reset" class="btn btn-default btn-sm">重置</button>
+				</div>
+			</form>			
+			<table id="dataGrid"></table>
+		</div>
+	</div>
+</div>
+<% } %>
+<script>
+//初始化DataGrid对象
+$('#dataGrid').dataGrid({
+	searchForm: $("#searchForm"),
+	columnModel: [
+		{header:'角色名称', name:'name', index:'a.name', width:90, align:"center"},
+		{header:'英文名称', name:'enname', index:'a.enname', width:140, align:"center"},
+		{header:'用户类型', name:'userType', index:'a.user_type', width:140, align:"center", formatter: function(val, obj, row, act){
+			return js.getDictLabel(${@DictUtils.getDictListJson('sys_user_type')}, val, '<font color=#aaa>未设置</font>', true);
+		}},
+		{header:'归属机构', name:'office.name', index:'o.name', width:120, align:"center", formatter: function(val, obj, row, act){
+			return row.office.name;
+		}},
+		{header:'数据范围', name:'dataScope', index:'a.data_scope', width:100, align:"center", formatter: function(val, obj, row, act){
+                return js.getDictLabel(${@DictUtils.getDictListJson('sys_data_scope')}, val, '', false);
+		}},
+		{header:'操作', name:'actions', width:100, sortable:false, title:false, align:"center", formatter: function(val, obj, row, act){
+			var actions = [];
+			<% if(hasPermi('sys:role:edit')){ %>
+			
+				actions.push('<a href="/sys/role/assign?id='+row.id+'" class="btnList" title="分配角色"><i class="fa fa-hand-pointer-o"></i></a>&nbsp;');
+				actions.push('<a href="/sys/role/form?id='+row.id+'" class="btnList" title="编辑角色"><i class="fa fa-pencil"></i></a>&nbsp;');
+				actions.push('<a href="${ctx}/sys/role/delete?id='+row.id+'" class="btnList" title="删除角色" data-confirm="确认要删除该角色吗？"><i class="fa fa-trash-o"></i></a>&nbsp;');
+				
+			<% } %>
+			
+			return actions.join('');
+		}}
+	],
+	// 加载成功后执行事件
+	ajaxSuccess: function(data){
+		
+	}
+});
+
+</script>

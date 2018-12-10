@@ -1,0 +1,146 @@
+<% layout('/layout/default.html', {title: '菜单管理', libs: ['validate','icheck']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header with-border">
+			<div class="box-title">
+				<i class="fa fa-pencil-square-o"></i> ${menu.isNewRecord?'新增菜单':'编辑菜单'}
+			</div>
+			<div class="box-tools pull-right">
+				<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+			</div>
+		</div>
+		<#form:form id="inputForm" model="${menu}" action="${ctx}/sys/menu/save" method="post" class="form-horizontal">
+			<div class="box-body">
+				<div class="form-unit">基本信息</div>
+				<#form:hidden path="id"/>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title=""> 上级菜单:</label>
+							<div class="col-sm-8">
+								<#form:treeselect id="parentId" name="parent.id" value="${menu.parent.id!}" labelName="menu.parent.name"
+								labelValue="${menu.parent.name!}" title="上级菜单" extId="${menu.id}" url="/sys/menu/treeData" notAllowSelectParent="true" />
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> 名称:<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="name" maxlength="64" class="form-control required " />
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="点击菜单跳转的页面"> 链接:
+							<i class="fa icon-question"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="href" maxlength="64" class="form-control " />
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="链接地址打开的目标窗口，默认：mainFrame"> 目标:
+							<i class="fa icon-question"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="target" maxlength="64" class="form-control " />
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title=""> 图标:</label>
+							<div class="col-sm-8">
+								<#form:iconselect id="icon" name="icon" value="${menu.icon}"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="排列顺序，升序。">
+								<span class="required hide">*</span> 排序:<i class="fa icon-question hide"></i>
+								<i class="fa icon-question"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="sort" maxlength="64" class="form-control required " />
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="该菜单或操作是否显示到系统菜单中">
+								<span class="required hide">*</span> 可见:<i class="fa icon-question hide"></i>
+								<i class="fa icon-question"></i>
+							</label>
+							<div class="col-sm-8">
+								<#form:radio path="isShow" dictType="sys_show_hide" class="form-control required"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="控制器中定义的权限标识，如：@RequiresPermissions(“权限标识”)"> 权限标识:
+							<i class="fa icon-question"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="permission" maxlength="255" class="form-control  " />
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="form-unit">其它信息</div>
+				
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<label class="control-label col-sm-2" title=""> 备注信息：</label>
+							<div class="col-sm-10">
+								<#form:textarea path="remarks" rows="4" maxlength="255" class="form-control input-xxlarge "/>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="box-footer">
+				<div class="row">
+					<div class="col-sm-offset-2 col-sm-10">
+						<% if (hasPermi('sys:menu:edit')){ %>
+							<button type="submit" class="btn btn-sm btn-primary" id="btnSubmit"><i class="fa fa-check"></i> 保 存</button>
+						<% } %>
+						<button type="button" class="btn btn-sm btn-default" id="btnCancel" onclick="window.parent.closeCurrentTabPage()"><i class="fa fa-reply-all"></i> 关 闭</button>
+					</div>
+				</div>
+			</div>
+		</#form:form>
+	</div>
+</div>
+<% } %>
+
+<script type="text/javascript">
+	$("#inputForm").validate({
+		submitHandler: function(form){
+			js.ajaxSubmitForm($(form), function(data){
+				js.showMessage(data.message);
+				if(data.result == 'true'){
+					window.parent.closeCurrentTabPage(window.parent.refreshTab);
+				}
+			}, "json");
+	    }
+	});
+
+</script>
+
