@@ -7,7 +7,7 @@ import net.sf.ehcache.Element;
 /**
  * Cache工具类
  ** @author liuruijun
- * @version 2013-5-29
+ * @version 2017-5-29
  */
 public class EhCacheUtils {
 

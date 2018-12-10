@@ -11,7 +11,7 @@ import java.util.Set;
 /**
  * Cache工具类
  ** @author liuruijun
- * @version 2013-5-29
+ * @version 2017-5-29
  */
 public class CacheUtils {
 	

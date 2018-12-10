@@ -24,7 +24,7 @@ var DataGrid = function(options, $this){
 			total: "totalPage", records: "count", subgrid: {root:"list"}
 		},
 		treeReader: {	// 自定义树表格JSON读取参数
-			level_field: "treeLevel", parent_id_field: "parentId", userdata: "otherData",
+			level_field: "treeLevel", parent_id_field: "parent.id", userdata: "otherData",
 			leaf_field: "isTreeLeaf", expanded_field: "isOpen", icon_field: "_icon"
 		},
 		prmNames: {		// 自定义Ajax请求参数

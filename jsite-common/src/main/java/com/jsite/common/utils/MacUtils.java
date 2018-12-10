@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
  * MAC地址工具
  * 
  ** @author liuruijun
- * @version 2013-12-21
+ * @version 2017-12-21
  */
 public class MacUtils {
 
