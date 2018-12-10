@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * 流程变量对象
  ** @author liuruijun
- * @version 2013-11-03
+ * @version 2017-11-03
  */
 public class Variable {
 

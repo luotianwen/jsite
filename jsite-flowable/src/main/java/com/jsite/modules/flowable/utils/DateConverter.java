@@ -13,7 +13,7 @@ import java.util.Date;
 /**
  * 日期转换类
  ** @author liuruijun
- * @version 2013-11-03
+ * @version 2017-11-03
  */
 public class DateConverter implements Converter {
 

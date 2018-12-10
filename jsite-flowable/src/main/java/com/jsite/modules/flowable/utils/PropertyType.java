@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * 属性数据类型
  ** @author liuruijun
- * @version 2013-11-03
+ * @version 2017-11-03
  */
 public enum PropertyType {
 	

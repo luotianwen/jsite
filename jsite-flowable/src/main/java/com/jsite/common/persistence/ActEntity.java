@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * Activiti Entity类
  ** @author liuruijun
- * @version 2013-05-28
+ * @version 2017-05-28
  */
 public abstract class ActEntity<T> extends DataEntity<T> implements Serializable {
 
