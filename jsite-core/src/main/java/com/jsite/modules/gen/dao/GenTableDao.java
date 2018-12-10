@@ -7,7 +7,7 @@ import com.jsite.modules.gen.entity.GenTable;
 /**
  * 业务表DAO接口
  * @author JSite
- * @version 2013-10-15
+ * @version 2018-10-15
  */
 @MyBatisDao
 public interface GenTableDao extends CrudDao<GenTable> {

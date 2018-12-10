@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * 用户工具类
  ** @author liuruijun
- * @version 2013-12-05
+ * @version 2018-12-05
  */
 public class AreaOfficeUtils {
 
@@ -24,6 +24,10 @@ public class AreaOfficeUtils {
 	public static final String CACHE_OFFICE_LIST = "officeList";
 	public static final String CACHE_OFFICE_ALL_LIST = "officeAllList";
 	
+
+	public static Area getAreaById(String id) {
+		return areaDao.get(id);
+	}
 
 	/**
 	 * 获取当前用户授权的区域
@@ -38,8 +42,13 @@ public class AreaOfficeUtils {
 		}
 		return areaList;
 	}
-	
-	/**
+
+    public static Office getOfficeById(String id) {
+        return officeDao.get(id);
+    }
+
+
+    /**
 	 * 获取当前用户有权限访问的部门
 	 * @return
 	 */

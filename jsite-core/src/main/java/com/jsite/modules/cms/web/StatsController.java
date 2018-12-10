@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * 统计Controller
  ** @author liuruijun
- * @version 2013-5-21
+ * @version 2017-5-21
  */
 @Controller
 @RequestMapping(value = "${adminPath}/cms/stats")

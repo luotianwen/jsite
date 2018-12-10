@@ -4,8 +4,8 @@
 
 	<sql id="officeColumns">
 		a.id,
-		a.parent_id AS "parentId",
-		a.parent_ids AS "parentIds",
+		a.parent_id AS "parent.id",
+		a.parent_ids,
 		a.area_id AS "areaId",
 		a.code,
 		a.name,
@@ -29,12 +29,10 @@
 		a.useable AS useable,
 		a.primary_person AS "primaryPerson.id",
 		a.deputy_person AS "deputyPerson.id",
-		p.name AS "parentName",
+		p.name AS "parent.name",
 		ar.name AS "areaName",
-		<!-- ar.parent_ids AS "area.parentIds", -->
 		pp.name AS "primaryPerson.name",
-		dp.name AS "deputyPerson.name",
-		b.label AS "label"
+		dp.name AS "deputyPerson.name"
 	</sql>
 	
 	<sql id="officeJoins">
@@ -42,7 +40,6 @@
 		LEFT JOIN sys_area ar ON ar.id = a.area_id
 		LEFT JOIN sys_user pp ON pp.id = a.primary_person
 		LEFT JOIN sys_user dp ON dp.id = a.deputy_person
-		LEFT JOIN sys_dict b ON b.type='sys_office_type' and b.value= a.type
     </sql>
 	
 	<select id="get" resultType="Office">
@@ -64,9 +61,8 @@
 		<!-- OR a.id = #{currentUser.office.id} -->
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
-			<!-- OR a.id = #{currentUser.office.area.id} -->
-			<if test="parentId != null and parentId != null and parentId != ''">
-				AND a.parent_id LIKE #{parentId}
+			<if test="parent != null and parent.id != null and parent.id != ''">
+				AND a.parent_id LIKE #{parent.id}
 			</if>
 		</where>
 		<choose>
@@ -85,7 +81,7 @@
 		FROM sys_office a
 		<include refid="officeJoins"/>
 		WHERE a.del_flag = #{DEL_FLAG_NORMAL}
-		
+		ORDER BY a.tree_level
 	</select>
 	
 	<select id="findByParentIdsLike" resultType="Office">
@@ -94,7 +90,7 @@
 		FROM sys_office a
 		<include refid="officeJoins"/>
 		WHERE a.del_flag = #{DEL_FLAG_NORMAL} AND a.parent_ids LIKE #{parentIds}
-		
+		ORDER BY a.tree_level
 	</select>
 	
 	<insert id="insert">
@@ -127,7 +123,7 @@
 			deputy_person
 		) VALUES (
 			#{id}, 
-			#{parentId}, 
+			#{parent.id}, 
 			#{parentIds}, 
 			#{areaId}, 
 			#{code}, 
@@ -157,7 +153,7 @@
 	
 	<update id="update">
 		UPDATE sys_office SET 
-			parent_id = #{parentId}, 
+			parent_id = #{parent.id}, 
 			parent_ids = #{parentIds}, 
 			area_id = #{areaId}, 
 			code = #{code}, 
@@ -183,7 +179,7 @@
 	
 	<update id="updateParentIds">
 		UPDATE sys_office SET 
-			parent_id = #{parentId}, 
+			parent_id = #{parent.id}, 
 			parent_ids = #{parentIds}
 		WHERE id = #{id}
 	</update>

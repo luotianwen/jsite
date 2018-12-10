@@ -6,7 +6,6 @@
 				<i class="fa fa-sitemap"></i> 区域管理
 			</div>
 			<div class="box-tools pull-right">
-				<a href="#" class="btn btn-default" id="btnSearch" title="查询"><i class="fa fa-filter"></i> 查询</a>
 				<a href="#" class="btn btn-default"  id="btnRefreshTree" title="刷新"><i class="fa fa-refresh"></i> 刷新</a>
 				<a href="#" class="btn btn-default" id="btnExpandTreeNode" title="展开一级"><i class="fa fa-angle-double-down"></i> 展开</a>
 				<a href="#" class="btn btn-default" id="btnCollapseTreeNode" title="折叠全部"><i class="fa fa-angle-double-up"></i> 折叠</a>
@@ -17,17 +16,9 @@
 		</div>
 		<div class="box-body">
 			<form id="searchForm" action="${ctx}/sys/area/listData" class="form-inline hide">
-				<div class="form-group">
-					<label class="control-label">区域名称：</label>
-					<div class="control-inline">
-						<input name="name" maxlength="64" class="form-control"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<button type="submit" class="btn btn-primary btn-sm">查询</button>
-					<button type="reset" class="btn btn-default btn-sm">重置</button>
-				</div>
-			</form>			
+				<button type="submit" class="btn btn-primary btn-sm">查询</button>
+				<button type="reset" class="btn btn-default btn-sm">重置</button>
+			</form>
 			<table id="dataGrid"></table>
 		</div>
 	</div>
@@ -40,7 +31,9 @@
 		columnModel: [
 			{header:'区域名称', name:'name', index:'a.name', width:150, align:"left"},
 			{header:'区域编码', name:'code', index:'a.code', width:80, align:"center"},
-			{header:'区域类型', name:'label', index:'b.label', width:80, align:"center"},
+			{header:'区域类型', name:'type', index:'a.type', width:80, align:"center", formatter: function(val, obj, row, act){
+                    return js.getDictLabel(${@DictUtils.getDictListJson('sys_area_type')}, val, '', false);
+			}},
 			{header:'排序', name:'sort', index:'a.sort', width:80, align:"center"},
 			{header:'备注', name:'remarks', index:'a.remarks', width:80, align:"center"},
 			{header:'操作', name:'actions', width:70,align:"center", sortable:false, title:false, formatter: function(val, obj, row, act){
@@ -48,13 +41,13 @@
 				<% if(hasPermi('sys:area:edit')){ %>
 					actions.push('<a href="/sys/area/form?id='+row.id+'" class="btnList" title="修改区域信息"><i class="fa fa-pencil"></i></a>');
 					actions.push('<a href="${ctx}/sys/area/delete?id='+row.id+'" class="btnList" title="删除区域" data-confirm="要删除该区域及所有子区域项吗？"><i class="fa fa-trash-o"></i></a>');
-					actions.push('<a href="/sys/area/form?parentId='+row.id+'&parentName='+row.name+'" class="btnList" title="添加下级区域"><i class="fa fa-plus-square"></i></a>');
+					actions.push('<a href="/sys/area/form?parentId='+row.id+'" class="btnList" title="添加下级区域"><i class="fa fa-plus-square"></i></a>');
 				<% } %>
 				return actions.join('');
 			}}
 		],
 		treeGrid: true,
-		defaultExpandLevel: 1,
+		defaultExpandLevel: 0,
 		expandNodeClearPostData: 'name', 
 		treeIcons : {
 			plus: "ui-icon-circlesmall-plus",

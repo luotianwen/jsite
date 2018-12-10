@@ -8,7 +8,7 @@ import org.hibernate.validator.constraints.NotBlank;
 /**
  * 文章Entity
  * @author JSite
- * @version 2013-01-15
+ * @version 2017-01-15
  */
 public class ArticleData extends DataEntity<ArticleData> {
 

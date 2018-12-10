@@ -24,7 +24,7 @@ import java.util.List;
 
 /**
  * 业务表Controller
- * @version 2013-10-15
+ * @version 2018-10-15
  */
 @Controller
 @RequestMapping(value = "${adminPath}/gen/genTable")

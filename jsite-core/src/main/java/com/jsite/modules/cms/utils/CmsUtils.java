@@ -25,7 +25,7 @@ import java.util.Map;
 /**
  * 内容管理工具类
  * @author JSite
- * @version 2013-5-29
+ * @version 2017-5-29
  */
 public class CmsUtils {
 	

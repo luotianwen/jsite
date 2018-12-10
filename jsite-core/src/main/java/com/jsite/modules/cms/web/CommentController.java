@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 评论Controller
  ** @author liuruijun
- * @version 2013-3-23
+ * @version 2017-3-23
  */
 @Controller
 @RequestMapping(value = "${adminPath}/cms/comment")

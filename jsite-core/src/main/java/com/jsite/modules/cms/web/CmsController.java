@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * 内容管理Controller
  ** @author liuruijun
- * @version 2013-4-21
+ * @version 2017-4-21
  */
 @Controller
 @RequestMapping(value = "${adminPath}/cms")

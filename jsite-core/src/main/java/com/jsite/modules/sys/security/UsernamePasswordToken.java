@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * 用户和密码（包含验证码）令牌类
  ** @author liuruijun
- * @version 2013-5-19
+ * @version 2018-5-19
  */
 public class UsernamePasswordToken extends org.apache.shiro.authc.UsernamePasswordToken {
 

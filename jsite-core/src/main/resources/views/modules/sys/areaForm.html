@@ -17,11 +17,11 @@
 							</label>
 							<div class="col-sm-8">
 								<div class="form-control" readonly="readonly">
-									<% if(isEmpty(area.parentId)|| area.parentId == "0") {%>
+									<#form:hidden path="parent.id"/>
+									<% if(isEmpty(area.parent.id)|| area.parent.id == "0") {%>
 										根区域
 									<% } else{ %>
-										<#form:hidden path="parentId"/>
-										${area.parentName}
+										${area.parent.name}
 									<% } %>
 								</div>
 							</div>

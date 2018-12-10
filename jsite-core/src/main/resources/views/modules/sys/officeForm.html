@@ -17,11 +17,11 @@
 							</label>
 							<div class="col-sm-8">
 								<div class="form-control" readonly="readonly">
-									<% if(isEmpty(office.parentId)|| office.parentId == "0") {%>
+									<#form:hidden path="parent.id"/>
+									<% if(office.parent.id == "0") {%>
 										根机构
 									<% } else{ %>
-										<#form:hidden path="parentId"/>
-										${office.parentName}
+										${office.parent.name}
 									<% } %>
 								</div>
 							</div>

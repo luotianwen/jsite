@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.Length;
 /**
  * 生成方案Entity
  ** @author liuruijun
- * @version 2013-10-15
+ * @version 2017-10-15
  */
 public class GenScheme extends DataEntity<GenScheme> {
 	

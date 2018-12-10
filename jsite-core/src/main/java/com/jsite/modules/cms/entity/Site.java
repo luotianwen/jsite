@@ -8,7 +8,7 @@ import org.hibernate.validator.constraints.Length;
 /**
  * 站点Entity
  * @author JSite
- * @version 2013-05-15
+ * @version 2017-05-15
  */
 public class Site extends DataEntity<Site> {
 	

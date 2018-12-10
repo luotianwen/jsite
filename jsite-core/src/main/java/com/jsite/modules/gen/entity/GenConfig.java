@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * 生成方案Entity
  * @author liuruijun
- * @version 2013-10-15
+ * @version 2017-10-15
  */
 @XmlRootElement(name="config")
 public class GenConfig implements Serializable {

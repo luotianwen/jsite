@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -24,7 +23,7 @@ import java.util.Map;
 /**
  * 区域Controller
  ** @author liuruijun
- * @version 2013-5-15
+ * @version 2018-5-15
  */
 @Controller
 @RequestMapping(value = "${adminPath}/sys/area")
@@ -47,27 +46,26 @@ public class AreaController extends BaseController {
 
 	@RequiresPermissions("sys:area:view")
 	@RequestMapping(value = {"list", ""})
-	public String list(Area area, Model model) {
-		//model.addAttribute("list", areaService.findAll());
+	public String list() {
 		return "modules/sys/areaList";
 	}
 	
 	@RequiresPermissions("sys:area:view")
 	@RequestMapping(value = "listData")
 	@ResponseBody
-	public List<Area> listData(Area area, Model model) {
-    	if (StringUtils.isBlank(area.getParentId())) {
-			area.setParentId("0");
-	    }
-	    if ((StringUtils.isNotBlank(area.getName()))) {
-	    	area.setParentId(null);
-	    }
+	public List<Area> listData(Area area) {
+        if (area.getParent() == null || StringUtils.isBlank(area.getParent().getId())) {
+            area.setParent(new Area("0"));
+        }
 	    return areaService.findList(area);
 	}
 
 	@RequiresPermissions("sys:area:view")
 	@RequestMapping(value = "form")
 	public String form(Area area, Model model) {
+        if (area.getParent() == null) {
+            area.setParent(new Area(Area.getRootId()));
+        }
 		model.addAttribute("area", area);
 		return "modules/sys/areaForm";
 	}
@@ -75,18 +73,14 @@ public class AreaController extends BaseController {
 	@RequiresPermissions("sys:area:edit")
 	@RequestMapping(value = "save")
 	@ResponseBody
-	public String save(Area area, Model model, RedirectAttributes redirectAttributes) {
-		logger.info("====parentId==="+area.getParentId());
-		logger.info("===isNewRecord==="+area.getIsNewRecord());
-		
+	public String save(Area area) {
 		if(area.getIsNewRecord()) {
-			if(StringUtils.isEmpty(area.getParentId())) {
-				area.setTreeLeaf("0");
+			if(area.getIsRoot()) {
+				area.setTreeLeaf("1");
 				area.setTreeLevel(0);
 				area.setParentIds("0");
-				area.setParentId("0");
 			}else {
-				Area f=areaService.get(area.getParentId());
+				Area f=areaService.get(area.getParent().getId());
 				area.setParentIds(f.getParentIds()+f.getId()+",");
 				area.setTreeLeaf("1");
 				area.setTreeLevel(f.getTreeLevel()+1);
@@ -97,26 +91,21 @@ public class AreaController extends BaseController {
 			}
 		}
 		areaService.save(area);
-		//addMessage(redirectAttributes, "保存区域'" + area.getName() + "'成功");
 		return renderResult(Global.TRUE, "保存区域'" + area.getName() + "'成功");
-		//return "redirect:" + adminPath + "/sys/area/";
 	}
 	
 	@RequiresPermissions("sys:area:edit")
 	@RequestMapping(value = "delete")
 	@ResponseBody
-	public String delete(Area area, RedirectAttributes redirectAttributes) {
-		/*if(Global.isDemoMode()){
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
-			return "redirect:" + adminPath + "/sys/area";
-		}*/
-//		if (Area.isRoot(id)){
-//			addMessage(redirectAttributes, "删除区域失败, 不允许删除顶级区域或编号为空");
-//		}else{
-			areaService.delete(area);
-			//addMessage(redirectAttributes, "删除区域成功");
-//		}
-			
+	public String delete(Area area) {
+		if(Global.isDemoMode()){
+            return renderResult(Global.TRUE, "演示模式，不允许操作！");
+		}
+		if (area.getIsRoot()){
+            return renderResult(Global.TRUE, "删除区域失败, 不允许删除顶级区域或编号为空");
+		}
+
+		areaService.delete(area);
 		return  renderResult(Global.TRUE, "删除区域成功");
 	}
 
@@ -131,7 +120,7 @@ public class AreaController extends BaseController {
 			if (StringUtils.isBlank(extId) || (extId!=null && !extId.equals(e.getId()) && e.getParentIds().indexOf(","+extId+",")==-1)){
 				Map<String, Object> map = Maps.newHashMap();
 				map.put("id", e.getId());
-				map.put("pId", e.getParentId());
+				map.put("pId", e.getParent().getId());
 				map.put("pIds", e.getParentIds());
 				map.put("name", e.getName());
 				mapList.add(map);

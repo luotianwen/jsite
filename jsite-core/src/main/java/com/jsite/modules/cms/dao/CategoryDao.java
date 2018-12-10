@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * 栏目DAO接口
  ** @author liuruijun
- * @version 2013-8-23
+ * @version 2017-8-23
  */
 @MyBatisDao
 public interface CategoryDao extends TreeDao<Category> {

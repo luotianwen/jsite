@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 代码模板Controller
- * @version 2013-10-15
+ * @version 2018-10-15
  */
 @Controller
 @RequestMapping(value = "${adminPath}/gen/genTemplate")

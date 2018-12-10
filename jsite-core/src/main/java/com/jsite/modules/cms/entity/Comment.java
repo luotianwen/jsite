@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * 评论Entity
  * @author JSite
- * @version 2013-05-15
+ * @version 2017-05-15
  */
 public class Comment extends DataEntity<Comment> {
 

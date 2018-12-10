@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * 链接DAO接口
  ** @author liuruijun
- * @version 2013-8-23
+ * @version 2017-8-23
  */
 @MyBatisDao
 public interface LinkDao extends CrudDao<Link> {

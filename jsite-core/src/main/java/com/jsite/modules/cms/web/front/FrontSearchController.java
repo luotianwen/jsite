@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 网站搜索Controller
  * @author JSite
- * @version 2013-5-29
+ * @version 2017-5-29
  */
 @Controller
 @RequestMapping(value = "${frontPath}/search")

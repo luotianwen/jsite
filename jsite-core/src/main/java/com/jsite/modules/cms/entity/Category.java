@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * 栏目Entity
  * @author JSite
- * @version 2013-05-15
+ * @version 2017-05-15
  */
 public class Category extends TreeEntity<Category> {
 
@@ -99,6 +99,15 @@ public class Category extends TreeEntity<Category> {
 //	@NotNull
 	public Category getParent() {
 		return parent;
+	}
+
+	@Override
+	public void setParentId(String parentId) {
+		if (parent == null) {
+			parent = new Category(parentId);
+		} else {
+			parent.setId(parentId);
+		}
 	}
 
 	public void setParent(Category parent) {

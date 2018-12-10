@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * 业务表字段Entity
  ** @author liuruijun
- * @version 2013-10-15
+ * @version 2017-10-15
  */
 public class GenTableColumn extends DataEntity<GenTableColumn> {
 	

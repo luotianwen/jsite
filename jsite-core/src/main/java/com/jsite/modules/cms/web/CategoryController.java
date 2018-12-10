@@ -30,7 +30,7 @@ import java.util.Map;
 /**
  * 栏目Controller
  ** @author liuruijun
- * @version 2013-4-21
+ * @version 2017-4-21
  */
 @Controller
 @RequestMapping(value = "${adminPath}/cms/category")

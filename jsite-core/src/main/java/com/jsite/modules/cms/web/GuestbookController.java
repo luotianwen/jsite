@@ -22,7 +22,7 @@ import java.util.Date;
 /**
  * 留言Controller
  ** @author liuruijun
- * @version 2013-3-23
+ * @version 2017-3-23
  */
 @Controller
 @RequestMapping(value = "${adminPath}/cms/guestbook")

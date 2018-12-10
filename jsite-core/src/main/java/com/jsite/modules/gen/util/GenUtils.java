@@ -26,7 +26,7 @@ import java.util.Map;
 /**
  * 代码生成工具类
  * @author liuruijun
- * @version 2013-11-16
+ * @version 2018-11-16
  */
 public class GenUtils {
 

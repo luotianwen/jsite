@@ -32,7 +32,7 @@ import java.util.Map;
 /**
  * 登录Controller
  ** @author liuruijun
- * @version 2013-5-31
+ * @version 2018-5-31
  */
 @Controller
 public class LoginController extends BaseController{

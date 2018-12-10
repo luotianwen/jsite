@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * 链接Entity
  * @author JSite
- * @version 2013-05-15
+ * @version 2017-05-15
  */
 public class Link extends DataEntity<Link> {
 	

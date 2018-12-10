@@ -6,8 +6,8 @@ import com.jsite.modules.sys.utils.AreaOfficeUtils;
 
 /**
  * 字段类型转换
- ** @author liuruijun
- * @version 2013-03-10
+ ** @author JSite
+ * @version 2018-03-10
  */
 public class AreaType {
 

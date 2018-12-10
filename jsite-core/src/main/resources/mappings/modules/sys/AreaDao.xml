@@ -4,8 +4,8 @@
     
 	<sql id="areaColumns">
 		a.id,
-		a.parent_id AS "parentId",
-		a.parent_ids AS "parentIds",
+		a.parent_id AS "parent.id",
+		a.parent_ids,
 		a.code,
 		a.name,
 		a.sort,
@@ -18,13 +18,11 @@
 		a.update_by AS "updateBy.id",
 		a.update_date,
 		a.del_flag,
-		p.name AS "parentName",
-		b.label AS "label"
+		p.name AS "parent.name"
 	</sql>
 	
 	<sql id="areaJoins">
 		LEFT JOIN sys_area p ON p.id = a.parent_id
-		LEFT JOIN sys_dict b ON b.type='sys_area_type' and b.value= a.type
     </sql>
     
 	<select id="get" resultType="Area">
@@ -40,7 +38,6 @@
 			<include refid="areaColumns"/>
 		FROM sys_area a
 		<include refid="areaJoins"/>
-		<!-- WHERE a.del_flag = #{DEL_FLAG_NORMAL} -->
 		<!-- 数据范围过滤 -->
 		<!-- ${sqlMap.dsf} -->
 		<where>
@@ -52,8 +49,8 @@
 					<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
 					<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
 			</if>
-			<if test="parentId != null and parentId != null and parentId != ''">
-				AND a.parent_id LIKE #{parentId}
+			<if test="parent != null and parent.id != null and parent.id != ''">
+				AND a.parent_id LIKE #{parent.id}
 			</if>
 		</where>
 		<choose>
@@ -78,8 +75,8 @@
 	<select id="findByParentIdsLike" resultType="Area">
 		SELECT
 			a.id,
-			a.parent_id AS "parentId",
-			a.parent_ids AS "parentIds"
+			a.parent_id AS "parent.id",
+			a.parent_ids
 		FROM sys_area a
 		
 		<where>
@@ -121,7 +118,7 @@
 			del_flag
 		) VALUES (
 			#{id}, 
-			#{parentId}, 
+			#{parent.id}, 
 			#{parentIds}, 
 			#{code}, 
 			#{name}, 
@@ -140,7 +137,7 @@
 	
 	<update id="update">
 		UPDATE sys_area SET 
-			parent_id = #{parentId}, 
+			parent_id = #{parent.id}, 
 			parent_ids = #{parentIds}, 
 			code = #{code}, 
 			name = #{name}, 
@@ -156,7 +153,7 @@
 	
 	<update id="updateParentIds">
 		UPDATE sys_area SET 
-			parent_id = #{parentId}, 
+			parent_id = #{parent.id}, 
 			parent_ids = #{parentIds}
 		WHERE id = #{id}
 	</update>
