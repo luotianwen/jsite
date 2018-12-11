@@ -118,20 +118,13 @@ public class SysFileController extends BaseController {
 	}
 	
 	
-	@RequiresPermissions("file:sysFileTree:view")
+	@RequiresPermissions("file:sysFile:view")
 	@RequestMapping(value = "move")
 	public String move(SysFile sysFile, Model model) {
 		model.addAttribute("sysFile", sysFile);
 		return "modules/file/sysFileMove";
 	}
 	
-	@RequiresPermissions("file:sysFileTree:view")
-	@RequestMapping(value = "ofd")
-	public String ofd(SysFile sysFile, Model model) {
-		model.addAttribute("sysFile", sysFile);
-		return "modules/file/sysFileOFD";
-	}
-
 	@RequiresPermissions("file:sysFile:edit")
 	@RequestMapping(value = "save")
 	@ResponseBody

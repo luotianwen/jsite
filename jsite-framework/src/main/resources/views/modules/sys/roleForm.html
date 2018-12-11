@@ -218,7 +218,7 @@
 			 
 			var zNodes=[
 					<% for(menu in menuList) { %>
-							{id:"${menu.id}",pId:"${menu.parentId!'0'}",name:"${menu.name!'权限列表'}"},
+							{id:"${menu.id}",pId:"${menu.parent.id!'0'}",name:"${menu.name!'权限列表'}"},
 					<% }%>
 				];
 			// 初始化树结构
@@ -237,7 +237,7 @@
 			// 用户-机构
 			var zNodes2=[
 					<% for(office in officeList) { %>
-						{id:"${office.id}",pId:"${office.parentId!'0'}",name:"${office.name}"},
+						{id:"${office.id}",pId:"${office.parent.id!'0'}",name:"${office.name}"},
 					<% }%>
 				];
 			// 初始化树结构
