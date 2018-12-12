@@ -11,7 +11,7 @@ var bodyClass = 'fixed noscroll sidebar-mini ' + sidebarCollapse + skinName;
 <% layout('/layout/default.html', {title: '', bodyClass: bodyClass, libs: ['tabPage']}){ %>
 <% include('/include/upgrade.html'){} // 如果客户浏览器版本过低，则显示浏览器升级提示。 %>
 <link rel="stylesheet" href="${ctxStatic}/jquery-toastr/toastr.min.css">
-<link rel="stylesheet" href="${ctxStatic}/adminLTE/dist/css/skins/${skinName}.css">
+<link rel="stylesheet" href="${ctxStatic}/adminLTE/css/skins/${skinName}.css">
 <link rel="stylesheet" href="${ctxStatic}/modules/sys/sysIndex.css">
 
 <header class="main-header">
