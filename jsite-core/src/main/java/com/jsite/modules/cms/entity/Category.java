@@ -22,16 +22,12 @@ public class Category extends TreeEntity<Category> {
 	private static final long serialVersionUID = 1L;
 	private Site site;		// 归属站点
 	private Office office;	// 归属部门
-//	private Category parent;// 父级菜单
-//	private String parentIds;// 所有父级编号
 	private String module; 	// 栏目模型（article：文章；picture：图片；download：下载；link：链接；special：专题）
-//	private String name; 	// 栏目名称
 	private String image; 	// 栏目图片
 	private String href; 	// 链接
 	private String target; 	// 目标（ _blank、_self、_parent、_top）
 	private String description; 	// 描述，填写有助于搜索引擎优化
 	private String keywords; 	// 关键字，填写有助于搜索引擎优化
-//	private Integer sort; 		// 排序（升序）
 	private String inMenu; 		// 是否在导航中显示（1：显示；0：不显示）
 	private String inList; 		// 是否在分类页中显示列表（1：显示；0：不显示）
 	private String showModes; 	// 展现方式（0:有子栏目显示栏目列表，无子栏目显示内容列表;1：首栏目内容列表；2：栏目第一条内容）

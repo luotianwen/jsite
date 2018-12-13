@@ -1,0 +1,75 @@
+<% layout('/layout/default.html', {title: '文章列表', libs: ['dataGrid']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <div class="box-header">
+            <div class="box-title">
+                <i class="fa fa-sitemap"></i> 文章列表
+            </div>
+            <div class="box-tools pull-right">
+                <a href="#" class="btn btn-default" id="btnSearch" title="查询"><i class="fa fa-filter"></i> 查询</a>
+                <% if(hasPermi('cms:article:edit')){ %>
+                <a href="/cms/article/form" class="btn btn-default btnTool" title="文章添加"><i class="fa fa-plus"></i> 新增</a>
+                <% } %>
+            </div>
+        </div>
+        <div class="box-body">
+            <form id="searchForm" action="${ctx}/sys/dict/listAll" class="form-inline hide">
+                <div class="form-group">
+                    <label class="control-label">栏目：</label>
+                    <div class="control-inline">
+                        <#form:treeselect id="categoryId" name="category.id" value="${article.category.id!}" labelName="article.category.name"
+                        labelValue="${article.category.name!}" title="栏目"  url="/cms/category/treeData" notAllowSelectParent="true" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">标题：</label>
+                    <div class="control-inline">
+                        <input name="title" class="form-control"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">状态：</label>
+                    <div class="control-inline">
+                        <#form:radio path="delFlag" dictType="cms_del_flag" class="form-control "/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-sm">查询</button>
+                    <button type="reset" class="btn btn-default btn-sm">重置</button>
+                </div>
+            </form>
+            <table id="dataGrid"></table>
+            <div id="dataGridPage"></div>
+        </div>
+    </div>
+</div>
+<% } %>
+<script>
+    //初始化DataGrid对象
+    $('#dataGrid').dataGrid({
+        searchForm: $("#searchForm"),
+        columnModel: [
+            {header:'栏目', name:'value', index:'a.value', width:50, align:"center"},
+            {header:'标题', name:'label', index:'a.label', width:100, align:"center"},
+            {header:'权重', name:'type', index:'a.type', width:100, align:"center"},
+            {header:'点击数', name:'description', index:'a.description', width:100, align:"center"},
+            {header:'发布者', name:'sort', index:'a.sort', width:50, align:"center"},
+            {header:'更新时间', name:'sort', index:'a.sort', width:50, align:"center"},
+
+            {header:'操作', name:'actions', width:50, align:"center",sortable:false, title:false, formatter: function(val, obj, row, act){
+                    var actions = [];
+                <% if(hasPermi('sys:dict:edit')){ %>
+                        actions.push('<a href="/sys/dict/form?id='+row.id+'" class="btnList" title="编辑字典信息"><i class="fa fa-pencil"></i></a>');
+                        actions.push('<a href="${ctx}/sys/dict/delete?id='+row.id+'" class="btnList" title="删除字典" data-confirm="确认要删除字典信息吗?"><i class="fa fa-trash-o"></i></a>');
+                        actions.push('<a href="/sys/dict/form?type='+row.type+'&description='+row.description+'&sort='+(row.sort+10)+'" class="btnList" title="添加键值"><i class="fa fa-plus-square"></i></a>');
+                    <% } %>
+                    return actions.join('');
+                }}
+        ],
+        // 加载成功后执行事件
+        ajaxSuccess: function(data){
+
+        }
+    });
+</script>

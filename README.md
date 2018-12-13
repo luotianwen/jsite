@@ -6,19 +6,28 @@
 3. 框架主模块包含：系统管理、流程管理、在线办公、文件管理、代码生成。系统管理子模块--用户管理、机构管理、区域管理、菜单管理、角色管理、字典管理、日志查询、连接池监视，实现权限精细控制，支持跨部门、跨公司数据权限授权。
 4. 框架支持前后端基础代码自动生成，免去重复劳动。
 
-#### 软件架构·技术选型
-1. 软件架构说明
-2. 方法
+### 软件架构·技术选型
+#### 环境要求
+1. JDK 8
+2. Tomcat 8
+3. Apache Maven 3.x
+#### 基础框架
+1. Spring Boot 2.0.4
+2. Apache Shiro 1.4
+3. Spring Framework 5.0.8
+4. Jackson 2.9.5
+5. Flowable 6.4.0
+6. Ehcache 2.6.11
+#### 持久层
+1. Alibaba Druid 1.0.18
+2. Apache MyBatis 3.4.6
+3. Hibernate Validation 6.0
+#### 视图层
+1. Beetl 2.8.6
+2. CSS框架：Bootstrap 3.3  AdminLTE 2.4.8
 
-
-#### 安装教程
-
-1. xxxx
-2. xxxx
-3. xxxx
 
 #### 使用说明
-
 1. xxxx
 2. xxxx
 3. xxxx

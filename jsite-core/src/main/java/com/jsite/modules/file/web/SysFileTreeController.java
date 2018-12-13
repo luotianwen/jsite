@@ -235,9 +235,8 @@ public class SysFileTreeController extends BaseController {
 	public List<Map<String, Object>> treeData(SysFileTree sysFileTree, @RequestParam(required = false) String extId,
                                               @RequestParam(required = false) Boolean isAll, HttpServletResponse response) {
 		List<Map<String, Object>> mapList = Lists.newArrayList();
-		List<SysFileTree> list = null;
 		sysFileTree.setCreateBy(UserUtils.getUser());
-		list = sysFileTreeService.findList(sysFileTree);
+		List<SysFileTree> list = sysFileTreeService.findList(sysFileTree);
 		for (int i = 0; i < list.size(); i++) {
 			SysFileTree e = list.get(i);
 			if ((StringUtils.isBlank(extId) || (extId != null && !extId.equals(e.getId())
