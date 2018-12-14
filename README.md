@@ -16,7 +16,7 @@
 2. Apache Shiro 1.4
 3. Spring Framework 5.0.8
 4. Jackson 2.9.5
-5. Flowable 6.4.0
+5. Flowable 6.4.0 (工作流引擎)
 6. Ehcache 2.6.11
 #### 持久层
 1. Alibaba Druid 1.0.18
@@ -25,19 +25,50 @@
 #### 视图层
 1. Beetl 2.8.6
 2. CSS框架：Bootstrap 3.3  AdminLTE 2.4.8
+3. 其他组件：jquery 1.12.4  jqGrid 4.7  jquery-zTree 3.5  jquery-toastr  jquery-validation  layer 3.1 webuploader  select2.4.0 cropper3.1.3
+
+### 使用说明
+1. 框架基于IntelliJ IDEA 开发
+2. 初始化数据库 jsite-web module 下 jsite-init.sql
+
+### 系统展示
+登录
+![image](https://gitee.com/lruijun/JSite/blob/master/img/%E7%99%BB%E5%BD%95.png)
+主页
+![image](https://gitee.com/lruijun/JSite/blob/master/img/%E4%B8%BB%E9%A1%B5.png)
+用户管理
+![image](https://gitee.com/lruijun/JSite/blob/master/img/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.png)
+区域管理
+![image](https://gitee.com/lruijun/JSite/blob/master/img/%E5%8C%BA%E5%9F%9F%E7%AE%A1%E7%90%86.png)
+菜单管理
+![image](https://gitee.com/lruijun/JSite/blob/master/img/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.png)
+角色管理
+![image](https://gitee.com/lruijun/JSite/blob/master/img/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.png)
+角色分配
+![image](https://gitee.com/lruijun/JSite/blob/master/img/%E8%A7%92%E8%89%B2%E5%88%86%E9%85%8D.png)
+流程模型管理
+![image](https://gitee.com/lruijun/JSite/blob/master/img/%E6%B5%81%E7%A8%8B-%E6%A8%A1%E5%9E%8B%E7%AE%A1%E7%90%86.png)
+流程设计器
+![image](https://gitee.com/lruijun/JSite/blob/master/img/%E6%B5%81%E7%A8%8B-%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%99%A8.png)
+流程管理
+![image](https://gitee.com/lruijun/JSite/blob/master/img/%E6%B5%81%E7%A8%8B%E7%AE%A1%E7%90%86.png)
+流程部署
+![image](https://gitee.com/lruijun/JSite/blob/master/img/%E6%B5%81%E7%A8%8B%E9%83%A8%E7%BD%B2.png)
+文件夹管理
+![image](https://gitee.com/lruijun/JSite/blob/master/img/%E6%96%87%E4%BB%B6%E5%A4%B9%E7%AE%A1%E7%90%86.png)
+文件管理
+![image](https://gitee.com/lruijun/JSite/blob/master/img/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86.png)
+文件上传
+![image](https://gitee.com/lruijun/JSite/blob/master/img/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0.png)
 
 
-#### 使用说明
-1. xxxx
-2. xxxx
-3. xxxx
-
-#### 参与贡献
+### 参与贡献
 
 1. Fork 本项目
 2. 新建 Feat_xxx 分支
 3. 提交代码
 4. 新建 Pull Request
+
 
 
 #### 码云特技
