@@ -73,5 +73,7 @@ http://jsite.org.cn
 4. 新建 Pull Request
 
 
-### 加入组织
-QQ群：
+### 获得支持
+QQ群：881252801
+
+![image](https://gitee.com/lruijun/JSite/raw/master/img/jsite-qrcode.png)
