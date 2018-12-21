@@ -726,30 +726,31 @@ if (typeof jQuery === "undefined") {
                 async: async == undefined ? true : async,
                 error: function(data) {
                     $(".btn").attr("disabled", false);
+                    js.log(data.responseText);
                     js.showErrorMessage(data.responseText);
-                    js.closeLoading(0, true)
+                    js.closeLoading(0, true);
                 },
                 success: function(data, status, xhr) {
                     $(".btn").attr("disabled", false);
                     js.closeLoading();
                     if (typeof callback == "function") {
-                        callback(data, status, xhr)
+                        callback(data, status, xhr);
                     } else {
-                        js.log(data)
+                        js.log(data);
                     }
                 }
             })
         },
         trim: function(str) {
-            return jQuery.trim(str)
+            return jQuery.trim(str);
         },
         startWith: function(str, start) {
             var reg = new RegExp("^" + start);
-            return reg.test(str)
+            return reg.test(str);
         },
         endWith: function(str, end) {
             var reg = new RegExp(end + "$");
-            return reg.test(str)
+            return reg.test(str);
         },
         abbr: function(name, maxLength) {
             if (!maxLength) {

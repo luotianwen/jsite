@@ -59,18 +59,18 @@ public class GenTableService extends BaseService {
 	}
 	
 	/**
-	 * 验证表名是否可用，如果已存在，则返回false
-	 * @param genTable
+	 * 验证表名是否可用，如果已存在，则返回true
+	 * @param tableName
 	 * @return
 	 */
-	public boolean checkTableName(String tableName){
+	public boolean checkTableExitByName(String tableName){
 		if (StringUtils.isBlank(tableName)){
 			return true;
 		}
 		GenTable genTable = new GenTable();
 		genTable.setName(tableName);
 		List<GenTable> list = genTableDao.findList(genTable);
-		return list.size() == 0;
+		return list.size() > 0;
 	}
 	
 	/**

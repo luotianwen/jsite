@@ -1,0 +1,50 @@
+<% layout('/layout/default.html', {title: '业务表详情', libs: ['validate','icheck']}){ %>
+<div class="main-content">
+    <div class="box box-main">
+        <#form:form id="nextForm" model="${genTable}" action="${ctx}/gen/genTable/next" method="post" class="form-horizontal">
+            <div class="box-body">
+                <#form:hidden path="id"/>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" title="表名"> 表名:</label>
+                            <div class="col-sm-8">
+                                <#form:select path="name" name="nameAndComments" value="name" data="${tableList}" class="form-control required " />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box-footer">
+                <div class="row">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <% if (hasPermi('gen:genTable:edit')){ %>
+                        <button type="submit" class="btn btn-sm btn-primary" id="btnSubmit"><i class="fa fa-check"></i> 下一步</button>
+                        <% } %>
+                        <button type="button" class="btn btn-sm btn-default" id="btnCancel" onclick="window.parent.closeCurrentTabPage();"><i class="fa fa-reply-all"></i> 关 闭</button>
+                    </div>
+                </div>
+            </div>
+        </#form:form>
+    </div>
+</div>
+<% } %>
+
+<script type="text/javascript">
+
+    $("#nextForm").validate({
+        submitHandler: function (form) {
+            js.ajaxSubmitForm($(form), function (data) {
+                if (data.result == 'true') {
+                    var url = "/gen/genTable/formEdit?name=" + data.data.name;
+                    js.log(url);
+                    window.parent.closeCurrentTabPage(window.parent.refreshTab, "新增业务表", url);
+                } else {
+                    js.showWarningMessage(data.message);
+                }
+            }, "json");
+        }
+    });
+
+</script>

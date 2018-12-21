@@ -1,34 +1,6 @@
 <% layout('/layout/default.html', {title: '业务表详情', libs: ['validate','icheck']}){ %>
 <div class="main-content">
     <div class="box box-main">
-    <% if (isBlank(genTable.name)){ %>
-        <#form:form id="inputForm" model="${genTable}" action="${ctx}/gen/genTable/form" method="post" class="form-horizontal">
-            <div class="box-body">
-                <#form:hidden path="id"/>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" title="表名"> 表名:</label>
-                            <div class="col-sm-8">
-                                <#form:select path="name" name="nameAndComments" value="name" data="${tableList}" class="form-control required " />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="box-footer">
-                <div class="row">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <% if (hasPermi('gen:genTable:edit')){ %>
-                        <button type="submit" class="btn btn-sm btn-primary" id="btnSubmit"><i class="fa fa-check"></i> 下一步</button>
-                        <% } %>
-                        <button type="button" class="btn btn-sm btn-default" id="btnCancel" onclick="window.parent.closeCurrentTabPage();"><i class="fa fa-reply-all"></i> 关 闭</button>
-                    </div>
-                </div>
-            </div>
-        </#form:form>
-    <% } else { %>
         <div class="box-header">
             <div class="box-title">
                 <i class="fa fa-sitemap"></i>基本信息
@@ -36,13 +8,13 @@
         </div>
         <form id="inputForm" action="${ctx}/gen/genTable/save" method="post" class="form-horizontal">
             <div class="box-body">
-                <#form:hidden path="id"/>
+                <input type="hidden" name="id" value="${genTable.id}" />
                 <div class="row">
                     <div class="col-xs-6">
                         <div class="form-group">
                             <label class="control-label col-sm-4" title="表名">表名:</label>
                             <div class="col-sm-8">
-                                <#form:input path="name" class="form-control readonly" maxlength="200" />
+                                <input type="text" name="name" value="${genTable.name}" class="form-control " readonly="readonly" maxlength="200" />
                             </div>
                         </div>
                     </div>
@@ -50,7 +22,7 @@
                         <div class="form-group">
                             <label class="control-label col-sm-4" title="说明">说明:</label>
                             <div class="col-sm-8">
-                                <#form:input path="comments" class="form-control required" maxlength="200" />
+                                <input type="text" name="comments" value="${genTable.comments}" class="form-control required" maxlength="200" />
                             </div>
                         </div>
                     </div>
@@ -61,7 +33,7 @@
                         <div class="form-group">
                             <label class="control-label col-sm-4" title="类名">类名:</label>
                             <div class="col-sm-8">
-                                <#form:input path="className" class="form-control required" maxlength="200" />
+                                <input type="text" name="className" value="${genTable.className}" class="form-control required" maxlength="200" />
                             </div>
                         </div>
                     </div>
@@ -69,7 +41,7 @@
                         <div class="form-group">
                             <label class="control-label col-sm-4" title="父表表名">父表表名:</label>
                             <div class="col-sm-8">
-                                <#form:select path="name" name="nameAndComments" value="name" data="${tableList}" class="form-control " />
+                                <#form:select path="parentTable" name="nameAndComments" value="name" data="${tableList}" onValue="${genTable.parentTable}" class="form-control " />
                             </div>
                         </div>
                     </div>
@@ -79,7 +51,7 @@
                         <div class="form-group">
                             <label class="control-label col-sm-4" title="当前表外键">当前表外键:</label>
                             <div class="col-sm-8">
-                                <#form:select path="parentTableFk" name="nameAndComments" value="name" data="${genTable.columnList}" class="form-control " />
+                                <#form:select path="parentTableFk" name="nameAndComments" value="name" data="${genTable.columnList}" onValue="${genTable.parentTableFk}"  class="form-control " />
                             </div>
                         </div>
                     </div>
@@ -93,7 +65,7 @@
                         </div>
                     </div>
                 </div>
-                    <div style="overflow-x:auto;">
+                <div style="overflow-x:auto;">
                     <table id="contentTable" class="table table-striped table-bordered table-condensed" >
                         <thead><tr><th title="数据库字段名">列名</th><th title="默认读取数据库字段备注">说明</th><th title="数据库中设置的字段类型及长度">物理类型</th><th title="实体对象的属性字段类型">Java类型</th>
                             <th title="实体对象的属性字段（对象名.属性名|属性名2|属性名3，例如：用户user.id|name|loginName，属性名2和属性名3为Join时关联查询的字段）">Java属性名称 <i class="icon-question-sign"></i></th>
@@ -110,7 +82,7 @@
                         <td nowrap="nowrap">
                             <input type="hidden" name="columnList[${index}].id" value="${column.id}"/>
                             <input type="hidden" name="columnList[${index}].delFlag" value="${column.delFlag}"/>
-                            <input type="hidden" name="columnList[${index}].genTable.id" value="${column.genTable.id}"/>
+                            <input type="hidden" name="columnList[${index}].genTable.id" value="${column.genTable.id!}"/>
                             <input type="hidden" name="columnList[${index}].name" value="${column.name}"/>${column.name}
                         </td>
                         <td>
@@ -177,7 +149,7 @@
                         <% } %>
                         </tbody>
                     </table>
-                    </div>
+                </div>
             </div>
 
             <div class="box-footer">
@@ -191,7 +163,6 @@
                 </div>
             </div>
         </form>
-    <% } %>
     </div>
 </div>
 <% } %>
@@ -201,10 +172,12 @@
         submitHandler: function(form){
             js.ajaxSubmitForm($(form), function(data){
                 js.showMessage(data.message);
+
                 if(data.result == 'true'){
                     window.parent.closeCurrentTabPage(window.parent.refreshTab);
                 }
             }, "json");
         }
     });
+
 </script>

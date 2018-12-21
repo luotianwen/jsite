@@ -55,7 +55,7 @@ $(document).ready(function(){
 		return cHeight < 300 ? 300:cHeight;
 	}
 	
-	function addTabPage(tab, title, url, closable, isChild) {
+	function addTabPage(tab, title, url, closable, isChild, parentId) {
 		var tabId = isNull(tab) ? null:tab.data("tabId");
 		
 		if(isUndefined(tabId)){
@@ -65,7 +65,7 @@ $(document).ready(function(){
 		
 		var pid;
 		if(isChild) {
-			pid = tabpanel.getActiveTab().id;
+			pid = parentId?parentId:tabpanel.getActiveTab().id;
 		}
 		
 		var item = {
@@ -98,7 +98,7 @@ $(document).ready(function(){
 	}
 	
 	
-	function closeCurrentTabPage(preTabCallback) {
+	function closeCurrentTabPage(preTabCallback, title, url) {
 		var tabItem = tabpanel.getActiveTab();
 		console.log(tabItem.parentid);
 		
@@ -109,7 +109,7 @@ $(document).ready(function(){
 		var parentid = tabItem.parentid;
 		if(typeof preTabCallback=="function"){
 			try{
-				preTabCallback(parentid);
+				preTabCallback(parentid, title, url);
 				
 			}catch(e){
 				js.error(e)
@@ -117,11 +117,13 @@ $(document).ready(function(){
 		}
 	}
 	
-	function refreshTab(parentid) {
-		tabpanel.refresh(parentid);
+	function refreshTab(parentid, title, url) {
+	    if (title && url) {
+            addTabPage(null, title, url, true, true, parentid);
+        } else {
+            tabpanel.refresh(parentid);
+        }
 	}
-	
-
 
 $("#fullScreen").click(function() {
 	if ($(this).data("isOpen") == "true") {

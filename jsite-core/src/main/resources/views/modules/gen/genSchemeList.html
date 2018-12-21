@@ -41,7 +41,7 @@ $('#dataGrid').dataGrid({
 		{header:'生成模块', name:'packageName', index:'a.package_name', width:140, align:"center"},
 		{header:'模块名', name:'moduleName', index:'a.module_name', width:120, align:"center", formatter: function(val, obj, row, act){
 			var modName = row.moduleName;
-			if(row.subModuleName != null)
+			if(row.subModuleName)
 				modName += ("."+row.subModuleName);
 			return modName;
 		}},

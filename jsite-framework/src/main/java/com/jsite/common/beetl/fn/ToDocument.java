@@ -56,6 +56,7 @@ public class ToDocument implements Function {
 //				String id = (String) paras[3];
 				String name = (String) paras[3];
 				String val = (String) paras[4];
+				String onVal = (String) paras[5];
 //				logger.info("id- " + id + " name- " + name);
 				
 				String idKey = StringUtils.isBlank(val)?"id":val;
@@ -73,8 +74,12 @@ public class ToDocument implements Function {
 				while(it.hasNext()) {
 					JsonNode node = it.next();
 					String value = node.get(idKey).asText("");
-					
-					sb.append("<option value=\"").append(value).append("\" >");
+
+					sb.append("<option value=\"").append(value).append("\" ");
+                    if (StringUtils.isNotBlank(onVal) && onVal.equals(value)) {
+                        sb.append("selected=\"selected\" ");
+                    }
+                    sb.append(">");
 					sb.append(node.get(name).asText(""));
 					sb.append("</option>\n");
 				}
