@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
 
@@ -164,13 +163,12 @@ public class RoleController extends BaseController {
 	/**
 	 * 角色分配 -- 根据部门编号获取用户列表
 	 * @param officeId
-	 * @param response
 	 * @return
 	 */
 	@RequiresPermissions("sys:role:view")
 	@ResponseBody
 	@RequestMapping(value = "users")
-	public List<Map<String, Object>> users(String officeId, HttpServletResponse response) {
+	public List<Map<String, Object>> users(String officeId) {
 		List<Map<String, Object>> mapList = Lists.newArrayList();
 		User user = new User();
 		user.setOffice(new Office(officeId));
