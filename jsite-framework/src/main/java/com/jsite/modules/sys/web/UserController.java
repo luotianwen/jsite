@@ -54,15 +54,13 @@ public class UserController extends BaseController {
 
 	@RequiresPermissions("sys:user:view")
 	@RequestMapping(value = {"index"})
-	public String index(User user, Model model) {
+	public String index() {
 		return "modules/sys/userIndex";
 	}
 
 	@RequiresPermissions("sys:user:view")
 	@RequestMapping(value = {"list", ""})
-	public String list(User user, HttpServletRequest request, HttpServletResponse response, Model model) {
-		//Page<User> page = systemService.findUser(new Page<User>(request, response), user);
-        //model.addAttribute("page", page);
+	public String list() {
 		return "modules/sys/userList";
 	}
 	
@@ -100,6 +98,10 @@ public class UserController extends BaseController {
 	@RequestMapping(value = "changeStatus")
 	@ResponseBody
 	public String userStatusChange(User user, HttpServletRequest request, HttpServletResponse response, Model model) {
+		if(Global.isDemoMode()){
+			return renderResult(Global.FALSE, "演示模式，不允许操作！");
+		}
+
 		user.setLoginFlag("0".equals(user.getLoginFlag())?"1":"0");
 		systemService.updateUserInfo(user);
 		return renderResult(Global.TRUE, "状态更改成功");
@@ -109,6 +111,10 @@ public class UserController extends BaseController {
 	@RequestMapping(value = "resetPass")
 	@ResponseBody
 	public String resetPass(User user, HttpServletRequest request, HttpServletResponse response, Model model) {
+        if(Global.isDemoMode()){
+            return renderResult(Global.FALSE, "演示模式，不允许操作！");
+        }
+
 		systemService.updatePasswordById(user.getId(), user.getLoginName(),DictUtils.getDictValue("default_password", "default_pass", "123456"));
 		return renderResult(Global.TRUE, "重置密码成功");
 	}
@@ -118,10 +124,10 @@ public class UserController extends BaseController {
 	@RequestMapping(value = "save")
 	@ResponseBody
 	public String save(User user, HttpServletRequest request, Model model, RedirectAttributes redirectAttributes) {
-		/*if(Global.isDemoMode()){
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
-			return "redirect:" + adminPath + "/sys/user/list?repage";
-		}*/
+        if(Global.isDemoMode()){
+            return renderResult(Global.FALSE, "演示模式，不允许操作！");
+        }
+
 		// 修正引用赋值问题，不知道为何，Company和Office引用的一个实例地址，修改了一个，另外一个跟着修改。
 		user.setCompany(new Office(request.getParameter("company.id")));
 		user.setOffice(new Office(request.getParameter("office.id")));
@@ -162,6 +168,10 @@ public class UserController extends BaseController {
 	@RequestMapping(value = "delete")
 	@ResponseBody
 	public String delete(User user, RedirectAttributes redirectAttributes) {
+        if(Global.isDemoMode()){
+            return renderResult(Global.FALSE, "演示模式，不允许操作！");
+        }
+
 		if (UserUtils.getUser().getId().equals(user.getId())){
 			return renderResult(Global.FALSE, "删除用户失败, 不允许删除当前用户");
 		}else if (User.isAdmin(user.getId())){
@@ -201,6 +211,10 @@ public class UserController extends BaseController {
     @RequestMapping(value = "import", method=RequestMethod.POST)
     @ResponseBody
 	public String importFile(HttpServletRequest request) {
+        if(Global.isDemoMode()){
+            return renderResult(Global.FALSE, "演示模式，不允许操作！");
+        }
+
 		try {
 			int successNum = 0;
 			int failureNum = 0;
@@ -235,8 +249,6 @@ public class UserController extends BaseController {
 		}catch (Exception e) {
 			return renderResult(Global.FALSE, "导入用户失败！失败信息："+e.getMessage());
 		}	
-	 //addMessage(redirectAttributes, "导入用户失败！失败信息："+e.getMessage());
-		//return "redirect:" + adminPath + "/sys/user/list?repage";
     }
 	
 	/**

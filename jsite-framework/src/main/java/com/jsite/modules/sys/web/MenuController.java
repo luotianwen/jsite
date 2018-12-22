@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
@@ -50,14 +49,14 @@ public class MenuController extends BaseController {
 
 	@RequiresPermissions("sys:menu:view")
 	@RequestMapping(value = {"list", ""})
-	public String list(Model model) {
+	public String list() {
 		return "modules/sys/menuList";
 	}
 	
 	@RequiresPermissions("sys:menu:view")
 	@RequestMapping(value = "listData")
 	@ResponseBody
-	public List<Menu> listData(Menu menu, HttpServletRequest request, HttpServletResponse response) {
+	public List<Menu> listData() {
 		List<Menu> list = Lists.newArrayList();
 		List<Menu> sourcelist = systemService.findAllMenu();
 		Menu.sortList(list, sourcelist, Menu.getRootId(), true);
@@ -89,6 +88,10 @@ public class MenuController extends BaseController {
 	@RequestMapping(value = "save")
 	@ResponseBody
 	public String save(Menu menu, Model model, RedirectAttributes redirectAttributes) {
+		if(Global.isDemoMode()){
+			return renderResult(Global.FALSE, "演示模式，不允许操作！");
+		}
+
 		if(!UserUtils.getUser().isAdmin()){
 			return renderResult(Global.FALSE, "越权操作，只有超级管理员才能添加或修改数据！");
 		}
@@ -96,28 +99,26 @@ public class MenuController extends BaseController {
 		if(Global.isDemoMode()){
 			return renderResult(Global.FALSE, "演示模式，不允许操作！");
 		}
-		
-		logger.info("Menu-------->" + menu.toString());
-		
+
 		systemService.saveMenu(menu);
 		
 		return renderResult(Global.TRUE, ("保存菜单'" + menu.getName() + "'成功"));
 	}
-	
-	@RequiresPermissions("sys:menu:edit")
-	@RequestMapping(value = "delete")
-	@ResponseBody
-	public String delete(Menu menu, RedirectAttributes redirectAttributes) {
-		if (Global.isDemoMode()) {
-			return renderResult(Global.FALSE, "演示模式，不允许操作！");
-		}
-		 if (menu.getIsRoot()){
-			 return renderResult(Global.FALSE, "删除菜单失败, 不允许删除顶级菜单或编号为空");
-		 }else{
-		 	systemService.deleteMenu(menu);
-		 }
-		return renderResult(Global.TRUE, "删除菜单成功");
-	}
+
+    @RequiresPermissions("sys:menu:edit")
+    @RequestMapping(value = "delete")
+    @ResponseBody
+    public String delete(Menu menu, RedirectAttributes redirectAttributes) {
+        if (Global.isDemoMode()) {
+            return renderResult(Global.FALSE, "演示模式，不允许操作！");
+        }
+        if (menu.getIsRoot()) {
+            return renderResult(Global.FALSE, "删除菜单失败, 不允许删除顶级菜单或编号为空");
+        } else {
+            systemService.deleteMenu(menu);
+        }
+        return renderResult(Global.TRUE, "删除菜单成功");
+    }
 
 	@RequiresPermissions("user")
 	@RequestMapping(value = "tree")

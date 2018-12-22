@@ -29,7 +29,7 @@ public class LogController extends BaseController {
 	
 	@RequiresPermissions("sys:log:view")
 	@RequestMapping(value = {"list", ""})
-	public String list(Log log, HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String list() {
 		return "modules/sys/logList";
 	}
 	
@@ -38,14 +38,14 @@ public class LogController extends BaseController {
 	@RequestMapping(value = "listData")
 	@ResponseBody
 	public Page<Log> listData(Log log, HttpServletRequest request, HttpServletResponse response, Model model) {
-        Page<Log> page = logService.findPage(new Page<Log>(request, response), log); 
+        Page<Log> page = logService.findPage(new Page<>(request, response), log);
 		return page;
 	}
 	
 	@RequiresPermissions("sys:log:view")
 	@RequestMapping(value = "form")
 	@ResponseBody
-	public Log form(@RequestParam String id, HttpServletRequest request, HttpServletResponse response) {
+	public Log form(@RequestParam String id) {
 		return logService.get(id);
 	}
 

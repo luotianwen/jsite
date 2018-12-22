@@ -7,7 +7,6 @@ import com.jsite.common.utils.UploadUtils4;
 import com.jsite.common.utils.UploadUtils4.UploadResult;
 import com.jsite.common.web.BaseController;
 import com.jsite.modules.file.entity.SysFile;
-import com.jsite.modules.file.entity.SysFileTree;
 import com.jsite.modules.file.service.SysFileService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +44,7 @@ public class SysFileController extends BaseController {
 	}
 	@RequiresPermissions("file:sysFile:view")
 	@RequestMapping(value = {"index"})
-	public String index(SysFileTree sysFileTree, Model model) {
+	public String index() {
 		return "modules/file/sysFileIndex";
 	}
 	
@@ -62,12 +61,12 @@ public class SysFileController extends BaseController {
 	@RequestMapping(value = "listData")
 	@ResponseBody
 	public Page<SysFile> listData(SysFile sysFile, HttpServletRequest request, HttpServletResponse response, Model model){
-		return sysFileService.findPage(new Page<SysFile>(request, response), sysFile); 
+		return sysFileService.findPage(new Page<>(request, response), sysFile);
 	}
 	
 	@RequiresPermissions("file:sysFile:view")
 	@RequestMapping(value = "fileTreeSelect")
-	public String fileTreeSelect(SysFile sysFile, Model model) {
+	public String fileTreeSelect() {
 		return "modules/file/sysFileFolderSelect";
 	}
 	
@@ -83,7 +82,10 @@ public class SysFileController extends BaseController {
 	@RequiresPermissions("file:sysFile:view")
 	@RequestMapping(value = "up", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String up(HttpServletRequest request, HttpServletResponse response) {
+	public String up(HttpServletRequest request) {
+		if(Global.isDemoMode()){
+			return renderResult(Global.FALSE, "演示模式，不允许操作！");
+		}
 
 		List<UploadResult> result = UploadUtils4.getInstance().uploadFile(request);
 
@@ -129,6 +131,9 @@ public class SysFileController extends BaseController {
 	@RequestMapping(value = "save")
 	@ResponseBody
 	public String save(SysFile sysFile, Model model, RedirectAttributes redirectAttributes) {
+        if(Global.isDemoMode()){
+            return renderResult(Global.FALSE, "演示模式，不允许操作！");
+        }
 		sysFileService.save(sysFile);
 		return renderResult(Global.TRUE, "移动文件成功");
 	}
@@ -137,6 +142,9 @@ public class SysFileController extends BaseController {
 	@RequestMapping(value = "delete")
 	@ResponseBody
 	public String delete(SysFile sysFile, RedirectAttributes redirectAttributes) {
+        if(Global.isDemoMode()){
+            return renderResult(Global.FALSE, "演示模式，不允许操作！");
+        }
 		sysFileService.delete(sysFile);
 		return renderResult(Global.TRUE, "删除文件管理成功");
 	}

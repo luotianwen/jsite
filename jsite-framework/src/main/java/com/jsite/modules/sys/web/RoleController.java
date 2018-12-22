@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
@@ -49,14 +48,14 @@ public class RoleController extends BaseController {
 	
 	@RequiresPermissions("sys:role:view")
 	@RequestMapping(value = {"list", ""})
-	public String list(Role role, Model model) {
+	public String list() {
 		return "modules/sys/roleList";
 	}
 	
 	@RequiresPermissions("sys:role:view")
 	@RequestMapping(value = "listData")
 	@ResponseBody
-	public List<Role> listData(Role role, HttpServletRequest request, HttpServletResponse response) {
+	public List<Role> listData() {
 		List<Role> list = systemService.findAllRole();
 		return list;
 	}
@@ -88,9 +87,11 @@ public class RoleController extends BaseController {
 	@RequestMapping(value = "save")
 	@ResponseBody
 	public String save(Role role, Model model, RedirectAttributes redirectAttributes) {
+		if(Global.isDemoMode()){
+			return renderResult(Global.FALSE, "演示模式，不允许操作！");
+		}
+
 		String resultMsg = "保存角色 “" + role.getName() + "” 成功";
-		
-		
 		if(!UserUtils.getUser().isAdmin()&&role.getSysData().equals(Global.YES)){
 			resultMsg = "越权操作，只有超级管理员才能修改此数据！";
 		}
@@ -114,6 +115,10 @@ public class RoleController extends BaseController {
 	@RequiresPermissions("sys:role:edit")
 	@RequestMapping(value = "delete")
 	public String delete(Role role, RedirectAttributes redirectAttributes) {
+		if(Global.isDemoMode()){
+			return renderResult(Global.FALSE, "演示模式，不允许操作！");
+		}
+
 		if (!UserUtils.getUser().isAdmin() && role.getSysData().equals(Global.YES)) {
 			return renderResult(Global.FALSE, "越权操作，只有超级管理员才能修改此数据！");
 		}
@@ -127,15 +132,11 @@ public class RoleController extends BaseController {
 	
 	/**
 	 * 角色分配页面
-	 * @param role
-	 * @param model
 	 * @return
 	 */
 	@RequiresPermissions("sys:role:edit")
 	@RequestMapping(value = "assign")
-	public String assign(Role role, Model model) {
-//		List<User> userList = systemService.findUser(new User(new Role(role.getId())));
-//		model.addAttribute("userList", userList);
+	public String assign() {
 		return "modules/sys/roleAssign";
 	}
 	
@@ -260,7 +261,6 @@ public class RoleController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "checkName")
 	public String checkName(String oldName, String name) {
-		logger.info("checkName------------->oldName=" + oldName + " name=" + name);
 		if (name!=null && name.equals(oldName)) {
 			return "true";
 		} else if (name!=null && systemService.getRoleByName(name) == null) {

@@ -70,31 +70,22 @@ public class DictController extends BaseController {
 	@RequestMapping(value = "save")//@Valid
 	@ResponseBody
 	public String save(Dict dict, Model model, RedirectAttributes redirectAttributes) {
-		/*if(Global.isDemoMode()){
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
-			return "redirect:" + adminPath + "/sys/dict/?repage&type="+dict.getType();
+		if(Global.isDemoMode()){
+			return renderResult(Global.FALSE, "演示模式，不允许操作！");
 		}
-		if (!beanValidator(model, dict)){
-			return form(dict, model);
-		}*/
 		dictService.save(dict);
 		return renderResult(Global.TRUE, "保存字典'" + dict.getLabel() + "'成功");
-		//addMessage(redirectAttributes, "保存字典'" + dict.getLabel() + "'成功");
-		//return "redirect:" + adminPath + "/sys/dict/?repage&type="+dict.getType();
 	}
 	
 	@RequiresPermissions("sys:dict:edit")
 	@RequestMapping(value = "delete")
 	@ResponseBody
 	public String delete(Dict dict, RedirectAttributes redirectAttributes) {
-		/*if(Global.isDemoMode()){
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
-			return "redirect:" + adminPath + "/sys/dict/?repage";
-		}*/
+        if(Global.isDemoMode()){
+            return renderResult(Global.FALSE, "演示模式，不允许操作！");
+        }
 		dictService.delete(dict);
 		return renderResult(Global.TRUE, "删除字典成功");
-	/*	addMessage(redirectAttributes, "删除字典成功");
-		return "redirect:" + adminPath + "/sys/dict/?repage&type="+dict.getType();*/
 	}
 	
 	@RequiresPermissions("user")

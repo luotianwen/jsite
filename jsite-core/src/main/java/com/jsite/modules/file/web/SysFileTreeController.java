@@ -106,6 +106,10 @@ public class SysFileTreeController extends BaseController {
 	@RequestMapping(value = "save")
 	@ResponseBody
 	public String save(SysFileTree sysFileTree, Model model, RedirectAttributes redirectAttributes) {
+		if(Global.isDemoMode()){
+			return renderResult(Global.FALSE, "演示模式，不允许操作！");
+		}
+
 		if(sysFileTree.getIsNewRecord()) {
 			if(StringUtils.isEmpty(sysFileTree.getParentId())) {
 				sysFileTree.setTreeLeaf("0");
@@ -132,6 +136,10 @@ public class SysFileTreeController extends BaseController {
 	@RequestMapping(value = "saveMove")
 	@ResponseBody
 	public String saveMove(SysFileTree sysFileTree, Model model, RedirectAttributes redirectAttributes) {
+        if(Global.isDemoMode()){
+            return renderResult(Global.FALSE, "演示模式，不允许操作！");
+        }
+
 		SysFileTree sourceFile = sysFileTreeService.get(sysFileTree.getId());
 		List<SysFileTree> resultList = Lists.newArrayList();
 
@@ -203,6 +211,10 @@ public class SysFileTreeController extends BaseController {
 	@RequestMapping(value = "delete")
 	@ResponseBody
 	public String delete(SysFileTree sysFileTree, RedirectAttributes redirectAttributes) {
+        if(Global.isDemoMode()){
+            return renderResult(Global.FALSE, "演示模式，不允许操作！");
+        }
+
 		sysFileTree = sysFileTreeService.get(sysFileTree.getId());
 		if("0".equals(sysFileTree.getParentId())) {
 			return renderResult(Global.FALSE, "默认根文件夹不能删除");

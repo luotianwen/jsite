@@ -92,6 +92,10 @@ public class DeModelController extends BaseController {
 	@RequestMapping(value = "delete")
 	@ResponseBody
 	public String delete(DeModel deModel) {
+		if(Global.isDemoMode()){
+			return renderResult(Global.FALSE, "演示模式，不允许操作！");
+		}
+
 		deModelService.delete(deModel);
 		
 		return  renderResult(Global.TRUE, "删除模型成功");

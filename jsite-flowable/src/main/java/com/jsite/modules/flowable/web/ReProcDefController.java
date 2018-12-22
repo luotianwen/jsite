@@ -100,6 +100,9 @@ public class ReProcDefController extends BaseController {
 	@RequestMapping(value = "delete")
 	@ResponseBody
 	public String delete(String deploymentId) {
+        if(Global.isDemoMode()){
+            return renderResult(Global.FALSE, "演示模式，不允许操作！");
+        }
 		actProcessService.deleteDeployment(deploymentId);
 		
 		return renderResult(Global.TRUE, "删除成功");
@@ -182,7 +185,11 @@ public class ReProcDefController extends BaseController {
 	@RequestMapping(value = "deleteProcIns")
 	@ResponseBody
 	public String deleteProcIns(String procInsId, String reason, RedirectAttributes redirectAttributes) {
-		String msg = "";
+        if(Global.isDemoMode()){
+            return renderResult(Global.FALSE, "演示模式，不允许操作！");
+        }
+
+		String msg;
 		if (StringUtils.isBlank(reason)){
 			msg = "删除流程实例失败，请填写删除原因";
 		}else{

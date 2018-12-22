@@ -47,7 +47,7 @@ public class FlowTaskController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = {"todo", ""})
-	public String todoList(Flow act, HttpServletResponse response, Model model) throws Exception {
+	public String todoList(Flow act, HttpServletResponse response, Model model) {
 		if (UserUtils.getPrincipal().isMobileLogin()){
 			Page<Flow> list = actTaskService.todoList(act);
 			model.addAttribute("list", list);
@@ -296,6 +296,10 @@ public class FlowTaskController extends BaseController {
 	@RequiresPermissions("act:process:edit")
 	@RequestMapping(value = "deleteTask")
 	public String deleteTask(String taskId, String reason, RedirectAttributes redirectAttributes) {
+		if(Global.isDemoMode()){
+			return renderResult(Global.FALSE, "演示模式，不允许操作！");
+		}
+
 		if (StringUtils.isBlank(reason)){
 //			addMessage(redirectAttributes, "请填写删除原因");
 		}else{
