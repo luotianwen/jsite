@@ -40,6 +40,7 @@ http://jsite.org.cn
 ### 使用说明
 1. 框架基于IntelliJ IDEA 开发
 2. 初始化数据库 jsite-web module 下 jsite-init.sql
+3. 数据库字符集：utf8   排序规则：utf8_bin
 
 ### 系统展示
 登录
