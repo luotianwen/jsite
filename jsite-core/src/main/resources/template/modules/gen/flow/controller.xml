@@ -4,6 +4,9 @@
 	<filePath>src/main/java/${packageName}/${moduleName}/web/${subModuleName}</filePath>
 	<fileName>${ClassName}Controller.java</fileName>
 	<content><![CDATA[
+/**
+ * Copyright &copy; 2017-2019 <a href="https://gitee.com/lruijun/JSite">JSite</a> All rights reserved.
+ */
 package ${packageName}.${moduleName}.web<#if subModuleName != "">.${subModuleName}</#if>;
 
 import com.google.common.collect.Maps;
@@ -72,7 +75,7 @@ public class ${ClassName}Controller extends BaseController {
 		}
 
 		model.addAttribute("${className}", ${className});
-		return "template/${lastPackageName}/${flowPrefix}/" + view + ".html";
+		return "${lastPackageName}/${flowPrefix}/" + view;
 	}
 
 	@RequiresPermissions("${permissionPrefix}:edit")

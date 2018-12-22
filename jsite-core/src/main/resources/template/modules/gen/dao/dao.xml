@@ -4,6 +4,9 @@
 	<filePath>src/main/java/${packageName}/${moduleName}/dao/${subModuleName}</filePath>
 	<fileName>${ClassName}Dao.java</fileName>
 	<content><![CDATA[
+/**
+ * Copyright &copy; 2017-2019 <a href="https://gitee.com/lruijun/JSite">JSite</a> All rights reserved.
+ */
 package ${packageName}.${moduleName}.dao<#if subModuleName != "">.${subModuleName}</#if>;
 
 import com.jsite.common.persistence.CrudDao;

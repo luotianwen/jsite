@@ -61,7 +61,7 @@ $('#dataGrid').dataGrid({
 	columnModel: [
 		<#list table.columnList as c>
 		<#if c.isList?? && c.isList == "1">
-		{header:'${c.comments}', name:'', index:'', width:90, align:"center"},
+		{header:'${c.comments}', name:'${c.javaFieldId}', index:'a.${c.name}', width:90, align:"center"},
 		</#if>
 		</#list>
 		{header:'操作', name:'actions', width:100, sortable:false, title:false, align:"center",formatter: function(val, obj, row, act){

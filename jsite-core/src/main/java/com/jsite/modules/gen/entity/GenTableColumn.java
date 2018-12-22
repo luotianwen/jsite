@@ -214,7 +214,18 @@ public class GenTableColumn extends DataEntity<GenTableColumn> {
 				? StringUtils.substringAfterLast(getJavaType(), ".")
 						: getJavaType();
 	}
-	
+
+	/**
+	 * 获取用户、部门、区域组件的id字段值
+	 * 在生成 *Form.html中的用户、部门、区域treeselect组件的id="${c.javaFieldId}"字段用到
+	 */
+    public String getSimpleJavaFieldWithId() {
+        // 输入 user.id, office.id, area.id
+        String javaFieldWithId = StringUtils.substringBefore(getJavaField(), "|");
+        // 输出 userId, officeId, areaId
+        return javaFieldWithId.replace(".id", "Id");
+    }
+
 	/**
 	 * 获取简写Java字段
 	 * @return
