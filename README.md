@@ -36,33 +36,33 @@ http://jsite.org.cn
 
 ### 系统展示
 登录
-![image](https://gitee.com/lruijun/JSite/raw/master/img/%E7%99%BB%E5%BD%95.png)
+![image](https://gitee.com/baseweb/JSite/raw/master/img/%E7%99%BB%E5%BD%95.png)
 主页
-![image](https://gitee.com/lruijun/JSite/raw/master/img/%E4%B8%BB%E9%A1%B5.png)
+![image](https://gitee.com/baseweb/JSite/raw/master/img/%E4%B8%BB%E9%A1%B5.png)
 用户管理
-![image](https://gitee.com/lruijun/JSite/raw/master/img/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.png)
+![image](https://gitee.com/baseweb/JSite/raw/master/img/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.png)
 区域管理
-![image](https://gitee.com/lruijun/JSite/raw/master/img/%E5%8C%BA%E5%9F%9F%E7%AE%A1%E7%90%86.png)
+![image](https://gitee.com/baseweb/JSite/raw/master/img/%E5%8C%BA%E5%9F%9F%E7%AE%A1%E7%90%86.png)
 菜单管理
-![image](https://gitee.com/lruijun/JSite/raw/master/img/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.png)
+![image](https://gitee.com/baseweb/JSite/raw/master/img/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.png)
 角色管理
-![image](https://gitee.com/lruijun/JSite/raw/master/img/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.png)
+![image](https://gitee.com/baseweb/JSite/raw/master/img/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.png)
 角色分配
-![image](https://gitee.com/lruijun/JSite/raw/master/img/%E8%A7%92%E8%89%B2%E5%88%86%E9%85%8D.png)
+![image](https://gitee.com/baseweb/JSite/raw/master/img/%E8%A7%92%E8%89%B2%E5%88%86%E9%85%8D.png)
 流程模型管理
-![image](https://gitee.com/lruijun/JSite/raw/master/img/%E6%B5%81%E7%A8%8B-%E6%A8%A1%E5%9E%8B%E7%AE%A1%E7%90%86.png)
+![image](https://gitee.com/baseweb/JSite/raw/master/img/%E6%B5%81%E7%A8%8B-%E6%A8%A1%E5%9E%8B%E7%AE%A1%E7%90%86.png)
 流程设计器
-![image](https://gitee.com/lruijun/JSite/raw/master/img/%E6%B5%81%E7%A8%8B-%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%99%A8.png)
+![image](https://gitee.com/baseweb/JSite/raw/master/img/%E6%B5%81%E7%A8%8B-%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%99%A8.png)
 流程管理
-![image](https://gitee.com/lruijun/JSite/raw/master/img/%E6%B5%81%E7%A8%8B%E7%AE%A1%E7%90%86.png)
+![image](https://gitee.com/baseweb/JSite/raw/master/img/%E6%B5%81%E7%A8%8B%E7%AE%A1%E7%90%86.png)
 流程部署
-![image](https://gitee.com/lruijun/JSite/raw/master/img/%E6%B5%81%E7%A8%8B%E9%83%A8%E7%BD%B2.png)
+![image](https://gitee.com/baseweb/JSite/raw/master/img/%E6%B5%81%E7%A8%8B%E9%83%A8%E7%BD%B2.png)
 文件夹管理
-![image](https://gitee.com/lruijun/JSite/raw/master/img/%E6%96%87%E4%BB%B6%E5%A4%B9%E7%AE%A1%E7%90%86.png)
+![image](https://gitee.com/baseweb/JSite/raw/master/img/%E6%96%87%E4%BB%B6%E5%A4%B9%E7%AE%A1%E7%90%86.png)
 文件管理
-![image](https://gitee.com/lruijun/JSite/raw/master/img/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86.png)
+![image](https://gitee.com/baseweb/JSite/raw/master/img/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86.png)
 文件上传
-![image](https://gitee.com/lruijun/JSite/raw/master/img/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0.png)
+![image](https://gitee.com/baseweb/JSite/raw/master/img/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0.png)
 
 
 ### 参与贡献
@@ -76,4 +76,4 @@ http://jsite.org.cn
 ### 获得支持
 QQ群：881252801
 
-![image](https://gitee.com/lruijun/JSite/raw/master/img/jsite-qrcode.png)
+![image](https://gitee.com/baseweb/JSite/raw/master/img/jsite-qrcode.png)
