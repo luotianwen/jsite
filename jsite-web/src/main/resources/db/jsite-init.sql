@@ -217,6 +217,24 @@ CREATE TABLE `ACT_HI_ACTINST`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of ACT_HI_ACTINST
+-- ----------------------------
+INSERT INTO `ACT_HI_ACTINST` VALUES ('20024712-05f4-11e9-b751-c85b7643dd9e', 1, 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', '2000c06e-05f4-11e9-b751-c85b7643dd9e', '2001d1e1-05f4-11e9-b751-c85b7643dd9e', 'startevent1', NULL, NULL, '发起流程', 'startEvent', NULL, '2018-12-22 22:16:07.869', '2018-12-22 22:16:07.871', 2, NULL, '');
+INSERT INTO `ACT_HI_ACTINST` VALUES ('2002e353-05f4-11e9-b751-c85b7643dd9e', 1, 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', '2000c06e-05f4-11e9-b751-c85b7643dd9e', '2001d1e1-05f4-11e9-b751-c85b7643dd9e', 'deptLeaderAudit', '20049104-05f4-11e9-b751-c85b7643dd9e', NULL, '部门领导审批', 'userTask', NULL, '2018-12-22 22:16:07.873', NULL, NULL, NULL, '');
+INSERT INTO `ACT_HI_ACTINST` VALUES ('560a16b0-05fc-11e9-8544-00163e2e65eb', 1, 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', '6a2402bc-05cd-11e9-8544-00163e2e65eb', '6a24c60f-05cd-11e9-8544-00163e2e65eb', 'exclusivegateway6', NULL, NULL, 'Exclusive Gateway', 'exclusiveGateway', NULL, '2018-12-22 23:14:54.491', '2018-12-22 23:14:54.498', 7, NULL, '');
+INSERT INTO `ACT_HI_ACTINST` VALUES ('560b2821-05fc-11e9-8544-00163e2e65eb', 1, 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', '6a2402bc-05cd-11e9-8544-00163e2e65eb', '6a24c60f-05cd-11e9-8544-00163e2e65eb', 'endevent1', NULL, NULL, 'End', 'endEvent', NULL, '2018-12-22 23:14:54.498', '2018-12-22 23:14:54.500', 2, NULL, '');
+INSERT INTO `ACT_HI_ACTINST` VALUES ('5ef97ed8-05d6-11e9-8544-00163e2e65eb', 1, 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', '5ef97ed4-05d6-11e9-8544-00163e2e65eb', '5ef97ed7-05d6-11e9-8544-00163e2e65eb', 'startevent1', NULL, NULL, '发起流程', 'startEvent', NULL, '2018-12-22 18:43:08.606', '2018-12-22 18:43:08.606', 0, NULL, '');
+INSERT INTO `ACT_HI_ACTINST` VALUES ('5ef9a5e9-05d6-11e9-8544-00163e2e65eb', 1, 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', '5ef97ed4-05d6-11e9-8544-00163e2e65eb', '5ef97ed7-05d6-11e9-8544-00163e2e65eb', 'deptLeaderAudit', '5ef9a5ea-05d6-11e9-8544-00163e2e65eb', NULL, '部门领导审批', 'userTask', NULL, '2018-12-22 18:43:08.607', NULL, NULL, NULL, '');
+INSERT INTO `ACT_HI_ACTINST` VALUES ('6a271000-05cd-11e9-8544-00163e2e65eb', 1, 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', '6a2402bc-05cd-11e9-8544-00163e2e65eb', '6a24c60f-05cd-11e9-8544-00163e2e65eb', 'startevent1', NULL, NULL, '发起流程', 'startEvent', NULL, '2018-12-22 17:39:01.889', '2018-12-22 17:39:01.892', 3, NULL, '');
+INSERT INTO `ACT_HI_ACTINST` VALUES ('6a27d351-05cd-11e9-8544-00163e2e65eb', 3, 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', '6a2402bc-05cd-11e9-8544-00163e2e65eb', '6a24c60f-05cd-11e9-8544-00163e2e65eb', 'deptLeaderAudit', '6a286f92-05cd-11e9-8544-00163e2e65eb', NULL, '部门领导审批', 'userTask', 'dept', '2018-12-22 17:39:01.894', '2018-12-22 22:48:58.825', 18596931, NULL, '');
+INSERT INTO `ACT_HI_ACTINST` VALUES ('82efd346-0601-11e9-8544-00163e2e65eb', 1, 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', '82efd342-0601-11e9-8544-00163e2e65eb', '82efd345-0601-11e9-8544-00163e2e65eb', 'startevent1', NULL, NULL, '发起流程', 'startEvent', NULL, '2018-12-22 23:51:57.300', '2018-12-22 23:51:57.300', 0, NULL, '');
+INSERT INTO `ACT_HI_ACTINST` VALUES ('82efd347-0601-11e9-8544-00163e2e65eb', 3, 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', '82efd342-0601-11e9-8544-00163e2e65eb', '82efd345-0601-11e9-8544-00163e2e65eb', 'deptLeaderAudit', '82efd348-0601-11e9-8544-00163e2e65eb', NULL, '部门领导审批', 'userTask', 'dept', '2018-12-22 23:51:57.300', '2018-12-22 23:59:25.903', 448603, NULL, '');
+INSERT INTO `ACT_HI_ACTINST` VALUES ('8e53f9cd-0602-11e9-93df-c85b7643dd9e', 1, 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', '82efd342-0601-11e9-8544-00163e2e65eb', '82efd345-0601-11e9-8544-00163e2e65eb', 'exclusivegateway5', NULL, NULL, 'Exclusive Gateway', 'exclusiveGateway', NULL, '2018-12-22 23:59:25.908', '2018-12-22 23:59:25.922', 14, NULL, '');
+INSERT INTO `ACT_HI_ACTINST` VALUES ('8e561cae-0602-11e9-93df-c85b7643dd9e', 2, 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', '82efd342-0601-11e9-8544-00163e2e65eb', '82efd345-0601-11e9-8544-00163e2e65eb', 'hrAudit', '8e561caf-0602-11e9-93df-c85b7643dd9e', NULL, '人事审批', 'userTask', 'jsitehr', '2018-12-22 23:59:25.922', NULL, NULL, NULL, '');
+INSERT INTO `ACT_HI_ACTINST` VALUES ('b6cb3603-05f8-11e9-8951-c85b7643dd9e', 1, 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', '6a2402bc-05cd-11e9-8544-00163e2e65eb', '6a24c60f-05cd-11e9-8544-00163e2e65eb', 'exclusivegateway5', NULL, NULL, 'Exclusive Gateway', 'exclusiveGateway', NULL, '2018-12-22 22:48:58.831', '2018-12-22 22:48:58.851', 20, NULL, '');
+INSERT INTO `ACT_HI_ACTINST` VALUES ('b6ce4344-05f8-11e9-8951-c85b7643dd9e', 3, 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', '6a2402bc-05cd-11e9-8544-00163e2e65eb', '6a24c60f-05cd-11e9-8544-00163e2e65eb', 'hrAudit', 'b6ce6a55-05f8-11e9-8951-c85b7643dd9e', NULL, '人事审批', 'userTask', 'jsitehr', '2018-12-22 22:48:58.851', '2018-12-22 23:14:54.491', 1555640, NULL, '');
+
+-- ----------------------------
 -- Table structure for ACT_HI_ATTACHMENT
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_HI_ATTACHMENT`;
@@ -251,6 +269,17 @@ CREATE TABLE `ACT_HI_COMMENT`  (
   `FULL_MSG_` longblob NULL,
   PRIMARY KEY (`ID_`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ACT_HI_COMMENT
+-- ----------------------------
+INSERT INTO `ACT_HI_COMMENT` VALUES ('45ed562e-05fc-11e9-8544-00163e2e65eb', 'event', '2018-12-22 23:14:27.459', NULL, 'b6ce6a55-05f8-11e9-8951-c85b7643dd9e', NULL, 'AddUserLink', 'jsitehr_|_assignee', NULL);
+INSERT INTO `ACT_HI_COMMENT` VALUES ('560116ff-05fc-11e9-8544-00163e2e65eb', 'comment', '2018-12-22 23:14:54.432', NULL, 'b6ce6a55-05f8-11e9-8951-c85b7643dd9e', '6a2402bc-05cd-11e9-8544-00163e2e65eb', 'AddComment', '[同意] 同意', 0x5BE5908CE6848F5D20E5908CE6848F);
+INSERT INTO `ACT_HI_COMMENT` VALUES ('7b40b49a-0602-11e9-93df-c85b7643dd9e', 'event', '2018-12-22 23:58:53.905', NULL, '82efd348-0601-11e9-8544-00163e2e65eb', NULL, 'AddUserLink', 'dept_|_assignee', NULL);
+INSERT INTO `ACT_HI_COMMENT` VALUES ('8e2c749b-0602-11e9-93df-c85b7643dd9e', 'comment', '2018-12-22 23:59:25.649', NULL, '82efd348-0601-11e9-8544-00163e2e65eb', '82efd342-0601-11e9-8544-00163e2e65eb', 'AddComment', '[同意] 我同意啦啊啊啊啊啊啊啊', 0x5BE5908CE6848F5D20E68891E5908CE6848FE595A6E5958AE5958AE5958AE5958AE5958AE5958AE5958A);
+INSERT INTO `ACT_HI_COMMENT` VALUES ('9ef8b003-0602-11e9-93df-c85b7643dd9e', 'event', '2018-12-22 23:59:53.831', NULL, '8e561caf-0602-11e9-93df-c85b7643dd9e', NULL, 'AddUserLink', 'jsitehr_|_assignee', NULL);
+INSERT INTO `ACT_HI_COMMENT` VALUES ('a85100f0-05f8-11e9-8951-c85b7643dd9e', 'event', '2018-12-22 22:48:34.541', NULL, '6a286f92-05cd-11e9-8544-00163e2e65eb', NULL, 'AddUserLink', 'dept_|_assignee', NULL);
+INSERT INTO `ACT_HI_COMMENT` VALUES ('b6a55e81-05f8-11e9-8951-c85b7643dd9e', 'comment', '2018-12-22 22:48:58.583', NULL, '6a286f92-05cd-11e9-8544-00163e2e65eb', '6a2402bc-05cd-11e9-8544-00163e2e65eb', 'AddComment', '[同意] 同意', 0x5BE5908CE6848F5D20E5908CE6848F);
 
 -- ----------------------------
 -- Table structure for ACT_HI_DETAIL
@@ -304,6 +333,28 @@ CREATE TABLE `ACT_HI_IDENTITYLINK`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of ACT_HI_IDENTITYLINK
+-- ----------------------------
+INSERT INTO `ACT_HI_IDENTITYLINK` VALUES ('20015cb0-05f4-11e9-b751-c85b7643dd9e', NULL, 'starter', 'jsite', NULL, '2018-12-22 22:16:07.864', '2000c06e-05f4-11e9-b751-c85b7643dd9e', NULL, NULL, NULL);
+INSERT INTO `ACT_HI_IDENTITYLINK` VALUES ('20049105-05f4-11e9-b751-c85b7643dd9e', 'dept', 'candidate', NULL, '20049104-05f4-11e9-b751-c85b7643dd9e', '2018-12-22 22:16:07.884', NULL, NULL, NULL, NULL);
+INSERT INTO `ACT_HI_IDENTITYLINK` VALUES ('45eabe1c-05fc-11e9-8544-00163e2e65eb', NULL, 'assignee', 'jsitehr', 'b6ce6a55-05f8-11e9-8951-c85b7643dd9e', '2018-12-22 23:14:27.442', NULL, NULL, NULL, NULL);
+INSERT INTO `ACT_HI_IDENTITYLINK` VALUES ('45ed562d-05fc-11e9-8544-00163e2e65eb', NULL, 'participant', 'jsitehr', NULL, '2018-12-22 23:14:27.459', '6a2402bc-05cd-11e9-8544-00163e2e65eb', NULL, NULL, NULL);
+INSERT INTO `ACT_HI_IDENTITYLINK` VALUES ('5ef97ed6-05d6-11e9-8544-00163e2e65eb', NULL, 'starter', 'jsite', NULL, '2018-12-22 18:43:08.606', '5ef97ed4-05d6-11e9-8544-00163e2e65eb', NULL, NULL, NULL);
+INSERT INTO `ACT_HI_IDENTITYLINK` VALUES ('5ef9a5eb-05d6-11e9-8544-00163e2e65eb', 'dept', 'candidate', NULL, '5ef9a5ea-05d6-11e9-8544-00163e2e65eb', '2018-12-22 18:43:08.607', NULL, NULL, NULL, NULL);
+INSERT INTO `ACT_HI_IDENTITYLINK` VALUES ('6a249efe-05cd-11e9-8544-00163e2e65eb', NULL, 'starter', 'jsite', NULL, '2018-12-22 17:39:01.873', '6a2402bc-05cd-11e9-8544-00163e2e65eb', NULL, NULL, NULL);
+INSERT INTO `ACT_HI_IDENTITYLINK` VALUES ('6a2896a3-05cd-11e9-8544-00163e2e65eb', 'dept', 'candidate', NULL, '6a286f92-05cd-11e9-8544-00163e2e65eb', '2018-12-22 17:39:01.899', NULL, NULL, NULL, NULL);
+INSERT INTO `ACT_HI_IDENTITYLINK` VALUES ('7b339538-0602-11e9-93df-c85b7643dd9e', NULL, 'assignee', 'dept', '82efd348-0601-11e9-8544-00163e2e65eb', '2018-12-22 23:58:53.819', NULL, NULL, NULL, NULL);
+INSERT INTO `ACT_HI_IDENTITYLINK` VALUES ('7b406679-0602-11e9-93df-c85b7643dd9e', NULL, 'participant', 'dept', NULL, '2018-12-22 23:58:53.904', '82efd342-0601-11e9-8544-00163e2e65eb', NULL, NULL, NULL);
+INSERT INTO `ACT_HI_IDENTITYLINK` VALUES ('82efd344-0601-11e9-8544-00163e2e65eb', NULL, 'starter', 'jsite', NULL, '2018-12-22 23:51:57.300', '82efd342-0601-11e9-8544-00163e2e65eb', NULL, NULL, NULL);
+INSERT INTO `ACT_HI_IDENTITYLINK` VALUES ('82effa59-0601-11e9-8544-00163e2e65eb', 'dept', 'candidate', NULL, '82efd348-0601-11e9-8544-00163e2e65eb', '2018-12-22 23:51:57.301', NULL, NULL, NULL, NULL);
+INSERT INTO `ACT_HI_IDENTITYLINK` VALUES ('8e561cb0-0602-11e9-93df-c85b7643dd9e', 'hr', 'candidate', NULL, '8e561caf-0602-11e9-93df-c85b7643dd9e', '2018-12-22 23:59:25.922', NULL, NULL, NULL, NULL);
+INSERT INTO `ACT_HI_IDENTITYLINK` VALUES ('9eecf031-0602-11e9-93df-c85b7643dd9e', NULL, 'assignee', 'jsitehr', '8e561caf-0602-11e9-93df-c85b7643dd9e', '2018-12-22 23:59:53.754', NULL, NULL, NULL, NULL);
+INSERT INTO `ACT_HI_IDENTITYLINK` VALUES ('9ef8b002-0602-11e9-93df-c85b7643dd9e', NULL, 'participant', 'jsitehr', NULL, '2018-12-22 23:59:53.831', '82efd342-0601-11e9-8544-00163e2e65eb', NULL, NULL, NULL);
+INSERT INTO `ACT_HI_IDENTITYLINK` VALUES ('a842f72e-05f8-11e9-8951-c85b7643dd9e', NULL, 'assignee', 'dept', '6a286f92-05cd-11e9-8544-00163e2e65eb', '2018-12-22 22:48:34.450', NULL, NULL, NULL, NULL);
+INSERT INTO `ACT_HI_IDENTITYLINK` VALUES ('a8508bbf-05f8-11e9-8951-c85b7643dd9e', NULL, 'participant', 'dept', NULL, '2018-12-22 22:48:34.540', '6a2402bc-05cd-11e9-8544-00163e2e65eb', NULL, NULL, NULL);
+INSERT INTO `ACT_HI_IDENTITYLINK` VALUES ('b6ce6a56-05f8-11e9-8951-c85b7643dd9e', 'hr', 'candidate', NULL, 'b6ce6a55-05f8-11e9-8951-c85b7643dd9e', '2018-12-22 22:48:58.852', NULL, NULL, NULL, NULL);
+
+-- ----------------------------
 -- Table structure for ACT_HI_PROCINST
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_HI_PROCINST`;
@@ -330,6 +381,14 @@ CREATE TABLE `ACT_HI_PROCINST`  (
   INDEX `ACT_IDX_HI_PRO_INST_END`(`END_TIME_`) USING BTREE,
   INDEX `ACT_IDX_HI_PRO_I_BUSKEY`(`BUSINESS_KEY_`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ACT_HI_PROCINST
+-- ----------------------------
+INSERT INTO `ACT_HI_PROCINST` VALUES ('2000c06e-05f4-11e9-b751-c85b7643dd9e', 1, '2000c06e-05f4-11e9-b751-c85b7643dd9e', 'oa_leave:5b0025eaaee2458ba5bbc5678de4ecf5', 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', '2018-12-22 22:16:07.859', NULL, NULL, 'jsite', 'startevent1', NULL, NULL, NULL, '', NULL, NULL, NULL);
+INSERT INTO `ACT_HI_PROCINST` VALUES ('5ef97ed4-05d6-11e9-8544-00163e2e65eb', 1, '5ef97ed4-05d6-11e9-8544-00163e2e65eb', 'oa_leave:c4fdeec6a2e148029d798d7b908b11f5', 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', '2018-12-22 18:43:08.606', NULL, NULL, 'jsite', 'startevent1', NULL, NULL, NULL, '', NULL, NULL, NULL);
+INSERT INTO `ACT_HI_PROCINST` VALUES ('6a2402bc-05cd-11e9-8544-00163e2e65eb', 2, '6a2402bc-05cd-11e9-8544-00163e2e65eb', 'oa_leave:6623a4f922754f9cae5d210ef8e02ce0', 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', '2018-12-22 17:39:01.869', '2018-12-22 23:14:54.546', 20152677, 'jsite', 'startevent1', 'endevent1', NULL, NULL, '', NULL, NULL, NULL);
+INSERT INTO `ACT_HI_PROCINST` VALUES ('82efd342-0601-11e9-8544-00163e2e65eb', 1, '82efd342-0601-11e9-8544-00163e2e65eb', 'oa_leave:825ebaad47eb4286a33d0e63dec47fe9', 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', '2018-12-22 23:51:57.300', NULL, NULL, 'jsite', 'startevent1', NULL, NULL, NULL, '', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for ACT_HI_TASKINST
@@ -371,6 +430,16 @@ CREATE TABLE `ACT_HI_TASKINST`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of ACT_HI_TASKINST
+-- ----------------------------
+INSERT INTO `ACT_HI_TASKINST` VALUES ('20049104-05f4-11e9-b751-c85b7643dd9e', 1, 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', NULL, 'deptLeaderAudit', '2000c06e-05f4-11e9-b751-c85b7643dd9e', '2001d1e1-05f4-11e9-b751-c85b7643dd9e', NULL, NULL, NULL, NULL, '部门领导审批', NULL, NULL, NULL, NULL, '2018-12-22 22:16:07.884', NULL, NULL, NULL, NULL, 50, NULL, NULL, NULL, '', '2018-12-22 22:16:07.884');
+INSERT INTO `ACT_HI_TASKINST` VALUES ('5ef9a5ea-05d6-11e9-8544-00163e2e65eb', 1, 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', NULL, 'deptLeaderAudit', '5ef97ed4-05d6-11e9-8544-00163e2e65eb', '5ef97ed7-05d6-11e9-8544-00163e2e65eb', NULL, NULL, NULL, NULL, '部门领导审批', NULL, NULL, NULL, NULL, '2018-12-22 18:43:08.607', NULL, NULL, NULL, NULL, 50, NULL, NULL, NULL, '', '2018-12-22 18:43:08.607');
+INSERT INTO `ACT_HI_TASKINST` VALUES ('6a286f92-05cd-11e9-8544-00163e2e65eb', 3, 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', NULL, 'deptLeaderAudit', '6a2402bc-05cd-11e9-8544-00163e2e65eb', '6a24c60f-05cd-11e9-8544-00163e2e65eb', NULL, NULL, NULL, NULL, '部门领导审批', NULL, NULL, NULL, 'dept', '2018-12-22 17:39:01.898', '2018-12-22 22:48:34.426', '2018-12-22 22:48:58.778', 18596880, NULL, 50, NULL, NULL, NULL, '', '2018-12-22 22:48:58.778');
+INSERT INTO `ACT_HI_TASKINST` VALUES ('82efd348-0601-11e9-8544-00163e2e65eb', 3, 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', NULL, 'deptLeaderAudit', '82efd342-0601-11e9-8544-00163e2e65eb', '82efd345-0601-11e9-8544-00163e2e65eb', NULL, NULL, NULL, NULL, '部门领导审批', NULL, NULL, NULL, 'dept', '2018-12-22 23:51:57.300', '2018-12-22 23:58:53.798', '2018-12-22 23:59:25.858', 448558, NULL, 50, NULL, NULL, NULL, '', '2018-12-22 23:59:25.858');
+INSERT INTO `ACT_HI_TASKINST` VALUES ('8e561caf-0602-11e9-93df-c85b7643dd9e', 2, 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', NULL, 'hrAudit', '82efd342-0601-11e9-8544-00163e2e65eb', '82efd345-0601-11e9-8544-00163e2e65eb', NULL, NULL, NULL, NULL, '人事审批', NULL, NULL, NULL, 'jsitehr', '2018-12-22 23:59:25.922', '2018-12-22 23:59:53.737', NULL, NULL, NULL, 50, NULL, NULL, NULL, '', '2018-12-22 23:59:53.754');
+INSERT INTO `ACT_HI_TASKINST` VALUES ('b6ce6a55-05f8-11e9-8951-c85b7643dd9e', 3, 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', NULL, 'hrAudit', '6a2402bc-05cd-11e9-8544-00163e2e65eb', '6a24c60f-05cd-11e9-8544-00163e2e65eb', NULL, NULL, NULL, NULL, '人事审批', NULL, NULL, NULL, 'jsitehr', '2018-12-22 22:48:58.852', '2018-12-22 23:14:27.438', '2018-12-22 23:14:54.482', 1555630, NULL, 50, NULL, NULL, NULL, '', '2018-12-22 23:14:54.482');
+
+-- ----------------------------
 -- Table structure for ACT_HI_VARINST
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_HI_VARINST`;
@@ -400,6 +469,16 @@ CREATE TABLE `ACT_HI_VARINST`  (
   INDEX `ACT_IDX_HI_PROCVAR_TASK_ID`(`TASK_ID_`) USING BTREE,
   INDEX `ACT_IDX_HI_PROCVAR_EXE`(`EXECUTION_ID_`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ACT_HI_VARINST
+-- ----------------------------
+INSERT INTO `ACT_HI_VARINST` VALUES ('2000e77f-05f4-11e9-b751-c85b7643dd9e', 0, '2000c06e-05f4-11e9-b751-c85b7643dd9e', '2000c06e-05f4-11e9-b751-c85b7643dd9e', NULL, 'applyUserId', 'string', NULL, NULL, NULL, NULL, NULL, NULL, 'jsite', NULL, '2018-12-22 22:16:07.862', '2018-12-22 22:16:07.862');
+INSERT INTO `ACT_HI_VARINST` VALUES ('5ef97ed5-05d6-11e9-8544-00163e2e65eb', 0, '5ef97ed4-05d6-11e9-8544-00163e2e65eb', '5ef97ed4-05d6-11e9-8544-00163e2e65eb', NULL, 'applyUserId', 'string', NULL, NULL, NULL, NULL, NULL, NULL, 'jsite', NULL, '2018-12-22 18:43:08.606', '2018-12-22 18:43:08.606');
+INSERT INTO `ACT_HI_VARINST` VALUES ('6a2429cd-05cd-11e9-8544-00163e2e65eb', 0, '6a2402bc-05cd-11e9-8544-00163e2e65eb', '6a2402bc-05cd-11e9-8544-00163e2e65eb', NULL, 'applyUserId', 'string', NULL, NULL, NULL, NULL, NULL, NULL, 'jsite', NULL, '2018-12-22 17:39:01.872', '2018-12-22 17:39:01.872');
+INSERT INTO `ACT_HI_VARINST` VALUES ('82efd343-0601-11e9-8544-00163e2e65eb', 0, '82efd342-0601-11e9-8544-00163e2e65eb', '82efd342-0601-11e9-8544-00163e2e65eb', NULL, 'applyUserId', 'string', NULL, NULL, NULL, NULL, NULL, NULL, 'jsite', NULL, '2018-12-22 23:51:57.300', '2018-12-22 23:51:57.300');
+INSERT INTO `ACT_HI_VARINST` VALUES ('8e4553cc-0602-11e9-93df-c85b7643dd9e', 0, '82efd342-0601-11e9-8544-00163e2e65eb', '82efd342-0601-11e9-8544-00163e2e65eb', NULL, 'auditPass', 'boolean', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '2018-12-22 23:59:25.814', '2018-12-22 23:59:25.814');
+INSERT INTO `ACT_HI_VARINST` VALUES ('b6bb7e92-05f8-11e9-8951-c85b7643dd9e', 1, '6a2402bc-05cd-11e9-8544-00163e2e65eb', '6a2402bc-05cd-11e9-8544-00163e2e65eb', NULL, 'auditPass', 'boolean', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '2018-12-22 22:48:58.734', '2018-12-22 23:14:54.468');
 
 -- ----------------------------
 -- Table structure for ACT_ID_BYTEARRAY
@@ -746,6 +825,16 @@ CREATE TABLE `ACT_RU_EXECUTION`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of ACT_RU_EXECUTION
+-- ----------------------------
+INSERT INTO `ACT_RU_EXECUTION` VALUES ('2000c06e-05f4-11e9-b751-c85b7643dd9e', 1, '2000c06e-05f4-11e9-b751-c85b7643dd9e', 'oa_leave:5b0025eaaee2458ba5bbc5678de4ecf5', NULL, 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', NULL, '2000c06e-05f4-11e9-b751-c85b7643dd9e', NULL, 1, 0, 1, 0, 0, 1, NULL, '', NULL, 'startevent1', '2018-12-22 22:16:07.859', 'jsite', NULL, 1, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL);
+INSERT INTO `ACT_RU_EXECUTION` VALUES ('2001d1e1-05f4-11e9-b751-c85b7643dd9e', 1, '2000c06e-05f4-11e9-b751-c85b7643dd9e', NULL, '2000c06e-05f4-11e9-b751-c85b7643dd9e', 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', NULL, '2000c06e-05f4-11e9-b751-c85b7643dd9e', 'deptLeaderAudit', 1, 0, 0, 0, 0, 1, NULL, '', NULL, NULL, '2018-12-22 22:16:07.866', NULL, NULL, 1, 0, 1, 0, 0, 0, 0, 0, 0, NULL, NULL);
+INSERT INTO `ACT_RU_EXECUTION` VALUES ('5ef97ed4-05d6-11e9-8544-00163e2e65eb', 1, '5ef97ed4-05d6-11e9-8544-00163e2e65eb', 'oa_leave:c4fdeec6a2e148029d798d7b908b11f5', NULL, 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', NULL, '5ef97ed4-05d6-11e9-8544-00163e2e65eb', NULL, 1, 0, 1, 0, 0, 1, NULL, '', NULL, 'startevent1', '2018-12-22 18:43:08.606', 'jsite', NULL, 1, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL);
+INSERT INTO `ACT_RU_EXECUTION` VALUES ('5ef97ed7-05d6-11e9-8544-00163e2e65eb', 1, '5ef97ed4-05d6-11e9-8544-00163e2e65eb', NULL, '5ef97ed4-05d6-11e9-8544-00163e2e65eb', 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', NULL, '5ef97ed4-05d6-11e9-8544-00163e2e65eb', 'deptLeaderAudit', 1, 0, 0, 0, 0, 1, NULL, '', NULL, NULL, '2018-12-22 18:43:08.606', NULL, NULL, 1, 0, 1, 0, 0, 0, 0, 0, 0, NULL, NULL);
+INSERT INTO `ACT_RU_EXECUTION` VALUES ('82efd342-0601-11e9-8544-00163e2e65eb', 1, '82efd342-0601-11e9-8544-00163e2e65eb', 'oa_leave:825ebaad47eb4286a33d0e63dec47fe9', NULL, 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', NULL, '82efd342-0601-11e9-8544-00163e2e65eb', NULL, 1, 0, 1, 0, 0, 1, NULL, '', NULL, 'startevent1', '2018-12-22 23:51:57.300', 'jsite', NULL, 1, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL);
+INSERT INTO `ACT_RU_EXECUTION` VALUES ('82efd345-0601-11e9-8544-00163e2e65eb', 2, '82efd342-0601-11e9-8544-00163e2e65eb', NULL, '82efd342-0601-11e9-8544-00163e2e65eb', 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', NULL, '82efd342-0601-11e9-8544-00163e2e65eb', 'hrAudit', 1, 0, 0, 0, 0, 1, NULL, '', NULL, NULL, '2018-12-22 23:51:57.300', NULL, NULL, 1, 0, 1, 0, 0, 0, 0, 0, 0, NULL, NULL);
+
+-- ----------------------------
 -- Table structure for ACT_RU_HISTORY_JOB
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_RU_HISTORY_JOB`;
@@ -795,6 +884,18 @@ CREATE TABLE `ACT_RU_IDENTITYLINK`  (
   CONSTRAINT `ACT_FK_IDL_PROCINST` FOREIGN KEY (`PROC_INST_ID_`) REFERENCES `ACT_RU_EXECUTION` (`id_`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `ACT_FK_TSKASS_TASK` FOREIGN KEY (`TASK_ID_`) REFERENCES `ACT_RU_TASK` (`id_`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ACT_RU_IDENTITYLINK
+-- ----------------------------
+INSERT INTO `ACT_RU_IDENTITYLINK` VALUES ('20015cb0-05f4-11e9-b751-c85b7643dd9e', 1, NULL, 'starter', 'jsite', NULL, '2000c06e-05f4-11e9-b751-c85b7643dd9e', NULL, NULL, NULL, NULL);
+INSERT INTO `ACT_RU_IDENTITYLINK` VALUES ('20049105-05f4-11e9-b751-c85b7643dd9e', 1, 'dept', 'candidate', NULL, '20049104-05f4-11e9-b751-c85b7643dd9e', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ACT_RU_IDENTITYLINK` VALUES ('5ef97ed6-05d6-11e9-8544-00163e2e65eb', 1, NULL, 'starter', 'jsite', NULL, '5ef97ed4-05d6-11e9-8544-00163e2e65eb', NULL, NULL, NULL, NULL);
+INSERT INTO `ACT_RU_IDENTITYLINK` VALUES ('5ef9a5eb-05d6-11e9-8544-00163e2e65eb', 1, 'dept', 'candidate', NULL, '5ef9a5ea-05d6-11e9-8544-00163e2e65eb', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ACT_RU_IDENTITYLINK` VALUES ('7b406679-0602-11e9-93df-c85b7643dd9e', 1, NULL, 'participant', 'dept', NULL, '82efd342-0601-11e9-8544-00163e2e65eb', NULL, NULL, NULL, NULL);
+INSERT INTO `ACT_RU_IDENTITYLINK` VALUES ('82efd344-0601-11e9-8544-00163e2e65eb', 1, NULL, 'starter', 'jsite', NULL, '82efd342-0601-11e9-8544-00163e2e65eb', NULL, NULL, NULL, NULL);
+INSERT INTO `ACT_RU_IDENTITYLINK` VALUES ('8e561cb0-0602-11e9-93df-c85b7643dd9e', 1, 'hr', 'candidate', NULL, '8e561caf-0602-11e9-93df-c85b7643dd9e', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ACT_RU_IDENTITYLINK` VALUES ('9ef8b002-0602-11e9-93df-c85b7643dd9e', 1, NULL, 'participant', 'jsitehr', NULL, '82efd342-0601-11e9-8544-00163e2e65eb', NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for ACT_RU_JOB
@@ -930,6 +1031,13 @@ CREATE TABLE `ACT_RU_TASK`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of ACT_RU_TASK
+-- ----------------------------
+INSERT INTO `ACT_RU_TASK` VALUES ('20049104-05f4-11e9-b751-c85b7643dd9e', 1, '2001d1e1-05f4-11e9-b751-c85b7643dd9e', '2000c06e-05f4-11e9-b751-c85b7643dd9e', 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', NULL, NULL, NULL, NULL, NULL, '部门领导审批', NULL, NULL, 'deptLeaderAudit', NULL, NULL, NULL, 50, '2018-12-22 22:16:07.873', NULL, NULL, 1, '', NULL, NULL, 1, 0, 1, 0);
+INSERT INTO `ACT_RU_TASK` VALUES ('5ef9a5ea-05d6-11e9-8544-00163e2e65eb', 1, '5ef97ed7-05d6-11e9-8544-00163e2e65eb', '5ef97ed4-05d6-11e9-8544-00163e2e65eb', 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', NULL, NULL, NULL, NULL, NULL, '部门领导审批', NULL, NULL, 'deptLeaderAudit', NULL, NULL, NULL, 50, '2018-12-22 18:43:08.607', NULL, NULL, 1, '', NULL, NULL, 1, 0, 1, 0);
+INSERT INTO `ACT_RU_TASK` VALUES ('8e561caf-0602-11e9-93df-c85b7643dd9e', 2, '82efd345-0601-11e9-8544-00163e2e65eb', '82efd342-0601-11e9-8544-00163e2e65eb', 'leave:2:487abbb6-f799-11e8-85d0-c85b7643dd9e', NULL, NULL, NULL, NULL, NULL, '人事审批', NULL, NULL, 'hrAudit', NULL, 'jsitehr', NULL, 50, '2018-12-22 23:59:25.922', NULL, NULL, 1, '', NULL, '2018-12-22 23:59:53.737', 1, 0, 1, 0);
+
+-- ----------------------------
 -- Table structure for ACT_RU_TIMER_JOB
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_RU_TIMER_JOB`;
@@ -1004,6 +1112,14 @@ CREATE TABLE `ACT_RU_VARIABLE`  (
   CONSTRAINT `ACT_FK_VAR_EXE` FOREIGN KEY (`EXECUTION_ID_`) REFERENCES `ACT_RU_EXECUTION` (`id_`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `ACT_FK_VAR_PROCINST` FOREIGN KEY (`PROC_INST_ID_`) REFERENCES `ACT_RU_EXECUTION` (`id_`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ACT_RU_VARIABLE
+-- ----------------------------
+INSERT INTO `ACT_RU_VARIABLE` VALUES ('2000e77f-05f4-11e9-b751-c85b7643dd9e', 1, 'string', 'applyUserId', '2000c06e-05f4-11e9-b751-c85b7643dd9e', '2000c06e-05f4-11e9-b751-c85b7643dd9e', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'jsite', NULL);
+INSERT INTO `ACT_RU_VARIABLE` VALUES ('5ef97ed5-05d6-11e9-8544-00163e2e65eb', 1, 'string', 'applyUserId', '5ef97ed4-05d6-11e9-8544-00163e2e65eb', '5ef97ed4-05d6-11e9-8544-00163e2e65eb', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'jsite', NULL);
+INSERT INTO `ACT_RU_VARIABLE` VALUES ('82efd343-0601-11e9-8544-00163e2e65eb', 1, 'string', 'applyUserId', '82efd342-0601-11e9-8544-00163e2e65eb', '82efd342-0601-11e9-8544-00163e2e65eb', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'jsite', NULL);
+INSERT INTO `ACT_RU_VARIABLE` VALUES ('8e4553cc-0602-11e9-93df-c85b7643dd9e', 1, 'boolean', 'auditPass', '82efd342-0601-11e9-8544-00163e2e65eb', '82efd342-0601-11e9-8544-00163e2e65eb', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for gen_scheme
@@ -1202,6 +1318,14 @@ CREATE TABLE `oa_leave`  (
   INDEX `oa_leave_process_instance_id`(`proc_ins_id`) USING BTREE,
   INDEX `oa_leave_del_flag`(`del_flag`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '请假流程表' ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of oa_leave
+-- ----------------------------
+INSERT INTO `oa_leave` VALUES ('5b0025eaaee2458ba5bbc5678de4ecf5', '2000c06e-05f4-11e9-b751-c85b7643dd9e', '2018-12-22 22:15:55', '2018-12-24 22:15:58', '1', '测试', NULL, NULL, '2018-12-22 22:16:08', '1', '2018-12-22 22:16:08', '1', '2018-12-22 22:16:08', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('6623a4f922754f9cae5d210ef8e02ce0', '6a2402bc-05cd-11e9-8544-00163e2e65eb', '2018-12-22 17:38:56', '2018-12-29 17:39:01', '1', '1', '[同意] 同意', '[同意] 同意', '2018-12-22 17:39:02', '1', '2018-12-22 17:39:02', '1', '2018-12-22 17:39:02', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('825ebaad47eb4286a33d0e63dec47fe9', '82efd342-0601-11e9-8544-00163e2e65eb', '2018-10-02 23:51:48', '2018-12-22 23:51:51', '1', '//。', '[同意] 我同意啦啊啊啊啊啊啊啊', NULL, '2018-12-22 23:51:57', '1', '2018-12-22 23:51:57', '1', '2018-12-22 23:51:57', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('c4fdeec6a2e148029d798d7b908b11f5', '5ef97ed4-05d6-11e9-8544-00163e2e65eb', '2018-12-06 18:43:01', '2018-12-12 18:43:03', '1', 'dfffff', NULL, NULL, '2018-12-22 18:43:09', '1', '2018-12-22 18:43:09', '1', '2018-12-22 18:43:09', NULL, '0');
 
 -- ----------------------------
 -- Table structure for oa_notify
@@ -1677,7 +1801,7 @@ INSERT INTO `sys_menu` VALUES ('84', '67', '0,2,67,', '连接池监视', 40, '1'
 INSERT INTO `sys_menu` VALUES ('88', '62', '0,62,', '通知通告', 60, '0', 1, '', '', 'icon-volume-2', '1', '', '1', '2013-11-08 08:00:00', '1', '2018-08-02 09:05:01', '', '0');
 INSERT INTO `sys_menu` VALUES ('89', '88', '0,62,88,', '我的通告', 30, '1', 2, '/oa/oaNotify/self', '', 'fa fa-circle-thin', '1', '', '1', '2013-11-08 08:00:00', '1', '2018-08-02 09:12:37', '', '0');
 INSERT INTO `sys_menu` VALUES ('90', '88', '0,62,88,', '通告管理', 50, '1', 2, '/oa/oaNotify', '', 'fa fa-circle-thin', '1', 'oa:oaNotify:view,oa:oaNotify:edit', '1', '2013-11-08 08:00:00', '1', '2018-08-02 09:12:46', '', '0');
-INSERT INTO `sys_menu` VALUES ('95db821b31cd4670ab51b115ce73d271', '62', '0,62,', '待办任务', 20, '1', 1, '/act/task/todo', '', 'fa fa-circle-thin', '1', '', '1', '2018-08-07 14:57:37', '1', '2018-08-07 14:57:37', '', '0');
+INSERT INTO `sys_menu` VALUES ('95db821b31cd4670ab51b115ce73d271', '62', '0,62,', '待办任务', 20, '1', 1, '/act/task/todo', '', 'fa fa-circle-thin', '1', 'act:process:view,act:process:edit', '1', '2018-08-07 14:57:37', '1', '2018-12-22 22:47:45', '', '0');
 INSERT INTO `sys_menu` VALUES ('960d503ac572449bae996bfc928f1bf3', '7', '0,2,3,7,', '编辑', 60, '1', 3, '', '', 'fa fa-circle-thin', '1', 'sys:role:edit', '1', '2018-07-04 16:46:18', '1', '2018-07-04 16:47:17', '', '0');
 INSERT INTO `sys_menu` VALUES ('9c37ebfd00764ec99f7c65107faca3d1', '56', '0,56,', '文件夹管理', 5060, '0', 1, '/filetree/sysFileTree/index', '', 'fa fa-list', '1', '', '1', '2018-03-28 09:21:04', '1', '2018-07-27 15:20:46', '', '0');
 INSERT INTO `sys_menu` VALUES ('a4f7a04b94f1495da822915f92c8e481', '17', '0,2,13,17,', '编辑', 60, '1', 3, '', '', 'fa fa-circle-thin', '0', 'sys:office:edit', '1', '2018-07-05 10:33:43', '1', '2018-07-05 10:33:43', '', '0');
@@ -1769,6 +1893,7 @@ CREATE TABLE `sys_role`  (
 INSERT INTO `sys_role` VALUES ('1', '5', '系统管理员', 'Manager', 'security-role', '1', '1', '1', '1', '1', '2013-05-27 08:00:00', '1', '2018-12-19 17:01:31', 'AA', '0');
 INSERT INTO `sys_role` VALUES ('1042c40b2d2d496c9af546bba7006623', '3', 'hr', 'hr', 'assignment', '3', '1', '1', '1', '1', '2018-08-20 14:33:33', '1', '2018-08-20 14:35:04', '', '0');
 INSERT INTO `sys_role` VALUES ('6', '4', '普通用户', 'Comuser', 'assignment', '3', '8', '1', '1', '1', '2013-05-27 08:00:00', '1', '2018-07-05 11:54:44', '', '0');
+INSERT INTO `sys_role` VALUES ('a868b9836f664b43909757005390022f', '5', '部门经理', 'dept', 'security-role', '2', '3', '1', '1', '1', '2018-12-22 22:21:56', '1', '2018-12-22 22:25:33', '', '0');
 
 -- ----------------------------
 -- Table structure for sys_role_menu
@@ -1917,6 +2042,25 @@ INSERT INTO `sys_role_menu` VALUES ('6', 'e0dc8f9573bb4617a38cdf65e7270bb1');
 INSERT INTO `sys_role_menu` VALUES ('6', 'e0f05bb6657d4742bc130253eab8c5f1');
 INSERT INTO `sys_role_menu` VALUES ('6', 'e1242de3f82e4efbab2abdde73ca3d77');
 INSERT INTO `sys_role_menu` VALUES ('6', 'fc3d8379172f4a67ac3b5727636aed56');
+INSERT INTO `sys_role_menu` VALUES ('a868b9836f664b43909757005390022f', '185e17bc1e5b4fa8a997b8c86a828f1d');
+INSERT INTO `sys_role_menu` VALUES ('a868b9836f664b43909757005390022f', '1e43e4e03d724542b1a31f8c0593ca33');
+INSERT INTO `sys_role_menu` VALUES ('a868b9836f664b43909757005390022f', '246838c40d334f2f9f929b5292771bc8');
+INSERT INTO `sys_role_menu` VALUES ('a868b9836f664b43909757005390022f', '28');
+INSERT INTO `sys_role_menu` VALUES ('a868b9836f664b43909757005390022f', '29');
+INSERT INTO `sys_role_menu` VALUES ('a868b9836f664b43909757005390022f', '294700ca86cc45eba00fb7e6c6f2b121');
+INSERT INTO `sys_role_menu` VALUES ('a868b9836f664b43909757005390022f', '30');
+INSERT INTO `sys_role_menu` VALUES ('a868b9836f664b43909757005390022f', '4b2965d0d0f7460e969abc2eb07f1560');
+INSERT INTO `sys_role_menu` VALUES ('a868b9836f664b43909757005390022f', '56');
+INSERT INTO `sys_role_menu` VALUES ('a868b9836f664b43909757005390022f', '62');
+INSERT INTO `sys_role_menu` VALUES ('a868b9836f664b43909757005390022f', '7eeda5473bff486895a2df0262bd55f4');
+INSERT INTO `sys_role_menu` VALUES ('a868b9836f664b43909757005390022f', '8308c0438092480997f4712ae8308827');
+INSERT INTO `sys_role_menu` VALUES ('a868b9836f664b43909757005390022f', '88');
+INSERT INTO `sys_role_menu` VALUES ('a868b9836f664b43909757005390022f', '89');
+INSERT INTO `sys_role_menu` VALUES ('a868b9836f664b43909757005390022f', '90');
+INSERT INTO `sys_role_menu` VALUES ('a868b9836f664b43909757005390022f', '95db821b31cd4670ab51b115ce73d271');
+INSERT INTO `sys_role_menu` VALUES ('a868b9836f664b43909757005390022f', '9c37ebfd00764ec99f7c65107faca3d1');
+INSERT INTO `sys_role_menu` VALUES ('a868b9836f664b43909757005390022f', 'b06b6eae9f714d028480d6b6c114d498');
+INSERT INTO `sys_role_menu` VALUES ('a868b9836f664b43909757005390022f', 'c1a03d4ac6e6461f8a3f8bc083ebb83e');
 
 -- ----------------------------
 -- Table structure for sys_role_office
@@ -1965,7 +2109,9 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', '1', '5', 'jsite', '57b89d1421898c692ebf98b530c3869b56d32e1e80f2bb703aba8a39', '0001', '系统管理员', 'admin@admin.com', '1111', '1111', '1', '/baseWeb\\userfiles\\headphoto\\userinfo.jpg', '0:0:0:0:0:0:0:1', '2018-12-22 10:53:25', '1', '1', '2013-05-27 08:00:00', '1', '2018-12-06 10:21:22', '11221', '0');
+INSERT INTO `sys_user` VALUES ('1', '1', '5', 'jsite', '57b89d1421898c692ebf98b530c3869b56d32e1e80f2bb703aba8a39', '0001', '系统管理员', 'admin@admin.com', '1111', '1111', '1', '/baseWeb\\userfiles\\headphoto\\userinfo.jpg', '222.131.19.129', '2018-12-23 00:21:22', '1', '1', '2013-05-27 08:00:00', '1', '2018-12-22 23:32:36', '11221', '0');
+INSERT INTO `sys_user` VALUES ('43f6a4a84e784e5e98b5b1c530bef73b', '1', '5', 'dept', '56c52163316679d8c83c84f03d44a592246d76a70bacb1da76cdc149', '000002', '部门经理', '', '', '', '2', NULL, '0:0:0:0:0:0:0:1', '2018-12-22 23:58:36', '1', '1', '2018-12-22 22:22:25', '1', '2018-12-22 22:22:25', '', '0');
+INSERT INTO `sys_user` VALUES ('56620c5ef567427c8debe68875c0eda2', '1', '3', 'jsitehr', '7e14e4c693492493db3bc12ba2bdd9cec2629613deae9ebd9c42dac1', '000003', '人力资源', '', '', '', '', NULL, '0:0:0:0:0:0:0:1', '2018-12-22 23:59:33', '1', '1', '2018-12-22 22:23:39', '1', '2018-12-22 22:23:39', '', '0');
 
 -- ----------------------------
 -- Table structure for sys_user_role
@@ -1981,6 +2127,8 @@ CREATE TABLE `sys_user_role`  (
 -- Records of sys_user_role
 -- ----------------------------
 INSERT INTO `sys_user_role` VALUES ('1', '1');
+INSERT INTO `sys_user_role` VALUES ('43f6a4a84e784e5e98b5b1c530bef73b', 'a868b9836f664b43909757005390022f');
+INSERT INTO `sys_user_role` VALUES ('56620c5ef567427c8debe68875c0eda2', '1042c40b2d2d496c9af546bba7006623');
 
 -- ----------------------------
 -- Table structure for test_data
