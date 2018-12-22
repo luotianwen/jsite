@@ -41,7 +41,7 @@ http://jsite.org.cn
 1. 框架基于IntelliJ IDEA 开发
 2. 初始化数据库 jsite-web module 下 jsite-init.sql
 3. 数据库字符集：utf8   排序规则：utf8_bin
-
+4. 初次运行项目，需要修改jsite-web模块下config/jsite-web.properties配置文件中的数据库连接配置！
 ### 系统展示
 登录
 ![image](https://gitee.com/baseweb/JSite/raw/master/img/%E7%99%BB%E5%BD%95.png)
