@@ -3,7 +3,7 @@ package com.jsite.modules.flowable.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jsite.common.lang.StringUtils;
 import com.jsite.common.persistence.BaseEntity;
-import com.jsite.common.utils.TimeUtils;
+import com.jsite.modules.flowable.utils.FlowableUtils;
 import com.jsite.modules.flowable.utils.Variable;
 
 import java.util.Date;
@@ -214,7 +214,7 @@ public class Flow extends BaseEntity<Flow> {
 		if(duTime == null) {
 			this.hisActInsDuTime = "";
 		} else {
-			hisActInsDuTime = TimeUtils.toTimeString(duTime);
+			hisActInsDuTime = FlowableUtils.toTimeString(duTime);
 		}
 	}
 

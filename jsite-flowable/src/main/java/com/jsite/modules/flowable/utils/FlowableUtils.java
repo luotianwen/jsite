@@ -2,6 +2,7 @@ package com.jsite.modules.flowable.utils;
 
 import com.jsite.common.config.Global;
 import com.jsite.common.lang.StringUtils;
+import com.jsite.common.lang.TimeUtils;
 import com.jsite.common.utils.Encodes;
 import com.jsite.modules.flowable.entity.Flow;
 import com.jsite.modules.sys.entity.Role;
@@ -91,5 +92,25 @@ public class FlowableUtils {
 	}
 
 
-
+	public static String toTimeString(long time) {
+		TimeUtils t = new TimeUtils(time);
+		int day = t.get(TimeUtils.DAY);
+		int hour = t.get(TimeUtils.HOUR);
+		int minute = t.get(TimeUtils.MINUTE);
+		int second = t.get(TimeUtils.SECOND);
+		StringBuilder sb = new StringBuilder();
+		if (day > 0){
+			sb.append(day).append("天");
+		}
+		if (hour > 0){
+			sb.append(hour).append("时");
+		}
+		if (minute > 0){
+			sb.append(minute).append("分");
+		}
+		if (second > 0){
+			sb.append(second).append("秒");
+		}
+		return sb.toString();
+	}
 }
