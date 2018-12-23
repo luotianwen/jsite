@@ -1,3 +1,6 @@
+/**
+ * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ */
 package com.jsite.common.utils;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -7,8 +10,8 @@ import java.util.Date;
 
 /**
  * 时间计算工具类
- ** @author liuruijun
- * @version 2017-11-03
+ * @author ThinkGem
+ * @version 2013-11-03
  */
 public class TimeUtils {
 	

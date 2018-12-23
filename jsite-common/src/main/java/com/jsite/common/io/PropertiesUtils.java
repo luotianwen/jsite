@@ -1,6 +1,8 @@
+/**
+ * Copyright (c) 2013-Now http://jeesite.com All rights reserved.
+ */
 package com.jsite.common.io;
 
-import com.jsite.common.collect.SetUtils;
 import com.jsite.common.lang.ObjectUtils;
 import com.jsite.common.lang.StringUtils;
 import com.jsite.common.utils.FileUtils;
@@ -14,6 +16,7 @@ import org.springframework.core.io.Resource;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -24,7 +27,7 @@ import java.util.regex.Pattern;
  * Properties工具类， 可载入多个properties、yml文件，
  * 相同的属性在最后载入的文件中的值将会覆盖之前的值， 
  * 取不到从System.getProperty()获取。
- ** @author liuruijun
+ * @author ThinkGem
  * @version 2017-12-30
  */
 public class PropertiesUtils {
@@ -47,14 +50,14 @@ public class PropertiesUtils {
 		}
 		public static void releadInstance(){
 			// 获取平台及模块相关的配置文件
-			Set<String> configSet = SetUtils.newLinkedHashSet();
+			Set<String> configSet = new LinkedHashSet<>();
 			Resource[] resources = ResourceUtils.getResources("classpath*:/config/jsite-*.*");
 			for(Resource resource : resources){
 				configSet.add("classpath:config/"+resource.getFilename());
 			}
 			configSet.add("classpath:config/jsite.yml");
 			// 获取全局设置默认的配置文件（以下是支持环境配置的属性文件）
-			Set<String> set = SetUtils.newLinkedHashSet();
+			Set<String> set = new LinkedHashSet<>();
 			for (String configFile : DEFAULT_CONFIG_FILE){
 				set.add(configFile);
 			}

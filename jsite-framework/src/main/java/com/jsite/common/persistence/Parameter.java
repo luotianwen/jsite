@@ -1,11 +1,14 @@
+/**
+ * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ */
 package com.jsite.common.persistence;
 
 import java.util.HashMap;
 
 /**
  * 查询参数类
- * @author JSite
- * @version 2017-8-23
+ * @author ThinkGem
+ * @version 2013-8-23
  */
 public class Parameter extends HashMap<String, Object> {
 	

@@ -1,11 +1,14 @@
+/**
+ * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ */
 package com.jsite.modules.flowable.utils;
 
 import java.util.Date;
 
 /**
  * 属性数据类型
- ** @author liuruijun
- * @version 2017-11-03
+ * @author ThinkGem
+ * @version 2013-11-03
  */
 public enum PropertyType {
 	

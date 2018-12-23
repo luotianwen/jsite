@@ -1,11 +1,14 @@
+/**
+ * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ */
 package com.jsite.modules.sys.security;
 
 import java.util.Map;
 
 /**
  * 用户和密码（包含验证码）令牌类
- ** @author liuruijun
- * @version 2018-5-19
+ * @author ThinkGem
+ * @version 2013-5-19
  */
 public class UsernamePasswordToken extends org.apache.shiro.authc.UsernamePasswordToken {
 

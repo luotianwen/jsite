@@ -1,3 +1,6 @@
+/**
+ * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ */
 package com.jsite.modules.sys.service;
 
 import com.jsite.common.service.CrudService;
@@ -12,7 +15,7 @@ import java.util.List;
 
 /**
  * 区域Service
- ** @author liuruijun
+ * @author ThinkGem
  * @version 2014-05-16
  */
 @Service

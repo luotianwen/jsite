@@ -8,6 +8,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
+/**
+ * 合并分片文件
+ * @author liuruijun
+ * @version 2018-07-03
+ */
 public class UploadMergeRunnable implements Runnable {
 	private Logger logger = LoggerFactory.getLogger(getClass());
 

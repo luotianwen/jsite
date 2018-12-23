@@ -6,11 +6,9 @@
 package com.jsite.common.web;
 
 import com.google.common.net.HttpHeaders;
-import com.jsite.common.collect.MapUtils;
 import com.jsite.common.config.Global;
 import com.jsite.common.lang.StringUtils;
 import com.jsite.common.mapper.JsonMapper;
-import com.jsite.common.mapper.XmlMapper;
 import com.jsite.common.utils.Encodes;
 import org.apache.commons.lang3.Validate;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -26,7 +24,7 @@ import java.util.Map.Entry;
 
 /**
  * Http与Servlet工具类.
- * @author calvin/JSite
+ * @author calvin/thinkgem
  * @version 2014-8-19
  */
 public class Servlets {
@@ -252,7 +250,6 @@ public class Servlets {
 	 * 返回结果JSON字符串（支持JsonP，请求参数加：__callback=回调函数名）
 	 * @param result Global.TRUE or Globle.False
 	 * @param message 执行消息
-	 * @param data 消息数据
 	 * @return JSON字符串：{result:'true',message:''}
 	 */
 	public static String renderResult(String result, String message) {
@@ -268,29 +265,25 @@ public class Servlets {
 	 */
 	@SuppressWarnings("unchecked")
 	public static String renderResult(String result, String message, Object data) {
-		Map<String, Object> resultMap = MapUtils.newHashMap();
+		Map<String, Object> resultMap = new HashMap<>();
 		resultMap.put("result", result);
 		resultMap.put("message", message);
-		if (data != null){
-			if (data instanceof Map){
-				resultMap.putAll((Map<String, Object>)data);
-			}else{
+		if (data != null) {
+			if (data instanceof Map) {
+				resultMap.putAll((Map<String, Object>) data);
+			} else {
 				resultMap.put("data", data);
 			}
 		}
 		HttpServletRequest request = Servlets.getRequest();
 		String uri = request.getRequestURI();
-		if (StringUtils.endsWithIgnoreCase(uri, ".xml")){
-			return XmlMapper.toXml(resultMap);
-		}else{
-			String functionName = request.getParameter("__callback");
-			if (StringUtils.isNotBlank(functionName)){
-				return JsonMapper.toJsonp(functionName, resultMap);
-			}else{
-				return JsonMapper.toJsonString(resultMap);
-			}
+		String functionName = request.getParameter("__callback");
+		if (StringUtils.isNotBlank(functionName)) {
+			return JsonMapper.toJsonp(functionName, resultMap);
+		} else {
+			return JsonMapper.toJsonString(resultMap);
 		}
-		
+
 	}
 	
 	/**
@@ -325,15 +318,11 @@ public class Servlets {
 	public static String renderObject(HttpServletResponse response, Object object) {
 		HttpServletRequest request = Servlets.getRequest();
 		String uri = request.getRequestURI();
-		if (StringUtils.endsWithIgnoreCase(uri, ".xml")){
-			return XmlMapper.toXml(object);
-		}else{
-			String functionName = request.getParameter("__callback");
-			if (StringUtils.isNotBlank(functionName)){
-				return renderString(response, JsonMapper.toJsonp(functionName, object));
-			}else{
-				return renderString(response, JsonMapper.toJsonString(object));
-			}
+		String functionName = request.getParameter("__callback");
+		if (StringUtils.isNotBlank(functionName)) {
+			return renderString(response, JsonMapper.toJsonp(functionName, object));
+		} else {
+			return renderString(response, JsonMapper.toJsonString(object));
 		}
 	}
 	

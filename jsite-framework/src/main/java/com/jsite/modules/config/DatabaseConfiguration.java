@@ -40,6 +40,11 @@ import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
 import java.util.Properties;
 
+/**
+ * 控制器支持类
+ ** @author liuruijun
+ * @version 2018-10-23
+ */
 @Configuration
 public class DatabaseConfiguration {
 

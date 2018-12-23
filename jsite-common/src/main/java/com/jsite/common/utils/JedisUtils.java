@@ -1,3 +1,6 @@
+/**
+ * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ */
 package com.jsite.common.utils;
 
 import com.google.common.collect.Lists;
@@ -18,8 +21,8 @@ import java.util.Set;
 
 /**
  * Jedis Cache 工具类
- * 
- ** @author liuruijun
+ *
+ * @author ThinkGem
  * @version 2014-6-29
  */
 public class JedisUtils {

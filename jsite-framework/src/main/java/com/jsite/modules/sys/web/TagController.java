@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 标签Controller
- ** @author liuruijun
- * @version 2018-3-23
+ * @author ThinkGem
+ * @version 2013-3-23
+ * @author liuruijun 修改
+ * @version 2018-7-23
  */
 @Controller
 @RequestMapping(value = "${adminPath}/tag")

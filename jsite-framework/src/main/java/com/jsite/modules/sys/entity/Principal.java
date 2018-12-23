@@ -6,6 +6,8 @@ import java.io.Serializable;
 
 /**
  * 授权用户信息
+ * @author liuruijun
+ * @version 2018.10.22
  */
 public class Principal implements Serializable {
 

@@ -1,3 +1,6 @@
+/**
+ * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ */
 package com.jsite.common.servlet;
 
 import org.apache.commons.lang3.StringUtils;
@@ -16,7 +19,7 @@ import java.util.Random;
 
 /**
  * 生成随机验证码
- ** @author liuruijun
+ ** @author ThinkGem
  * @version 2014-7-27
  */
 @SuppressWarnings("serial")

@@ -1,3 +1,6 @@
+/**
+ * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ */
 package com.jsite.modules.gen.dao;
 
 import com.jsite.common.persistence.CrudDao;
@@ -9,8 +12,8 @@ import java.util.List;
 
 /**
  * 业务表字段DAO接口
- * @author liuruijun
- * @version 2018-10-15
+ * @author ThinkGem
+ * @version 2013-10-15
  */
 @MyBatisDao
 public interface GenDataBaseDictDao extends CrudDao<GenTableColumn> {

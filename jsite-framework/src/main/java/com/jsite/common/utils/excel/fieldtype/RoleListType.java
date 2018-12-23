@@ -1,3 +1,6 @@
+/**
+ * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ */
 package com.jsite.common.utils.excel.fieldtype;
 
 import com.google.common.collect.Lists;
@@ -11,8 +14,8 @@ import java.util.List;
 
 /**
  * 字段类型转换
- * @author JSite
- * @version 2018-5-29
+ * @author ThinkGem
+ * @version 2013-5-29
  */
 public class RoleListType {
 

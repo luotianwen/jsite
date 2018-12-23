@@ -1,3 +1,6 @@
+/**
+ * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ */
 package com.jsite.modules.sys.utils;
 
 import com.google.common.collect.Lists;
@@ -21,8 +24,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 字典工具类
- ** @author liuruijun
+ * 日志工具类
+ * @author ThinkGem
  * @version 2014-11-7
  */
 public class LogUtils {

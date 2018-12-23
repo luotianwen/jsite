@@ -1,3 +1,6 @@
+/**
+ * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ */
 package com.jsite.modules.sys.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -17,8 +20,8 @@ import java.util.List;
 
 /**
  * 用户Entity
- ** @author liuruijun
- * @version 2018-12-05
+ * @author ThinkGem
+ * @version 2013-12-05
  */
 public class User extends DataEntity<User> {
 

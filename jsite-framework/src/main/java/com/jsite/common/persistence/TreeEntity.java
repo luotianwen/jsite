@@ -8,7 +8,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.NotNull;
 
 /**
- * 数据Entity类
+ * 数据Entity类 基于jeesite1.x 重构
  * @author JSite
  * @version 2014-05-16
  */

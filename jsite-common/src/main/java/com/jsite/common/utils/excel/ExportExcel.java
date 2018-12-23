@@ -1,3 +1,6 @@
+/**
+ * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ */
 package com.jsite.common.utils.excel;
 
 import com.google.common.collect.Lists;
@@ -24,8 +27,11 @@ import java.util.*;
 
 /**
  * 导出Excel文件（导出“XLSX”格式，支持大数据量导出   @see org.apache.poi.ss.SpreadsheetVersion）
- ** @author JSite
- * @version 2017-04-21
+ * @author ThinkGem
+ * @version 2013-04-21
+ *
+ * @author liuruijun 修改
+ * @version 2018-07-21
  */
 public class ExportExcel {
 	

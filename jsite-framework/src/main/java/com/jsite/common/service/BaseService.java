@@ -1,3 +1,6 @@
+/**
+ * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ */
 package com.jsite.common.service;
 
 import com.google.common.collect.Lists;
@@ -13,7 +16,7 @@ import java.util.List;
 
 /**
  * Service基类
- * @author JSite
+ * @author ThinkGem
  * @version 2014-05-16
  */
 @Transactional(readOnly = true)

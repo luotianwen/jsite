@@ -1,6 +1,10 @@
+/**
+ * Copyright (c) 2013-Now http://jeesite.com All rights reserved.
+ */
 package com.jsite.common.io;
 
 import com.jsite.common.lang.ExceptionUtils;
+import org.apache.commons.io.IOUtils;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -12,7 +16,7 @@ import java.io.InputStream;
 
 /**
  * 资源供给类
- ** @author liuruijun
+ * @author ThinkGem
  * @version 2016-9-16
  */
 public class ResourceUtils extends org.springframework.util.ResourceUtils {

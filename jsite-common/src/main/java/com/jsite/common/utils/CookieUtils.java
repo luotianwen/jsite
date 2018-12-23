@@ -1,3 +1,6 @@
+/**
+ * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ */
 package com.jsite.common.utils;
 
 import javax.servlet.http.Cookie;
@@ -9,8 +12,8 @@ import java.net.URLEncoder;
 
 /**
  * Cookie工具类
- ** @author liuruijun
- * @version 2017-01-15
+ * @author ThinkGem
+ * @version 2013-01-15
  */
 public class CookieUtils {
 

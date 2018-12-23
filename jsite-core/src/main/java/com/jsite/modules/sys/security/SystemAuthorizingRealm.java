@@ -1,3 +1,6 @@
+/**
+ * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ */
 package com.jsite.modules.sys.security;
 
 import com.jsite.common.config.Global;
@@ -33,11 +36,13 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.util.Collection;
 import java.util.List;
-
 /**
  * 系统安全认证实现类
- ** @author liuruijun
+ * @author ThinkGem
  * @version 2014-7-5
+ *
+ * @author liuruijun 修改
+ * @version 2018-7-5
  */
 @Service
 //@DependsOn({"userDao","roleDao","menuDao"})

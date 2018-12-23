@@ -1,3 +1,6 @@
+/**
+ * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ */
 package com.jsite.modules.sys.utils;
 
 import com.jsite.common.service.BaseService;
@@ -20,8 +23,8 @@ import java.util.List;
 
 /**
  * 用户工具类
- ** @author liuruijun
- * @version 2018-12-05
+ * @author ThinkGem
+ * @version 2013-12-05
  */
 public class UserUtils {
 

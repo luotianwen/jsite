@@ -28,6 +28,11 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 控制器支持类
+ ** @author liuruijun
+ * @version 2018-10-23
+ */
 @Configuration
 public class WebMvcConfiguration extends WebMvcConfigurationSupport {
 

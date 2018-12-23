@@ -1,3 +1,6 @@
+/**
+ * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ */
 package com.jsite.modules.sys.entity;
 
 import com.jsite.common.lang.StringUtils;
@@ -9,7 +12,7 @@ import java.util.Map;
 
 /**
  * 日志Entity
- ** @author liuruijun
+ * @author ThinkGem
  * @version 2014-8-19
  */
 public class Log extends DataEntity<Log> {

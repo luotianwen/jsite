@@ -11,7 +11,7 @@ import com.jsite.modules.sys.entity.User;
 import java.util.List;
 
 /**
- * 用户工具类
+ * 用户工具类 架构重构升级，拆分自jeesite1.x UserUtils
  ** @author liuruijun
  * @version 2018-12-05
  */

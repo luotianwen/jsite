@@ -24,7 +24,7 @@
 		i++;
 		var name =  @ObjMapper.getObjectFieldValue(val,p.itemLabel);
 		var value = @ObjMapper.getObjectFieldValue(val,p.itemValue);
-		var flag = @ListUtils.inString(value,p.data);
+		var flag = inArrayString(value,p.data);
 	%>
 		<label><input type="checkbox" id="${p.path}${i}" name="${p.path}" class="${p.class}" value="${value}" ${flag==true?'checked="checked"':''}/>${name}</label>
 	<%}%>

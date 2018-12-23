@@ -1,3 +1,6 @@
+/**
+ * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ */
 package com.jsite.common.persistence.interceptor;
 
 import com.jsite.common.lang.StringUtils;
@@ -19,8 +22,8 @@ import java.util.Properties;
 
 /**
  * 数据库分页插件，只拦截查询语句.
- * @author JSite
- * @version 2017-8-28
+ * @author poplar.yfyang / thinkgem
+ * @version 2013-8-28
  */
 @Intercepts({@Signature(type = Executor.class, method = "query",
         args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class})})

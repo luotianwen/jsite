@@ -1,3 +1,6 @@
+/**
+ * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ */
 package com.jsite.common.utils.excel;
 
 import com.google.common.collect.Lists;
@@ -25,7 +28,7 @@ import java.util.List;
 
 /**
  * 导入Excel文件（支持“XLS”和“XLSX”格式）
- ** @author liuruijun
+ ** @author ThinkGem
  * @version 2018-03-10
  */
 public class ImportExcel {

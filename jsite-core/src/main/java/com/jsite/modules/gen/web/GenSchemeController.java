@@ -82,9 +82,6 @@ public class GenSchemeController extends BaseController {
 		if (StringUtils.isBlank(genScheme.getPackageName())){
 			genScheme.setPackageName("com.jsite.modules");
 		}
-//		if (StringUtils.isBlank(genScheme.getFunctionAuthor())){
-//			genScheme.setFunctionAuthor(UserUtils.getUser().getName());
-//		}
 		model.addAttribute("genScheme", genScheme);
 		model.addAttribute("config", GenUtils.getConfig());
 		model.addAttribute("tableList", genTableService.findAll());
@@ -95,13 +92,7 @@ public class GenSchemeController extends BaseController {
 	@RequestMapping(value = "save")
 	@ResponseBody
 	public String save(GenScheme genScheme, Model model, RedirectAttributes redirectAttributes) {
-//		if (!beanValidator(model, genScheme)){
-//			return form(genScheme, model);
-//		}
-		
 		String result = genSchemeService.save(genScheme);
-//		addMessage(redirectAttributes, "操作生成方案'" + genScheme.getName() + "'成功<br/>"+result);
-//		return "redirect:" + adminPath + "/gen/genScheme/?repage";
 		return renderResult(Global.TRUE, "操作生成方案'" + genScheme.getName() + "'成功<br/>" + result);
 	}
 	
@@ -110,8 +101,6 @@ public class GenSchemeController extends BaseController {
 	@ResponseBody
 	public String delete(GenScheme genScheme, RedirectAttributes redirectAttributes) {
 		genSchemeService.delete(genScheme);
-//		addMessage(redirectAttributes, "删除生成方案成功");
-//		return "redirect:" + adminPath + "/gen/genScheme/?repage";
 		return renderResult(Global.TRUE, "删除生成方案成功");
 	}
 

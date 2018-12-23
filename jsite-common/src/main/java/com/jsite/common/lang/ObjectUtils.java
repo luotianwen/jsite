@@ -1,6 +1,9 @@
+/**
+ * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ */
 package com.jsite.common.lang;
 
-import com.jsite.common.io.IOUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -15,7 +18,7 @@ import java.lang.reflect.Method;
 
 /**
  * 对象操作工具类, 继承org.apache.commons.lang3.ObjectUtils类
- ** @author liuruijun
+ * @author ThinkGem
  * @version 2014-6-29
  */
 public class ObjectUtils extends org.apache.commons.lang3.ObjectUtils {

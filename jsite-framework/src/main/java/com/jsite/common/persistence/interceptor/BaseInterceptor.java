@@ -1,3 +1,6 @@
+/**
+ * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ */
 package com.jsite.common.persistence.interceptor;
 
 import com.jsite.common.config.Global;
@@ -14,8 +17,8 @@ import java.util.Properties;
 
 /**
  * Mybatis分页拦截器基类
- * @author JSite
- * @version 2017-8-28
+ * @author poplar.yfyang / thinkgem
+ * @version 2013-8-28
  */
 public abstract class BaseInterceptor implements Interceptor, Serializable {
 	

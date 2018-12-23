@@ -1,3 +1,6 @@
+/**
+ * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ */
 package com.jsite.modules.flowable.utils;
 
 import org.apache.commons.beanutils.Converter;
@@ -12,8 +15,8 @@ import java.util.Date;
 
 /**
  * 日期转换类
- ** @author liuruijun
- * @version 2017-11-03
+ * @author ThinkGem
+ * @version 2013-11-03
  */
 public class DateConverter implements Converter {
 

@@ -1,3 +1,6 @@
+/**
+ * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ */
 package com.jsite.common.security.shiro.session;
 
 import com.jsite.common.lang.StringUtils;
@@ -23,7 +26,7 @@ import java.util.Date;
 
 /**
  * 自定义WEB会话管理类
- * @author JSite
+ * @author ThinkGem
  * @version 2014-7-20
  */
 public class SessionManager extends DefaultWebSessionManager {

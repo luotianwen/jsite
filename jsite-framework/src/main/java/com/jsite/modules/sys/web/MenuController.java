@@ -96,10 +96,6 @@ public class MenuController extends BaseController {
 			return renderResult(Global.FALSE, "越权操作，只有超级管理员才能添加或修改数据！");
 		}
 		
-		if(Global.isDemoMode()){
-			return renderResult(Global.FALSE, "演示模式，不允许操作！");
-		}
-
 		systemService.saveMenu(menu);
 		
 		return renderResult(Global.TRUE, ("保存菜单'" + menu.getName() + "'成功"));

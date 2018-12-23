@@ -15,6 +15,12 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternUtils;
 
+/**
+ * 控制器支持类
+ ** @author liuruijun
+ * @version 2018-10-23
+ */
+
 @Configuration
 public class BeetlConfiguration {
     protected Logger logger = LoggerFactory.getLogger(getClass());

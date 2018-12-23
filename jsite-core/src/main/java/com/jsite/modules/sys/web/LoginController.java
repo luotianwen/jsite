@@ -88,14 +88,7 @@ public class LoginController extends BaseController{
 		
 		model.addAttribute("isValidateCodeLogin", isValidateCodeLogin("", false, false));
 		
-//		String view;
-//		view = "/WEB-INF/views/modules/sys/sysLogin.jsp";
-//		view = "classpath:";
-//		view += "jar:file:/D:/GitHub/jsite/src/main/webapp/WEB-INF/lib/jsite.jar!";
-//		view += "/"+getClass().getName().replaceAll("\\.", "/").replace(getClass().getSimpleName(), "")+"view/sysLogin";
-//		view += ".jsp";
 		return "modules/sys/sysLogin";
-//		return "modules/sys/sysLogin";
 	}
 
 	/**
@@ -218,28 +211,6 @@ public class LoginController extends BaseController{
 			return "redirect:" + adminPath + "/login";
 		}
 		
-//		// 登录成功后，获取上次登录的当前站点ID
-//		UserUtils.putCache("siteId", StringUtils.toLong(CookieUtils.getCookie(request, "siteId")));
-
-//		System.out.println("==========================a");
-//		try {
-//			byte[] bytes = com.jsite.common.utils.FileUtils.readFileToByteArray(
-//					com.jsite.common.utils.FileUtils.getFile("c:\\sxt.dmp"));
-//			UserUtils.getSession().setAttribute("kkk", bytes);
-//			UserUtils.getSession().setAttribute("kkk2", bytes);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-////		for (int i=0; i<1000000; i++){
-////			//UserUtils.getSession().setAttribute("a", "a");
-////			request.getSession().setAttribute("aaa", "aa");
-////		}
-//		System.out.println("==========================b");
-
-		//return "modules/sys/sysIndex";
-		
-
-//		return "modules/sys/sysIndex";
 
 		return "modules/sys/sysIndex";
 	}

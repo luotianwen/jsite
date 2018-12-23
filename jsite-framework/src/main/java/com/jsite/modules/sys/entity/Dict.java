@@ -1,3 +1,6 @@
+/**
+ * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ */
 package com.jsite.modules.sys.entity;
 
 import com.jsite.common.persistence.DataEntity;
@@ -8,8 +11,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 
 /**
  * 字典Entity
- ** @author liuruijun
- * @version 2018-05-15
+ * @author ThinkGem
+ * @version 2013-05-15
  */
 public class Dict extends DataEntity<Dict> {
 

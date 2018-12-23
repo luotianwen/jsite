@@ -1,3 +1,6 @@
+/**
+ * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ */
 package com.jsite.modules.sys.dao;
 
 import com.jsite.common.persistence.CrudDao;
@@ -6,8 +9,8 @@ import com.jsite.modules.sys.entity.Role;
 
 /**
  * 角色DAO接口
- ** @author liuruijun
- * @version 2018-08-05
+ * @author ThinkGem
+ * @version 2013-12-05
  */
 @MyBatisDao
 public interface RoleDao extends CrudDao<Role> {

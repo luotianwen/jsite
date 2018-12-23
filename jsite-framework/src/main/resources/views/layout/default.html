@@ -11,7 +11,7 @@
 <% include('/include/head.html', {title: title!}){}%>
 <% include('/include/csslibs.html', {libs: libs!}){}%>
 </head><body class="hold-transition ${bodyClass!}">
-<% if (!@ListUtils.inString('layout', libs!)){ %>
+<% if (!inArrayString('layout', libs!)){ %>
 <div class="wrapper">${layoutContent}</div>
 <% }else{ %>
 	${layoutContent}

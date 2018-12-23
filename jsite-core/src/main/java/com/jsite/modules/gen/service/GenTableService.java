@@ -1,3 +1,6 @@
+/**
+ * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ */
 package com.jsite.modules.gen.service;
 
 import com.jsite.common.lang.StringUtils;
@@ -17,8 +20,8 @@ import java.util.List;
 
 /**
  * 业务表Service
- ** @author liuruijun
- * @version 2017-10-15
+ * @author ThinkGem
+ * @version 2013-10-15
  */
 @Service
 @Transactional(readOnly = true)

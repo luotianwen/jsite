@@ -6,6 +6,11 @@ import org.springframework.boot.web.server.ErrorPageRegistry;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
+/**
+ * 控制器支持类
+ ** @author liuruijun
+ * @version 2018-10-23
+ */
 @Component
 public class ErrPageRegistrar implements ErrorPageRegistrar {
 

@@ -19,6 +19,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * 文件分片上传相关实现重构，参考了原代码 UploadUtils
+ * @author liuruijun
+ * @version 2018-07-05
+ */
+
 public class UploadUtils4 {
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	/**
@@ -103,43 +109,6 @@ public class UploadUtils4 {
 		return resultList;
 	}
 	
-	/**
-	 * 初始化文件目录
-	 * 
-	 * @param request
-	 */
-//	private synchronized  void initDirs(HttpServletRequest request) {
-//		// 文件保存目录路径
-//		savePath = request.getSession().getServletContext().getRealPath(File.separator) + basePath + File.separator;
-//		// 文件保存目录URL
-//		saveUrl = request.getContextPath() + File.separator + basePath + File.separator;
-//
-//		// .../basePath/dirName/
-//		// 创建文件夹
-//		savePath += dirName + File.separator;
-//		saveUrl += dirName + File.separator;
-//		File saveDirFile = new File(savePath);
-//		if (!saveDirFile.exists()) {
-//			saveDirFile.mkdirs();
-//		}
-//		// .../basePath/dirName/yyyyMMdd/
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-//		String ymd = sdf.format(new Date());
-//		savePath += ymd + File.separator;
-//		saveUrl += ymd + File.separator;
-//		File dirFile = new File(savePath);
-//		if (!dirFile.exists()) {
-//			dirFile.mkdirs();
-//		}
-//
-//		// 获取上传临时路径
-//		tempPath = request.getSession().getServletContext().getRealPath(File.separator) + tempPath + File.separator;
-//		File file = new File(tempPath);
-//		if (!file.exists()) {
-//			file.mkdirs();
-//		}
-//	}
-
 	/**
 	 * 处理上传内容
 	 * 

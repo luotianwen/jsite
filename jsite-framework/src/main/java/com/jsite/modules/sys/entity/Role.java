@@ -1,3 +1,6 @@
+/**
+ * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ */
 package com.jsite.modules.sys.entity;
 
 import com.google.common.collect.Lists;
@@ -10,8 +13,8 @@ import java.util.List;
 
 /**
  * 角色Entity
- ** @author liuruijun
- * @version 2018-12-05
+ * @author ThinkGem
+ * @version 2013-12-05
  */
 public class Role extends DataEntity<Role> {
 	
