@@ -56,8 +56,6 @@ http://jsite.org.cn
 ![image](https://gitee.com/baseweb/JSite/raw/master/img/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.png)
 角色管理
 ![image](https://gitee.com/baseweb/JSite/raw/master/img/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.png)
-角色分配
-![image](https://gitee.com/baseweb/JSite/raw/master/img/%E8%A7%92%E8%89%B2%E5%88%86%E9%85%8D.png)
 流程模型管理
 ![image](https://gitee.com/baseweb/JSite/raw/master/img/%E6%B5%81%E7%A8%8B-%E6%A8%A1%E5%9E%8B%E7%AE%A1%E7%90%86.png)
 流程设计器
