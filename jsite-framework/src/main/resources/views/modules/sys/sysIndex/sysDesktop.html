@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="${ctxStatic}/common/jsite4.0.css">
+    <link rel="stylesheet" href="${ctxStatic}/common/jsite.css">
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -14,7 +14,7 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="${ctxStatic}/adminLTE/Ionicons/css/ionicons.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="${ctxStatic}/adminLTE/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="${ctxStatic}/adminLTE/css/AdminLTE.css">
     <link rel="stylesheet" href="${ctxStatic}/adminLTE/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="${ctxStatic}/desktop/morris.js/morris.css">
     <link rel="stylesheet" href="${ctxStatic}/desktop/bootstrap-datepicker/css/bootstrap-datepicker.min.css">
@@ -494,11 +494,16 @@
 		<!-- /.row (main row) -->
 
 	</section>
-    <footer class="main-footer m0">
-        <% var productName = @Global.getProperty('productName'), productVersion = @Global.getProperty('version'); %>
-        <div class="pull-right hidden-xs">当前版本： ${productVersion}</div>
-        &copy; ${@DateUtils.getYear()} ${productName} - Powered By <a href="http://jsite.org.cn" target="_blank">jsite.org.cn</a>.
-    </footer>
+
+	<!-- /.content-wrapper -->
+	<footer class="main-footer no-print m0">
+		<% var productName = @Global.getProperty('productName'), productVersion = @Global.getProperty('version'); %>
+		<div class="pull-right hidden-xs">
+			<b>Version</b> 1.0.0
+		</div>
+		<strong>Copyright &copy; 2017-${@DateUtils.getYear()} <a href="http://jsite.org.cn">${productName}</a>.</strong> All rights
+		reserved.
+	</footer>
 </div>
 
 <script src="${ctxStatic}/desktop/jquery/dist/jquery.min.js"></script>
@@ -534,7 +539,7 @@
 <script src="${ctxStatic}/adminLTE/js/pages/dashboard.js"></script>
 
 <script src="${ctxStatic}/adminLTE/js/demo.js"></script>
-<script src="${ctxStatic}/common/jsite4.0.js"></script>
+<script src="${ctxStatic}/common/jsite.js"></script>
 <script type="text/javascript">
 	$(window).resize(function(){
 		var footerHeight  = $('.main-footer').outerHeight() || 0;

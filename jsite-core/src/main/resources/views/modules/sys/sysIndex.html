@@ -3,15 +3,12 @@
 var defaultSkinName = @Global.getProperty('sys.index.skinName', 'skin-blue');
 // 从cookie里获取样式名，取不到使用默认样式
 var skinName = cookie('skinName_'+user.id, false, defaultSkinName);
-// 侧边栏的默认显示样式：1：默认显示侧边栏；2：默认折叠侧边栏
-var sidebarStyle = @Global.getProperty('sys.index.sidebarStyle', '1');
-var sidebarCollapse = (sidebarStyle == '2' ? 'sidebar-collapse ' : ' ');
-var bodyClass = 'fixed noscroll sidebar-mini ' + sidebarCollapse + skinName;
+var bodyClass = 'fixed noscroll sidebar-mini ' + skinName;
 %>
 <% layout('/layout/default.html', {title: '', bodyClass: bodyClass, libs: ['tabPage']}){ %>
 <link rel="stylesheet" href="${ctxStatic}/jquery-toastr/toastr.min.css">
 <link rel="stylesheet" href="${ctxStatic}/adminLTE/css/skins/${skinName}.css">
-<link rel="stylesheet" href="${ctxStatic}/modules/sys/sysIndex.css">
+<link rel="stylesheet" href="${ctxStatic}/modules/sys/index.css">
 
 <header class="main-header">
 	<% include('/modules/sys/sysIndex/topMenu.html'){} %>
@@ -26,7 +23,7 @@ var bodyClass = 'fixed noscroll sidebar-mini ' + sidebarCollapse + skinName;
 <div id="desktopTabPage" class="hide" data-title="仪表盘" data-url="/desktop"></div>
 <script src="${ctxStatic}/jquery-toastr/toastr.min.js"></script>
 <script src="${ctxStatic}/jquery-plugin/jquery.slimscroll.js"></script>
-<script src="${ctxStatic}/modules/sys/sysIndex.js"></script>
+<script src="${ctxStatic}/modules/sys/index.js"></script>
 
 <script language="JavaScript">
     //判断当前窗口是否有顶级窗口，如果有就让当前的窗口的地址栏发生变化，
