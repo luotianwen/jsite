@@ -10,14 +10,14 @@ if (isBlank(message)){
 			message = @StringUtils.replace(@ex.getMessage(), 'msg:', '');
 		}else if (ex.class.name == 'org.springframework.validation.BindException'){
 			for (var e in ex.globalErrors){
-				message = message + '☆' + e.defaultMessage + '(' + e.objectName + ')<br/>';
+				message = message + '@@' + e.defaultMessage + '(' + e.objectName + ')<br/>';
 			}
 			for (var e in ex.fieldErrors){
-				message = message + '☆' + e.defaultMessage + '(' + e.field + ')<br/>';
+				message = message + '@@' + e.defaultMessage + '(' + e.field + ')<br/>';
 			}
 		}else if (ex.class.name == 'javax.validation.ConstraintViolationException'){
 			for (var v in ex.constraintViolations) {
-				message = message + '☆' + v.message + '(' + v.propertyPath + ')<br/>';
+				message = message + '@@' + v.message + '(' + v.propertyPath + ')<br/>';
 			}
 		}else{
 			message = message + ex.message;
@@ -38,20 +38,41 @@ if (@Servlets.isAjaxRequest(request)) {
 // 输出异常信息页面
 else {
 %>
-<% layout('/layout/default.html', {title: '400 - '+text('sys.error.400.title')}){ %>
-<link rel="stylesheet" href="${ctxStatic}/common/error.css">
-<div class="error-page">
-	<div class="headline text-yellow">400</div>
-	<div class="error-content">
-		<h3><i class="fa fa-warning text-yellow"></i> ${text('sys.error.400.title')}</h3>
-		<p>${message}</p>
-		<button type="button" class="btn btn-warning btn-sm" onclick="history.go(-1);"><i
-			class="fa fa-reply-all"></i> ${text('sys.error.returnButton')}</button>
+<% layout('/layout/default.html', {title: '400 - '+text('sys.error.400.title'), libs: ['layout']}){ %>
+<!-- Main content -->
+<section class="content">
+	<div class="error-page">
+		<h2 class="headline text-yellow"> 400</h2>
+
+		<div class="error-content">
+			<h3><i class="fa fa-warning text-yellow"></i> ${text('sys.error.400.title')}</h3>
+
+			<p>
+				${message}<a href="${ctx}/a">返回主页</a>
+			</p>
+
+			<form class="search-form">
+				<div class="input-group">
+					<input type="text" name="search" class="form-control" placeholder="Search">
+
+					<div class="input-group-btn">
+						<button type="submit" name="submit" class="btn btn-warning btn-flat"><i class="fa fa-search"></i>
+						</button>
+					</div>
+				</div>
+				<!-- /.input-group -->
+			</form>
+		</div>
+		<!-- /.error-content -->
 	</div>
-	<div class="copyright">
-		&copy; ${@DateUtils.getYear()} ${@Global.getProperty('productName')} - Powered By <a
-			href="http://www.jsite.org.cn">JSite ${@Global.getProperty('version')}</a>
-	</div>
+	<!-- /.error-page -->
+</section>
+<!-- /.content -->
+<div style="text-align: center;">
+	<% var productName = @Global.getProperty('productName'), productVersion = @Global.getProperty('version'); %>
+	<strong>Copyright &copy; 2017-${@DateUtils.getYear()} <a href="http://jsite.org.cn">${productName}</a>.</strong> All rights
+	reserved.
 </div>
+
 <% } %>
 <% } %>
