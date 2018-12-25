@@ -12,7 +12,7 @@
 	--color-semidark: rgba(68, 160, 179, .5);
 
 	text-align: center;
-	margin: 60px 0 0 0;
+	margin: 80px 0 0 0;
 	font-family: 'Segoe UI';
 	font-size: 14px;
 }
@@ -26,7 +26,7 @@
 	position: relative;
 	height: 100%;
 	width: 360px;
-	margin: 0 auto;
+	margin: 20px auto;
 }
 .lowin.lowin-red {
 	--color-primary: #ff6464;
@@ -49,12 +49,14 @@
 }
 
 .lowin.lowin-blue {
-	--color-primary: #0081C6;
+	--color-primary: #3c8dbc;
 	--color-grey: rgba(0, 129, 198, .05);
 	--color-dark: rgba(0, 129, 198, .7);
 	--color-semidark: rgba(0, 129, 198, .45);
+	--color-semiblack:rgb(68, 64, 64);
+	--color-quietblack:rgb(132, 129, 129);
 }
-
+lowin-input
 .lowin a {
 	color: var(--color-primary);
 	text-decoration: none;
@@ -133,15 +135,15 @@
 }
 
 .lowin .lowin-box .lowin-group {
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 }
 
 .lowin .lowin-box label {
 	margin-bottom: 5px;
 	display: inline-block;
 	width: 100%;
-	color: var(--color-semidark);
-	font-weight: 700;
+	color: var(--color-quietblack);
+	font-weight: 100;
 }
 
 .lowin .lowin-box label a {
@@ -150,12 +152,16 @@
 
 .lowin .lowin-box .lowin-input {
 	background-color: var(--color-grey);
-	color: var(--color-dark);
+	color: var(--color-semiblack);
 	border: none;
 	border-radius: 3px;
 	padding: 15px 20px;
 	width: 100%;
 	outline: 0;
+}
+
+.lowin-input::-webkit-input-placeholder {
+	color: var(--color-semidark);
 }
 
 .lowin .lowin-box .lowin-btn {
@@ -197,7 +203,7 @@
 	text-align: center;
 	margin: 30px 0;
 	font-size: 12px;
-	color: var(--color-semidark);
+	color: var(--color-dark);
 	font-weight: 700;
 }
 
