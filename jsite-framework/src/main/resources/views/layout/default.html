@@ -1,23 +1,37 @@
-<%
-/*
- * 默认布局文件
- * @param title 页面标题
- * @param bodyClass body标签的class内容
- * @param libs 要引用的js或css类库
- */
-%>
-<% print('<'+'!DOC'+'TYPE html'+'>');%>
-<% print('<'+'html'+'><'+'head'+'>');%>
-<% include('/include/head.html', {title: title!}){}%>
-<% include('/include/csslibs.html', {libs: libs!}){}%>
-</head><body class="hold-transition ${bodyClass!}">
+<!DOCTYPE html>
+<html>
+<head>
+    <%
+    var productName = @Global.getProperty('productName') + ' ' + @Global.getProperty('version');
+    var pageTitle = (isNotBlank(title!) ? title! + ' - ' : '') + productName;
+    %>
+    <meta charset="utf-8">
+    <meta content="webkit" name="renderer"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/><meta http-equiv="Expires" content="0"/>
+    <meta content="width=device-width, initial-scale=1, user-scalable=1" name="viewport"/>
+    <meta content="${productName} - Powered By jsite.org.cn" name="description"/>
+    <meta content="JSite http://jsite.org.cn/" name="author"/>
+    <title>${pageTitle}</title>
+    <script src="${ctxStatic}/jquery/jquery-1.12.4.min.js"></script>
+    <script src="${ctxStatic}/jquery/jquery-migrate-1.4.1.min.js"></script>
+    <script type="text/javascript">
+        var ctx = "${ctx}";
+        var ctxStatic = "${ctxStatic}";
+        var flow = "${flow}";
+    </script>
+    <% include('/include/csslibs.html', {libs: libs!}){} %>
+</head>
+<body class="hold-transition ${bodyClass!}">
 <% if (!inArrayString('layout', libs!)){ %>
-<div class="wrapper">${layoutContent}</div>
+    <div class="wrapper">
+        ${layoutContent}
+    </div>
 <% }else{ %>
 	${layoutContent}
 <% }%>
 
 <% include('/include/jslibs.html', {libs: libs!}){} %>
-
 </body>
 </html>
