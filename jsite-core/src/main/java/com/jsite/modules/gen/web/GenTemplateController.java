@@ -1,3 +1,6 @@
+/**
+ * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ */
 package com.jsite.modules.gen.web;
 
 import com.jsite.common.lang.StringUtils;
@@ -20,8 +23,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 代码模板Controller
- * @author liuruijun
+ * 生成方案Controller
+ * @author ThinkGem
+ * @version 2013-10-15
+ *
+ * @author liuruijun 重构修改
  * @version 2018-10-15
  */
 @Controller

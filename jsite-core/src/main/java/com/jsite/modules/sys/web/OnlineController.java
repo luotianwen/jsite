@@ -1,3 +1,6 @@
+/**
+ * Copyright (c) 2013-Now http://jeesite.com All rights reserved.
+ */
 package com.jsite.modules.sys.web;
 
 import com.google.common.collect.Lists;
@@ -27,7 +30,7 @@ import java.util.*;
 
 /**
  * 在线用户Controller
- ** @author liuruijun
+ * @author ThinkGem
  * @version 2016-8-31
  */
 @Controller
