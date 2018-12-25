@@ -13,6 +13,9 @@ public class InArrayString implements Function {
         String word = (String) paras[0];
         List<String> arrString = (List<String>) paras[1];
 
+        if (StringUtils.isBlank(word) || arrString == null)
+            return false;
+
         for (String s : arrString) {
             if (word.equals(StringUtils.trim(s))) {
                 return true;
