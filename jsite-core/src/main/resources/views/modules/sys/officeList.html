@@ -35,7 +35,7 @@
 			{header:'归属区域', name:'areaName', index:'ar.name', width:80, align:"center"},
 			{header:'机构编码', name:'code', index:'a.code', width:80, align:"center"},
 			{header:'机构类型', name:'type', index:'a.type', width:80, align:"center", formatter: function(val, obj, row, act){
-                    return js.getDictLabel(${@DictUtils.getDictListJson('sys_office_type')}, val, '', false);
+                    return js.transDictLabel(${@DictUtils.getDictListJson('sys_office_type')}, val, '');
             }},
 			{header:'备注', name:'remarks', index:'a.remarks', width:80, align:"center"},
 			{header:'操作', name:'actions', width:70,align:"center", sortable:false, title:false, formatter: function(val, obj, row, act){

@@ -186,7 +186,7 @@ $("#inputForm").validate({
 			if(data.result == 'true'){
 				window.parent.closeCurrentTabPage(window.parent.refreshTab);
 			}
-		}, "json");
+		});
 	},
 	errorPlacement: function(error, element) {
 		//js.showMessage("输入有误，请先更正。");

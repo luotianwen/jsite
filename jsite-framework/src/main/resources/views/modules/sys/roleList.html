@@ -31,13 +31,13 @@ $('#dataGrid').dataGrid({
 		{header:'角色名称', name:'name', index:'a.name', width:90, align:"center"},
 		{header:'英文名称', name:'enname', index:'a.enname', width:140, align:"center"},
 		{header:'用户类型', name:'userType', index:'a.user_type', width:140, align:"center", formatter: function(val, obj, row, act){
-			return js.getDictLabel(${@DictUtils.getDictListJson('sys_user_type')}, val, '<font color=#aaa>未设置</font>', true);
+			return js.transDictLabel(${@DictUtils.getDictListJson('sys_user_type')}, val, '<font color=#aaa>未设置</font>');
 		}},
 		{header:'归属机构', name:'office.name', index:'o.name', width:120, align:"center", formatter: function(val, obj, row, act){
 			return row.office.name;
 		}},
 		{header:'数据范围', name:'dataScope', index:'a.data_scope', width:100, align:"center", formatter: function(val, obj, row, act){
-                return js.getDictLabel(${@DictUtils.getDictListJson('sys_data_scope')}, val, '', false);
+                return js.transDictLabel(${@DictUtils.getDictListJson('sys_data_scope')}, val, '');
 		}},
 		{header:'操作', name:'actions', width:100, sortable:false, title:false, align:"center", formatter: function(val, obj, row, act){
 			var actions = [];

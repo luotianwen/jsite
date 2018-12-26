@@ -54,10 +54,10 @@ $('#dataGrid').dataGrid({
 		{header:'超时时间', name:'timeout', width:100, align:'center'},
 		{header:'客户主机', name:'host', width:70, align:'center'},
 		{header:'用户类型', name:'userType', width:50, align:'center', formatter: function(val, obj, row, act){
-			return js.getDictLabel(${@DictUtils.getDictListJson('sys_user_type')}, val, '未知', true);
+			return js.transDictLabel(${@DictUtils.getDictListJson('sys_user_type')}, val, '未知');
 		}},
 		{header:'设备类型', name:'deviceType', width:50, align:'center', formatter: function(val, obj, row, act){
-			return js.getDictLabel(${@DictUtils.getDictListJson('sys_device_type')}, val, 'PC', true);
+			return js.transDictLabel(${@DictUtils.getDictListJson('sys_device_type')}, val, 'PC');
 		}}
 		<% if(hasPermi('sys:online:edit')){ %>
 		,{header:'操作', name:'actions', width:50, sortable:false, formatter: function(val, obj, row, act){

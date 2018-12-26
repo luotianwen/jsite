@@ -102,13 +102,10 @@
 			title: '导入用户数据',
 			resize: false,
 			scrollbar: true,
-			content: js.template('importTpl'),
-			success: function(layero, index){
-				layero.find('input[type="checkbox"]').iCheck();
-			},
+			content: js.formatHtml('importTpl'),
 			btn: ['<i class="fa fa-check"></i> 导入',
 				'<i class="fa fa-remove"></i> 取消'],
-			btn1: function(index, layero){
+            yes: function(index, layero){
 				console.log(layero.find('#file').val());
 				var form = {
 					inputForm: layero.find('#inputForm'),
@@ -123,9 +120,11 @@
 					js.layer.closeAll();
 					js.showMessage(data.message);
 					page();
-				}, "json");
+				});
 				return true;
-			}
+			},
+            btn2: function(index, layero){
+            }
 		});
 	});
 </script>
@@ -159,7 +158,7 @@ $('#dataGrid').dataGrid({
 		{header:'手机号码', name:'mobile', index:'a.mobile', width:200, align:"center"},
 		{header:'办公电话', name:'phone', index:'a.phone', width:200, align:"center"},
 		{header:'状态', name:'loginFlag', index:'a.login_flag', width:140, align:"center", formatter: function(val, obj, row, act){
-			return js.getDictLabel(${@DictUtils.getDictListJson('sys_user_status')}, val, '未知', true);
+			return js.transDictLabel(${@DictUtils.getDictListJson('sys_user_status')}, val, '未知');
 		}},
 		{header:'操作', name:'actions', width:200, sortable:false,align:"center", title:false, formatter: function(val, obj, row, act){
 			var actions = [];

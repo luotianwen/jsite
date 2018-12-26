@@ -152,7 +152,7 @@
 		function refreshHeaderInfo() {
 			var $header = $("#${p.id}");
 			var $info = $header.find(".statusBar .info")
-			$info.text(("总共"+ uploader.getFiles().length + "个文件（" + renderSize(totalSize) + "）"));
+			$info.text(("总共"+ uploader.getFiles().length + "个文件（" + js.renderSize(totalSize) + "）"));
 			
 			refTotalProgress();
 		}

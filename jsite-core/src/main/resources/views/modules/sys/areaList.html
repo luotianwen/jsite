@@ -32,7 +32,7 @@
 			{header:'区域名称', name:'name', index:'a.name', width:150, align:"left"},
 			{header:'区域编码', name:'code', index:'a.code', width:80, align:"center"},
 			{header:'区域类型', name:'type', index:'a.type', width:80, align:"center", formatter: function(val, obj, row, act){
-                    return js.getDictLabel(${@DictUtils.getDictListJson('sys_area_type')}, val, '', false);
+                    return js.transDictLabel(${@DictUtils.getDictListJson('sys_area_type')}, val, '');
 			}},
 			{header:'排序', name:'sort', index:'a.sort', width:80, align:"center"},
 			{header:'备注', name:'remarks', index:'a.remarks', width:80, align:"center"},

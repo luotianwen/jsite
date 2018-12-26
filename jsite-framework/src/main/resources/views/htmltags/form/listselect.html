@@ -33,7 +33,7 @@ $("#${id}Button,#${id}Name").click(function(){
 		shadeClose: true,
 		title: '用户选择',
 		area: [boxWidth+'px', boxHeight+'px'],
-		content: ($('#${id}Div').attr('data-url')+"&checkbox=${checkbox}&selectData=" + js.encodeUrl(JSON.stringify(selectData))),
+		content: ($('#${id}Div').attr('data-url')+"&checkbox=${checkbox}&selectData=" + js.encodeURI(JSON.stringify(selectData))),
 		success: function(layero, index){
 			if ($(js.layer.window).width() < boxWidth || $(js.layer.window).height() < boxHeight){
 				js.layer.full(index);
@@ -54,8 +54,8 @@ $("#${id}Button,#${id}Name").click(function(){
 		   	$('#${id}Code').val(codes.join(',')).change();
 		   	$('#${id}Name').val(names.join(',')).change();
 		   	
-		   	js.log($('#${id}Code').val());
-		   	js.log($('#${id}Name').val());
+		   	js.print($('#${id}Code').val());
+		   	js.print($('#${id}Name').val());
 		   	
 			try { $('#${id}Code,#${id}Name').valid(); }catch(e){}
 			if(typeof listselectCallback == 'function'){

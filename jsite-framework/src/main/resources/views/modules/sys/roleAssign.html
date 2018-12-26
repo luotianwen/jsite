@@ -72,7 +72,7 @@ $('#dataGrid').dataGrid({
 		{header:'办公电话', name:'phone', index:'a.phone', width:200, align:"center"},
 		{header:'更新时间', name:'updateDate', index:'a.update_date', width:200, align:"center"},
 		/* {header:'状态', name:'status', index:'a.status', width:100, align:"center", formatter: function(val, obj, row, act){
-			return js.getDictLabel(${@DictUtils.getDictListJson('sys_status')}, val, '未知', true);
+			return js.transDictLabel(${@DictUtils.getDictListJson('sys_status')}, val, '未知');
 		}}, */
 		{header:'操作', name:'actions', width:100, sortable:false, title:false, align:"center", formatter: function(val, obj, row, act){
 			var actions = [];
@@ -90,7 +90,7 @@ $('#btnDelUser').click(function(){
 	var userCodes = $('#dataGrid').dataGrid('getSelectRows');
 	if (userCodes != null && userCodes.length > 0){
 		js.confirm('确认要取消列表中权重的用户角色权限吗？', function(){
-			js.ajaxSubmit('${ctx}/sys/role/outrole', {
+			js.ajaxRequest('${ctx}/sys/role/outrole', {
 				id: '${role.id}',
 				userRoleString: userCodes.join(',')
 			}, function(data){
@@ -109,7 +109,7 @@ $('#btnAddUser').click(function(){
 function listselectCallback(id, action, index, layero){
 	if (id == 'userSelect' && action == 'ok'){
 		if ($('#userSelectCode').val() != ''){
-			js.ajaxSubmit('${ctx}/sys/role/assignrole', {
+			js.ajaxRequest('${ctx}/sys/role/assignrole', {
 				id: '${role.id}',
 				userRoleString: $('#userSelectCode').val()
 			}, function(data){

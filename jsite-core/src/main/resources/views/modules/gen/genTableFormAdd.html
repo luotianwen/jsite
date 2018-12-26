@@ -38,12 +38,12 @@
             js.ajaxSubmitForm($(form), function (data) {
                 if (data.result == 'true') {
                     var url = "/gen/genTable/formEdit?name=" + data.data.name;
-                    js.log(url);
+                    js.print(url);
                     window.parent.closeCurrentTabPage(window.parent.refreshTab, "新增业务表", url);
                 } else {
                     js.showWarningMessage(data.message);
                 }
-            }, "json");
+            });
         }
     });
 
