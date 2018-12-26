@@ -79,13 +79,11 @@
             js.layer.closeAll('loading');
         },
         showMessage: function(title, message, type) {
-            var timeout = 5000;
             if (top.toastr) {
-                var positionClass = "toast-bottom-right";
                 top.toastr.options = {
                     closeButton: true,
-                    positionClass: positionClass,
-                    timeOut: timeout
+                    positionClass: "toast-bottom-right",
+                    timeOut: 5000
                 };
                 top.toastr[type](message, title);
             }
