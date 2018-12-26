@@ -545,7 +545,7 @@ TabPanel.prototype = {
 //    {
 //      for(var i=0; i<iframeObj.contentWindow.frames.length; i++)
 //      {
-//    	  js.log(iframeObj.contentWindow.frames[i]);
+//    	  js.print(iframeObj.contentWindow.frames[i]);
 //        this.iterateFlush(iframeObj.contentWindow.frames["mainFrame"]);
 //      }
 //    }

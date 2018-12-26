@@ -44,7 +44,7 @@
 				error : function(data) {
 					$("#btnSubmit").attr("disabled", false);
 					js.showErrorMessage(data.responseText);
-					js.closeLoading(0, true);
+					js.closeLoading();
 				},
 				success : function(data) {
 					$("#btnSubmit").attr("disabled", false);
@@ -52,7 +52,7 @@
 					if (typeof callback == "function") {
 						callback(data);
 					} else {
-						js.log(data);
+						js.print(data);
 					}
 				}
 			});

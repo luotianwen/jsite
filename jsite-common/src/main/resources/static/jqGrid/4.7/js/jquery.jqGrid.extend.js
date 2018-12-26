@@ -195,7 +195,7 @@ var DataGrid = function(options, $this){
 				//log(data.responseText);
 				//js.showMessage('操作失败！');
 			}
-			js.closeLoading(0, true);
+			js.closeLoading();
 		},
 		gridComplete : function() {
 			if (typeof options.complete == 'function'){
@@ -248,7 +248,7 @@ var DataGrid = function(options, $this){
 										try{
 											eval(confirmSuccess);
 										}catch(e){
-											Log.log('confirmSuccess error: ' + e);
+											js.print('confirmSuccess error: ' + e);
 										}
 									}else{
 										// 如果是树结构表格
