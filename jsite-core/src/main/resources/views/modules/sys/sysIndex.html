@@ -6,7 +6,6 @@ var skinName = cookie('skinName_'+user.id, false, defaultSkinName);
 var bodyClass = 'fixed noscroll sidebar-mini ' + skinName;
 %>
 <% layout('/layout/default.html', {title: '', bodyClass: bodyClass, libs: ['tabPage']}){ %>
-<link rel="stylesheet" href="${ctxStatic}/jquery-toastr/toastr.min.css">
 <link rel="stylesheet" href="${ctxStatic}/adminLTE/css/skins/${skinName}.css">
 <link rel="stylesheet" href="${ctxStatic}/modules/sys/index.css">
 
@@ -21,7 +20,6 @@ var bodyClass = 'fixed noscroll sidebar-mini ' + skinName;
 </div>
 
 <div id="desktopTabPage" class="hide" data-title="仪表盘" data-url="/desktop"></div>
-<script src="${ctxStatic}/jquery-toastr/toastr.min.js"></script>
 <script src="${ctxStatic}/jquery-plugin/jquery.slimscroll.js"></script>
 <script src="${ctxStatic}/modules/sys/index.js"></script>
 

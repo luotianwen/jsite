@@ -1,9 +1,9 @@
 <script src="${ctxStatic}/bootstrap/js/bootstrap.min.js"></script>
-<script src="${ctxStatic}/select2/4.0/select2.js"></script>
-<script src="${ctxStatic}/select2/4.0/i18n/zh_CN.js"></script>
 <script src="${ctxStatic}/adminLTE/js/adminlte.js"></script>
 <script src="${ctxStatic}/layer/3.1/layer.js"></script>
 <script src="${ctxStatic}/My97DatePicker/WdatePicker.js"></script>
+<script src="${ctxStatic}/jquery-validation/1.16/jquery.form.js"></script>
+<script src="${ctxStatic}/jquery-toastr/toastr.min.js"></script>
 <% if (inArrayString('zTree', libs!)){ %>
 <script src="${ctxStatic}/jquery-ztree/3.5/js/jquery.ztree.all.js"></script>
 <% } %>
@@ -35,7 +35,10 @@
 <script src="${ctxStatic}/webuploader/0.1.8/webuploader.js"></script>
 <% } %>
 <% if (inArrayString('icheck', libs!)){ %>
-<script src="${ctxStatic}/icheck/1.0/icheck.js"></script>
+<script src="${ctxStatic}/iCheck/icheck.js"></script>
+<script src="${ctxStatic}/select2/4.0/select2.js"></script>
+<script src="${ctxStatic}/select2/4.0/i18n/zh_CN.js"></script>
+<script src="${ctxStatic}/modules/icheck-select-init/icheck-select-init.js"></script>
 <% } %>
 <% if (inArrayString('ueditor', libs!)){ %>
 <script src="${ctxStatic}/ueditor/1.4/ueditor.config.js"></script>
