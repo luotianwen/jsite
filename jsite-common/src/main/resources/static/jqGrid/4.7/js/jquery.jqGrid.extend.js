@@ -192,8 +192,6 @@ var DataGrid = function(options, $this){
 			$('.btn').attr("disabled", false);
 			if (data.responseText && data.responseText != ''){
 				js.showErrorMessage(('操作失败，' + data.responseText + '！'));
-				//log(data.responseText);
-				//js.showMessage('操作失败！');
 			}
 			js.closeLoading();
 		},

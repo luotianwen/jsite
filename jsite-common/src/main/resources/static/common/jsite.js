@@ -36,11 +36,14 @@
         decodeURI: function(url) {
             return decodeURIComponent(url)
         },
-        transDictLabel: function(dictList, val, defVal) {
+        transDictLabel: function (dictList, val, defVal) {
             var label = "";
-            for (var dict in dictList) {
+            // for(dict in dictList) dict.value 取不到值 undefined
+            for (var i = 0; i < dictList.length; i++) {
+                var dict = dictList[i];
+                js.print(val + "-" + dict.value);
                 if (val == dict.value) {
-                    label = dict.value;
+                    label = dict.label;
                     break;
                 }
             }
@@ -68,7 +71,7 @@
                 message = "正在提交，请稍等..."
             }
 
-            js.layer.load(2,{shade: [0.3,'#000']});
+            js.layer.load(2,{shade: [0.05,'#000']});
 
             setTimeout(function(){
                 js.layer.closeAll('loading');
@@ -85,7 +88,7 @@
                     positionClass: "toast-bottom-right",
                     timeOut: 5000
                 };
-                top.toastr[type](message, title);
+                top.toastr[type?type:"info"](message, title);
             }
         },
         showErrorMessage: function(msg) {
@@ -246,13 +249,11 @@
                         js.print(data);
                     }
                 }
-            })
+            });
         }
     };
+
     window.js = js;
 })(window.jQuery, window);
-
-
-
 
 

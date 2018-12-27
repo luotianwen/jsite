@@ -79,11 +79,6 @@
           checkedClass: _checked,
           disabledClass: _disabled,
           indeterminateClass: _indeterminate,
-          
-          // liuruijun add default style.
-          checkboxClass: 'icheckbox_minimal-grey',
-          radioClass: 'iradio_minimal-grey',
-          
           labelHover: true,
           aria: false
         }, options),
