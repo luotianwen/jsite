@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -87,7 +86,7 @@ public class MenuController extends BaseController {
 	@RequiresPermissions("sys:menu:edit")
 	@RequestMapping(value = "save")
 	@ResponseBody
-	public String save(Menu menu, Model model, RedirectAttributes redirectAttributes) {
+	public String save(Menu menu) {
 		if(Global.isDemoMode()){
 			return renderResult(Global.FALSE, "演示模式，不允许操作！");
 		}
@@ -104,7 +103,7 @@ public class MenuController extends BaseController {
     @RequiresPermissions("sys:menu:edit")
     @RequestMapping(value = "delete")
     @ResponseBody
-    public String delete(Menu menu, RedirectAttributes redirectAttributes) {
+    public String delete(Menu menu) {
         if (Global.isDemoMode()) {
             return renderResult(Global.FALSE, "演示模式，不允许操作！");
         }
@@ -135,7 +134,7 @@ public class MenuController extends BaseController {
 	@RequiresPermissions("sys:menu:edit")
 	@RequestMapping(value = "updateSort")
 	@ResponseBody
-	public String updateSort(String[] ids, Integer[] sorts, RedirectAttributes redirectAttributes) {
+	public String updateSort(String[] ids, Integer[] sorts) {
 		if(Global.isDemoMode()){
 			return renderResult(Global.FALSE, "演示模式，不允许操作！");
 		}

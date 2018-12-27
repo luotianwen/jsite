@@ -54,12 +54,6 @@ public class LoginController extends BaseController{
 		
 		Principal principal = UserUtils.getPrincipal();
 
-//		// 默认页签模式
-//		String tabmode = CookieUtils.getCookie(request, "tabmode");
-//		if (tabmode == null){
-//			CookieUtils.setCookie(response, "tabmode", "1");
-//		}
-		
 		if (logger.isDebugEnabled()){
 			logger.debug("login, active session size: {}", sessionDAO.getActiveSessions(false).size());
 		}
@@ -136,8 +130,6 @@ public class LoginController extends BaseController{
 		// 非授权异常，登录失败，验证码加1。
 		if (!UnauthorizedException.class.getName().equals(exception)){
 			boolean isValid = isValidateCodeLogin(username, true, false);
-			logger.debug("isValid------------------" + isValid);
-			
 			model.addAttribute("isValidateCodeLogin", isValid);
 		}
 		
@@ -155,8 +147,6 @@ public class LoginController extends BaseController{
 			return Servlets.renderObject(response, model);
 		}
 
-//		return "modules/sys/sysLogin";
-		
 		return "modules/sys/sysLogin";
 	}
 
@@ -210,22 +200,8 @@ public class LoginController extends BaseController{
 			}
 			return "redirect:" + adminPath + "/login";
 		}
-		
 
 		return "modules/sys/sysIndex";
-	}
-	
-	/**
-	 * 获取主题方案
-	 */
-	@RequestMapping(value = "/theme/{theme}")
-	public String getThemeInCookie(@PathVariable String theme, HttpServletRequest request, HttpServletResponse response){
-		if (StringUtils.isNotBlank(theme)){
-			CookieUtils.setCookie(response, "theme", theme);
-		}else{
-			theme = CookieUtils.getCookie(request, "theme");
-		}
-		return "redirect:"+request.getParameter("url");
 	}
 	
 	/**
@@ -273,21 +249,9 @@ public class LoginController extends BaseController{
 	}
 	
 	
-	/**
-	 * 个人桌面页面
-	 */
 	@RequiresPermissions("user")
 	@RequestMapping(value = "${adminPath}/desktop")
 	public String desktop(HttpServletRequest request, HttpServletResponse response, Model model) {
-	
-		
-//		ItamcsMonitor itamcsMonitor = itamcsMonitorService.findAll(); 
-	    //List<ItamcsMonitor> sumList = itamcsMonitorService.findSum();	
-//		model.addAttribute("itamcsMonitor", itamcsMonitor);	
-		//model.addAttribute("sumList", sumList);
-		
-		//logger.info("desktop--------->>>" + sumList.toString());
-		
 		return "modules/sys/sysIndex/sysDesktop";
 	}
 }

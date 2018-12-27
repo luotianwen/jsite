@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Map;
@@ -81,39 +80,32 @@ public class RoleController extends BaseController {
 		model.addAttribute("officeList", officeList);
 		return "modules/sys/roleForm";
 	}
-	
+
+	@ResponseBody
 	@RequiresPermissions("sys:role:edit")
 	@RequestMapping(value = "save")
-	@ResponseBody
-	public String save(Role role, Model model, RedirectAttributes redirectAttributes) {
+	public String save(Role role) {
 		if(Global.isDemoMode()){
 			return renderResult(Global.FALSE, "演示模式，不允许操作！");
 		}
-
-		String resultMsg = "保存角色 “" + role.getName() + "” 成功";
 		if(!UserUtils.getUser().isAdmin()&&role.getSysData().equals(Global.YES)){
-			resultMsg = "越权操作，只有超级管理员才能修改此数据！";
-		}
-		if(Global.isDemoMode()){
-			resultMsg = "演示模式，不允许操作！";
-			return renderResult(Global.FALSE, resultMsg);
+			return renderResult(Global.FALSE, "越权操作，只有超级管理员才能修改此数据！");
 		}
 		if (!"true".equals(checkName(role.getOldName(), role.getName()))){
-			resultMsg = "保存角色 “" + role.getName() + "” 失败, 角色名已存在";
-			return renderResult(Global.FALSE, resultMsg);
+			return renderResult(Global.FALSE, "保存角色 “" + role.getName() + "” 失败, 角色名已存在");
 		}
 		if (!"true".equals(checkEnname(role.getOldEnname(), role.getEnname()))){
-			resultMsg = "保存角色 “" + role.getName() + "” 失败, 英文名已存在";
-			return renderResult(Global.FALSE, resultMsg);
+			return renderResult(Global.FALSE, "保存角色 “" + role.getName() + "” 失败, 英文名已存在");
 		}
 		
 		systemService.saveRole(role);
-		return renderResult(Global.TRUE, resultMsg);
+		return renderResult(Global.TRUE, "保存角色 “" + role.getName() + "” 成功");
 	}
-	
+
+    @ResponseBody
 	@RequiresPermissions("sys:role:edit")
 	@RequestMapping(value = "delete")
-	public String delete(Role role, RedirectAttributes redirectAttributes) {
+	public String delete(Role role) {
 		if(Global.isDemoMode()){
 			return renderResult(Global.FALSE, "演示模式，不允许操作！");
 		}
@@ -121,10 +113,7 @@ public class RoleController extends BaseController {
 		if (!UserUtils.getUser().isAdmin() && role.getSysData().equals(Global.YES)) {
 			return renderResult(Global.FALSE, "越权操作，只有超级管理员才能修改此数据！");
 		}
-		if (Global.isDemoMode()) {
-			return renderResult(Global.FALSE, "演示模式，不允许操作！");
-		}
-		
+
 		systemService.deleteRole(role);
 		return renderResult(Global.TRUE, "删除角色成功");
 	}
@@ -141,19 +130,14 @@ public class RoleController extends BaseController {
 	
 	/**
 	 * 角色分配 -- 打开角色分配对话框
-	 * @param role
-	 * @param model
+	 * @param selectData
+	 * @param checkbox
+     * @param model
 	 * @return
 	 */
 	@RequiresPermissions("sys:role:view")
 	@RequestMapping(value = "usertorole")
-	public String selectUserToRole(Role role, String selectData, String checkbox, Model model) {
-//		List<User> userList = systemService.findUser(new User(new Role(role.getId())));
-//		model.addAttribute("role", role);
-//		model.addAttribute("userList", userList);
-//		model.addAttribute("selectIds", Collections3.extractToString(userList, "name", ","));
-//		model.addAttribute("officeList", officeService.findAll());
-		
+	public String selectUserToRole(String selectData, String checkbox, Model model) {
 		model.addAttribute("selectData", selectData);
 		model.addAttribute("checkbox", checkbox);
 		
@@ -165,14 +149,14 @@ public class RoleController extends BaseController {
 	 * @param officeId
 	 * @return
 	 */
+    @ResponseBody
 	@RequiresPermissions("sys:role:view")
-	@ResponseBody
 	@RequestMapping(value = "users")
 	public List<Map<String, Object>> users(String officeId) {
 		List<Map<String, Object>> mapList = Lists.newArrayList();
 		User user = new User();
 		user.setOffice(new Office(officeId));
-		Page<User> page = systemService.findUser(new Page<User>(1, -1), user);
+		Page<User> page = systemService.findUser(new Page<>(1, -1), user);
 		for (User e : page.getList()) {
 			Map<String, Object> map = Maps.newHashMap();
 			map.put("id", e.getId());
@@ -223,18 +207,15 @@ public class RoleController extends BaseController {
 	/**
 	 * 角色分配
 	 * @param role
-	 * @param redirectAttributes
 	 * @return
 	 */
 	@RequiresPermissions("sys:role:edit")
 	@RequestMapping(value = "assignrole")
 	@ResponseBody
-	public String assignRole(Role role, RedirectAttributes redirectAttributes) {
+	public String assignRole(Role role) {
 		if(Global.isDemoMode()){
 			return renderResult(Global.FALSE, "演示模式，不允许操作！");
 		}
-		
-		logger.info("Role-------->id=" + role.getId() + " userRoleList.size=" + role.getUserList().size());
 		
 		StringBuilder msg = new StringBuilder();
 		int newNum = 0;
@@ -277,7 +258,6 @@ public class RoleController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "checkEnname")
 	public String checkEnname(String oldEnname, String enname) {
-		logger.info("checkEnname-------------->oldName=" + oldEnname + " name=" + enname);
 		if (enname!=null && enname.equals(oldEnname)) {
 			return "true";
 		} else if (enname!=null && systemService.getRoleByEnname(enname) == null) {

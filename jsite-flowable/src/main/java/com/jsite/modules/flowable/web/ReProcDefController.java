@@ -58,26 +58,23 @@ public class ReProcDefController extends BaseController {
 	 */
 	@RequiresPermissions("act:process:edit")
 	@RequestMapping(value = {"list", ""})
-	public String processList(HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String processList() {
 		return "modules/flow/flowProcessList";
 	}
 	
 	@ResponseBody
 	@RequiresPermissions("act:process:edit")
 	@RequestMapping(value = {"listData"})
-	public Page<ReProcDef> listData(String category, HttpServletRequest request, HttpServletResponse response, Model model) {
-		Page<ReProcDef> page = actProcessService.processList(new Page<ReProcDef>(request, response), category);
+	public Page<ReProcDef> listData(String category, HttpServletRequest request, HttpServletResponse response) {
+		Page<ReProcDef> page = actProcessService.processList(new Page<>(request, response), category);
 		return page;
 	}
 	
-	
-	
-	
 	/**
 	 * 读取资源，通过部署ID
-	 * @param processDefinitionId  流程定义ID
-	 * @param processInstanceId 流程实例ID
-	 * @param resourceType 资源类型(xml|image)
+	 * @param procDefId  流程定义ID
+	 * @param proInsId 流程实例ID
+	 * @param resType 资源类型(xml|image)
 	 * @param response
 	 * @throws Exception
 	 */
@@ -128,14 +125,14 @@ public class ReProcDefController extends BaseController {
 	}
 	/**
 	 * 部署流程 - 保存
-	 * @param file
+	 * @param request
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
 	@RequiresPermissions("act:process:edit")
 	@RequestMapping(value = "/deploy", method=RequestMethod.POST)
 	@ResponseBody
-	public String deploy(HttpServletRequest request, HttpServletResponse response) {
+	public String deploy(HttpServletRequest request) {
 		
 		String msg;
 		try {
@@ -160,7 +157,7 @@ public class ReProcDefController extends BaseController {
 	
 	@RequiresPermissions("act:process:edit")
 	@RequestMapping(value = "running")
-	public String runningList(HttpServletRequest request, HttpServletResponse response) {
+	public String runningList() {
 		return "modules/flow/flowProcessRunningList";
 	}
 	
@@ -171,7 +168,7 @@ public class ReProcDefController extends BaseController {
 	@RequestMapping(value = "runningData")
 	@ResponseBody
 	public Page<RuExecution> runningData(String procInsId, String procDefKey, HttpServletRequest request, HttpServletResponse response) {
-	    Page<RuExecution> page = actProcessService.runningList(new Page<RuExecution>(request, response), procInsId, procDefKey);
+	    Page<RuExecution> page = actProcessService.runningList(new Page<>(request, response), procInsId, procDefKey);
  	    
 		return page;
 	}
@@ -184,7 +181,7 @@ public class ReProcDefController extends BaseController {
 	@RequiresPermissions("act:process:edit")
 	@RequestMapping(value = "deleteProcIns")
 	@ResponseBody
-	public String deleteProcIns(String procInsId, String reason, RedirectAttributes redirectAttributes) {
+	public String deleteProcIns(String procInsId, String reason) {
         if(Global.isDemoMode()){
             return renderResult(Global.FALSE, "演示模式，不允许操作！");
         }
@@ -198,8 +195,16 @@ public class ReProcDefController extends BaseController {
 		}
 		return renderResult(Global.TRUE, msg);
 	}
-	
-	
+
+	/**
+	 * 设置流程分类
+	 */
+	@RequiresPermissions("act:process:edit")
+	@RequestMapping(value = "updateCategory")
+	public String updateCategory(String procDefId, String category, RedirectAttributes redirectAttributes) {
+		actProcessService.updateCategory(procDefId, category);
+		return "redirect:" + adminPath + "/act/process";
+	}
 	
 	
 	
@@ -220,15 +225,7 @@ public class ReProcDefController extends BaseController {
 	
 
 	
-	/**
-	 * 设置流程分类
-	 */
-	@RequiresPermissions("act:process:edit")
-	@RequestMapping(value = "updateCategory")
-	public String updateCategory(String procDefId, String category, RedirectAttributes redirectAttributes) {
-		actProcessService.updateCategory(procDefId, category);
-		return "redirect:" + adminPath + "/act/process";
-	}
+
 
 	
 	/**

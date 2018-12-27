@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -46,7 +45,7 @@ public class DictController extends BaseController {
 	
 	@RequiresPermissions("sys:dict:view")
 	@RequestMapping(value = {"list", ""})
-	public String list(Dict dict, HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String list(Model model) {
 		List<String> typeList = dictService.findTypeList();
 		model.addAttribute("typeList", typeList);
 		return "modules/sys/dictList";
@@ -55,8 +54,8 @@ public class DictController extends BaseController {
 	@RequiresPermissions("sys:dict:view")
 	@RequestMapping(value = "listAll")
 	@ResponseBody
-	public Page<Dict> listAll(Dict dict, HttpServletRequest request, HttpServletResponse response, Model model) {
-		return dictService.findPage(new Page<Dict>(request, response), dict); 
+	public Page<Dict> listAll(Dict dict, HttpServletRequest request, HttpServletResponse response) {
+		return dictService.findPage(new Page<>(request, response), dict);
 	}
 
 	@RequiresPermissions("sys:dict:view")
@@ -67,9 +66,9 @@ public class DictController extends BaseController {
 	}
 
 	@RequiresPermissions("sys:dict:edit")
-	@RequestMapping(value = "save")//@Valid
+	@RequestMapping(value = "save")
 	@ResponseBody
-	public String save(Dict dict, Model model, RedirectAttributes redirectAttributes) {
+	public String save(Dict dict) {
 		if(Global.isDemoMode()){
 			return renderResult(Global.FALSE, "演示模式，不允许操作！");
 		}
@@ -80,7 +79,7 @@ public class DictController extends BaseController {
 	@RequiresPermissions("sys:dict:edit")
 	@RequestMapping(value = "delete")
 	@ResponseBody
-	public String delete(Dict dict, RedirectAttributes redirectAttributes) {
+	public String delete(Dict dict) {
         if(Global.isDemoMode()){
             return renderResult(Global.FALSE, "演示模式，不允许操作！");
         }
@@ -91,7 +90,7 @@ public class DictController extends BaseController {
 	@RequiresPermissions("user")
 	@ResponseBody
 	@RequestMapping(value = "treeData")
-	public List<Map<String, Object>> treeData(@RequestParam(required=false) String type, HttpServletResponse response) {
+	public List<Map<String, Object>> treeData(@RequestParam(required=false) String type) {
 		List<Map<String, Object>> mapList = Lists.newArrayList();
 		Dict dict = new Dict();
 		dict.setType(type);

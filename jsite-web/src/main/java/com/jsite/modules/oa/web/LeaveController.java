@@ -101,13 +101,12 @@ public class LeaveController extends BaseController {
 	/**
 	 * 工单执行（完成任务）
 	 * @param leave
-	 * @param model
 	 * @return
 	 */
 	@RequiresPermissions("oa:leave:edit")
 	@RequestMapping(value = "saveAudit")
 	@ResponseBody
-	public String saveAudit(Leave leave, Model model) {
+	public String saveAudit(Leave leave) {
 		String message = leaveService.auditSave(leave);
 		return renderResult(Global.TRUE, message);
 	}

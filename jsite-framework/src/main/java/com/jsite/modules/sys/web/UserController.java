@@ -89,15 +89,14 @@ public class UserController extends BaseController {
 	
 	@RequiresPermissions("sys:user:view")
 	@RequestMapping(value = "getUserById")
-	public String getUserById(User user, HttpServletRequest request, HttpServletResponse response, Model model) {
-		
+	public String getUserById(User user, HttpServletResponse response) {
 		return renderString(response, user);
 	}
 	
 	@RequiresPermissions("sys:user:edit")
 	@RequestMapping(value = "changeStatus")
 	@ResponseBody
-	public String userStatusChange(User user, HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String userStatusChange(User user) {
 		if(Global.isDemoMode()){
 			return renderResult(Global.FALSE, "演示模式，不允许操作！");
 		}
@@ -110,7 +109,7 @@ public class UserController extends BaseController {
 	@RequiresPermissions("sys:user:edit")
 	@RequestMapping(value = "resetPass")
 	@ResponseBody
-	public String resetPass(User user, HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String resetPass(User user) {
         if(Global.isDemoMode()){
             return renderResult(Global.FALSE, "演示模式，不允许操作！");
         }
@@ -123,7 +122,7 @@ public class UserController extends BaseController {
 	@RequiresPermissions("sys:user:edit")
 	@RequestMapping(value = "save")
 	@ResponseBody
-	public String save(User user, HttpServletRequest request, Model model, RedirectAttributes redirectAttributes) {
+	public String save(User user, HttpServletRequest request) {
         if(Global.isDemoMode()){
             return renderResult(Global.FALSE, "演示模式，不允许操作！");
         }
@@ -135,12 +134,7 @@ public class UserController extends BaseController {
 		if(user.getIsNewRecord()) {
 			user.setPassword(SystemService.entryptPassword(DictUtils.getDictValue("default_password", "default_pass", "123456")));
 		}
-		/*if (StringUtils.isNotBlank(user.getNewPassword())) {
-			user.setPassword(SystemService.entryptPassword(user.getNewPassword()));
-		}*/
 		if (!"true".equals(checkLoginName(user.getOldLoginName(), user.getLoginName()))){
-			//addMessage(model, "保存用户'" + user.getLoginName() + "'失败，登录名已存在");
-			//return form(user, model);
 			return renderResult(Global.FALSE,"保存用户'" + user.getLoginName() + "'失败，登录名已存在");
 		}
 		// 角色数据有效性验证，过滤不在授权内的角色
@@ -157,42 +151,40 @@ public class UserController extends BaseController {
 		// 清除当前用户缓存
 		if (user.getLoginName().equals(UserUtils.getUser().getLoginName())){
 			UserUtils.clearCache();
-			//UserUtils.getCacheMap().clear();
 		}
 		return renderResult(Global.TRUE,"保存用户'" + user.getLoginName() + "'成功");
-		//addMessage(redirectAttributes, "保存用户'" + user.getLoginName() + "'成功");
-		//return "redirect:" + adminPath + "/sys/user/list?repage";
 	}
 	
 	@RequiresPermissions("sys:user:edit")
 	@RequestMapping(value = "delete")
 	@ResponseBody
-	public String delete(User user, RedirectAttributes redirectAttributes) {
-        if(Global.isDemoMode()){
+    public String delete(User user) {
+        if (Global.isDemoMode()) {
             return renderResult(Global.FALSE, "演示模式，不允许操作！");
         }
 
-		if (UserUtils.getUser().getId().equals(user.getId())){
-			return renderResult(Global.FALSE, "删除用户失败, 不允许删除当前用户");
-		}else if (User.isAdmin(user.getId())){
-			return renderResult(Global.FALSE, "删除用户失败, 不允许删除超级管理员用户");
-		}else{
-			systemService.deleteUser(user);
-			return renderResult(Global.TRUE, "删除用户成功");
-		}
-	}
+        if (UserUtils.getUser().getId().equals(user.getId())) {
+            return renderResult(Global.FALSE, "删除用户失败, 不允许删除当前用户");
+        }
+
+        if (User.isAdmin(user.getId())) {
+            return renderResult(Global.FALSE, "删除用户失败, 不允许删除超级管理员用户");
+        }
+
+        systemService.deleteUser(user);
+        return renderResult(Global.TRUE, "删除用户成功");
+    }
 	
 	/**
 	 * 导出用户数据
 	 * @param user
 	 * @param request
 	 * @param response
-	 * @param redirectAttributes
 	 * @return
 	 */
 	@RequiresPermissions("sys:user:view")
     @RequestMapping(value = "export", method=RequestMethod.GET)
-    public void exportFile(User user, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+    public void exportFile(User user, HttpServletRequest request, HttpServletResponse response) {
 		try {
             String fileName = "用户数据"+DateUtils.getDate("yyyyMMddHHmmss")+".xlsx";
             Page<User> page = systemService.findUser(new Page<User>(request, response, -1), user);
@@ -210,45 +202,43 @@ public class UserController extends BaseController {
 	@RequiresPermissions("sys:user:edit")
     @RequestMapping(value = "import", method=RequestMethod.POST)
     @ResponseBody
-	public String importFile(HttpServletRequest request) {
-        if(Global.isDemoMode()){
+    public String importFile(HttpServletRequest request) {
+        if (Global.isDemoMode()) {
             return renderResult(Global.FALSE, "演示模式，不允许操作！");
         }
 
-		try {
-			int successNum = 0;
-			int failureNum = 0;
-			StringBuilder failureMsg = new StringBuilder();
-			Map<String, Object> fieldsMap = UploadUtils4.getInstance().initFields(request);
-			FileItem fileItem = ((List<FileItem>) fieldsMap.get(UploadUtils4.FILE_FIELDS)).get(0);
-        	ImportExcel ei = new ImportExcel(fileItem, 1, 0);
-			List<User> list = ei.getDataList(User.class);
-			logger.info("===import user size=="+list.size());
-				for (User user : list){
-					try{
-						if ("true".equals(checkLoginName("", user.getLoginName()))){
-							user.setPassword(SystemService.entryptPassword("123456"));
-							systemService.saveUser(user);
-							successNum++;
-						}else{
-							failureMsg.append("<br/>登录名 "+user.getLoginName()+" 已存在; ");
-							failureNum++;
-						}
-					}catch(ConstraintViolationException ex){
-						failureMsg.append("<br/>登录名 "+user.getLoginName()+" 导入失败：");
-						failureNum++;
-					}catch (Exception ex) {
-						failureMsg.append("<br/>登录名 "+user.getLoginName()+" 导入失败："+ex.getMessage());
-					}
-				}
-				if (failureNum>0){
-					failureMsg.insert(0, "，失败 "+failureNum+" 条用户，导入信息如下：");
-				}
-    		return renderResult(Global.TRUE,"已成功导入 "+successNum+" 条用户"+failureMsg);
-    			//addMessage(redirectAttributes, "已成功导入 "+successNum+" 条用户"+failureMsg);
-		}catch (Exception e) {
-			return renderResult(Global.FALSE, "导入用户失败！失败信息："+e.getMessage());
-		}	
+        try {
+            int successNum = 0;
+            int failureNum = 0;
+            StringBuilder failureMsg = new StringBuilder();
+            Map<String, Object> fieldsMap = UploadUtils4.getInstance().initFields(request);
+            FileItem fileItem = ((List<FileItem>) fieldsMap.get(UploadUtils4.FILE_FIELDS)).get(0);
+            ImportExcel ei = new ImportExcel(fileItem, 1, 0);
+            List<User> list = ei.getDataList(User.class);
+            for (User user : list) {
+                try {
+                    if ("true".equals(checkLoginName("", user.getLoginName()))) {
+                        user.setPassword(SystemService.entryptPassword("123456"));
+                        systemService.saveUser(user);
+                        successNum++;
+                    } else {
+                        failureMsg.append("<br/>登录名 " + user.getLoginName() + " 已存在; ");
+                        failureNum++;
+                    }
+                } catch (ConstraintViolationException ex) {
+                    failureMsg.append("<br/>登录名 " + user.getLoginName() + " 导入失败：");
+                    failureNum++;
+                } catch (Exception ex) {
+                    failureMsg.append("<br/>登录名 " + user.getLoginName() + " 导入失败：" + ex.getMessage());
+                }
+            }
+            if (failureNum > 0) {
+                failureMsg.insert(0, "，失败 " + failureNum + " 条用户，导入信息如下：");
+            }
+            return renderResult(Global.TRUE, "已成功导入 " + successNum + " 条用户" + failureMsg);
+        } catch (Exception e) {
+            return renderResult(Global.FALSE, "导入用户失败！失败信息：" + e.getMessage());
+        }
     }
 	
 	/**
@@ -259,7 +249,7 @@ public class UserController extends BaseController {
 	 */
 	@RequiresPermissions("sys:user:view")
     @RequestMapping(value = "import/template")
-    public String importFileTemplate(HttpServletResponse response, RedirectAttributes redirectAttributes) {
+    public String importFileTemplate(HttpServletResponse response) {
 		try {
             String fileName = "用户数据导入模板.xlsx";
     		List<User> list = Lists.newArrayList(); list.add(UserUtils.getUser());
@@ -297,7 +287,7 @@ public class UserController extends BaseController {
 	 */
 	@RequiresPermissions("user")
 	@RequestMapping(value = "info")
-	public String info(User user, HttpServletResponse response, Model model) {
+	public String info(User user, Model model) {
 		User currentUser = UserUtils.getUser();
 		if (StringUtils.isNotBlank(user.getName())){
 			if(StringUtils.isNotBlank(user.getImageBase64())) {
@@ -309,25 +299,18 @@ public class UserController extends BaseController {
 			currentUser.setRemarks(user.getRemarks());
 			currentUser.setPhone(user.getPhone());
 			systemService.updateUserInfo(currentUser);
-			model.addAttribute("message", "保存用户信息成功");
 		}
 		model.addAttribute("user", currentUser);
-		//修改Global 没有私有构造函数，实现懒汉式单例模式.在第一次调用的时候实例化自己！
-		model.addAttribute("Global", Global.getInstance());
 		return "modules/sys/userInfo";
 	}
 	
 	
 	@RequestMapping(value = "headphoto")
-	public String headphoto(User user, HttpServletResponse response, Model model) {
+	public String headphoto(Model model) {
 		User currentUser = UserUtils.getUser();
 		model.addAttribute("user", currentUser);
-		//修改Global 没有私有构造函数，实现懒汉式单例模式.在第一次调用的时候实例化自己！
-		//model.addAttribute("Global", Global.getInstance());
 		return "modules/sys/imageclip";
 	}
-	
-	
 
 	/**
 	 * 返回用户信息
@@ -368,7 +351,7 @@ public class UserController extends BaseController {
 	@RequiresPermissions("user")
 	@ResponseBody
 	@RequestMapping(value = "treeData")
-	public List<Map<String, Object>> treeData(@RequestParam(required=false) String officeId, HttpServletResponse response) {
+	public List<Map<String, Object>> treeData(@RequestParam(required=false) String officeId) {
 		List<Map<String, Object>> mapList = Lists.newArrayList();
 		List<User> list = systemService.findUserByOfficeId(officeId);
 		for (int i=0; i<list.size(); i++){
@@ -381,36 +364,5 @@ public class UserController extends BaseController {
 		}
 		return mapList;
 	}
-	/**
-	 * 我的首页
-	 * @return
-	 */
-	@RequiresPermissions("user")
-	@RequestMapping(value = "myhome")
-	public String myhome() {
-		//User user = UserUtils.getUser();
-		return "modules/sys/myhome";
-	}
-	
-//	@InitBinder
-//	public void initBinder(WebDataBinder b) {
-//		b.registerCustomEditor(List.class, "roleList", new PropertyEditorSupport(){
-//			@Autowired
-//			private SystemService systemService;
-//			@Override
-//			public void setAsText(String text) throws IllegalArgumentException {
-//				String[] ids = StringUtils.split(text, ",");
-//				List<Role> roles = new ArrayList<Role>();
-//				for (String id : ids) {
-//					Role role = systemService.getRole(Long.valueOf(id));
-//					roles.add(role);
-//				}
-//				setValue(roles);
-//			}
-//			@Override
-//			public String getAsText() {
-//				return Collections3.extractToString((List) getValue(), "id", ",");
-//			}
-//		});
-//	}
+
 }
