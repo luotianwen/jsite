@@ -76,7 +76,7 @@
                             <th title="字段在表单中显示的类型">显示表单类型</th><th title="显示表单类型设置为“下拉框、复选框、点选框”时，需设置字典的类型">字典类型</th><th>排序</th></tr></thead>
                         <tbody>
                         <% for(column in genTable.columnList) {
-                        var index = columnLP.index;
+                        var index = columnLP.index-1;
                         %>
                         <tr${column.delFlag=='1'?' class="error" title="已删除的列，保存之后消失！"':''}>
                         <td nowrap="nowrap">
@@ -102,7 +102,7 @@
                             <input type="text" name="columnList[${index}].javaField" value="${column.javaField}" maxlength="200" class="form-control required "/>
                         </td>
                         <td>
-                            <input type="checkbox" name="columnList[${index}].isRow" value="1" ${column.isRow=='1' ? 'checked="checked"' : ''} class="form-control "/>
+                            <input type="checkbox" name="columnList[${index}].isRow" value="1" ${column.isRow=='1' ? 'checked="checked" ' : ''} class="form-control "/>
                         </td>
                         <td>
                             <input type="checkbox" name="columnList[${index}].isPk" value="1" ${column.isPk=='1' ? 'checked="checked"' : ''} class="form-control "/>
@@ -170,6 +170,12 @@
 <script type="text/javascript">
     $("#inputForm").validate({
         submitHandler: function(form){
+            $("input[type=checkbox]").each(function(){
+                $(this).after("<input type=\"hidden\" name=\""+$(this).attr("name")+"\" value=\""
+                    +($(this).attr("checked")?"1":"0")+"\"/>");
+                $(this).attr("name", "_"+$(this).attr("name"));
+            });
+
             js.ajaxSubmitForm($(form), function(data){
                 js.showMessage(data.message);
 

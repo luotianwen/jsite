@@ -18,7 +18,7 @@
 				<#assign showcount=-1 />
 				<#assign isclose=false />
 
-				<table class="table-form">
+				<table class="table-view">
                 <#list table.columnList as c>
                 <#if c.isEdit?? && c.isEdit == "1" && c.isRow == "0" && (c.isNotBaseField || c.simpleJavaField == 'remarks')>
                     <#assign showcount=showcount+1 />
@@ -26,7 +26,7 @@
 					<tr>
 					<#assign isclose=false />
 					</#if>
-                        <td class="tit">${c.comments}</td>
+                        <td>${c.comments}</td>
                         <td>
                             <#if c.dictType?? && c.dictType != "" >
                             ${"$"}{@DictUtils.getDictLabel(${className}.${c.javaFieldId}, '${c.dictType}', '')}
@@ -48,7 +48,7 @@
                 <#list table.columnList as c>
                     <#if c.isEdit?? && c.isEdit == "0" && c.isRow == "1" && (c.isNotBaseField || c.simpleJavaField == 'remarks')>
                         <tr>
-                            <td class="tit" >${c.comments}</td>
+                            <td >${c.comments}</td>
 						    <td colspan="3" ><td> ${"$"}{${className}.${c.javaFieldId}} </td></td>
                         </tr>
                     </#if>

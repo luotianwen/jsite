@@ -95,3 +95,60 @@
 
 .box-main form>.box-footer,.nav-main form>.box-footer{background:#fafafa}
 .box-main form>.box-footer .row,.nav-main form>.box-footer .row{margin:5px 0 5px -25px}
+
+.table-view{
+    border-collapse:collapse;
+    border-spacing:0;
+    width:100%;
+    border:1px solid #c8d6e6;
+    font-size:14px
+}
+
+.table-view td{
+    padding:6px;
+    border:1px solid #c8d6e6;
+    min-width:30%;
+    position:relative
+}
+
+.table th {
+    white-space:nowrap;
+    background-color:#f5f5f5;
+    background-image:-moz-linear-gradient(top,#ffffff,#f5f5f5);
+    background-image:-ms-linear-gradient(top,#ffffff,#f5f5f5);
+    background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#FAFAF9), to(#f5f5f5));
+    background-image:-webkit-linear-gradient(top,#ffffff,#f5f5f5);
+    background-image:-o-linear-gradient(top,#ffffff,#f5f5f5);
+    background-image:linear-gradient(top,#ffffff,#f5f5f5);
+    background-repeat:repeat-x;
+}
+
+.table-view .table-caption{
+    background-color:#ccebff!important;
+    color:#fff;
+    font-weight:bold
+}
+
+.table-view input,.table-view select,.table-view textarea,.table-view .select2-choice{
+    border:0;
+    border-bottom:1px dotted #bbb;
+    background-color:#fff!important;
+    color:#333;resize:none
+}
+
+.check-form label{
+    height:30px;
+    line-height:23px;
+    margin:0;
+    padding:2px 8px 0 0;
+    font-size:13px;
+    font-weight:400;
+    cursor:pointer;
+}
+.check-form label input{
+    height:18px;
+    width:18px;
+    display:inline-block;
+    margin:-4px 2px 0 0;
+    vertical-align:middle;
+}
