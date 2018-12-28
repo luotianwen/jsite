@@ -13,8 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  * 请求拦截器，Flowable动态设置用户信息
  * @author liuruijun
  * @version 2018-8-19
- * 1.SpringMVC需要增加拦截器，动态设置Flowable用户信息
- * 2.Springboot 因为在入口Application排除掉了Flowable的自动配置，因此不需要增加拦截器
+ * 需要增加拦截器，动态设置Flowable用户信息
  *
  */
 public class FlowableHandlerInterceptor implements HandlerInterceptor {

@@ -1,6 +1,7 @@
 package com.jsite.modules.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jsite.common.config.Global;
 import com.jsite.common.mapper.JsonMapper;
 import com.jsite.common.persistence.BaseEntity;
 import com.jsite.common.utils.SpringContextHolder;
@@ -21,6 +22,7 @@ import org.springframework.http.converter.support.AllEncompassingFormHttpMessage
 import org.springframework.http.converter.xml.MarshallingHttpMessageConverter;
 import org.springframework.http.converter.xml.SourceHttpMessageConverter;
 import org.springframework.oxm.xstream.XStreamMarshaller;
+import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -165,21 +167,20 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
                         adminPath+"/sys/menu/tree",
                         adminPath+"/sys/menu/treeData",
                         adminPath+"/oa/oaNotify/self/count");
-        //1.SpringMVC需要增加拦截器，动态设置Flowable用户信息
-        //2.Springboot 因为在入口Application排除掉了Flowable的自动配置，因此不需要增加拦截器
-//        if(Global.isFlowableEnable()) {
-//            try {
-//                Class<?> flowableHandlerInterceptor = Class.forName("com.jsite.modules.flowable.interceptor.FlowableHandlerInterceptor");
-//                registry.addInterceptor((HandlerInterceptor) flowableHandlerInterceptor.newInstance())
-//                        .addPathPatterns("/app/**");
-//            } catch (ClassNotFoundException e) {
-//                e.printStackTrace();
-//            } catch (IllegalAccessException e) {
-//                e.printStackTrace();
-//            } catch (InstantiationException e) {
-//                e.printStackTrace();
-//            }
-//        }
+        //需要增加拦截器，动态设置Flowable用户信息
+        if(Global.isFlowableEnable()) {
+            try {
+                Class<?> flowableHandlerInterceptor = Class.forName("com.jsite.modules.flowable.interceptor.FlowableHandlerInterceptor");
+                registry.addInterceptor((HandlerInterceptor) flowableHandlerInterceptor.newInstance())
+                        .addPathPatterns("/app/**");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            }
+        }
 
         super.addInterceptors(registry);
     }
