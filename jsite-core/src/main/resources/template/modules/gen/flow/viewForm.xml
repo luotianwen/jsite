@@ -26,7 +26,7 @@
 				<#assign showcount=-1 />
 				<#assign isclose=false />
 
-				<table class="table-form">
+				<table class="table-view">
                 <#list table.columnList as c>
                 <#if c.isEdit?? && c.isEdit == "1" && c.isRow == "0" && (c.isNotBaseField || c.simpleJavaField == 'remarks')>
                     <#assign showcount=showcount+1 />

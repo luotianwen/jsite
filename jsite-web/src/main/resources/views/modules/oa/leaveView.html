@@ -16,24 +16,24 @@
 				<#form:hidden path="act.procDefId" value="${leave.act.procDefId}"/>
 				<#form:hidden id="flag" path="act.flag"/>
 				
-				<table class="table-form">
+				<table class="table-view">
 					<tr>
-						<td class="tit">请假类型</td><td colspan="3">	${@DictUtils.getDictLabel(leave.leaveType, 'oa_leave_type', '')}</td>
+						<td>请假类型</td><td colspan="3">	${@DictUtils.getDictLabel(leave.leaveType, 'oa_leave_type', '')}</td>
 					</tr>
 					<tr>
-						<td class="tit">开始时间</td><td>	${leave.startTime, dateFormat='yyyy-MM-dd HH:mm:ss'}</td>
-						<td class="tit">结束时间</td><td>	${leave.endTime, dateFormat='yyyy-MM-dd HH:mm:ss'}</td>
+						<td>开始时间</td><td>	${leave.startTime, dateFormat='yyyy-MM-dd HH:mm:ss'}</td>
+						<td>结束时间</td><td>	${leave.endTime, dateFormat='yyyy-MM-dd HH:mm:ss'}</td>
 					</tr>
 					<tr>
-						<td class="tit" >请假原因</td>
+						<td >请假原因</td>
 						<td colspan="3" >	${leave.reason}</td>
 					</tr>
 					<tr>
-						<td class="tit" >部门领导意见</td>
+						<td >部门领导意见</td>
 						<td colspan="3" >	${leave.deptLeadText}</td>
 					</tr>
 					<tr>
-						<td class="tit" >人力资源部意见</td>
+						<td >人力资源部意见</td>
 						<td colspan="3" >	${leave.hrText}</td>
 					</tr>
 				</table>
