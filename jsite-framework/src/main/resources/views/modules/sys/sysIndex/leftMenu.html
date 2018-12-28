@@ -3,7 +3,7 @@
 	<div class="user-panel">
 		<div class="pull-left image">
 			<img data-href="/sys/user/info" data-title="个人中心" class="addTabPage img-circle"
-				src="${@user.getPhoto()}" onError="this.src='${ctxStatic}/${defaultUrl}';"/>
+				src="${@user.getPhoto()}" onError="this.onError=null;this.src='${ctxStatic}/${defaultUrl}';"/>
 				<!-- .replaceFirst('/ctxPath', ctxPath) -->
 		</div>
 		<div class="pull-left info">

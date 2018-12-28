@@ -1,12 +1,12 @@
 <% var defaultUrl =@DictUtils.getDictValue('默认头像','default_headphoto_small','images/userinfo.jpg'); %>
 <li class="dropdown user user-menu mr10">
 	<a href="javascript:" class="dropdown-toggle" data-toggle="dropdown" > <!--data-hover="dropdown"-->
-		<img src="${@user.getPhoto()}" onError="this.src='${ctxStatic}/${defaultUrl}';" class="user-image" alt="User Image">
+		<img src="${@user.getPhoto()}" onError="this.onError=null;this.src='${ctxStatic}/${defaultUrl}';" class="user-image" alt="User Image">
 		<span class="hidden-xs">${user.loginName}</span>
 	</a>
 	<ul class="dropdown-menu" >
         <li class="user-header">
-            <img src="${@user.getPhoto()}" onError="this.src='${ctxStatic}/${defaultUrl}';" class="img-circle" alt="User Image">
+            <img src="${@user.getPhoto()}" onError="this.onError=null;this.src='${ctxStatic}/${defaultUrl}';" class="img-circle" alt="User Image">
 
             <p>
                 ${@user.getName()} - ${@user.getNo()}
