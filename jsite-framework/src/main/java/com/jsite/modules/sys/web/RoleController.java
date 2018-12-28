@@ -137,7 +137,7 @@ public class RoleController extends BaseController {
 	 */
 	@RequiresPermissions("sys:role:view")
 	@RequestMapping(value = "usertorole")
-	public String selectUserToRole(String selectData, String checkbox, Model model) {
+	public String selectUserToRole(Role role, String selectData, String checkbox, Model model) {
 		model.addAttribute("selectData", selectData);
 		model.addAttribute("checkbox", checkbox);
 		
