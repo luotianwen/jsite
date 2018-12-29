@@ -1,3 +1,18 @@
+/*
+ Navicat Premium Data Transfer
+
+ Source Server         : jsite
+ Source Server Type    : MySQL
+ Source Server Version : 80013
+ Source Host           : localhost:3306
+ Source Schema         : jsite
+
+ Target Server Type    : MySQL
+ Target Server Version : 80013
+ File Encoding         : 65001
+
+ Date: 29/12/2018 14:51:33
+*/
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
@@ -30,10 +45,8 @@ CREATE TABLE `gen_scheme`  (
 -- ----------------------------
 -- Records of gen_scheme
 -- ----------------------------
-INSERT INTO `gen_scheme` VALUES ('35a13dc260284a728a270db3f382664b', '树结构', 'treeTable', 'com.jsite.modules', 'test', '', '树结构生成', '树结构', 'liuruijun', 'f6e4dafaa72f4c509636484715f33a96', '1', '2013-08-12 13:10:05', '1', '2018-11-20 11:18:53', '', '0');
-INSERT INTO `gen_scheme` VALUES ('9c9c0fa251e2465bac25aaa659119b16', '请假流程', 'treeTableAndList', 'com.jsite.modules', 'aa', '', '请假流程', '请假流程', 'liuruijun', '67aa839ada674dbe96bc74b317f10f75', '1', '2018-08-29 12:48:36', '1', '2018-12-26 12:49:55', '', '0');
-INSERT INTO `gen_scheme` VALUES ('9c9de9db6da743bb899036c6546061ac', '单表', 'curd', 'com.jsite.modules', 'test', 'danbiao', '单表生成', '单表生成', 'liuruijun', 'aef6f1fc948f4c9ab1c1b780bc471cc2', '1', '2013-08-12 13:10:05', '1', '2018-12-22 10:47:39', '', '0');
-INSERT INTO `gen_scheme` VALUES ('e6d905fd236b46d1af581dd32bdfb3b0', '主子表', 'curd_many', 'com.jsite.modules', 'test', '', '主子表生成', '主子表', 'liuruijun', '43d6d5acffa14c258340ce6765e46c6f', '1', '2013-08-12 13:10:05', '1', '2018-11-20 11:18:35', '', '0');
+INSERT INTO `gen_scheme` VALUES ('c544bf7da3744ab1aa285fa3bfef6000', '主子表生成', 'curd_many', 'com.jsite.modules', 'test', 'zhuzibiao', '主子表生成测试', '主子表生成', 'liuruijun', 'd7c3fff144a046698aa3766844582a4c', '1', '2018-12-29 11:50:24', '1', '2018-12-29 14:08:40', '', '0');
+INSERT INTO `gen_scheme` VALUES ('f09437aa6b9c440481e40aa63daf81d7', '单表生成', 'curd', 'com.jsite.modules', 'test', 'danbiao', '单表生成测试', '单表生成', 'liuruijun', '39c9a49ccd87400b9b19606a46b12dd6', '1', '2018-12-29 11:46:43', '1', '2018-12-29 11:46:43', '', '0');
 
 -- ----------------------------
 -- Table structure for gen_table
@@ -60,11 +73,9 @@ CREATE TABLE `gen_table`  (
 -- ----------------------------
 -- Records of gen_table
 -- ----------------------------
-INSERT INTO `gen_table` VALUES ('43d6d5acffa14c258340ce6765e46c6f', 'test_data_main', '业务数据表', 'TestDataMain', NULL, NULL, '1', '2013-08-12 13:10:05', '1', '2013-08-12 13:10:05', NULL, '0');
-INSERT INTO `gen_table` VALUES ('67aa839ada674dbe96bc74b317f10f75', 'oa_leave', '请假流程表', 'OaLeave', '', '', '1', '2018-08-29 12:45:46', '1', '2018-12-25 19:09:58', '', '0');
-INSERT INTO `gen_table` VALUES ('6e05c389f3c6415ea34e55e9dfb28934', 'test_data_child', '业务数据子表', 'TestDataChild', 'test_data_main', 'test_data_main_id', '1', '2013-08-12 13:10:05', '1', '2018-12-21 23:11:47', NULL, '0');
-INSERT INTO `gen_table` VALUES ('aef6f1fc948f4c9ab1c1b780bc471cc2', 'test_data', '业务数据表', 'TestData', '', '', '1', '2013-08-12 13:10:05', '1', '2018-12-25 08:28:20', '', '0');
-INSERT INTO `gen_table` VALUES ('f6e4dafaa72f4c509636484715f33a96', 'test_tree', '树结构表', 'TestTree', NULL, NULL, '1', '2013-08-12 13:10:05', '1', '2013-08-12 13:10:05', NULL, '0');
+INSERT INTO `gen_table` VALUES ('39c9a49ccd87400b9b19606a46b12dd6', 'test_data', '业务数据表', 'TestData', '', '', '1', '2018-12-29 11:19:36', '1', '2018-12-29 11:19:36', NULL, '0');
+INSERT INTO `gen_table` VALUES ('794ea2d0349e4590ba4366529d499833', 'test_data_child', '业务数据子表', 'TestDataChild', 'test_data_main', 'test_data_main_id', '1', '2018-12-29 11:21:18', '1', '2018-12-29 11:21:18', NULL, '0');
+INSERT INTO `gen_table` VALUES ('d7c3fff144a046698aa3766844582a4c', 'test_data_main', '业务数据表', 'TestDataMain', '', '', '1', '2018-12-29 11:20:51', '1', '2018-12-29 11:20:51', NULL, '0');
 
 -- ----------------------------
 -- Table structure for gen_table_column
@@ -106,52 +117,41 @@ CREATE TABLE `gen_table_column`  (
 -- ----------------------------
 -- Records of gen_table_column
 -- ----------------------------
-INSERT INTO `gen_table_column` VALUES ('109e23fedef84b5083f924fbbc46d2b7', '6e05c389f3c6415ea34e55e9dfb28934', 'create_date', '创建时间', 'datetime', 'java.util.Date', 'createDate', NULL, NULL, NULL, '1', '1', '1', NULL, '=', 'dateselect', '', NULL, 50, '1', '2018-12-21 22:18:47', '1', '2018-12-21 23:11:47', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('137318031851419492867f49cc50d754', 'aef6f1fc948f4c9ab1c1b780bc471cc2', 'update_by', '更新者', 'varchar(64)', 'com.jsite.modules.sys.entity.User', 'updateBy.id', '0', '0', '0', '1', '1', '1', '0', '=', 'input', '', NULL, 100, '1', '2018-08-29 10:42:40', '1', '2018-12-25 08:28:20', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('13fc1a1671af468684dc325443e01442', '67aa839ada674dbe96bc74b317f10f75', 'reason', '请假理由', 'varchar(255)', 'String', 'reason', '1', '0', '1', '1', '1', '0', '0', '=', 'textarea', '', NULL, 60, '1', '2018-08-29 12:45:46', '1', '2018-12-25 19:09:58', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('185fe2c1ce3e4ca3b2c5278ad4180876', 'aef6f1fc948f4c9ab1c1b780bc471cc2', 'sex', '性别', 'char(1)', 'This', 'sex', '0', '0', '1', '1', '1', '0', '0', '=', 'input', '', NULL, 60, '1', '2018-08-29 10:42:40', '1', '2018-12-25 08:28:20', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('1aebdd243c1f4a4faba4e1b0fe927332', '67aa839ada674dbe96bc74b317f10f75', 'apply_time', '申请时间', 'datetime', 'java.util.Date', 'applyTime', '0', '0', '1', '1', '1', '0', '0', '=', 'dateselect', '', NULL, 90, '1', '2018-08-29 12:45:46', '1', '2018-12-25 19:09:58', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('1fd4616c314240f490570cf8846b1df2', '67aa839ada674dbe96bc74b317f10f75', 'id', '编号', 'varchar(64)', 'String', 'id', '1', '1', '1', '1', '1', '0', '0', '=', 'input', '', NULL, 10, '1', '2018-08-29 12:45:46', '1', '2018-12-25 19:09:58', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('216f7b2d0fbb4fd09b81605bde8012e0', 'aef6f1fc948f4c9ab1c1b780bc471cc2', 'create_by', '创建者', 'varchar(64)', 'com.jsite.modules.sys.entity.User', 'createBy.id', '0', '0', '0', '1', '0', '0', '0', '=', 'input', '', NULL, 80, '1', '2018-08-29 10:42:40', '1', '2018-12-25 08:28:20', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('2658b3918d6d468f9ad7abb650b90c4c', 'aef6f1fc948f4c9ab1c1b780bc471cc2', 'del_flag', '删除标记', 'char(1)', 'String', 'delFlag', NULL, NULL, NULL, '1', NULL, NULL, NULL, '=', 'radiobox', 'del_flag', NULL, 130, '1', '2018-08-29 10:42:40', '1', '2018-12-25 08:28:20', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('2f3405a2dd7f4bef974aa1df9bcf571e', 'e1a0555aeab445af98769e5cd3a759b8', 'test_data_main_id', '业务主表ID', 'varchar(64)', 'String', 'testDataMainId', NULL, NULL, '1', '1', '1', NULL, NULL, '=', 'input', '', NULL, 20, '1', '2018-12-21 09:44:10', '1', '2018-12-21 09:44:10', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('36de759b257248429a07556074263a0e', '67aa839ada674dbe96bc74b317f10f75', 'remarks', '备注信息', 'varchar(255)', 'String', 'remarks', NULL, NULL, '1', '1', NULL, NULL, NULL, '=', 'textarea', '', NULL, 140, '1', '2018-08-29 12:45:46', '1', '2018-12-25 19:09:58', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('39f87fec41f340f4a405e617d2e644a6', '6e05c389f3c6415ea34e55e9dfb28934', 'update_date', '更新时间', 'datetime', 'java.util.Date', 'updateDate', NULL, NULL, '1', '1', '1', '1', NULL, '=', 'dateselect', '', NULL, 70, '1', '2018-12-21 22:18:47', '1', '2018-12-21 23:11:47', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('40175428396a42f989015e99b3d7db65', 'aef6f1fc948f4c9ab1c1b780bc471cc2', 'area_id', '归属区域', 'varchar(64)', 'com.jsite.modules.sys.entity.User', 'area.id|name', '0', '0', '1', '1', '1', '1', '1', '=', 'areaselect', '', NULL, 40, '1', '2018-08-29 10:42:40', '1', '2018-12-25 08:28:20', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('46ab9bffa1494ca29f3cc6e3ff5d196b', '6e05c389f3c6415ea34e55e9dfb28934', 'name', '名称', 'varchar(100)', 'String', 'name', NULL, NULL, '1', '1', '1', '1', '1', 'like', 'input', '', NULL, 30, '1', '2018-12-21 22:18:47', '1', '2018-12-21 23:11:47', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('55771d60b73148018612ed169c4ff85d', 'aef6f1fc948f4c9ab1c1b780bc471cc2', 'name', '名称', 'varchar(100)', 'Custom', 'name', '0', '0', '1', '1', '1', '1', '1', 'like', 'input', '', NULL, 50, '1', '2018-08-29 10:42:40', '1', '2018-12-25 08:28:20', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('5d28f1ad944541d2b0507e0ef5090dcb', 'aef6f1fc948f4c9ab1c1b780bc471cc2', 'create_date', '创建时间', 'datetime', 'java.util.Date', 'createDate', '0', '0', '0', '1', '1', '0', '0', '=', 'dateselect', '', NULL, 90, '1', '2018-08-29 10:42:40', '1', '2018-12-25 08:28:20', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('60840f1bd21949f382ecc76a556da9fb', '6e05c389f3c6415ea34e55e9dfb28934', 'id', '编号', 'varchar(64)', 'String', 'id', NULL, '1', '1', '1', '1', '1', '1', '=', 'input', '', NULL, 10, '1', '2018-12-21 22:18:47', '1', '2018-12-21 23:11:47', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('67182329980c4add89492a37ed952aec', 'e1a0555aeab445af98769e5cd3a759b8', 'create_date', '创建时间', 'datetime', 'java.util.Date', 'createDate', NULL, NULL, NULL, '1', NULL, NULL, NULL, '=', 'dateselect', '', NULL, 50, '1', '2018-12-21 09:44:11', '1', '2018-12-21 09:44:11', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('682fb7315b3e43dea8ec4a3419924357', '67aa839ada674dbe96bc74b317f10f75', 'proc_ins_id', '流程实例编号', 'varchar(64)', 'String', 'procInsId', '1', '0', '1', '1', '1', '0', '0', '=', 'input', '', NULL, 20, '1', '2018-08-29 12:45:46', '1', '2018-12-25 19:09:58', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('695b6a1e4ccf41d89c7eab239a8eb4c0', '67aa839ada674dbe96bc74b317f10f75', 'leave_type', '请假类型', 'varchar(20)', 'String', 'leaveType', '1', '0', '1', '1', '1', '0', '0', '=', 'select', 'oa_leave_type', NULL, 50, '1', '2018-08-29 12:45:46', '1', '2018-12-25 19:09:58', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('73dfd0676f8a46c8a3206e1e25d7353a', '6e05c389f3c6415ea34e55e9dfb28934', 'update_by', '更新者', 'varchar(64)', 'com.jsite.modules.sys.entity.User', 'updateBy.id', NULL, NULL, '1', '1', '1', '1', NULL, '=', 'input', '', NULL, 60, '1', '2018-12-21 22:18:47', '1', '2018-12-21 23:11:47', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('7eff6d1fb5834242980f1ea16f88d0ff', 'e1a0555aeab445af98769e5cd3a759b8', 'remarks', '备注信息', 'varchar(255)', 'String', 'remarks', NULL, NULL, '1', '1', '1', '1', NULL, '=', 'textarea', '', NULL, 80, '1', '2018-12-21 09:44:11', '1', '2018-12-21 09:44:11', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('7f4205a1292e4c689ec8b2550c0ee02b', '6e05c389f3c6415ea34e55e9dfb28934', 'del_flag', '删除标记', 'char(1)', 'String', 'delFlag', NULL, NULL, NULL, '1', NULL, NULL, NULL, '=', 'radiobox', 'del_flag', NULL, 90, '1', '2018-12-21 22:18:47', '1', '2018-12-21 23:11:47', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('8156527a6d334d99b281e4fa3593b4ff', '67aa839ada674dbe96bc74b317f10f75', 'update_date', '更新时间', 'datetime', 'java.util.Date', 'updateDate', NULL, NULL, '1', '1', NULL, NULL, NULL, '=', 'dateselect', '', NULL, 130, '1', '2018-08-29 12:45:46', '1', '2018-12-25 19:09:58', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('91cc056f39a1439eb1cf8244239cbab5', '67aa839ada674dbe96bc74b317f10f75', 'dept_lead_text', '部门经理意见', 'varchar(255)', 'String', 'deptLeadText', '1', '0', '1', '1', '1', '0', '0', '=', 'input', '', NULL, 70, '1', '2018-08-29 12:45:46', '1', '2018-12-25 19:09:58', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('9d189409e4b04cdc9d875fd37e4bb2f4', '6e05c389f3c6415ea34e55e9dfb28934', 'test_data_main_id', '业务主表ID', 'varchar(64)', 'String', 'testDataMainId', NULL, NULL, '1', '1', '1', '1', '1', '=', 'input', '', NULL, 20, '1', '2018-12-21 22:18:47', '1', '2018-12-21 23:11:47', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('9eeb04c6e4e04057b006cd99aeafb67f', 'e1a0555aeab445af98769e5cd3a759b8', 'create_by', '创建者', 'varchar(64)', 'com.jsite.modules.sys.entity.User', 'createBy.id', NULL, NULL, NULL, '1', NULL, NULL, NULL, '=', 'input', '', NULL, 40, '1', '2018-12-21 09:44:11', '1', '2018-12-21 09:44:11', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('a139ab434e664fcc82cccdb5db1bf5d4', '67aa839ada674dbe96bc74b317f10f75', 'start_time', '开始时间', 'datetime', 'java.util.Date', 'startTime', '1', '0', '1', '1', '1', '0', '0', '=', 'dateselect', '', NULL, 30, '1', '2018-08-29 12:45:46', '1', '2018-12-25 19:09:58', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('a9ba2ee1047d4a6298eee492c1957bd7', 'e1a0555aeab445af98769e5cd3a759b8', 'update_date', '更新时间', 'datetime', 'java.util.Date', 'updateDate', NULL, NULL, NULL, '1', '1', '1', NULL, '=', 'dateselect', '', NULL, 70, '1', '2018-12-21 09:44:11', '1', '2018-12-21 09:44:11', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('ac36e2526e01408396cc0fa11827f568', 'aef6f1fc948f4c9ab1c1b780bc471cc2', 'office_id', '归属部门', 'varchar(64)', 'com.jsite.modules.sys.entity.Office', 'office.id|name', '0', '0', '1', '1', '1', '0', '0', '=', 'textarea', '', NULL, 30, '1', '2018-08-29 10:42:40', '1', '2018-12-25 08:28:20', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('aff5abcf7b4d456585bca410729f46aa', 'aef6f1fc948f4c9ab1c1b780bc471cc2', 'user_id', '归属用户', 'varchar(64)', 'com.jsite.modules.sys.entity.User', 'user.id|name', '0', '0', '1', '1', '1', '0', '0', '=', 'select', '', NULL, 20, '1', '2018-08-29 10:42:40', '1', '2018-12-25 08:28:20', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('b56b0dad527c4dd297a64498593e39a4', 'e1a0555aeab445af98769e5cd3a759b8', 'id', '编号', 'varchar(64)', 'String', 'id', NULL, '1', NULL, '1', NULL, NULL, NULL, '=', 'input', '', NULL, 10, '1', '2018-12-21 09:44:10', '1', '2018-12-21 09:44:10', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('c09c6661bb414c709175f699bf151bdb', 'aef6f1fc948f4c9ab1c1b780bc471cc2', 'in_date', '加入日期', 'date', 'java.util.Date', 'inDate', '0', '0', '1', '1', '1', '0', '0', '=', 'dateselect', '', NULL, 70, '1', '2018-08-29 10:42:40', '1', '2018-12-25 08:28:20', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('c30f6f46c5af4bd5887758a7bb3bd4cb', 'aef6f1fc948f4c9ab1c1b780bc471cc2', 'id', '编号', 'varchar(64)', 'String', 'id', '0', '1', '1', '1', '1', '0', '0', '=', 'checkbox', '', NULL, 10, '1', '2018-08-29 10:42:40', '1', '2018-12-25 08:28:20', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('c92aa0e5b2ad40d79c186712cd2a6219', '67aa839ada674dbe96bc74b317f10f75', 'hr_text', '人资意见', 'varchar(255)', 'String', 'hrText', '1', '0', '1', '1', '1', '0', '0', '=', 'input', '', NULL, 80, '1', '2018-08-29 12:45:46', '1', '2018-12-25 19:09:58', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('d1389a04cf3949e58bb3adae9b144f32', 'aef6f1fc948f4c9ab1c1b780bc471cc2', 'remarks', '备注信息', 'varchar(255)', 'String', 'remarks', '0', '0', '1', '1', '1', '1', '0', '=', 'textarea', '', NULL, 120, '1', '2018-08-29 10:42:40', '1', '2018-12-25 08:28:20', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('d37615fd13db472daa75df6e6bd89b81', 'aef6f1fc948f4c9ab1c1b780bc471cc2', 'update_date', '更新时间', 'datetime', 'java.util.Date', 'updateDate', '0', '0', '1', '1', '1', '1', '0', '=', 'dateselect', '', NULL, 110, '1', '2018-08-29 10:42:40', '1', '2018-12-25 08:28:20', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('da139d71edc14dfa82f1dbd9ea0fe48a', '67aa839ada674dbe96bc74b317f10f75', 'del_flag', '删除标记', 'char(1)', 'String', 'delFlag', NULL, NULL, NULL, '1', NULL, NULL, NULL, '=', 'radiobox', 'del_flag', NULL, 150, '1', '2018-08-29 12:45:46', '1', '2018-12-25 19:09:58', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('e04c6ebd8f4040e4adda96e7a61f4120', 'e1a0555aeab445af98769e5cd3a759b8', 'del_flag', '删除标记', 'char(1)', 'String', 'delFlag', NULL, NULL, NULL, '1', NULL, NULL, NULL, '=', 'radiobox', 'del_flag', NULL, 90, '1', '2018-12-21 09:44:11', '1', '2018-12-21 09:44:11', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('e53223608a7641fb845504d74a225eaa', '67aa839ada674dbe96bc74b317f10f75', 'update_by', '更新者', 'varchar(64)', 'com.jsite.modules.sys.entity.User', 'updateBy.id', NULL, NULL, '1', '1', NULL, NULL, NULL, '=', 'input', '', NULL, 120, '1', '2018-08-29 12:45:46', '1', '2018-12-25 19:09:58', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('e893aae5259e4980be325330d1b68ed4', '67aa839ada674dbe96bc74b317f10f75', 'create_date', '创建时间', 'datetime', 'java.util.Date', 'createDate', '0', '0', '1', '1', '0', '0', '0', '=', 'dateselect', '', NULL, 110, '1', '2018-08-29 12:45:46', '1', '2018-12-25 19:09:58', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('ec9df9ffdf2a4b388e96970766cc9bcd', '6e05c389f3c6415ea34e55e9dfb28934', 'remarks', '备注信息', 'varchar(255)', 'String', 'remarks', NULL, NULL, '1', '1', '1', '1', NULL, '=', 'textarea', '', NULL, 80, '1', '2018-12-21 22:18:47', '1', '2018-12-21 23:11:47', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('ee132c6c8a9f4b719333b31d300a7f0b', '6e05c389f3c6415ea34e55e9dfb28934', 'create_by', '创建者', 'varchar(64)', 'com.jsite.modules.sys.entity.User', 'createBy.id', NULL, NULL, NULL, '1', '1', NULL, NULL, '=', 'input', '', NULL, 40, '1', '2018-12-21 22:18:47', '1', '2018-12-21 23:11:47', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('f1632f6e5664473aaffb9ba40bb6a158', 'e1a0555aeab445af98769e5cd3a759b8', 'name', '名称', 'varchar(100)', 'String', 'name', NULL, NULL, '1', '1', '1', '1', '1', 'like', 'input', '', NULL, 30, '1', '2018-12-21 09:44:10', '1', '2018-12-21 09:44:10', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('f8b9fe2ab4d44cdbb72b4f5c8ef8da93', '67aa839ada674dbe96bc74b317f10f75', 'create_by', '创建者', 'varchar(64)', 'com.jsite.modules.sys.entity.User', 'createBy.id', '0', '0', '1', '1', '0', '0', '0', '=', 'input', '', NULL, 100, '1', '2018-08-29 12:45:46', '1', '2018-12-25 19:09:58', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('faf0bc828b8441be963ea3d25d2f01fd', '67aa839ada674dbe96bc74b317f10f75', 'end_time', '结束时间', 'datetime', 'java.util.Date', 'endTime', '1', '0', '1', '1', '1', '0', '0', '=', 'dateselect', '', NULL, 40, '1', '2018-08-29 12:45:46', '1', '2018-12-25 19:09:58', NULL, '0');
-INSERT INTO `gen_table_column` VALUES ('fcb6d387a63c4b7c9dc6c0534143386e', 'e1a0555aeab445af98769e5cd3a759b8', 'update_by', '更新者', 'varchar(64)', 'com.jsite.modules.sys.entity.User', 'updateBy.id', NULL, NULL, NULL, '1', '1', NULL, NULL, '=', 'input', '', NULL, 60, '1', '2018-12-21 09:44:11', '1', '2018-12-21 09:44:11', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('036c21c4346a4b9a9bd4729f5b1996ed', 'd7c3fff144a046698aa3766844582a4c', 'id', '编号', 'varchar(64)', 'String', 'id', '0', '1', '0', '1', '0', '0', '0', '=', 'input', '', NULL, 10, '1', '2018-12-29 11:20:51', '1', '2018-12-29 11:20:51', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('0739b3a11c40466b8b3d9c488e3a6bf8', '39c9a49ccd87400b9b19606a46b12dd6', 'area_id', '归属区域', 'varchar(64)', 'com.jsite.modules.sys.entity.Area', 'area.id|name', '0', '0', '1', '1', '1', '0', '0', '=', 'areaselect', '', NULL, 40, '1', '2018-12-29 11:19:37', '1', '2018-12-29 11:19:37', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('18bbfa2e86a14ca4a6be2d8a643c98d7', '794ea2d0349e4590ba4366529d499833', 'create_date', '创建时间', 'datetime', 'java.util.Date', 'createDate', '0', '0', '0', '1', '0', '0', '0', '=', 'dateselect', '', NULL, 50, '1', '2018-12-29 11:21:19', '1', '2018-12-29 11:21:19', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('1f36d1a2217f4b09a6b7dc2683b5a6a9', 'd7c3fff144a046698aa3766844582a4c', 'update_date', '更新时间', 'datetime', 'java.util.Date', 'updateDate', '0', '0', '0', '1', '1', '1', '0', '=', 'dateselect', '', NULL, 110, '1', '2018-12-29 11:20:52', '1', '2018-12-29 11:20:52', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('3421eb7ef5a3427f92c48a6033441a0e', '39c9a49ccd87400b9b19606a46b12dd6', 'update_by', '更新者', 'varchar(64)', 'com.jsite.modules.sys.entity.User', 'updateBy.id', '0', '0', '0', '1', '1', '0', '0', '=', 'input', '', NULL, 100, '1', '2018-12-29 11:19:37', '1', '2018-12-29 11:19:37', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('3a745b100cde4fc99eb0f4e35f27a1b7', '39c9a49ccd87400b9b19606a46b12dd6', 'create_by', '创建者', 'varchar(64)', 'com.jsite.modules.sys.entity.User', 'createBy.id', '0', '0', '0', '1', '0', '0', '0', '=', 'input', '', NULL, 80, '1', '2018-12-29 11:19:37', '1', '2018-12-29 11:19:37', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('404a90b909bb416baa030a1838af45d0', '39c9a49ccd87400b9b19606a46b12dd6', 'name', '名称', 'varchar(100)', 'String', 'name', '0', '0', '1', '1', '1', '1', '1', 'like', 'input', '', NULL, 50, '1', '2018-12-29 11:19:37', '1', '2018-12-29 11:19:37', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('471db37a88de4c02a9c2db052faf5dec', '794ea2d0349e4590ba4366529d499833', 'id', '编号', 'varchar(64)', 'String', 'id', '0', '1', '0', '1', '0', '0', '0', '=', 'input', '', NULL, 10, '1', '2018-12-29 11:21:18', '1', '2018-12-29 11:21:18', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('4fa8affc845740448035c44686a6b4f1', 'd7c3fff144a046698aa3766844582a4c', 'create_by', '创建者', 'varchar(64)', 'com.jsite.modules.sys.entity.User', 'createBy.id', '0', '0', '0', '1', '0', '0', '0', '=', 'input', '', NULL, 80, '1', '2018-12-29 11:20:52', '1', '2018-12-29 11:20:52', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('518b26e7bd6c4a6aaac289678ef64ace', '39c9a49ccd87400b9b19606a46b12dd6', 'id', '编号', 'varchar(64)', 'String', 'id', '0', '1', '0', '1', '0', '0', '0', '=', 'input', '', NULL, 10, '1', '2018-12-29 11:19:36', '1', '2018-12-29 11:19:36', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('5442ba5226c149f5a12187e55f68ca4a', '39c9a49ccd87400b9b19606a46b12dd6', 'sex', '性别', 'char(1)', 'String', 'sex', '0', '0', '1', '1', '1', '0', '0', '=', 'input', '', NULL, 60, '1', '2018-12-29 11:19:37', '1', '2018-12-29 11:19:37', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('547037387f074c43a5912e32073e4ba7', '794ea2d0349e4590ba4366529d499833', 'test_data_main_id', '业务主表ID', 'varchar(64)', 'String', 'testDataMainId', '0', '0', '1', '1', '1', '0', '0', '=', 'input', '', NULL, 20, '1', '2018-12-29 11:21:18', '1', '2018-12-29 11:21:18', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('5806f2b63737423fabe0efde8cd638fc', 'd7c3fff144a046698aa3766844582a4c', 'create_date', '创建时间', 'datetime', 'java.util.Date', 'createDate', '0', '0', '0', '1', '0', '0', '0', '=', 'dateselect', '', NULL, 90, '1', '2018-12-29 11:20:52', '1', '2018-12-29 11:20:52', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('58749bef8ac24ad0a651ec63c6f0cf79', '794ea2d0349e4590ba4366529d499833', 'remarks', '备注信息', 'varchar(255)', 'String', 'remarks', '0', '0', '1', '1', '1', '1', '0', '=', 'textarea', '', NULL, 80, '1', '2018-12-29 11:21:19', '1', '2018-12-29 11:21:19', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('660bcce031194ba195c23225e15f4ebc', 'd7c3fff144a046698aa3766844582a4c', 'sex', '性别', 'char(1)', 'String', 'sex', '0', '0', '1', '1', '1', '1', '0', '=', 'input', '', NULL, 60, '1', '2018-12-29 11:20:51', '1', '2018-12-29 11:20:51', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('7301b4d629db45209e07cdc8849c40f6', '39c9a49ccd87400b9b19606a46b12dd6', 'in_date', '加入日期', 'date', 'java.util.Date', 'inDate', '0', '0', '1', '1', '1', '0', '0', '=', 'dateselect', '', NULL, 70, '1', '2018-12-29 11:19:37', '1', '2018-12-29 11:19:37', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('8ee7f0a8f2804042bb200e24f23de333', '39c9a49ccd87400b9b19606a46b12dd6', 'user_id', '归属用户', 'varchar(64)', 'com.jsite.modules.sys.entity.User', 'user.id|name', '0', '0', '1', '1', '1', '0', '0', '=', 'userselect', '', NULL, 20, '1', '2018-12-29 11:19:36', '1', '2018-12-29 11:19:36', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('9a6d8fcf3fdc4eefad2a63b09cda5c7f', '39c9a49ccd87400b9b19606a46b12dd6', 'remarks', '备注信息', 'varchar(255)', 'String', 'remarks', '0', '0', '1', '1', '1', '1', '0', '=', 'textarea', '', NULL, 120, '1', '2018-12-29 11:19:37', '1', '2018-12-29 11:19:37', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('a04f28b86fd545a6b3ea4a85861b55f9', 'd7c3fff144a046698aa3766844582a4c', 'area_id', '归属区域', 'varchar(64)', 'com.jsite.modules.sys.entity.Area', 'area.id|name', '0', '0', '1', '1', '1', '0', '0', '=', 'areaselect', '', NULL, 40, '1', '2018-12-29 11:20:51', '1', '2018-12-29 11:20:51', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('ac74bc0c9b7746249dbf92499b89f310', '794ea2d0349e4590ba4366529d499833', 'del_flag', '删除标记', 'char(1)', 'String', 'delFlag', '0', '0', '0', '1', '0', '0', '0', '=', 'radiobox', 'del_flag', NULL, 90, '1', '2018-12-29 11:21:19', '1', '2018-12-29 11:21:19', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('acc2ffe13abb49fdb3e76fc871caa46e', '794ea2d0349e4590ba4366529d499833', 'create_by', '创建者', 'varchar(64)', 'com.jsite.modules.sys.entity.User', 'createBy.id', '0', '0', '0', '1', '0', '0', '0', '=', 'input', '', NULL, 40, '1', '2018-12-29 11:21:19', '1', '2018-12-29 11:21:19', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('bb2f13421fa04287ac31263650f56522', 'd7c3fff144a046698aa3766844582a4c', 'remarks', '备注信息', 'varchar(255)', 'String', 'remarks', '0', '0', '1', '1', '1', '1', '0', '=', 'textarea', '', NULL, 120, '1', '2018-12-29 11:20:52', '1', '2018-12-29 11:20:52', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('bb984414563449d5a428b798432ebee4', '39c9a49ccd87400b9b19606a46b12dd6', 'office_id', '归属部门', 'varchar(64)', 'com.jsite.modules.sys.entity.Office', 'office.id|name', '0', '0', '1', '1', '1', '0', '0', '=', 'officeselect', '', NULL, 30, '1', '2018-12-29 11:19:36', '1', '2018-12-29 11:19:36', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('bdeae7b5f5764a219b773493ce7ce717', 'd7c3fff144a046698aa3766844582a4c', 'user_id', '归属用户', 'varchar(64)', 'com.jsite.modules.sys.entity.User', 'user.id|name', '0', '0', '1', '1', '1', '0', '0', '=', 'userselect', '', NULL, 20, '1', '2018-12-29 11:20:51', '1', '2018-12-29 11:20:51', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('ce459de5970642e6ab8791ac72d0dfc6', 'd7c3fff144a046698aa3766844582a4c', 'name', '名称', 'varchar(100)', 'String', 'name', '0', '0', '1', '1', '1', '1', '1', 'like', 'input', '', NULL, 50, '1', '2018-12-29 11:20:51', '1', '2018-12-29 11:20:51', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('d333b5918d2f4db1996a360d2ac74a99', '39c9a49ccd87400b9b19606a46b12dd6', 'update_date', '更新时间', 'datetime', 'java.util.Date', 'updateDate', '0', '0', '0', '1', '1', '1', '0', '=', 'dateselect', '', NULL, 110, '1', '2018-12-29 11:19:37', '1', '2018-12-29 11:19:37', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('d3952c7032284832b26a532543f4fe78', '794ea2d0349e4590ba4366529d499833', 'update_date', '更新时间', 'datetime', 'java.util.Date', 'updateDate', '0', '0', '0', '1', '1', '1', '0', '=', 'dateselect', '', NULL, 70, '1', '2018-12-29 11:21:19', '1', '2018-12-29 11:21:19', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('deca344f6dc146bfae6377e939a0c097', '39c9a49ccd87400b9b19606a46b12dd6', 'del_flag', '删除标记', 'char(1)', 'String', 'delFlag', '0', '0', '0', '1', '0', '0', '0', '=', 'radiobox', 'del_flag', NULL, 130, '1', '2018-12-29 11:19:37', '1', '2018-12-29 11:19:37', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('e399ea7f86c44ace9a69c03e489797bb', 'd7c3fff144a046698aa3766844582a4c', 'in_date', '加入日期', 'date', 'java.util.Date', 'inDate', '0', '0', '1', '1', '1', '1', '0', '=', 'dateselect', '', NULL, 70, '1', '2018-12-29 11:20:52', '1', '2018-12-29 11:20:52', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('e948c667cfe4486eb2119583ff9805b4', 'd7c3fff144a046698aa3766844582a4c', 'del_flag', '删除标记', 'char(1)', 'String', 'delFlag', '0', '0', '0', '1', '0', '0', '0', '=', 'radiobox', 'del_flag', NULL, 130, '1', '2018-12-29 11:20:52', '1', '2018-12-29 11:20:52', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('ea80f499adc049e897889b36c1cfa220', '794ea2d0349e4590ba4366529d499833', 'update_by', '更新者', 'varchar(64)', 'com.jsite.modules.sys.entity.User', 'updateBy.id', '0', '0', '0', '1', '1', '0', '0', '=', 'input', '', NULL, 60, '1', '2018-12-29 11:21:19', '1', '2018-12-29 11:21:19', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('f3cfb155ee3d433fa287759b9e471b72', '39c9a49ccd87400b9b19606a46b12dd6', 'create_date', '创建时间', 'datetime', 'java.util.Date', 'createDate', '0', '0', '0', '1', '0', '0', '0', '=', 'dateselect', '', NULL, 90, '1', '2018-12-29 11:19:37', '1', '2018-12-29 11:19:37', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('f4e277e2ae97497fa3ebef882f3ac50d', 'd7c3fff144a046698aa3766844582a4c', 'office_id', '归属部门', 'varchar(64)', 'com.jsite.modules.sys.entity.Office', 'office.id|name', '0', '0', '1', '1', '1', '0', '0', '=', 'officeselect', '', NULL, 30, '1', '2018-12-29 11:20:51', '1', '2018-12-29 11:20:51', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('f610077a6e774855802b92389241fef7', 'd7c3fff144a046698aa3766844582a4c', 'update_by', '更新者', 'varchar(64)', 'com.jsite.modules.sys.entity.User', 'updateBy.id', '0', '0', '0', '1', '1', '0', '0', '=', 'input', '', NULL, 100, '1', '2018-12-29 11:20:52', '1', '2018-12-29 11:20:52', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('fe3e9323ad1841a99ad7788770ea3101', '794ea2d0349e4590ba4366529d499833', 'name', '名称', 'varchar(100)', 'String', 'name', '0', '0', '1', '1', '1', '1', '1', 'like', 'input', '', NULL, 30, '1', '2018-12-29 11:21:19', '1', '2018-12-29 11:21:19', NULL, '0');
 
 -- ----------------------------
 -- Table structure for gen_template
@@ -200,25 +200,6 @@ CREATE TABLE `oa_leave`  (
   INDEX `oa_leave_del_flag`(`del_flag`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '请假流程表' ROW_FORMAT = Compact;
 
--- ----------------------------
--- Records of oa_leave
--- ----------------------------
-INSERT INTO `oa_leave` VALUES ('0387efb30b3e49738b582c5d854a32b6', '577d6e71-06a1-11e9-8afd-00163e2e65eb', '2018-12-17 18:57:10', '2018-12-28 18:57:13', '1', '123132', NULL, NULL, '2018-12-23 18:56:04', '1', '2018-12-23 18:56:04', '1', '2018-12-23 18:56:04', NULL, '0');
-INSERT INTO `oa_leave` VALUES ('15b0f661d6834f7987020209a87a149c', '1dd76279-066c-11e9-8afd-00163e2e65eb', '2018-11-29 12:34:57', '2018-12-20 12:34:59', '1', '222', NULL, NULL, '2018-12-23 12:35:04', '1', '2018-12-23 12:35:04', '1', '2018-12-23 12:35:04', NULL, '0');
-INSERT INTO `oa_leave` VALUES ('4b87a0820d124133b860a4ecd8f61440', 'e2ae35a9-06ac-11e9-8afd-00163e2e65eb', '2018-12-12 20:18:29', '2018-12-29 20:18:33', '2', '1', NULL, NULL, '2018-12-23 20:18:42', '1', '2018-12-23 20:18:42', '1', '2018-12-23 20:18:42', NULL, '0');
-INSERT INTO `oa_leave` VALUES ('56c892cfc7624d11b3a1ffa0ea0d221f', '08249e19-0692-11e9-8afd-00163e2e65eb', '2018-12-25 17:04:38', '2018-12-28 17:04:42', '1', '333', NULL, NULL, '2018-12-23 17:06:28', '1', '2018-12-23 17:06:28', '1', '2018-12-23 17:06:28', NULL, '0');
-INSERT INTO `oa_leave` VALUES ('5b0025eaaee2458ba5bbc5678de4ecf5', '2000c06e-05f4-11e9-b751-c85b7643dd9e', '2018-12-22 22:15:55', '2018-12-24 22:15:58', '1', '测试', NULL, NULL, '2018-12-22 22:16:08', '1', '2018-12-22 22:16:08', '1', '2018-12-22 22:16:08', NULL, '0');
-INSERT INTO `oa_leave` VALUES ('6095ceced2c54ce09cdf11ab2262768c', 'e82c7fc9-0998-11e9-a3c9-00163e2e65eb', '2018-12-27 13:33:23', '2018-12-28 13:33:25', '1', 'fsdfsd', NULL, NULL, '2018-12-27 13:33:15', '1', '2018-12-27 13:33:15', '1', '2018-12-27 13:33:15', NULL, '0');
-INSERT INTO `oa_leave` VALUES ('6623a4f922754f9cae5d210ef8e02ce0', '6a2402bc-05cd-11e9-8544-00163e2e65eb', '2018-12-22 17:38:56', '2018-12-29 17:39:01', '1', '1', '[同意] 同意', '[同意] 同意', '2018-12-22 17:39:02', '1', '2018-12-22 17:39:02', '1', '2018-12-22 17:39:02', NULL, '0');
-INSERT INTO `oa_leave` VALUES ('6edd39c56047432796ce9bd4759f482a', '48e8d1ec-0662-11e9-8afd-00163e2e65eb', '2018-12-13 11:24:21', '2018-12-29 11:24:25', '1', 'kkkk', '[驳回] sdsds', NULL, '2018-12-23 11:24:41', '1', '2018-12-23 11:24:41', '1', '2018-12-23 11:45:11', NULL, '0');
-INSERT INTO `oa_leave` VALUES ('7790f91457a4450e9cae9e34512bbdf5', '06449ad1-068f-11e9-8afd-00163e2e65eb', '2018-12-23 16:44:45', '2018-12-23 16:44:47', '2', '显存v', NULL, NULL, '2018-12-23 16:44:57', '1', '2018-12-23 16:44:57', '1', '2018-12-23 16:44:57', NULL, '0');
-INSERT INTO `oa_leave` VALUES ('81d37452db0646cb9ed93f199ec9f2cc', '0ff64c49-0684-11e9-8afd-00163e2e65eb', '2018-12-23 15:26:21', '2018-12-28 15:26:24', '1', '1', NULL, NULL, '2018-12-23 15:26:28', '1', '2018-12-23 15:26:28', '1', '2018-12-23 15:26:28', NULL, '0');
-INSERT INTO `oa_leave` VALUES ('825ebaad47eb4286a33d0e63dec47fe9', '82efd342-0601-11e9-8544-00163e2e65eb', '2018-10-02 23:51:48', '2018-12-22 23:51:51', '1', '//。', '[同意] 我同意啦啊啊啊啊啊啊啊', '[同意] 我同意', '2018-12-22 23:51:57', '1', '2018-12-22 23:51:57', '1', '2018-12-22 23:51:57', NULL, '0');
-INSERT INTO `oa_leave` VALUES ('945ed101245c4427aeb2e466ee09566a', 'a02ba20e-065d-11e9-8afd-00163e2e65eb', '2018-12-23 10:51:13', '2018-12-21 10:51:17', '1', 'mnm', '[驳回] jgjhg', NULL, '2018-12-23 10:51:20', '1', '2018-12-23 10:51:20', '1', '2018-12-23 11:05:14', NULL, '0');
-INSERT INTO `oa_leave` VALUES ('a57eb8f4b67b4ba09bee5d49ff0882e9', '2f44cdf2-061c-11e9-8afd-00163e2e65eb', '2018-12-23 03:02:42', '2018-12-25 03:02:49', '2', '1', '[同意] fddfdfdfdfdffd', NULL, '2018-12-23 03:02:53', '1', '2018-12-23 03:02:53', '1', '2018-12-23 03:02:53', NULL, '0');
-INSERT INTO `oa_leave` VALUES ('c4fdeec6a2e148029d798d7b908b11f5', '5ef97ed4-05d6-11e9-8544-00163e2e65eb', '2018-12-06 18:43:01', '2018-12-12 18:43:03', '1', 'dfffff', NULL, NULL, '2018-12-22 18:43:09', '1', '2018-12-22 18:43:09', '1', '2018-12-22 18:43:09', NULL, '0');
-INSERT INTO `oa_leave` VALUES ('ebd651f8d8d340619b2f9a4a027ff1bb', '1b471351-066f-11e9-8afd-00163e2e65eb', '2018-12-06 12:56:22', '2018-12-23 12:56:25', '1', '11', NULL, NULL, '2018-12-23 12:56:28', '1', '2018-12-23 12:56:28', '1', '2018-12-23 12:56:28', NULL, '0');
-INSERT INTO `oa_leave` VALUES ('f9fe90cbf5474b37b6c6ce4747a55b0c', '01ac5e41-06c8-11e9-8afd-00163e2e65eb', '2018-12-12 23:32:32', '2018-12-23 23:32:37', '3', 'yy', NULL, NULL, '2018-12-23 23:32:50', '1', '2018-12-23 23:32:50', '1', '2018-12-23 23:32:50', NULL, '0');
 
 -- ----------------------------
 -- Table structure for oa_notify
@@ -320,7 +301,7 @@ CREATE TABLE `sys_area`  (
 -- Records of sys_area
 -- ----------------------------
 INSERT INTO `sys_area` VALUES ('015345144e9e40d6bbe832a9f1cba1f7', 'd36735ce07044a49ad205854fb2ca078', '0,d36735ce07044a49ad205854fb2ca078,', 'California', 10, '01', '2', '1', '2018-06-20 17:32:51', '1', '2018-06-20 17:32:51', '', '0', '1', 1);
-INSERT INTO `sys_area` VALUES ('1', '0', '0,', '中国', 10, '1', '1', '1', '2013-05-27 08:00:00', '1', '2018-12-26 16:43:15', '', '0', '0', 0);
+INSERT INTO `sys_area` VALUES ('1', '0', '0,', '中国', 10, '1', '1', '1', '2013-05-27 08:00:00', '1', '2018-12-28 00:19:15', '', '0', '0', 0);
 INSERT INTO `sys_area` VALUES ('3fbaf3a3f58a47118f13976cb2e2544d', 'd36735ce07044a49ad205854fb2ca078', '0,d36735ce07044a49ad205854fb2ca078,', '佛罗里达州', 20, '02', '2', '1', '2018-06-20 17:38:08', '1', '2018-06-20 17:38:08', '', '0', '1', 1);
 INSERT INTO `sys_area` VALUES ('576f42bae8184b4cbb39aa4640323a5f', '1', '0,1,', 'aaaaaaabb', 30, '', '2', '1', '2018-12-10 14:27:27', '1', '2018-12-10 14:27:27', '', '1', '1', 1);
 INSERT INTO `sys_area` VALUES ('623c16905c3b4854b131fb8f034364d4', '1', '0,1,', '上海', 30, '34243', '2', '1', '2018-12-10 13:47:40', '1', '2018-12-10 13:47:40', '', '1', '1', 1);
@@ -402,6 +383,7 @@ INSERT INTO `sys_dict` VALUES ('40', '2', '部门经理', 'sys_user_type', '用�
 INSERT INTO `sys_dict` VALUES ('41', '3', '普通用户', 'sys_user_type', '用户类型', 30, '0', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', NULL, '0');
 INSERT INTO `sys_dict` VALUES ('49fefff665614e80b8c0e91902f2c817', 'images/userinfo.png', '默认头像', 'default_headphoto_big', '默认头像(大图)', 10, '0', '1', '2018-07-30 11:58:29', '1', '2018-07-30 13:41:11', '默认头像(原图)', '0');
 INSERT INTO `sys_dict` VALUES ('5', '1', '是', 'yes_no', '是/否', 10, '0', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', NULL, '0');
+INSERT INTO `sys_dict` VALUES ('5ff3843961654e639a419410afc89bbc', '4', '人力资源', 'sys_user_type', '用户类型', 10, '0', '1', '2018-12-28 13:51:04', '1', '2018-12-28 13:51:04', '', '0');
 INSERT INTO `sys_dict` VALUES ('6', '0', '否', 'yes_no', '是/否', 20, '0', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', NULL, '0');
 INSERT INTO `sys_dict` VALUES ('62', '1', '公休', 'oa_leave_type', '请假类型', 10, '0', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', NULL, '0');
 INSERT INTO `sys_dict` VALUES ('63', '2', '病假', 'oa_leave_type', '请假类型', 20, '0', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', NULL, '0');
@@ -611,6 +593,7 @@ INSERT INTO `sys_menu` VALUES ('13e52acca1254df283520c9ee3db769b', '4', '0,2,3,4
 INSERT INTO `sys_menu` VALUES ('14', '13', '0,2,13,', '区域管理', 50, '0', 2, '/sys/area/', '', 'fa fa-map', '1', '', '1', '2013-05-27 08:00:00', '1', '2018-07-05 10:36:49', '', '0');
 INSERT INTO `sys_menu` VALUES ('17', '13', '0,2,13,', '机构管理', 40, '0', 2, '/sys/office/', '', 'fa fa-puzzle-piece', '1', '', '1', '2013-05-27 08:00:00', '1', '2018-07-05 10:35:25', '', '0');
 INSERT INTO `sys_menu` VALUES ('185e17bc1e5b4fa8a997b8c86a828f1d', '9c37ebfd00764ec99f7c65107faca3d1', '0,56,9c37ebfd00764ec99f7c65107faca3d1,', '查看', 30, '1', 2, '', '', 'fa fa-circle-thin', '0', 'filetree:sysFileTree:view', '1', '2018-07-05 09:08:10', '1', '2018-07-27 15:21:28', '', '0');
+INSERT INTO `sys_menu` VALUES ('1aca9bd8565544cc889bb8d366877234', 'fbe403d809b0400d9d36df16cb56abf2', '0,fbe403d809b0400d9d36df16cb56abf2,', '主子表生成', 60, '1', 1, '/test/zhuzibiao/testDataMain', '', 'fa fa-circle-thin', '1', 'test:zhuzibiao:testDataMain:view,test:zhuzibiao:testDataMain:edit', '1', '2018-12-29 13:34:17', '1', '2018-12-29 13:34:17', '', '0');
 INSERT INTO `sys_menu` VALUES ('1cbff3f7903c4276902db28ed9e5916e', '7', '0,2,3,7,', '查看', 30, '1', 3, '', '', 'fa fa-circle-thin', '1', 'sys:role:view', '1', '2018-07-04 16:45:37', '1', '2018-07-04 16:45:37', '', '0');
 INSERT INTO `sys_menu` VALUES ('1cc9a6712a86420d9557bbf52b24680a', '14', '0,2,13,14,', '编辑', 60, '1', 3, '', '', 'fa fa-circle-thin', '0', 'sys:area:edit', '1', '2018-07-05 10:36:25', '1', '2018-07-05 10:36:25', '', '0');
 INSERT INTO `sys_menu` VALUES ('1e43e4e03d724542b1a31f8c0593ca33', 'b06b6eae9f714d028480d6b6c114d498', '0,56,b06b6eae9f714d028480d6b6c114d498,', '查看', 30, '1', 2, '', '', '', '0', 'file:sysFile:view', '1', '2018-03-28 17:05:35', '1', '2018-07-27 15:22:00', '', '0');
@@ -763,8 +746,8 @@ CREATE TABLE `sys_role`  (
 -- ----------------------------
 -- Records of sys_role
 -- ----------------------------
-INSERT INTO `sys_role` VALUES ('1', '5', '系统管理员', 'Manager', 'security-role', '1', '1', '1', '1', '1', '2013-05-27 08:00:00', '1', '2018-12-19 17:01:31', 'AA', '0');
-INSERT INTO `sys_role` VALUES ('1042c40b2d2d496c9af546bba7006623', '3', 'hr', 'hr', 'assignment', '3', '1', '1', '1', '1', '2018-08-20 14:33:33', '1', '2018-08-20 14:35:04', '', '0');
+INSERT INTO `sys_role` VALUES ('1', '5', '系统管理员', 'Manager', 'security-role', '1', '1', '1', '1', '1', '2013-05-27 08:00:00', '1', '2018-12-29 13:34:45', 'AA', '0');
+INSERT INTO `sys_role` VALUES ('1042c40b2d2d496c9af546bba7006623', '3', 'hr', 'hr', 'assignment', '4', '1', '1', '1', '1', '2018-08-20 14:33:33', '1', '2018-12-28 13:53:05', '', '0');
 INSERT INTO `sys_role` VALUES ('6', '4', '普通用户', 'Comuser', 'assignment', '3', '8', '1', '1', '1', '2013-05-27 08:00:00', '1', '2018-07-05 11:54:44', '', '0');
 INSERT INTO `sys_role` VALUES ('a868b9836f664b43909757005390022f', '5', '部门经理', 'dept', 'security-role', '2', '3', '1', '1', '1', '2018-12-22 22:21:56', '1', '2018-12-22 22:25:33', '', '0');
 
@@ -787,6 +770,7 @@ INSERT INTO `sys_role_menu` VALUES ('1', '13e52acca1254df283520c9ee3db769b');
 INSERT INTO `sys_role_menu` VALUES ('1', '14');
 INSERT INTO `sys_role_menu` VALUES ('1', '17');
 INSERT INTO `sys_role_menu` VALUES ('1', '185e17bc1e5b4fa8a997b8c86a828f1d');
+INSERT INTO `sys_role_menu` VALUES ('1', '1aca9bd8565544cc889bb8d366877234');
 INSERT INTO `sys_role_menu` VALUES ('1', '1cbff3f7903c4276902db28ed9e5916e');
 INSERT INTO `sys_role_menu` VALUES ('1', '1cc9a6712a86420d9557bbf52b24680a');
 INSERT INTO `sys_role_menu` VALUES ('1', '1e43e4e03d724542b1a31f8c0593ca33');
@@ -982,9 +966,10 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', '1', '5', 'jsite', '57b89d1421898c692ebf98b530c3869b56d32e1e80f2bb703aba8a39', '0001', '系统管理员', 'admin@admin.com', '1111', '1111', '1', '/jsite/userfiles/headphoto/1.jpg', '0:0:0:0:0:0:0:1', '2018-12-27 16:06:04', '1', '1', '2013-05-27 08:00:00', '1', '2018-12-23 13:32:52', '11221', '0');
-INSERT INTO `sys_user` VALUES ('43f6a4a84e784e5e98b5b1c530bef73b', '1', '5', 'dept', '56c52163316679d8c83c84f03d44a592246d76a70bacb1da76cdc149', '000002', '部门经理', '', '', '', '2', NULL, '221.218.214.209', '2018-12-23 22:51:39', '1', '1', '2018-12-22 22:22:25', '1', '2018-12-22 22:22:25', '', '0');
-INSERT INTO `sys_user` VALUES ('56620c5ef567427c8debe68875c0eda2', '1', '3', 'jsitehr', '7e14e4c693492493db3bc12ba2bdd9cec2629613deae9ebd9c42dac1', '000003', '人力资源', '', '', '', '', NULL, '221.218.214.209', '2018-12-23 22:51:22', '1', '1', '2018-12-22 22:23:39', '1', '2018-12-22 22:23:39', '', '0');
+INSERT INTO `sys_user` VALUES ('1', '1', '5', 'jsite', '57b89d1421898c692ebf98b530c3869b56d32e1e80f2bb703aba8a39', '0001', '系统管理员', 'admin@admin.com', '1111', '1111', '1', '/jsite/userfiles/headphoto/1.jpg', '0:0:0:0:0:0:0:1', '2018-12-29 14:29:57', '1', '1', '2013-05-27 08:00:00', '1', '2018-12-28 09:23:21', '11221', '0');
+INSERT INTO `sys_user` VALUES ('43f6a4a84e784e5e98b5b1c530bef73b', '1', '5', 'dept', '56c52163316679d8c83c84f03d44a592246d76a70bacb1da76cdc149', '000002', '部门经理', '', '', '', '2', NULL, '220.191.161.100', '2018-12-28 11:43:08', '1', '1', '2018-12-22 22:22:25', '1', '2018-12-22 22:22:25', '', '0');
+INSERT INTO `sys_user` VALUES ('56620c5ef567427c8debe68875c0eda2', '1', '3', 'jsitehr', '7e14e4c693492493db3bc12ba2bdd9cec2629613deae9ebd9c42dac1', '000003', '人力资源', '', '', '', '4', NULL, '220.191.161.100', '2018-12-28 11:45:57', '1', '1', '2018-12-22 22:23:39', '1', '2018-12-28 13:52:29', '', '0');
+INSERT INTO `sys_user` VALUES ('68225048f4b7465293feb9779448d0af', '1', '5', 'jsiteuser', '2f445129a012d18383f4fbdc9fdaca446794a89e80c384dc3a1e1f1a', '000005', '普通用户', '', '', '', '3', NULL, NULL, NULL, '1', '1', '2018-12-28 13:55:56', '1', '2018-12-28 16:44:40', '', '0');
 
 -- ----------------------------
 -- Table structure for sys_user_role
@@ -1002,6 +987,8 @@ CREATE TABLE `sys_user_role`  (
 INSERT INTO `sys_user_role` VALUES ('1', '1');
 INSERT INTO `sys_user_role` VALUES ('43f6a4a84e784e5e98b5b1c530bef73b', 'a868b9836f664b43909757005390022f');
 INSERT INTO `sys_user_role` VALUES ('56620c5ef567427c8debe68875c0eda2', '1042c40b2d2d496c9af546bba7006623');
+INSERT INTO `sys_user_role` VALUES ('68225048f4b7465293feb9779448d0af', '1042c40b2d2d496c9af546bba7006623');
+INSERT INTO `sys_user_role` VALUES ('68225048f4b7465293feb9779448d0af', '6');
 
 -- ----------------------------
 -- Table structure for test_data
