@@ -5,7 +5,7 @@
 <div class="row cropper-wrapper cropper-circle">
 	<div class="col-xs-8">
 		<div class="img-container">
-			<img id="image" src="${user.photo}" onError="this.onError=null;this.src='${ctxStatic}/${defaultBigUrl}'">
+			<img id="image" src="${user.photo}" onError="this.src='${ctxStatic}/${defaultBigUrl}';this.onError=null">
 		</div>
 	</div>
 	<div class="col-xs-4 pl0">
@@ -68,85 +68,96 @@
 	</div>
 </div>
 <% } %>
-<script>
-var options = {
-	dragMode: 'move',
-	aspectRatio: 1/1,
-	autoCropArea: 1,
-	preview: ".img-preview",
-	ready: function(){
-		$(window).resize();
-	}
-},
-$image = $("#image").cropper(options),
-URL = window.URL || window.webkitURL,
-uploadedImageType = 'image/png',
-uploadedImageURL, imageBase64;
-$('.btn-group').on('click', '[data-method]', function () {
-	var $this = $(this), data = $this.data(), result,
-		cropper = $image.data('cropper'), cropped;
-	if ($this.prop('disabled') || $this.hasClass('disabled')) {
-		return;
-	}
-	if (cropper && data.method) {
-		data = $.extend({}, data); // Clone a new one
-		cropped = cropper.cropped;
-		switch (data.method) {
-		case 'rotate':
-			if (cropped && options.viewMode > 0) {
-				$image.cropper('clear');
-			}
-			break;
-		case 'getCroppedCanvas':
-			if (uploadedImageType === 'image/jpeg') {
-				if (!data.option) {
-					data.option = {};
-				}
-				data.option.fillColor = '#fff';
-			}
-			break;
-		}
-		result = $image.cropper(data.method, data.option, data.secondOption);
-		switch (data.method) {
-		case 'rotate':
-			if (cropped && options.viewMode > 0) {
-				$image.cropper('crop');
-			}
-			break;
-		case 'scaleX':
-		case 'scaleY':
-			$(this).data('option', -data.option);
-			break;
-		case 'getCroppedCanvas':
-			if (result) {
-				imageBase64 = result.toDataURL(uploadedImageType);
-			}
-			break
-		}
-	}
-});
-$("#inputImage").change(function(){
-	var files = this.files, file;
-	if (!$image.data('cropper')) {
-		return;
-	}
-	if (files && files.length) {
-		file = files[0];
-		if (/^image\/\w+$/.test(file.type)) {
-			uploadedImageType = file.type;
-			uploadedImageURL = URL.createObjectURL(file);
-			$image.cropper('destroy').attr('src', uploadedImageURL).cropper(options);
-			$(this).val('');// 清理下，方便下次选择
-		} else {
-			js.showMessage('请选择一个图片文件。');
-		}
-	}
-	$(this).blur();
-}).focus(function(){
-	js.loading();
-}).blur(function(){
-	js.closeLoading();
-});
+<script type="text/javascript">
+	//判断图片是否加载完毕（src,onError）,再进行cropper初始化
+function initImageCropper(img,callback){
+    var timer = setInterval(function() {
+        if(img.complete) {
+            callback(img);
+            clearInterval(timer);
+        }
+    }, 50)
+}
+initImageCropper(document.getElementById("image"),function (){
+    var options = {
+            dragMode: 'move',
+            aspectRatio: 1/1,
+            autoCropArea: 1,
+            preview: ".img-preview",
+            ready: function(){
+                $(window).resize();
+            }
+        },
+        $image = $("#image").cropper(options),
+        URL = window.URL || window.webkitURL,
+        uploadedImageType = 'image/png',
+        uploadedImageURL, imageBase64;
+    $('.btn-group').on('click', '[data-method]', function () {
+        var $this = $(this), data = $this.data(), result,
+            cropper = $image.data('cropper'), cropped;
+        if ($this.prop('disabled') || $this.hasClass('disabled')) {
+            return;
+        }
+        if (cropper && data.method) {
+            data = $.extend({}, data); // Clone a new one
+            cropped = cropper.cropped;
+            switch (data.method) {
+                case 'rotate':
+                    if (cropped && options.viewMode > 0) {
+                        $image.cropper('clear');
+                    }
+                    break;
+                case 'getCroppedCanvas':
+                    if (uploadedImageType === 'image/jpeg') {
+                        if (!data.option) {
+                            data.option = {};
+                        }
+                        data.option.fillColor = '#fff';
+                    }
+                    break;
+            }
+            result = $image.cropper(data.method, data.option, data.secondOption);
+            switch (data.method) {
+                case 'rotate':
+                    if (cropped && options.viewMode > 0) {
+                        $image.cropper('crop');
+                    }
+                    break;
+                case 'scaleX':
+                case 'scaleY':
+                    $(this).data('option', -data.option);
+                    break;
+                case 'getCroppedCanvas':
+                    if (result) {
+                        imageBase64 = result.toDataURL(uploadedImageType);
+                    }
+                    break
+            }
+        }
+    });
+    $("#inputImage").change(function(){
+        var files = this.files, file;
+        if (!$image.data('cropper')) {
+            return;
+        }
+        if (files && files.length) {
+            file = files[0];
+            if (/^image\/\w+$/.test(file.type)) {
+                uploadedImageType = file.type;
+                uploadedImageURL = URL.createObjectURL(file);
+                $image.cropper('destroy').attr('src', uploadedImageURL).cropper(options);
+                $(this).val('');// 清理下，方便下次选择
+            } else {
+                js.showMessage('请选择一个图片文件。');
+            }
+        }
+        $(this).blur();
+    }).focus(function(){
+        js.loading();
+    }).blur(function(){
+        js.closeLoading();
+    });
+})
 $(window).resize(function(){
 	$('.img-container').height($(window).height()-50);
 }).resize();
