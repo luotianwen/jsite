@@ -5,7 +5,7 @@
 	<fileName>${className}Form.html</fileName>
 	<content><![CDATA[
 	
-<% layout('/layout/default.html', {title: '${functionNameSimple}详情', libs: ['validate']}){ %>
+<% layout('/layout/default.html', {title: '${functionNameSimple}详情', libs: ['validate', 'icheck']}){ %>
 <div class="main-content">
 	<div class="box box-main">
 		<div class="box-header with-border">

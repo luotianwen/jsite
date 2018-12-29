@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -65,7 +64,7 @@ public class GenSchemeController extends BaseController {
 	
 	@RequiresPermissions("gen:genScheme:view")
 	@RequestMapping(value = {"list", ""})
-	public String list(GenScheme genScheme, HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String list(GenScheme genScheme) {
 		return "modules/gen/genSchemeList";
 	}
 	
@@ -78,7 +77,7 @@ public class GenSchemeController extends BaseController {
 		if (!user.isAdmin()){
 			genScheme.setCreateBy(user);
 		}
-        Page<GenScheme> page = genSchemeService.find(new Page<GenScheme>(request, response), genScheme); 
+        Page<GenScheme> page = genSchemeService.find(new Page<>(request, response), genScheme);
 		return page;
 	}
 
@@ -97,7 +96,11 @@ public class GenSchemeController extends BaseController {
 	@RequiresPermissions("gen:genScheme:edit")
 	@RequestMapping(value = "save")
 	@ResponseBody
-	public String save(GenScheme genScheme, Model model, RedirectAttributes redirectAttributes) {
+	public String save(GenScheme genScheme) {
+		if(Global.isDemoMode()){
+			return renderResult(Global.FALSE, "演示模式，不允许操作！");
+		}
+
 		String result = genSchemeService.save(genScheme);
 		return renderResult(Global.TRUE, "操作生成方案'" + genScheme.getName() + "'成功<br/>" + result);
 	}
@@ -105,7 +108,10 @@ public class GenSchemeController extends BaseController {
 	@RequiresPermissions("gen:genScheme:edit")
 	@RequestMapping(value = "delete")
 	@ResponseBody
-	public String delete(GenScheme genScheme, RedirectAttributes redirectAttributes) {
+	public String delete(GenScheme genScheme) {
+		if(Global.isDemoMode()){
+			return renderResult(Global.FALSE, "演示模式，不允许操作！");
+		}
 		genSchemeService.delete(genScheme);
 		return renderResult(Global.TRUE, "删除生成方案成功");
 	}

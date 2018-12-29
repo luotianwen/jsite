@@ -78,7 +78,7 @@
                         <% for(column in genTable.columnList) {
                         var index = columnLP.index-1;
                         %>
-                        <tr${column.delFlag=='1'?' class="error" title="已删除的列，保存之后消失！"':''}>
+                        <tr${column.delFlag=='1'?' class="error" title="已删除的列，保存之后消失！"':''} >
                         <td nowrap="nowrap">
                             <input type="hidden" name="columnList[${index}].id" value="${column.id}"/>
                             <input type="hidden" name="columnList[${index}].delFlag" value="${column.delFlag}"/>

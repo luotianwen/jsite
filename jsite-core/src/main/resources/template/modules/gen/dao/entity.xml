@@ -5,7 +5,7 @@
 	<fileName>${ClassName}.java</fileName>
 	<content><![CDATA[
 /**
- * Copyright &copy; 2017-2019 <a href="https://gitee.com/lruijun/JSite">JSite</a> All rights reserved.
+ * Copyright &copy; 2017-2019 <a href="https://gitee.com/baseweb/JSite">JSite</a> All rights reserved.
  */
 package ${packageName}.${moduleName}.entity<#if subModuleName != "">.${subModuleName}</#if>;
 
@@ -29,7 +29,7 @@ public class ${ClassName} extends DataEntity<${ClassName}> {
 		<#if c.isNotBaseField>
 			<#-- 父类对象 -->
 			<#if table.parentExists && table.parentTableFk == c.name>
-	private ${table.parent.className?cap_first} ${c.simpleJavaField};		<#if c.comments??>// ${c.comments} 父类</#if>
+	private ${c.simpleJavaType} ${c.simpleJavaField};		<#if c.comments??>// ${c.comments} 父类</#if>
 			<#-- 其它字段 -->
 			<#else>
 	private ${c.simpleJavaType} ${c.simpleJavaField};		<#if c.comments??>// ${c.comments}</#if>
@@ -60,7 +60,7 @@ public class ${ClassName} extends DataEntity<${ClassName}> {
 		<#if table.parentExists && table.parentTableFk == c.name>
 
 	public ${ClassName}(${table.parent.className?cap_first} ${c.simpleJavaField}){
-		this.${c.simpleJavaField} = ${c.simpleJavaField};
+		this.${c.simpleJavaField} = ${c.simpleJavaField}.getId();
 	}
 		</#if>
 	</#list>
@@ -74,12 +74,12 @@ public class ${ClassName} extends DataEntity<${ClassName}> {
 			</#list>
 			<#-- 父类对象 -->
 			<#if table.parentExists && table.parentTableFk == c.name>
-	public ${table.parent.className?cap_first} get${c.simpleJavaField?cap_first}() {
+	public ${c.simpleJavaType} get${c.simpleJavaField?cap_first}() {
 		return ${c.simpleJavaField};
 	}
 
 	public void set${c.simpleJavaField?cap_first}(${table.parent.className?cap_first} ${c.simpleJavaField}) {
-		this.${c.simpleJavaField} = ${c.simpleJavaField};
+		this.${c.simpleJavaField} = ${c.simpleJavaField}.getId();
 	}
 	
 			<#-- 其它字段 -->

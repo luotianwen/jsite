@@ -36,7 +36,7 @@
 				</#if>
 			</#list>
 		</#assign>
-${columnField?substring(0, columnField?last_index_of(","))}
+		${columnField?substring(0, columnField?last_index_of(","))}
 	</sql>
 	
 	<#-- 输出字段关联表 -->

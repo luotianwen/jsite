@@ -101,6 +101,10 @@ public class GenTableController extends BaseController {
 	@RequestMapping(value = "save")
 	@ResponseBody
 	public String save(GenTable genTable) {
+		if(Global.isDemoMode()){
+			return renderResult(Global.FALSE, "演示模式，不允许操作！");
+		}
+
 		genTableService.save(genTable);
         return renderResult(Global.TRUE, "保存业务表'" + genTable.getName() + "'成功");
 	}
@@ -109,6 +113,10 @@ public class GenTableController extends BaseController {
 	@RequestMapping(value = "delete")
     @ResponseBody
 	public String delete(GenTable genTable) {
+        if(Global.isDemoMode()){
+            return renderResult(Global.FALSE, "演示模式，不允许操作！");
+        }
+
 		genTableService.delete(genTable);
         return renderResult(Global.TRUE, "删除业务表成功");
 	}

@@ -4,7 +4,7 @@
 	<filePath>src/main/resources/views/${lastPackageName}/${moduleName}/${subModuleName}</filePath>
 	<fileName>${className}Form.html</fileName>
 	<content><![CDATA[
-<% layout('/layout/default.html', {title: '${functionNameSimple}详情', libs: ['validate']}){ %>
+<% layout('/layout/default.html', {title: '${functionNameSimple}详情', libs: ['validate', 'icheck']}){ %>
 <div class="main-content">
 	<div class="box box-main">
 		<div class="box-header with-border">
@@ -15,7 +15,7 @@
 				<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
 			</div>
 		</div>
-		<${'#'}form:form id="inputForm" model="${className}" action="${r"${ctx}"}/${urlPrefix}/save" method="post" class="form-horizontal">
+		<${'#'}form:form id="inputForm" model="${"$"}{${className}}" action="${r"${ctx}"}/${urlPrefix}/save" method="post" class="form-horizontal">
 			<div class="box-body">
 				<${'#'}form:hidden path="id"/>
 				<#assign showcount=-1 />

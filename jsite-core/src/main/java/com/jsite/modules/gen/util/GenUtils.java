@@ -9,6 +9,7 @@ import com.jsite.common.config.Global;
 import com.jsite.common.lang.DateUtils;
 import com.jsite.common.lang.StringUtils;
 import com.jsite.common.mapper.JaxbMapper;
+import com.jsite.common.mapper.JsonMapper;
 import com.jsite.common.utils.FileUtils;
 import com.jsite.common.utils.FreeMarkers;
 import com.jsite.modules.gen.entity.*;
