@@ -196,7 +196,7 @@ lowin-input
 	padding: 10px;
 	font-weight: 700;
 	margin-top: 20px;
-	color: var(--color-semidark);
+	color: var(--color-quietblack);
 }
 
 .lowin .lowin-footer {

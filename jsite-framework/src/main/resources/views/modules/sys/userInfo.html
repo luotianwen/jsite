@@ -18,7 +18,7 @@
 				<div class="row">
 					<div class="box box-main">
 						<div class="box-body box-profile">
-							<img id="avatarImg" class="profile-user-img img-responsive img-circle" src="${user.photo}" onError="this.src='${ctxStatic}/${defaultSmallUrl}';"/>
+							<img id="avatarImg" class="profile-user-img img-responsive img-circle" src="${user.photo}" onError="this.src='${ctxStatic}/${defaultSmallUrl}';this.onError=null;"/>
 							<h3 class="profile-username text-center">${user.name}</h3>
 							<input id="imageBase64" name="imageBase64" type="hidden" value="" class="" />
 							<script>
