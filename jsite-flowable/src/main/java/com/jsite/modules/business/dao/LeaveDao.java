@@ -1,8 +1,8 @@
-package com.jsite.modules.oa.dao;
+package com.jsite.modules.business.dao;
 
 import com.jsite.common.persistence.CrudDao;
 import com.jsite.common.persistence.annotation.MyBatisDao;
-import com.jsite.modules.oa.entity.Leave;
+import com.jsite.modules.business.entity.Leave;
 
 /**
  * 请假DAO接口

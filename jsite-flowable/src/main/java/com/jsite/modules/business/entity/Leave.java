@@ -1,4 +1,4 @@
-package com.jsite.modules.oa.entity;
+package com.jsite.modules.business.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jsite.common.persistence.ActEntity;

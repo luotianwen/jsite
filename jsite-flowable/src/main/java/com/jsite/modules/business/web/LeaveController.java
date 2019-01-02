@@ -1,11 +1,11 @@
-package com.jsite.modules.oa.web;
+package com.jsite.modules.business.web;
 
 import com.google.common.collect.Maps;
 import com.jsite.common.config.Global;
 import com.jsite.common.lang.StringUtils;
 import com.jsite.common.web.BaseController;
-import com.jsite.modules.oa.entity.Leave;
-import com.jsite.modules.oa.service.LeaveService;
+import com.jsite.modules.business.entity.Leave;
+import com.jsite.modules.business.service.LeaveService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -73,7 +73,7 @@ public class LeaveController extends BaseController {
 		}
 		
 		model.addAttribute("leave", leave);
-		return "modules/oa/" + view;
+		return "modules/business/" + view;
 	}
 
 	/**
