@@ -133,7 +133,11 @@ public class ReProcDefController extends BaseController {
 	@RequestMapping(value = "/deploy", method=RequestMethod.POST)
 	@ResponseBody
 	public String deploy(HttpServletRequest request) {
-		
+
+		if(Global.isDemoMode()){
+			return renderResult(Global.FALSE, "演示模式，不允许操作！");
+		}
+
 		String msg;
 		try {
 			Map<String, Object> fieldsMap = UploadUtils4.getInstance().initFields(request);

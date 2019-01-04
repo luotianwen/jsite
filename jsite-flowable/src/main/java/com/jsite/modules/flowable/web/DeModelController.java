@@ -79,6 +79,9 @@ public class DeModelController extends BaseController {
 	@RequestMapping(value = "deploy")
 	@ResponseBody
 	public String deploy(DeModel deModel, String category) {
+		if(Global.isDemoMode()){
+			return renderResult(Global.FALSE, "演示模式，不允许操作！");
+		}
 		String result = deModelService.doDeploy(deModel.getId(), category);
 		return  renderResult(Global.TRUE, result);
 	}
