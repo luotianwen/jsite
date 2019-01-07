@@ -3,7 +3,7 @@
  */
 package com.jsite.modules.sys.service;
 
-import com.jsite.common.service.CrudService;
+import com.jsite.common.service.TreeService;
 import com.jsite.modules.sys.dao.OfficeDao;
 import com.jsite.modules.sys.entity.Office;
 import com.jsite.modules.sys.utils.AreaOfficeUtils;
@@ -23,7 +23,7 @@ import java.util.List;
  */
 @Service
 @Transactional(readOnly = true)
-public class OfficeService extends CrudService<OfficeDao, Office> {
+public class OfficeService extends TreeService<OfficeDao, Office> {
 
 	public List<Office> findAll(){
 		return AreaOfficeUtils.getOfficeList();

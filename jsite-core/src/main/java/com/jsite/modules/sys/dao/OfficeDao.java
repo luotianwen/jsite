@@ -3,7 +3,7 @@
  */
 package com.jsite.modules.sys.dao;
 
-import com.jsite.common.persistence.CrudDao;
+import com.jsite.common.persistence.TreeDao;
 import com.jsite.common.persistence.annotation.MyBatisDao;
 import com.jsite.modules.sys.entity.Office;
 
@@ -13,6 +13,6 @@ import com.jsite.modules.sys.entity.Office;
  * @version 2014-05-16
  */
 @MyBatisDao
-public interface OfficeDao extends CrudDao<Office> {
+public interface OfficeDao extends TreeDao<Office> {
 	
 }

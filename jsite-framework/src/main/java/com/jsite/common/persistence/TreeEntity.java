@@ -42,7 +42,9 @@ public abstract class TreeEntity<T> extends DataEntity<T> {
 	@NotNull
 	public abstract T getParent();
 
-    public abstract void setParentId(String parentId);
+    public void setParentId(String parentId) {
+
+	}
 
     /**
 	 * 父对象，只能通过子类实现，父类实现mybatis无法读取

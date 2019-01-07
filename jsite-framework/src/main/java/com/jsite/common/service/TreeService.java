@@ -3,7 +3,6 @@
  */
 package com.jsite.common.service;
 
-import com.jsite.common.lang.StringUtils;
 import com.jsite.common.persistence.TreeDao;
 import com.jsite.common.persistence.TreeEntity;
 import com.jsite.common.utils.Reflections;
@@ -24,36 +23,31 @@ public abstract class TreeService<D extends TreeDao<T>, T extends TreeEntity<T>>
 		
 		@SuppressWarnings("unchecked")
 		Class<T> entityClass = Reflections.getClassGenricType(getClass(), 1);
-		
-		// 如果没有设置父节点，则代表为跟节点，有则获取父节点实体
-		if (entity.getParent() == null || StringUtils.isBlank(entity.getParent().getId())
-				|| "0".equals(entity.getParent().getId())){
-			entity.setParent(null);
-		}else{
-			entity.setParent(super.get(entity.getParent().getId()));
-		}
-		if (entity.getParent() == null){
-			T parentEntity = null;
-			try {
-				parentEntity = entityClass.getConstructor(String.class).newInstance("0");
-			} catch (Exception e) {
-				throw new ServiceException(e);
+
+        // 获取修改前的parentIds，用于更新子节点的parentIds
+        String oldParentIds = entity.getParentIds();
+
+        if (entity.getIsNewRecord()){
+			if(entity.getIsRoot()) {
+				entity.setTreeLeaf("1");
+				entity.setTreeLevel(0);
+				entity.setParentIds("0,");
+			}else {
+				T f = get(entity.getParent().getId());
+				entity.setParentIds(f.getParentIds()+f.getId()+",");
+				entity.setTreeLeaf("1");
+				entity.setTreeLevel(f.getTreeLevel()+1);
+				if(f.getIsTreeLeaf()) {
+					f.setTreeLeaf("0");
+                    super.save(f);
+				}
 			}
-			entity.setParent(parentEntity);
-			entity.getParent().setParentIds(StringUtils.EMPTY);
 		}
-		
-		// 获取修改前的parentIds，用于更新子节点的parentIds
-		String oldParentIds = entity.getParentIds(); 
-		
-		// 设置新的父节点串
-		entity.setParentIds(entity.getParent().getParentIds()+entity.getParent().getId()+",");
-		
 		// 保存或更新实体
 		super.save(entity);
 		
 		// 更新子节点 parentIds
-		T o = null;
+		T o;
 		try {
 			o = entityClass.newInstance();
 		} catch (Exception e) {

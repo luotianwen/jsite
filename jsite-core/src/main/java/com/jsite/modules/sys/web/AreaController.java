@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
 
@@ -74,22 +73,6 @@ public class AreaController extends BaseController {
 	@RequestMapping(value = "save")
 	@ResponseBody
 	public String save(Area area) {
-		if(area.getIsNewRecord()) {
-			if(area.getIsRoot()) {
-				area.setTreeLeaf("1");
-				area.setTreeLevel(0);
-				area.setParentIds("0");
-			}else {
-				Area f=areaService.get(area.getParent().getId());
-				area.setParentIds(f.getParentIds()+f.getId()+",");
-				area.setTreeLeaf("1");
-				area.setTreeLevel(f.getTreeLevel()+1);
-				if(f.getIsTreeLeaf()) {
-					f.setTreeLeaf("0");
-					areaService.save(f);
-				}
-			}
-		}
 		areaService.save(area);
 		return renderResult(Global.TRUE, "保存区域'" + area.getName() + "'成功");
 	}
@@ -112,7 +95,7 @@ public class AreaController extends BaseController {
 	@RequiresPermissions("user")
 	@ResponseBody
 	@RequestMapping(value = "treeData")
-	public List<Map<String, Object>> treeData(@RequestParam(required=false) String extId, HttpServletResponse response) {
+	public List<Map<String, Object>> treeData(@RequestParam(required=false) String extId) {
 		List<Map<String, Object>> mapList = Lists.newArrayList();
 		List<Area> list = areaService.findAll();
 		for (int i=0; i<list.size(); i++){

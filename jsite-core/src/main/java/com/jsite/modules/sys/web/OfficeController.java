@@ -79,23 +79,6 @@ public class OfficeController extends BaseController {
 	@RequestMapping(value = "save")
 	@ResponseBody
 	public String save(Office office) {
-		
-		if(office.getIsNewRecord()) {
-			if(office.getIsRoot()) {
-				office.setTreeLeaf("1");
-				office.setTreeLevel(0);
-				office.setParentIds("0");
-			}else {
-				Office f= officeService.get(office.getParent().getId());
-				office.setParentIds(f.getParentIds()+f.getId()+",");
-				office.setTreeLeaf("1");
-				office.setTreeLevel(f.getTreeLevel()+1);
-				if(f.getIsTreeLeaf()) {
-					f.setTreeLeaf("0");
-					officeService.save(f);
-				}
-			}
-		}
 		officeService.save(office);
 		return renderResult(Global.TRUE, "保存机构'" + office.getName() + "'成功");
 	}

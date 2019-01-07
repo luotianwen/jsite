@@ -3,7 +3,7 @@
  */
 package com.jsite.modules.sys.service;
 
-import com.jsite.common.service.CrudService;
+import com.jsite.common.service.TreeService;
 import com.jsite.modules.sys.dao.AreaDao;
 import com.jsite.modules.sys.entity.Area;
 import com.jsite.modules.sys.utils.AreaOfficeUtils;
@@ -20,7 +20,7 @@ import java.util.List;
  */
 @Service
 @Transactional(readOnly = true)
-public class AreaService extends CrudService<AreaDao, Area> {
+public class AreaService extends TreeService<AreaDao, Area> {
 	
 	public Area get(String id) {
 		return super.get(id);
