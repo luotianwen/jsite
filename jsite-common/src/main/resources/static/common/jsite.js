@@ -41,7 +41,6 @@
             // for(dict in dictList) dict.value 取不到值 undefined
             for (var i = 0; i < dictList.length; i++) {
                 var dict = dictList[i];
-                js.print(val + "-" + dict.value);
                 if (val == dict.value) {
                     label = dict.label;
                     break;

@@ -1,5 +1,6 @@
 package com.jsite;
 
+import com.jsite.common.config.Global;
 import com.jsite.common.io.PropertiesUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,6 +23,8 @@ public class JSiteWebApplication extends SpringBootServletInitializer {
         SpringApplication app = new SpringApplication(JSiteWebApplication.class);
         app.setDefaultProperties(PropertiesUtils.getInstance().getProperties());
         app.run(args);
+
+        printKeyLoadMessage();
     }
 
     @Override
@@ -29,5 +32,18 @@ public class JSiteWebApplication extends SpringBootServletInitializer {
         this.setRegisterErrorPageFilter(false);
         builder.properties(PropertiesUtils.getInstance().getProperties());
         return builder.sources(JSiteWebApplication.class);
+    }
+
+
+    /**
+     * 获取Key加载信息
+     */
+    public static boolean printKeyLoadMessage(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("\r\n======================================================================\r\n");
+        sb.append("\r\n    欢迎使用 "+Global.getProperty("productName")+"  - Powered By http://jsite.org.cn\r\n");
+        sb.append("\r\n======================================================================\r\n");
+        System.out.println(sb.toString());
+        return true;
     }
 }
