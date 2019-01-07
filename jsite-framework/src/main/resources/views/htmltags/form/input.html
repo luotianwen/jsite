@@ -4,9 +4,11 @@
 	    // 标签参数
 	    path: path!,                // 绑定form上model中属性的值
 		class:class!,				// 绑定input上的class属性值
-		maxlength:maxlength!		// 绑定input上的maxlength属性值
+        digits:digits!"",
+        number:number!"",
+		maxlength:maxlength!""		// 绑定input上的maxlength属性值
 	};
 
 %>
 
-<input type="text" id="${p.path}" name="${p.path}" class="${p.class}" maxlength="${p.maxlength}" />
+<input type="text" id="${p.path}" name="${p.path}" class="${p.class}" <% if(!isEmpty(p.maxlength)) {%> maxlength="${p.maxlength}" <%}%>  <% if(!isEmpty(p.digits)) {%> digits="true" <%}%>  <% if(!isEmpty(p.number)) {%> number="true" <%}%> />

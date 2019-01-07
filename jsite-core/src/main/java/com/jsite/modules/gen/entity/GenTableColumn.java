@@ -326,7 +326,28 @@ public class GenTableColumn extends DataEntity<GenTableColumn> {
 				&& !StringUtils.equals(getSimpleJavaField(), "updateDate")
 				&& !StringUtils.equals(getSimpleJavaField(), "delFlag");
 	}
-	
+
+
+    /**
+     * 是否是基类字段 树结构表
+     * @return
+     */
+    public Boolean getIsNotTreeBaseField(){
+        return !StringUtils.equals(getSimpleJavaField(), "id")
+                && !StringUtils.equals(getSimpleJavaField(), "remarks")
+                && !StringUtils.equals(getSimpleJavaField(), "createBy")
+                && !StringUtils.equals(getSimpleJavaField(), "createDate")
+                && !StringUtils.equals(getSimpleJavaField(), "updateBy")
+                && !StringUtils.equals(getSimpleJavaField(), "updateDate")
+                && !StringUtils.equals(getSimpleJavaField(), "delFlag")
+
+                && !StringUtils.equals(getSimpleJavaField(), "parent")
+                && !StringUtils.equals(getSimpleJavaField(), "parentIds")
+                && !StringUtils.equals(getSimpleJavaField(), "name")
+                && !StringUtils.equals(getSimpleJavaField(), "sort")
+                && !StringUtils.equals(getSimpleJavaField(), "treeLeaf")
+                && !StringUtils.equals(getSimpleJavaField(), "treeLevel");
+    }
 }
 
 
