@@ -38,7 +38,9 @@
 							<#elseif c.showType == "textarea">
 								<${'#'}form:textarea path="${c.javaFieldId}" rows="4" <#if c.dataLength != "0"> maxlength="${c.dataLength}"</#if> class="form-control input-xxlarge "/>
 							<#elseif c.showType == "select">
-								<${'#'}form:select path="${c.javaFieldId}" name="" data="" class="form-control <#if c.isNull != "1">required</#if> " />
+								<${'#'}form:select path="${c.javaFieldId}" name="label" data="getDictList:${c.dictType}" class="form-control <#if c.isNull != "1">required</#if> " />
+							<#elseif c.showType == "checkbox">
+								<${'#'}form:checkboxes path="${c.javaFieldId}" data="" items="" itemLabel="name" itemValue="id" class="form-control <#if c.isNull != "1">required</#if>"/>
 							<#elseif c.showType == "dateselect">
 								<input id="${c.javaFieldId}" type="text" name="${c.javaFieldId}" maxlength="20" readonly="readonly" class="form-control <#if c.isNull != "1">required</#if> "
 										value="${"$"}{${className}.${c.javaFieldId}}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});" />
