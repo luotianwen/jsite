@@ -1,0 +1,59 @@
+<% layout('/layout/default.html', {title: '树结构表生成', libs: ['dataGrid']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header">
+			<div class="box-title">
+				<i class="fa fa-cubes"></i> 树结构表生成
+			</div>
+			<div class="box-tools pull-right">
+				<a href="#" class="btn btn-default" id="btnRefreshTree" title="刷新"><i class="fa fa-refresh"></i> 刷新</a>
+				<a href="#" class="btn btn-default" id="btnExpandTreeNode" title="展开一级"><i class="fa fa-angle-double-down"></i> 展开</a>
+				<a href="#" class="btn btn-default" id="btnCollapseTreeNode" title="折叠全部"><i class="fa fa-angle-double-up"></i> 折叠</a>
+				<% if(hasPermi('test:testTree:edit')){ %>
+					<a href="/test/testTree/form" class="btn btn-default btnTool" title="添加根树结构表生成"><i class="fa fa-plus"></i> 添加根树结构表生成</a>
+				<% } %>
+			</div>
+		</div>
+		<div class="box-body">
+			<form id="searchForm" action="${ctx}/test/testTree/listData" method="post" class="form-inline hide" >
+				<button type="submit" class="btn btn-primary btn-sm">查询</button>
+				<button type="reset" class="btn btn-default btn-sm">重置</button>
+			</form>
+			<table id="dataGrid"></table>
+		</div>
+	</div>
+</div>
+<% } %>
+<script>
+//初始化DataGrid对象
+$('#dataGrid').dataGrid({
+	searchForm: $("#searchForm"),
+	columnModel: [
+		{header:'名称', name:'name', index:'a.name', width:90, align:"center"},
+		{header:'更新时间', name:'updateDate', index:'a.update_date', width:90, align:"center"},
+		{header:'备注信息', name:'remarks', index:'a.remarks', width:90, align:"center"},
+		{header:'操作', name:'actions', width:100, sortable:false, title:false, align:"center",formatter: function(val, obj, row, act){
+			var actions = [];
+			<% if(hasPermi('test:testTree:edit')){ %>
+				actions.push('<a href="/test/testTree/form?id='+row.id+'" class="btnList" title="修改树结构表生成"><i class="fa fa-pencil"></i></a>');
+				actions.push('<a href="${ctx}/test/testTree/delete?id='+row.id+'" class="btnList" title="删除树结构表生成" data-confirm="要删除该树结构表生成及所有子树结构表生成吗？"><i class="fa fa-trash-o"></i></a>');
+				actions.push('<a href="/test/testTree/form?parentId='+row.id+'" class="btnList" title="添加下级树结构表生成"><i class="fa fa-plus-square"></i></a>');
+			<% } %>
+			return actions.join('');
+		}}
+	],
+	treeGrid: true,
+	defaultExpandLevel: 0,
+	expandNodeClearPostData: 'name',
+	treeIcons : {
+		plus: "ui-icon-circlesmall-plus",
+		minus: "ui-icon-circlesmall-minus",
+		leaf : "ui-icon-document"
+	},
+	// 加载成功后执行事件
+	ajaxSuccess: function(data){
+
+	}
+});
+
+</script>

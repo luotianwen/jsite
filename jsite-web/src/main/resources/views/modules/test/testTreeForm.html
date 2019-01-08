@@ -1,0 +1,89 @@
+<% layout('/layout/default.html', {title: '树结构表生成详情', libs: ['validate', 'icheck']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header with-border">
+			<div class="box-title">
+				<i class="fa fa-pencil-square-o"></i> ${testTree.isNewRecord?'新增树结构表生成':'编辑树结构表生成'}
+			</div>
+		</div>
+		<#form:form id="inputForm" model="${testTree}" action="${ctx}/test/testTree/save" method="post" class="form-horizontal">
+			<div class="box-body">
+				<#form:hidden path="id"/>
+				<div class="row">
+				    <div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">父级：</label>
+							<div class="col-sm-8">
+							    <div class="form-control" readonly="readonly">
+									<#form:hidden path="parent.id"/>
+									<% if(isEmpty(testTree.parent.id)|| testTree.parent.id == "0") {%>
+										根区域
+									<% } else{ %>
+										${testTree.parent.name}
+									<% } %>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+							 名称：
+							</label>
+							<div class="col-sm-8">
+								<#form:input path="name"  maxlength="100" class="form-control  "/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+							 排序：
+							</label>
+							<div class="col-sm-8">
+								<#form:input path="sort"  class="form-control   digits"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+							 备注信息：
+							</label>
+							<div class="col-sm-8">
+								<#form:textarea path="remarks" rows="4"  maxlength="255" class="form-control input-xxlarge "/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="box-footer">
+				<div class="row">
+					<div class="col-sm-offset-2 col-sm-10">
+						<% if (hasPermi('test:testTree:edit')){ %>
+							<button type="submit" class="btn btn-sm btn-primary" id="btnSubmit"><i class="fa fa-check"></i> 保 存</button>
+						<% } %>
+						<button type="button" class="btn btn-sm btn-default" id="btnCancel" onclick="window.parent.closeCurrentTabPage()"><i class="fa fa-reply-all"></i> 关 闭</button>
+					</div>
+				</div>
+			</div>
+		</#form:form>
+	</div>
+</div>
+<% } %>
+
+<script type="text/javascript">
+	$("#inputForm").validate({
+		submitHandler: function(form){
+			js.ajaxSubmitForm($(form), function(data){
+				js.showMessage(data.message);
+				if(data.result == 'true'){
+					window.parent.closeCurrentTabPage(window.parent.refreshTab);
+				}
+			});
+	    }
+	});
+</script>
