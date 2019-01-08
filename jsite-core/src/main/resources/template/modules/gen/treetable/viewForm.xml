@@ -67,6 +67,9 @@
 							<#elseif c.showType == "areaselect">
 								<${'#'}form:treeselect id="${c.simpleJavaFieldWithId}" name="${c.javaFieldId}" value="${"$"}{${className}.${c.javaFieldId}!}" labelName="${c.javaFieldName}"
 										labelValue="${"$"}{${className}.${c.javaFieldName}!}" title="区域" url="/sys/area/treeData" cssClass="<#if c.isNull != "1">required</#if>" notAllowSelectParent="true" />
+							<#elseif c.showType == "treeselect">
+							    <${'#'}form:treeselect id="${c.simpleJavaFieldWithId}" name="${c.javaFieldId}" value="${"$"}{${className}.${c.javaFieldId}!}" labelName="${c.javaFieldName}"
+										labelValue="${"$"}{${className}.${c.javaFieldName}!}" title="部门" url="/${urlPrefix}/treeData" cssClass="<#if c.isNull != "1">required</#if>" notAllowSelectParent="true" />
 							</#if>
 							</div>
 						</div>
