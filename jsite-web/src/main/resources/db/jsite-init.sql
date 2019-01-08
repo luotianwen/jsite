@@ -4,14 +4,13 @@
  Source Server         : jsite
  Source Server Type    : MySQL
  Source Server Version : 80013
- Source Host           : localhost:3306
  Source Schema         : jsite
 
  Target Server Type    : MySQL
  Target Server Version : 80013
  File Encoding         : 65001
 
- Date: 29/12/2018 14:51:33
+ Date: 08/01/2019 15:29:12
 */
 
 SET NAMES utf8mb4;
@@ -45,8 +44,9 @@ CREATE TABLE `gen_scheme`  (
 -- ----------------------------
 -- Records of gen_scheme
 -- ----------------------------
-INSERT INTO `gen_scheme` VALUES ('c544bf7da3744ab1aa285fa3bfef6000', '主子表生成', 'curd_many', 'com.jsite.modules', 'test', 'zhuzibiao', '主子表生成测试', '主子表生成', 'liuruijun', 'd7c3fff144a046698aa3766844582a4c', '1', '2018-12-29 11:50:24', '1', '2018-12-29 14:08:40', '', '0');
-INSERT INTO `gen_scheme` VALUES ('f09437aa6b9c440481e40aa63daf81d7', '单表生成', 'curd', 'com.jsite.modules', 'test', 'danbiao', '单表生成测试', '单表生成', 'liuruijun', '39c9a49ccd87400b9b19606a46b12dd6', '1', '2018-12-29 11:46:43', '1', '2018-12-29 11:46:43', '', '0');
+INSERT INTO `gen_scheme` VALUES ('325d42709242476aab909b8d54a5ad73', '树结构表生成', 'treeTable', 'com.jsite.modules', 'test', '', '树结构表生成', '树结构表生成', 'liuruijun', '3195020a929e41c7bc3dfbd539ed5351', '1', '2019-01-05 22:12:10', '1', '2019-01-08 15:22:56', '', '0');
+INSERT INTO `gen_scheme` VALUES ('c544bf7da3744ab1aa285fa3bfef6000', '主子表生成', 'curd_many', 'com.jsite.modules', 'test', '', '主子表生成测试', '主子表生成', 'liuruijun', 'd7c3fff144a046698aa3766844582a4c', '1', '2018-12-29 11:50:24', '1', '2019-01-02 10:06:04', '', '0');
+INSERT INTO `gen_scheme` VALUES ('f09437aa6b9c440481e40aa63daf81d7', '单表生成', 'curd', 'com.jsite.modules', 'test', '', '单表生成测试', '单表生成', 'liuruijun', '39c9a49ccd87400b9b19606a46b12dd6', '1', '2018-12-29 11:46:43', '1', '2019-01-02 10:01:38', '', '0');
 
 -- ----------------------------
 -- Table structure for gen_table
@@ -73,6 +73,7 @@ CREATE TABLE `gen_table`  (
 -- ----------------------------
 -- Records of gen_table
 -- ----------------------------
+INSERT INTO `gen_table` VALUES ('3195020a929e41c7bc3dfbd539ed5351', 'test_tree', '树结构表', 'TestTree', '', '', '1', '2019-01-05 21:22:37', '1', '2019-01-07 16:51:37', NULL, '0');
 INSERT INTO `gen_table` VALUES ('39c9a49ccd87400b9b19606a46b12dd6', 'test_data', '业务数据表', 'TestData', '', '', '1', '2018-12-29 11:19:36', '1', '2018-12-29 11:19:36', NULL, '0');
 INSERT INTO `gen_table` VALUES ('794ea2d0349e4590ba4366529d499833', 'test_data_child', '业务数据子表', 'TestDataChild', 'test_data_main', 'test_data_main_id', '1', '2018-12-29 11:21:18', '1', '2018-12-29 11:21:18', NULL, '0');
 INSERT INTO `gen_table` VALUES ('d7c3fff144a046698aa3766844582a4c', 'test_data_main', '业务数据表', 'TestDataMain', '', '', '1', '2018-12-29 11:20:51', '1', '2018-12-29 11:20:51', NULL, '0');
@@ -119,33 +120,46 @@ CREATE TABLE `gen_table_column`  (
 -- ----------------------------
 INSERT INTO `gen_table_column` VALUES ('036c21c4346a4b9a9bd4729f5b1996ed', 'd7c3fff144a046698aa3766844582a4c', 'id', '编号', 'varchar(64)', 'String', 'id', '0', '1', '0', '1', '0', '0', '0', '=', 'input', '', NULL, 10, '1', '2018-12-29 11:20:51', '1', '2018-12-29 11:20:51', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('0739b3a11c40466b8b3d9c488e3a6bf8', '39c9a49ccd87400b9b19606a46b12dd6', 'area_id', '归属区域', 'varchar(64)', 'com.jsite.modules.sys.entity.Area', 'area.id|name', '0', '0', '1', '1', '1', '0', '0', '=', 'areaselect', '', NULL, 40, '1', '2018-12-29 11:19:37', '1', '2018-12-29 11:19:37', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('08b216da6fe042fa817db5a95e4399a7', '3195020a929e41c7bc3dfbd539ed5351', 'parent_id', '父级编号', 'varchar(64)', 'This', 'parent.id|name', '0', '0', '0', '1', '1', '0', '0', '=', 'treeselect', '', NULL, 20, '1', '2019-01-05 21:22:37', '1', '2019-01-07 16:51:37', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('0d48145e1a154e31b276963e1503682c', '3195020a929e41c7bc3dfbd539ed5351', 'create_date', '创建时间', 'datetime', 'java.util.Date', 'createDate', '0', '0', '0', '1', '0', '0', '0', '=', 'dateselect', '', NULL, 90, '1', '2019-01-05 21:22:37', '1', '2019-01-07 16:51:37', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('18bbfa2e86a14ca4a6be2d8a643c98d7', '794ea2d0349e4590ba4366529d499833', 'create_date', '创建时间', 'datetime', 'java.util.Date', 'createDate', '0', '0', '0', '1', '0', '0', '0', '=', 'dateselect', '', NULL, 50, '1', '2018-12-29 11:21:19', '1', '2018-12-29 11:21:19', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('1f36d1a2217f4b09a6b7dc2683b5a6a9', 'd7c3fff144a046698aa3766844582a4c', 'update_date', '更新时间', 'datetime', 'java.util.Date', 'updateDate', '0', '0', '0', '1', '1', '1', '0', '=', 'dateselect', '', NULL, 110, '1', '2018-12-29 11:20:52', '1', '2018-12-29 11:20:52', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('3421eb7ef5a3427f92c48a6033441a0e', '39c9a49ccd87400b9b19606a46b12dd6', 'update_by', '更新者', 'varchar(64)', 'com.jsite.modules.sys.entity.User', 'updateBy.id', '0', '0', '0', '1', '1', '0', '0', '=', 'input', '', NULL, 100, '1', '2018-12-29 11:19:37', '1', '2018-12-29 11:19:37', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('3a745b100cde4fc99eb0f4e35f27a1b7', '39c9a49ccd87400b9b19606a46b12dd6', 'create_by', '创建者', 'varchar(64)', 'com.jsite.modules.sys.entity.User', 'createBy.id', '0', '0', '0', '1', '0', '0', '0', '=', 'input', '', NULL, 80, '1', '2018-12-29 11:19:37', '1', '2018-12-29 11:19:37', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('3b9990bbe9144b52b316402cac1678e8', '3195020a929e41c7bc3dfbd539ed5351', 'update_date', '更新时间', 'datetime', 'java.util.Date', 'updateDate', '0', '0', '0', '1', '1', '1', '0', '=', 'dateselect', '', NULL, 110, '1', '2019-01-05 21:22:37', '1', '2019-01-07 16:51:37', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('404a90b909bb416baa030a1838af45d0', '39c9a49ccd87400b9b19606a46b12dd6', 'name', '名称', 'varchar(100)', 'String', 'name', '0', '0', '1', '1', '1', '1', '1', 'like', 'input', '', NULL, 50, '1', '2018-12-29 11:19:37', '1', '2018-12-29 11:19:37', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('40dc876733f4428a84349621d3ae7e79', '3195020a929e41c7bc3dfbd539ed5351', 'del_flag', '删除标记', 'char(1)', 'String', 'delFlag', '0', '0', '0', '1', '0', '0', '0', '=', 'radiobox', 'del_flag', NULL, 130, '1', '2019-01-05 21:22:37', '1', '2019-01-07 16:51:37', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('4316cdf1fbff40e591419cbb75de6742', '3195020a929e41c7bc3dfbd539ed5351', 'remarks', '备注信息', 'varchar(255)', 'String', 'remarks', '0', '0', '1', '1', '1', '1', '0', '=', 'textarea', '', NULL, 120, '1', '2019-01-05 21:22:37', '1', '2019-01-07 16:51:37', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('471db37a88de4c02a9c2db052faf5dec', '794ea2d0349e4590ba4366529d499833', 'id', '编号', 'varchar(64)', 'String', 'id', '0', '1', '0', '1', '0', '0', '0', '=', 'input', '', NULL, 10, '1', '2018-12-29 11:21:18', '1', '2018-12-29 11:21:18', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('4fa8affc845740448035c44686a6b4f1', 'd7c3fff144a046698aa3766844582a4c', 'create_by', '创建者', 'varchar(64)', 'com.jsite.modules.sys.entity.User', 'createBy.id', '0', '0', '0', '1', '0', '0', '0', '=', 'input', '', NULL, 80, '1', '2018-12-29 11:20:52', '1', '2018-12-29 11:20:52', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('518b26e7bd6c4a6aaac289678ef64ace', '39c9a49ccd87400b9b19606a46b12dd6', 'id', '编号', 'varchar(64)', 'String', 'id', '0', '1', '0', '1', '0', '0', '0', '=', 'input', '', NULL, 10, '1', '2018-12-29 11:19:36', '1', '2018-12-29 11:19:36', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('5442ba5226c149f5a12187e55f68ca4a', '39c9a49ccd87400b9b19606a46b12dd6', 'sex', '性别', 'char(1)', 'String', 'sex', '0', '0', '1', '1', '1', '0', '0', '=', 'input', '', NULL, 60, '1', '2018-12-29 11:19:37', '1', '2018-12-29 11:19:37', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('547037387f074c43a5912e32073e4ba7', '794ea2d0349e4590ba4366529d499833', 'test_data_main_id', '业务主表ID', 'varchar(64)', 'String', 'testDataMainId', '0', '0', '1', '1', '1', '0', '0', '=', 'input', '', NULL, 20, '1', '2018-12-29 11:21:18', '1', '2018-12-29 11:21:18', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('5542c325e3364eb98450c6b7c386885b', '3195020a929e41c7bc3dfbd539ed5351', 'parent_ids', '所有父级编号', 'varchar(2000)', 'String', 'parentIds', '0', '0', '0', '1', '1', '0', '0', 'like', 'input', '', NULL, 30, '1', '2019-01-05 21:22:37', '1', '2019-01-07 16:51:37', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('5806f2b63737423fabe0efde8cd638fc', 'd7c3fff144a046698aa3766844582a4c', 'create_date', '创建时间', 'datetime', 'java.util.Date', 'createDate', '0', '0', '0', '1', '0', '0', '0', '=', 'dateselect', '', NULL, 90, '1', '2018-12-29 11:20:52', '1', '2018-12-29 11:20:52', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('58749bef8ac24ad0a651ec63c6f0cf79', '794ea2d0349e4590ba4366529d499833', 'remarks', '备注信息', 'varchar(255)', 'String', 'remarks', '0', '0', '1', '1', '1', '1', '0', '=', 'textarea', '', NULL, 80, '1', '2018-12-29 11:21:19', '1', '2018-12-29 11:21:19', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('63a7634cd1c449d1966355825f9ae0a1', '3195020a929e41c7bc3dfbd539ed5351', 'create_by', '创建者', 'varchar(64)', 'com.jsite.modules.sys.entity.User', 'createBy.id', '0', '0', '0', '1', '0', '0', '0', '=', 'input', '', NULL, 80, '1', '2019-01-05 21:22:37', '1', '2019-01-07 16:51:37', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('660bcce031194ba195c23225e15f4ebc', 'd7c3fff144a046698aa3766844582a4c', 'sex', '性别', 'char(1)', 'String', 'sex', '0', '0', '1', '1', '1', '1', '0', '=', 'input', '', NULL, 60, '1', '2018-12-29 11:20:51', '1', '2018-12-29 11:20:51', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('7301b4d629db45209e07cdc8849c40f6', '39c9a49ccd87400b9b19606a46b12dd6', 'in_date', '加入日期', 'date', 'java.util.Date', 'inDate', '0', '0', '1', '1', '1', '0', '0', '=', 'dateselect', '', NULL, 70, '1', '2018-12-29 11:19:37', '1', '2018-12-29 11:19:37', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('8ee7f0a8f2804042bb200e24f23de333', '39c9a49ccd87400b9b19606a46b12dd6', 'user_id', '归属用户', 'varchar(64)', 'com.jsite.modules.sys.entity.User', 'user.id|name', '0', '0', '1', '1', '1', '0', '0', '=', 'userselect', '', NULL, 20, '1', '2018-12-29 11:19:36', '1', '2018-12-29 11:19:36', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('9a6afed319b744f79071887baecac3a1', '3195020a929e41c7bc3dfbd539ed5351', 'id', '编号', 'varchar(64)', 'String', 'id', '0', '1', '0', '1', '0', '0', '0', '=', 'input', '', NULL, 10, '1', '2019-01-05 21:22:37', '1', '2019-01-07 16:51:37', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('9a6d8fcf3fdc4eefad2a63b09cda5c7f', '39c9a49ccd87400b9b19606a46b12dd6', 'remarks', '备注信息', 'varchar(255)', 'String', 'remarks', '0', '0', '1', '1', '1', '1', '0', '=', 'textarea', '', NULL, 120, '1', '2018-12-29 11:19:37', '1', '2018-12-29 11:19:37', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('a04f28b86fd545a6b3ea4a85861b55f9', 'd7c3fff144a046698aa3766844582a4c', 'area_id', '归属区域', 'varchar(64)', 'com.jsite.modules.sys.entity.Area', 'area.id|name', '0', '0', '1', '1', '1', '0', '0', '=', 'areaselect', '', NULL, 40, '1', '2018-12-29 11:20:51', '1', '2018-12-29 11:20:51', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('a460e3cbfc4f4b87b07b5a8f88e37c63', '3195020a929e41c7bc3dfbd539ed5351', 'sort', '排序', 'decimal(10,0)', 'Integer', 'sort', '0', '0', '1', '1', '1', '0', '0', '=', 'input', '', NULL, 50, '1', '2019-01-05 21:22:37', '1', '2019-01-07 16:51:37', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('ac74bc0c9b7746249dbf92499b89f310', '794ea2d0349e4590ba4366529d499833', 'del_flag', '删除标记', 'char(1)', 'String', 'delFlag', '0', '0', '0', '1', '0', '0', '0', '=', 'radiobox', 'del_flag', NULL, 90, '1', '2018-12-29 11:21:19', '1', '2018-12-29 11:21:19', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('acc2ffe13abb49fdb3e76fc871caa46e', '794ea2d0349e4590ba4366529d499833', 'create_by', '创建者', 'varchar(64)', 'com.jsite.modules.sys.entity.User', 'createBy.id', '0', '0', '0', '1', '0', '0', '0', '=', 'input', '', NULL, 40, '1', '2018-12-29 11:21:19', '1', '2018-12-29 11:21:19', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('afad04f3c0334e35ae2781b3966e33bf', '3195020a929e41c7bc3dfbd539ed5351', 'name', '名称', 'varchar(100)', 'String', 'name', '0', '0', '1', '1', '1', '1', '1', 'like', 'input', '', NULL, 40, '1', '2019-01-05 21:22:37', '1', '2019-01-07 16:51:37', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('bb2f13421fa04287ac31263650f56522', 'd7c3fff144a046698aa3766844582a4c', 'remarks', '备注信息', 'varchar(255)', 'String', 'remarks', '0', '0', '1', '1', '1', '1', '0', '=', 'textarea', '', NULL, 120, '1', '2018-12-29 11:20:52', '1', '2018-12-29 11:20:52', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('bb984414563449d5a428b798432ebee4', '39c9a49ccd87400b9b19606a46b12dd6', 'office_id', '归属部门', 'varchar(64)', 'com.jsite.modules.sys.entity.Office', 'office.id|name', '0', '0', '1', '1', '1', '0', '0', '=', 'officeselect', '', NULL, 30, '1', '2018-12-29 11:19:36', '1', '2018-12-29 11:19:36', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('bdeae7b5f5764a219b773493ce7ce717', 'd7c3fff144a046698aa3766844582a4c', 'user_id', '归属用户', 'varchar(64)', 'com.jsite.modules.sys.entity.User', 'user.id|name', '0', '0', '1', '1', '1', '0', '0', '=', 'userselect', '', NULL, 20, '1', '2018-12-29 11:20:51', '1', '2018-12-29 11:20:51', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('cb23c6752a744f7c865fc4461189e9e5', '3195020a929e41c7bc3dfbd539ed5351', 'tree_level', '树形层级(0:根级)', 'decimal(4,0)', 'String', 'treeLevel', '0', '0', '1', '1', '1', '0', '0', '=', 'input', '', NULL, 70, '1', '2019-01-05 21:22:37', '1', '2019-01-07 16:51:37', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('ce459de5970642e6ab8791ac72d0dfc6', 'd7c3fff144a046698aa3766844582a4c', 'name', '名称', 'varchar(100)', 'String', 'name', '0', '0', '1', '1', '1', '1', '1', 'like', 'input', '', NULL, 50, '1', '2018-12-29 11:20:51', '1', '2018-12-29 11:20:51', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('d333b5918d2f4db1996a360d2ac74a99', '39c9a49ccd87400b9b19606a46b12dd6', 'update_date', '更新时间', 'datetime', 'java.util.Date', 'updateDate', '0', '0', '0', '1', '1', '1', '0', '=', 'dateselect', '', NULL, 110, '1', '2018-12-29 11:19:37', '1', '2018-12-29 11:19:37', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('d3952c7032284832b26a532543f4fe78', '794ea2d0349e4590ba4366529d499833', 'update_date', '更新时间', 'datetime', 'java.util.Date', 'updateDate', '0', '0', '0', '1', '1', '1', '0', '=', 'dateselect', '', NULL, 70, '1', '2018-12-29 11:21:19', '1', '2018-12-29 11:21:19', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('deca344f6dc146bfae6377e939a0c097', '39c9a49ccd87400b9b19606a46b12dd6', 'del_flag', '删除标记', 'char(1)', 'String', 'delFlag', '0', '0', '0', '1', '0', '0', '0', '=', 'radiobox', 'del_flag', NULL, 130, '1', '2018-12-29 11:19:37', '1', '2018-12-29 11:19:37', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('e05d48dae1354898ae9f9b7c469313db', '3195020a929e41c7bc3dfbd539ed5351', 'update_by', '更新者', 'varchar(64)', 'com.jsite.modules.sys.entity.User', 'updateBy.id', '0', '0', '0', '1', '1', '0', '0', '=', 'input', '', NULL, 100, '1', '2019-01-05 21:22:37', '1', '2019-01-07 16:51:37', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('e399ea7f86c44ace9a69c03e489797bb', 'd7c3fff144a046698aa3766844582a4c', 'in_date', '加入日期', 'date', 'java.util.Date', 'inDate', '0', '0', '1', '1', '1', '1', '0', '=', 'dateselect', '', NULL, 70, '1', '2018-12-29 11:20:52', '1', '2018-12-29 11:20:52', NULL, '0');
+INSERT INTO `gen_table_column` VALUES ('e8e3f6f2d66c44a08210a0c35e74caa8', '3195020a929e41c7bc3dfbd539ed5351', 'tree_leaf', '是否树形叶子节点（0:不是,1:是）', 'char(1)', 'String', 'treeLeaf', '0', '0', '1', '1', '1', '0', '0', '=', 'input', '', NULL, 60, '1', '2019-01-05 21:22:37', '1', '2019-01-07 16:51:37', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('e948c667cfe4486eb2119583ff9805b4', 'd7c3fff144a046698aa3766844582a4c', 'del_flag', '删除标记', 'char(1)', 'String', 'delFlag', '0', '0', '0', '1', '0', '0', '0', '=', 'radiobox', 'del_flag', NULL, 130, '1', '2018-12-29 11:20:52', '1', '2018-12-29 11:20:52', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('ea80f499adc049e897889b36c1cfa220', '794ea2d0349e4590ba4366529d499833', 'update_by', '更新者', 'varchar(64)', 'com.jsite.modules.sys.entity.User', 'updateBy.id', '0', '0', '0', '1', '1', '0', '0', '=', 'input', '', NULL, 60, '1', '2018-12-29 11:21:19', '1', '2018-12-29 11:21:19', NULL, '0');
 INSERT INTO `gen_table_column` VALUES ('f3cfb155ee3d433fa287759b9e471b72', '39c9a49ccd87400b9b19606a46b12dd6', 'create_date', '创建时间', 'datetime', 'java.util.Date', 'createDate', '0', '0', '0', '1', '0', '0', '0', '=', 'dateselect', '', NULL, 90, '1', '2018-12-29 11:19:37', '1', '2018-12-29 11:19:37', NULL, '0');
@@ -200,6 +214,69 @@ CREATE TABLE `oa_leave`  (
   INDEX `oa_leave_del_flag`(`del_flag`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '请假流程表' ROW_FORMAT = Compact;
 
+-- ----------------------------
+-- Records of oa_leave
+-- ----------------------------
+INSERT INTO `oa_leave` VALUES ('0387efb30b3e49738b582c5d854a32b6', '577d6e71-06a1-11e9-8afd-00163e2e65eb', '2018-12-17 18:57:10', '2018-12-28 18:57:13', '1', '123132', NULL, NULL, '2018-12-23 18:56:04', '1', '2018-12-23 18:56:04', '1', '2018-12-23 18:56:04', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('0e559a88fe7f4c6a81eaeafff2dd59ea', '98dc997c-0d8b-11e9-a3dc-00163e2e65eb', '2019-01-01 14:07:45', '2019-01-09 14:07:51', '3', '888', NULL, NULL, '2019-01-01 14:08:03', '1', '2019-01-01 14:08:03', '1', '2019-01-01 14:08:03', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('11bc5f9e1c8d4372ad74791e3d045143', '08f682c5-0f3f-11e9-bf4e-00163e2e65eb', '2019-01-03 18:04:53', '2019-01-04 18:04:55', '1', '请假', NULL, NULL, '2019-01-03 18:05:02', '1', '2019-01-03 18:05:02', '1', '2019-01-03 18:05:02', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('15b0f661d6834f7987020209a87a149c', '1dd76279-066c-11e9-8afd-00163e2e65eb', '2018-11-29 12:34:57', '2018-12-20 12:34:59', '1', '222', NULL, NULL, '2018-12-23 12:35:04', '1', '2018-12-23 12:35:04', '1', '2018-12-23 12:35:04', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('17131d05e7ee4316a31e8d9a8f9832e4', 'e90cd7b3-1313-11e9-8749-00163e2e65eb', '2019-01-08 15:07:07', '2019-01-10 15:07:09', '2', 'asasdas dafasff2q casdad', NULL, NULL, '2019-01-08 15:06:25', '1', '2019-01-08 15:06:25', '1', '2019-01-08 15:06:25', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('1b7f965e3986433db15f396511a326b8', 'e9847b8d-0fbd-11e9-9113-08002700081f', '2019-01-04 09:12:45', '2019-01-04 09:12:48', '3', '有事', '[同意] 同意！', '[同意] 同意', '2019-01-04 09:13:15', '1', '2019-01-04 09:13:15', '1', '2019-01-04 09:13:15', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('21ea8e5c7b974b4ca6719811a2bdf94c', '1a6ec4f6-123e-11e9-afb8-00163e2e65eb', '2019-01-07 13:34:39', '2019-01-24 13:34:41', '5', '66666666666666', NULL, NULL, '2019-01-07 13:35:55', '1', '2019-01-07 13:35:55', '1', '2019-01-07 13:35:55', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('25936b689fdd4971b0f016187a479862', '417496af-0e6b-11e9-bf4e-00163e2e65eb', '2019-01-02 16:48:52', '2019-01-03 16:48:54', '1', '21312全额翁多群翁群无', NULL, NULL, '2019-01-02 16:49:03', '1', '2019-01-02 16:49:03', '1', '2019-01-02 16:49:03', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('2d86f74a951c4ddc974f35e3c48ca157', '20ac3d8b-0e42-11e9-bf4e-00163e2e65eb', '2019-01-02 11:54:27', '2019-01-03 11:54:30', '1', 'dadada', NULL, NULL, '2019-01-02 11:54:39', '1', '2019-01-02 11:54:39', '1', '2019-01-02 11:54:39', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('35196bf71d1642379f8e44fc9df1f106', '298ca60d-1214-11e9-afb8-00163e2e65eb', '2019-01-07 08:35:32', '2019-01-25 08:35:34', '1', '555', NULL, NULL, '2019-01-07 08:35:42', '1', '2019-01-07 08:35:42', '1', '2019-01-07 08:35:42', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('3e94e688ed5e40b181bcdeb68dfa3cf5', '4d585731-0ce5-11e9-a3dc-00163e2e65eb', '2018-12-11 18:17:32', '2018-12-20 18:17:35', '1', 'asdas', '[同意] r4ere3e234', NULL, '2018-12-31 18:17:40', '1', '2018-12-31 18:17:40', '1', '2018-12-31 18:17:40', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('4b87a0820d124133b860a4ecd8f61440', 'e2ae35a9-06ac-11e9-8afd-00163e2e65eb', '2018-12-12 20:18:29', '2018-12-29 20:18:33', '2', '1', NULL, NULL, '2018-12-23 20:18:42', '1', '2018-12-23 20:18:42', '1', '2018-12-23 20:18:42', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('5553ed8243a042dbbad2e70f12b5382e', '2968bed4-1096-11e9-afb8-00163e2e65eb', '2019-01-15 11:01:00', '2019-01-24 11:01:04', '1', '111', NULL, NULL, '2019-01-05 11:01:14', '1', '2019-01-05 11:01:14', '1', '2019-01-05 11:01:14', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('56c892cfc7624d11b3a1ffa0ea0d221f', '08249e19-0692-11e9-8afd-00163e2e65eb', '2018-12-25 17:04:38', '2018-12-28 17:04:42', '1', '333', NULL, NULL, '2018-12-23 17:06:28', '1', '2018-12-23 17:06:28', '1', '2018-12-23 17:06:28', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('5b0025eaaee2458ba5bbc5678de4ecf5', '2000c06e-05f4-11e9-b751-c85b7643dd9e', '2018-12-22 22:15:55', '2018-12-24 22:15:58', '1', '测试', NULL, NULL, '2018-12-22 22:16:08', '1', '2018-12-22 22:16:08', '1', '2018-12-22 22:16:08', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('6095ceced2c54ce09cdf11ab2262768c', 'e82c7fc9-0998-11e9-a3c9-00163e2e65eb', '2018-12-27 13:33:23', '2018-12-28 13:33:25', '1', 'fsdfsd', NULL, NULL, '2018-12-27 13:33:15', '1', '2018-12-27 13:33:15', '1', '2018-12-27 13:33:15', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('61880d5973a6401194d5af8098f68494', '5ea8c1c2-0a50-11e9-a98a-00163e2e65eb', '2018-12-03 11:26:51', '2018-12-28 11:26:54', '1', '666', '[同意] 飒飒的的', '[同意] 实打实大苏打是大大的', '2018-12-28 11:26:31', '1', '2018-12-28 11:26:31', '1', '2018-12-28 11:26:31', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('6623a4f922754f9cae5d210ef8e02ce0', '6a2402bc-05cd-11e9-8544-00163e2e65eb', '2018-12-22 17:38:56', '2018-12-29 17:39:01', '1', '1', '[同意] 同意', '[同意] 同意', '2018-12-22 17:39:02', '1', '2018-12-22 17:39:02', '1', '2018-12-22 17:39:02', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('6b52d027d2d0449a8ad5f8e6f97aaf7c', 'a14ae262-0d68-11e9-a3dc-00163e2e65eb', '2019-01-15 09:57:34', '2019-01-01 09:57:39', '4', '快捷键', NULL, NULL, '2019-01-01 09:57:45', '1', '2019-01-01 09:57:45', '1', '2019-01-01 09:57:45', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('6edd39c56047432796ce9bd4759f482a', '48e8d1ec-0662-11e9-8afd-00163e2e65eb', '2018-12-13 11:24:21', '2018-12-29 11:24:25', '1', 'kkkk', '[驳回] sdsds', NULL, '2018-12-23 11:24:41', '1', '2018-12-23 11:24:41', '1', '2018-12-23 11:45:11', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('6fa3f412cac74940bf118883d58a47d8', 'e252dd16-0b6e-11e9-a3dc-00163e2e65eb', '2018-12-29 21:37:12', '2019-01-31 21:37:15', '1', '大大', '[同意] 可以', NULL, '2018-12-29 21:37:28', '1', '2018-12-29 21:37:28', '1', '2018-12-29 21:37:28', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('7790f91457a4450e9cae9e34512bbdf5', '06449ad1-068f-11e9-8afd-00163e2e65eb', '2018-12-23 16:44:45', '2018-12-23 16:44:47', '2', '显存v', NULL, NULL, '2018-12-23 16:44:57', '1', '2018-12-23 16:44:57', '1', '2018-12-23 16:44:57', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('7cf4a1e9775b4c33a142944a31762581', '4e8a2777-0ffd-11e9-afb8-00163e2e65eb', '2019-01-04 16:46:32', '2019-01-04 18:46:35', '2', 'CESHI', '[同意] dept', NULL, '2019-01-04 16:47:03', '1', '2019-01-04 16:47:03', '1', '2019-01-04 16:47:03', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('7cff819c53ce4c25872d0c74f9c9dccd', '6654ecc5-11c2-11e9-afb8-00163e2e65eb', '2019-01-06 22:50:13', '2019-01-26 22:50:16', '1', 'ww', NULL, NULL, '2019-01-06 22:50:25', '1', '2019-01-06 22:50:25', '1', '2019-01-06 22:50:25', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('7d4818d456af4a0b97baa553e56b5545', 'f5db4016-0e2b-11e9-a3dc-00163e2e65eb', '2019-01-02 09:15:41', '2019-01-09 09:15:43', '2', 'test', '[同意] 阿法士大夫', NULL, '2019-01-02 09:15:58', '1', '2019-01-02 09:15:58', '1', '2019-01-02 09:15:58', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('819c66bb295a4789a9500dd674a795a1', 'a5dd243a-0a52-11e9-a98a-00163e2e65eb', '2018-12-28 11:37:31', '2018-12-28 11:37:48', '2', '阿萨德&middot;1', NULL, NULL, '2018-12-28 11:42:50', '1', '2018-12-28 11:42:50', '1', '2018-12-28 11:42:50', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('81d37452db0646cb9ed93f199ec9f2cc', '0ff64c49-0684-11e9-8afd-00163e2e65eb', '2018-12-23 15:26:21', '2018-12-28 15:26:24', '1', '1', NULL, NULL, '2018-12-23 15:26:28', '1', '2018-12-23 15:26:28', '1', '2018-12-23 15:26:28', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('825ebaad47eb4286a33d0e63dec47fe9', '82efd342-0601-11e9-8544-00163e2e65eb', '2018-10-02 23:51:48', '2018-12-22 23:51:51', '1', '//。', '[同意] 我同意啦啊啊啊啊啊啊啊', '[同意] 我同意', '2018-12-22 23:51:57', '1', '2018-12-22 23:51:57', '1', '2018-12-22 23:51:57', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('83e41ab4a51848ff9a6f2c345d985cf6', '3f8cbdc5-0f4c-11e9-bf4e-00163e2e65eb', '2019-01-03 19:39:28', '2019-01-04 19:39:30', '2', 'jtghuhkjbgvbmnj', NULL, NULL, '2019-01-03 19:39:37', '1', '2019-01-03 19:39:37', '1', '2019-01-03 19:39:37', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('847595ad8066406baadbb1c30b759b77', '7f9302bf-0fec-11e9-afb8-00163e2e65eb', '2019-01-04 14:46:35', '2019-01-26 14:46:36', '1', 'AAA', NULL, NULL, '2019-01-04 14:46:43', '1', '2019-01-04 14:46:43', '1', '2019-01-04 14:46:43', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('86a14a1dfd1c48f1a2a3cc0dbd6099ab', 'bb4e8c95-12f7-11e9-8749-00163e2e65eb', '2019-01-08 11:44:33', '2019-01-09 11:44:35', '2', '测试', NULL, NULL, '2019-01-08 11:44:42', '1', '2019-01-08 11:44:42', '1', '2019-01-08 11:44:42', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('8825b0660e244c90bb0175a55500c869', 'a403b72f-0ffd-11e9-afb8-00163e2e65eb', '2019-01-04 16:49:18', '2019-01-04 16:49:20', '2', '....', '[同意] 测试意见', '[驳回] butongyi', '2019-01-04 16:49:26', '1', '2019-01-04 16:49:26', '1', '2019-01-04 20:02:34', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('8bb6d1cde46b43a783b0d12e9fcd5e72', 'cf55be3b-1313-11e9-8749-00163e2e65eb', '2019-01-08 15:06:28', '2019-01-10 15:06:29', '1', 'dsaadsd as', NULL, NULL, '2019-01-08 15:05:42', '1', '2019-01-08 15:05:42', '1', '2019-01-08 15:05:42', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('8cebc8d8bccf439392aed5707a4d638f', 'fafa3b3d-121f-11e9-afb8-00163e2e65eb', '2019-01-07 10:00:08', '2019-01-26 10:00:10', '2', '侧擦拭', NULL, NULL, '2019-01-07 10:00:18', '1', '2019-01-07 10:00:18', '1', '2019-01-07 10:00:18', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('8e3a44b1ea034146b54eac7dc1f87c4d', '75f1521e-124a-11e9-afb8-00163e2e65eb', '2019-01-07 15:04:14', '2019-01-08 15:04:16', '1', 'test', '[同意] 同意', '[同意] 根据领导批示，同意', '2019-01-07 15:04:23', '1', '2019-01-07 15:04:23', '1', '2019-01-07 15:04:23', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('9192b3ce286c436e92630fc572b9489c', '6f29e41f-0fee-11e9-afb8-00163e2e65eb', '2019-01-01 15:00:56', '2019-01-04 15:01:01', '1', '1', NULL, NULL, '2019-01-04 15:00:35', '1', '2019-01-04 15:00:35', '1', '2019-01-04 15:00:35', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('945ed101245c4427aeb2e466ee09566a', 'a02ba20e-065d-11e9-8afd-00163e2e65eb', '2018-12-23 10:51:13', '2018-12-21 10:51:17', '1', 'mnm', '[驳回] jgjhg', NULL, '2018-12-23 10:51:20', '1', '2018-12-23 10:51:20', '1', '2018-12-23 11:05:14', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('9f2b1719b01d4ecfaa32de04a855ed68', '47d78153-0fba-11e9-bf4e-00163e2e65eb', '2019-01-04 08:46:41', '2019-01-09 08:46:43', '4', '流程发起测试2019.1.4 08:47', NULL, NULL, '2019-01-04 08:47:16', '1', '2019-01-04 08:47:16', '1', '2019-01-04 08:47:16', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('a20e6feefab045b3bc09286357f693a4', 'd971cfa1-0e39-11e9-a3dc-00163e2e65eb', '2019-01-02 10:55:06', '2019-01-31 10:55:16', '1', 'asda', NULL, NULL, '2019-01-02 10:55:24', '1', '2019-01-02 10:55:24', '1', '2019-01-02 10:55:24', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('a23311e53c2f451e9ff7a4d0d7fd545d', 'b178d2c7-0fea-11e9-afb8-00163e2e65eb', '2019-01-12 14:33:38', '2019-01-08 14:33:33', '1', '333', NULL, NULL, '2019-01-04 14:33:49', '1', '2019-01-04 14:33:49', '1', '2019-01-04 14:33:49', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('a55d193828f24e17a72b051d0b94dd11', '7766ba40-0e34-11e9-a3dc-00163e2e65eb', '2019-01-03 10:16:39', '2019-01-04 10:16:42', '1', 'www', NULL, NULL, '2019-01-02 10:16:52', '1', '2019-01-02 10:16:52', '1', '2019-01-02 10:16:52', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('a57eb8f4b67b4ba09bee5d49ff0882e9', '2f44cdf2-061c-11e9-8afd-00163e2e65eb', '2018-12-23 03:02:42', '2018-12-25 03:02:49', '2', '1', '[同意] fddfdfdfdfdffd', '[同意] 同意', '2018-12-23 03:02:53', '1', '2018-12-23 03:02:53', '1', '2018-12-23 03:02:53', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('b201788165c24f388ffabd40fc9ddd33', 'ee0c55ad-0f40-11e9-bf4e-00163e2e65eb', '2019-01-03 18:18:29', '2019-01-04 18:18:31', '1', '3爱迪生大', NULL, NULL, '2019-01-03 18:18:36', '1', '2019-01-03 18:18:36', '1', '2019-01-03 18:18:36', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('b4473b6b41b34d87a893a66b7dce309d', '6d243915-121e-11e9-afb8-00163e2e65eb', '2019-01-07 09:49:03', '2019-01-26 09:49:06', '1', 'erre', NULL, NULL, '2019-01-07 09:49:10', '1', '2019-01-07 09:49:10', '1', '2019-01-07 09:49:10', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('b4e0c5a334974725a656a8c2b372acef', '0646908f-1242-11e9-afb8-00163e2e65eb', '2019-01-07 14:04:01', '2019-01-10 14:04:07', '1', '就是想请个假', NULL, NULL, '2019-01-07 14:03:59', '1', '2019-01-07 14:03:59', '1', '2019-01-07 14:03:59', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('c4fdeec6a2e148029d798d7b908b11f5', '5ef97ed4-05d6-11e9-8544-00163e2e65eb', '2018-12-06 18:43:01', '2018-12-12 18:43:03', '1', 'dfffff', NULL, NULL, '2018-12-22 18:43:09', '1', '2018-12-22 18:43:09', '1', '2018-12-22 18:43:09', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('c509e028a2484a3dbc95acfaa4a26653', '79532014-0da0-11e9-a3dc-00163e2e65eb', '2019-01-01 16:37:17', '2019-01-01 16:37:19', '1', '564', NULL, NULL, '2019-01-01 16:37:29', '1', '2019-01-01 16:37:29', '1', '2019-01-01 16:37:29', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('c5c4b1526f694dd78b2cbc798a54c105', '135adde3-130f-11e9-8749-00163e2e65eb', '2019-01-08 14:31:34', '2019-01-08 14:31:36', '1', '121212', NULL, NULL, '2019-01-08 14:31:48', '1', '2019-01-08 14:31:48', '1', '2019-01-08 14:31:48', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('cc2617b405e84c1fb147fa6ab38c79c5', '24de2173-12a2-11e9-8749-00163e2e65eb', '2019-01-08 01:31:54', '2019-01-31 01:31:56', '1', '111', '[驳回] 111', NULL, '2019-01-08 01:32:02', '1', '2019-01-08 01:32:02', '1', '2019-01-08 12:49:37', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('cc3488b847cd45c6b93c4d13be6f42e7', '80b24d63-0e42-11e9-bf4e-00163e2e65eb', '2019-01-02 11:57:13', '2019-01-02 11:57:15', '2', '钱钱钱钱', NULL, NULL, '2019-01-02 11:57:20', '1', '2019-01-02 11:57:20', '1', '2019-01-02 11:57:20', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('d0ab26c0c07345aeb8636a47c7420d88', '7f41fac3-1307-11e9-8749-00163e2e65eb', '2019-01-08 13:37:22', '2019-01-10 13:37:23', '1', '公休', '[同意] 同意', '[同意] 用意', '2019-01-08 13:37:33', '1', '2019-01-08 13:37:33', '1', '2019-01-08 13:37:33', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('d41e43e01c3b4f0692967902791b9575', 'e471c991-1019-11e9-afb8-00163e2e65eb', '2019-01-04 20:11:30', '2019-01-25 20:11:32', '1', '无', '[同意] asfssaf', '[同意] 大概', '2019-01-04 20:11:40', '1', '2019-01-04 20:11:40', '1', '2019-01-04 20:11:40', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('d50018cd1a624582ac662e309c734b58', 'ba10d469-0ce5-11e9-a3dc-00163e2e65eb', '2019-01-01 18:22:48', '2019-01-02 18:22:53', '1', 'ddssdsd', '[同意] 12321', NULL, '2018-12-31 18:20:42', '1', '2018-12-31 18:20:42', '1', '2018-12-31 18:20:42', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('dc416053d9a949de96a61f4317900fc8', '5770972d-0cf8-11e9-a3dc-00163e2e65eb', '2018-12-03 20:33:46', '2018-12-19 20:33:50', '1', '11111', NULL, NULL, '2018-12-31 20:33:57', '1', '2018-12-31 20:33:57', '1', '2018-12-31 20:33:57', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('dc7e248585204875999f40ac680087a5', '761b373f-0e48-11e9-bf4e-00163e2e65eb', '2019-01-02 12:39:51', '2019-01-11 12:39:53', '2', '5555', '[同意] 555', NULL, '2019-01-02 12:39:59', '1', '2019-01-02 12:39:59', '1', '2019-01-02 12:39:59', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('e2d8edd7252940acab33f5f7899f8c40', '1efafe8d-118c-11e9-afb8-00163e2e65eb', '2019-01-06 16:21:40', '2019-01-10 16:21:43', '1', 'fdtf', NULL, NULL, '2019-01-06 16:21:52', '1', '2019-01-06 16:21:52', '1', '2019-01-06 16:21:52', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('ebd651f8d8d340619b2f9a4a027ff1bb', '1b471351-066f-11e9-8afd-00163e2e65eb', '2018-12-06 12:56:22', '2018-12-23 12:56:25', '1', '11', NULL, NULL, '2018-12-23 12:56:28', '1', '2018-12-23 12:56:28', '1', '2018-12-23 12:56:28', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('ee68825296924fa1bae04954715b4148', '5e0d17b7-0fee-11e9-afb8-00163e2e65eb', '2019-01-16 14:59:59', '2019-01-26 15:00:02', '2', 'h\'h\'h', NULL, NULL, '2019-01-04 15:00:07', '1', '2019-01-04 15:00:07', '1', '2019-01-04 15:00:07', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('eeb5ba51e4de416d87e13cd8ee087cf4', '943f42a9-102c-11e9-afb8-00163e2e65eb', '2019-01-04 22:25:14', '2019-01-25 22:25:17', '1', 'dafsdfsa', '[同意] dept', NULL, '2019-01-04 22:25:26', '1', '2019-01-04 22:25:26', '1', '2019-01-04 22:25:26', NULL, '0');
+INSERT INTO `oa_leave` VALUES ('f9fe90cbf5474b37b6c6ce4747a55b0c', '01ac5e41-06c8-11e9-8afd-00163e2e65eb', '2018-12-12 23:32:32', '2018-12-23 23:32:37', '3', 'yy', NULL, NULL, '2018-12-23 23:32:50', '1', '2018-12-23 23:32:50', '1', '2018-12-23 23:32:50', NULL, '0');
 
 -- ----------------------------
 -- Table structure for oa_notify
@@ -239,40 +316,6 @@ CREATE TABLE `oa_notify_record`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '通知通告发送记录' ROW_FORMAT = Compact;
 
 -- ----------------------------
--- Table structure for oa_test_audit
--- ----------------------------
-DROP TABLE IF EXISTS `oa_test_audit`;
-CREATE TABLE `oa_test_audit`  (
-  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '编号',
-  `PROC_INS_ID` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '流程实例ID',
-  `USER_ID` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '变动用户',
-  `OFFICE_ID` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '归属部门',
-  `POST` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '岗位',
-  `AGE` char(1) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '性别',
-  `EDU` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '学历',
-  `CONTENT` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '调整原因',
-  `OLDA` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '现行标准 薪酬档级',
-  `OLDB` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '现行标准 月工资额',
-  `OLDC` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '现行标准 年薪总额',
-  `NEWA` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '调整后标准 薪酬档级',
-  `NEWB` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '调整后标准 月工资额',
-  `NEWC` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '调整后标准 年薪总额',
-  `ADD_NUM` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '月增资',
-  `EXE_DATE` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '执行时间',
-  `HR_TEXT` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '人力资源部门意见',
-  `LEAD_TEXT` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '分管领导意见',
-  `MAIN_LEAD_TEXT` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '集团主要领导意见',
-  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '创建者',
-  `create_date` datetime(0) NOT NULL COMMENT '创建时间',
-  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '更新者',
-  `update_date` datetime(0) NOT NULL COMMENT '更新时间',
-  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '备注信息',
-  `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '删除标记',
-  PRIMARY KEY (`id`) USING BTREE,
-  INDEX `OA_TEST_AUDIT_del_flag`(`del_flag`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '审批流程测试表' ROW_FORMAT = Compact;
-
--- ----------------------------
 -- Table structure for sys_area
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_area`;
@@ -284,14 +327,14 @@ CREATE TABLE `sys_area`  (
   `sort` decimal(10, 0) NOT NULL COMMENT '排序',
   `code` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '区域编码',
   `type` char(1) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '区域类型',
+  `tree_leaf` char(1) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT '0' COMMENT '是否树形叶子节点（0:不是,1:是）',
+  `tree_level` decimal(4, 0) NULL DEFAULT NULL COMMENT '树形层级(0:根级)',
   `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '创建者',
   `create_date` datetime(0) NOT NULL COMMENT '创建时间',
   `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '更新者',
   `update_date` datetime(0) NOT NULL COMMENT '更新时间',
   `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '备注信息',
   `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '删除标记',
-  `tree_leaf` char(1) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT '0' COMMENT '是否树形叶子节点（0:不是,1:是）',
-  `tree_level` decimal(4, 0) NULL DEFAULT NULL COMMENT '树形层级(0:根级)',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `sys_area_parent_id`(`parent_id`) USING BTREE,
   INDEX `sys_area_del_flag`(`del_flag`) USING BTREE
@@ -300,15 +343,12 @@ CREATE TABLE `sys_area`  (
 -- ----------------------------
 -- Records of sys_area
 -- ----------------------------
-INSERT INTO `sys_area` VALUES ('015345144e9e40d6bbe832a9f1cba1f7', 'd36735ce07044a49ad205854fb2ca078', '0,d36735ce07044a49ad205854fb2ca078,', 'California', 10, '01', '2', '1', '2018-06-20 17:32:51', '1', '2018-06-20 17:32:51', '', '0', '1', 1);
-INSERT INTO `sys_area` VALUES ('1', '0', '0,', '中国', 10, '1', '1', '1', '2013-05-27 08:00:00', '1', '2018-12-28 00:19:15', '', '0', '0', 0);
-INSERT INTO `sys_area` VALUES ('3fbaf3a3f58a47118f13976cb2e2544d', 'd36735ce07044a49ad205854fb2ca078', '0,d36735ce07044a49ad205854fb2ca078,', '佛罗里达州', 20, '02', '2', '1', '2018-06-20 17:38:08', '1', '2018-06-20 17:38:08', '', '0', '1', 1);
-INSERT INTO `sys_area` VALUES ('576f42bae8184b4cbb39aa4640323a5f', '1', '0,1,', 'aaaaaaabb', 30, '', '2', '1', '2018-12-10 14:27:27', '1', '2018-12-10 14:27:27', '', '1', '1', 1);
-INSERT INTO `sys_area` VALUES ('623c16905c3b4854b131fb8f034364d4', '1', '0,1,', '上海', 30, '34243', '2', '1', '2018-12-10 13:47:40', '1', '2018-12-10 13:47:40', '', '1', '1', 1);
-INSERT INTO `sys_area` VALUES ('95d742f57c1f44af9bccac34ce0dacb4', '1', '0,1,', 'aaaaaaa', 30, '', '2', '1', '2018-12-10 14:01:28', '1', '2018-12-10 14:01:28', '', '1', '1', 1);
-INSERT INTO `sys_area` VALUES ('d36735ce07044a49ad205854fb2ca078', '0', '0,', '美国', 30, '2', '1', '1', '2018-06-20 15:36:19', '1', '2018-06-20 15:36:19', '', '0', '0', 0);
-INSERT INTO `sys_area` VALUES ('da2da01621b64be5a85b07a8c883228f', '1', '0,1,', '上海', 30, '34243', '2', '1', '2018-12-10 14:01:09', '1', '2018-12-10 14:01:09', '', '0', '1', 1);
-INSERT INTO `sys_area` VALUES ('f762fb569d8445f28a226a9b831cfb90', '1', '0,1,', '北京', 30, '150', '2', '1', '2018-02-02 17:37:51', '1', '2018-11-20 10:22:36', '', '0', '1', 1);
+INSERT INTO `sys_area` VALUES ('015345144e9e40d6bbe832a9f1cba1f7', 'd36735ce07044a49ad205854fb2ca078', '0,d36735ce07044a49ad205854fb2ca078,', 'California', 10, '01', '2', '1', 1, '1', '2018-06-20 17:32:51', '1', '2019-01-02 00:11:18', '', '0');
+INSERT INTO `sys_area` VALUES ('1', '0', '0,', '中国', 10, '1', '1', '0', 0, '1', '2013-05-27 08:00:00', '1', '2018-12-28 00:19:15', '', '0');
+INSERT INTO `sys_area` VALUES ('3fbaf3a3f58a47118f13976cb2e2544d', 'd36735ce07044a49ad205854fb2ca078', '0,d36735ce07044a49ad205854fb2ca078,', '佛罗里达州', 20, '02', '2', '1', 1, '1', '2018-06-20 17:38:08', '1', '2018-06-20 17:38:08', '', '0');
+INSERT INTO `sys_area` VALUES ('d36735ce07044a49ad205854fb2ca078', '0', '0,', '美国', 30, '2', '1', '0', 0, '1', '2018-06-20 15:36:19', '1', '2018-06-20 15:36:19', '', '0');
+INSERT INTO `sys_area` VALUES ('da2da01621b64be5a85b07a8c883228f', '1', '0,1,', '上海', 30, '34243', '2', '1', 1, '1', '2018-12-10 14:01:09', '1', '2018-12-29 20:56:31', '', '0');
+INSERT INTO `sys_area` VALUES ('f762fb569d8445f28a226a9b831cfb90', '1', '0,1,', '北京', 30, '150', '2', '1', 1, '1', '2018-02-02 17:37:51', '1', '2018-11-20 10:22:36', '', '0');
 
 -- ----------------------------
 -- Table structure for sys_dict
@@ -593,7 +633,7 @@ INSERT INTO `sys_menu` VALUES ('13e52acca1254df283520c9ee3db769b', '4', '0,2,3,4
 INSERT INTO `sys_menu` VALUES ('14', '13', '0,2,13,', '区域管理', 50, '0', 2, '/sys/area/', '', 'fa fa-map', '1', '', '1', '2013-05-27 08:00:00', '1', '2018-07-05 10:36:49', '', '0');
 INSERT INTO `sys_menu` VALUES ('17', '13', '0,2,13,', '机构管理', 40, '0', 2, '/sys/office/', '', 'fa fa-puzzle-piece', '1', '', '1', '2013-05-27 08:00:00', '1', '2018-07-05 10:35:25', '', '0');
 INSERT INTO `sys_menu` VALUES ('185e17bc1e5b4fa8a997b8c86a828f1d', '9c37ebfd00764ec99f7c65107faca3d1', '0,56,9c37ebfd00764ec99f7c65107faca3d1,', '查看', 30, '1', 2, '', '', 'fa fa-circle-thin', '0', 'filetree:sysFileTree:view', '1', '2018-07-05 09:08:10', '1', '2018-07-27 15:21:28', '', '0');
-INSERT INTO `sys_menu` VALUES ('1aca9bd8565544cc889bb8d366877234', 'fbe403d809b0400d9d36df16cb56abf2', '0,fbe403d809b0400d9d36df16cb56abf2,', '主子表生成', 60, '1', 1, '/test/zhuzibiao/testDataMain', '', 'fa fa-circle-thin', '1', 'test:zhuzibiao:testDataMain:view,test:zhuzibiao:testDataMain:edit', '1', '2018-12-29 13:34:17', '1', '2018-12-29 13:34:17', '', '0');
+INSERT INTO `sys_menu` VALUES ('1aca9bd8565544cc889bb8d366877234', 'fbe403d809b0400d9d36df16cb56abf2', '0,fbe403d809b0400d9d36df16cb56abf2,', '主子表生成', 60, '1', 1, '/test/testDataMain', '', 'fa fa-circle-thin', '1', 'test:testDataMain:view,test:testDataMain:edit', '1', '2018-12-29 13:34:17', '1', '2019-01-02 10:09:10', '', '0');
 INSERT INTO `sys_menu` VALUES ('1cbff3f7903c4276902db28ed9e5916e', '7', '0,2,3,7,', '查看', 30, '1', 3, '', '', 'fa fa-circle-thin', '1', 'sys:role:view', '1', '2018-07-04 16:45:37', '1', '2018-07-04 16:45:37', '', '0');
 INSERT INTO `sys_menu` VALUES ('1cc9a6712a86420d9557bbf52b24680a', '14', '0,2,13,14,', '编辑', 60, '1', 3, '', '', 'fa fa-circle-thin', '0', 'sys:area:edit', '1', '2018-07-05 10:36:25', '1', '2018-07-05 10:36:25', '', '0');
 INSERT INTO `sys_menu` VALUES ('1e43e4e03d724542b1a31f8c0593ca33', 'b06b6eae9f714d028480d6b6c114d498', '0,56,b06b6eae9f714d028480d6b6c114d498,', '查看', 30, '1', 2, '', '', '', '0', 'file:sysFile:view', '1', '2018-03-28 17:05:35', '1', '2018-07-27 15:22:00', '', '0');
@@ -641,7 +681,7 @@ INSERT INTO `sys_menu` VALUES ('60', '31', '0,31,', '统计分析', 600, '1', 1,
 INSERT INTO `sys_menu` VALUES ('61', '60', '0,31,60,', '信息量统计', 30, '1', 2, '/cms/stats/article', NULL, 'tasks', '1', 'cms:stats:article', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', NULL, '0');
 INSERT INTO `sys_menu` VALUES ('62', '0', '0,', '在线办公', 20, '0', 0, '', '', 'icon-cloud-upload', '1', '', '1', '2013-05-27 08:00:00', '1', '2018-06-28 08:48:13', '', '0');
 INSERT INTO `sys_menu` VALUES ('67', '2', '0,2,', '日志查询', 985, '0', 1, '', '', 'fa fa-calendar', '1', '', '1', '2013-06-03 08:00:00', '1', '2018-05-11 10:12:56', '', '0');
-INSERT INTO `sys_menu` VALUES ('67a7d3780a704dff89d5c6467370bea4', 'fbe403d809b0400d9d36df16cb56abf2', '0,fbe403d809b0400d9d36df16cb56abf2,', '单表生成', 30, '1', 1, '/test/danbiao/testData', '', 'fa fa-circle-thin', '1', 'test:danbiao:testData:view,test:danbiao:testData:edit', '1', '2018-12-19 17:00:12', '1', '2018-12-19 17:00:12', '', '0');
+INSERT INTO `sys_menu` VALUES ('67a7d3780a704dff89d5c6467370bea4', 'fbe403d809b0400d9d36df16cb56abf2', '0,fbe403d809b0400d9d36df16cb56abf2,', '单表生成', 30, '1', 1, '/test/testData', '', 'fa fa-circle-thin', '1', 'test:testData:view,test:testData:edit', '1', '2018-12-19 17:00:12', '1', '2019-01-02 10:05:25', '', '0');
 INSERT INTO `sys_menu` VALUES ('68', '67', '0,2,67,', '日志查询', 30, '1', 2, '/sys/log', '', 'fa fa-edit', '1', 'sys:log:view', '1', '2013-06-03 08:00:00', '1', '2018-05-11 10:16:51', '', '0');
 INSERT INTO `sys_menu` VALUES ('69', '0', '0,', '流程管理', 100, '0', 0, '', '', 'icon-equalizer', '1', '', '1', '2013-05-27 08:00:00', '1', '2018-08-02 09:08:56', '', '0');
 INSERT INTO `sys_menu` VALUES ('6c7a6cff4a6a45058291bbf09ff3e780', '17', '0,2,13,17,', '查看', 30, '1', 3, '', '', 'fa fa-circle-thin', '0', 'sys:office:view', '1', '2018-07-05 10:33:26', '1', '2018-07-05 10:33:26', '', '0');
@@ -659,6 +699,7 @@ INSERT INTO `sys_menu` VALUES ('89', '88', '0,62,88,', '我的通告', 30, '1', 
 INSERT INTO `sys_menu` VALUES ('90', '88', '0,62,88,', '通告管理', 50, '1', 2, '/oa/oaNotify', '', 'fa fa-circle-thin', '1', 'oa:oaNotify:view,oa:oaNotify:edit', '1', '2013-11-08 08:00:00', '1', '2018-08-02 09:12:46', '', '0');
 INSERT INTO `sys_menu` VALUES ('95db821b31cd4670ab51b115ce73d271', '62', '0,62,', '待办任务', 20, '1', 1, '/act/task/todo', '', 'fa fa-circle-thin', '1', 'act:process:view,act:process:edit', '1', '2018-08-07 14:57:37', '1', '2018-12-22 22:47:45', '', '0');
 INSERT INTO `sys_menu` VALUES ('960d503ac572449bae996bfc928f1bf3', '7', '0,2,3,7,', '编辑', 60, '1', 3, '', '', 'fa fa-circle-thin', '1', 'sys:role:edit', '1', '2018-07-04 16:46:18', '1', '2018-07-04 16:47:17', '', '0');
+INSERT INTO `sys_menu` VALUES ('97716fb3af4b41bd88f1eca181bc0587', 'fbe403d809b0400d9d36df16cb56abf2', '0,fbe403d809b0400d9d36df16cb56abf2,', '树结构表生成', 90, '1', 1, '/test/testTree', '', 'fa fa-circle-thin', '1', 'test:testTree:view,test:testTree:edit', '1', '2019-01-07 11:49:29', '1', '2019-01-07 11:49:29', '', '0');
 INSERT INTO `sys_menu` VALUES ('9c37ebfd00764ec99f7c65107faca3d1', '56', '0,56,', '文件夹管理', 5060, '0', 1, '/filetree/sysFileTree/index', '', 'fa fa-list', '1', '', '1', '2018-03-28 09:21:04', '1', '2018-07-27 15:20:46', '', '0');
 INSERT INTO `sys_menu` VALUES ('a4f7a04b94f1495da822915f92c8e481', '17', '0,2,13,17,', '编辑', 60, '1', 3, '', '', 'fa fa-circle-thin', '0', 'sys:office:edit', '1', '2018-07-05 10:33:43', '1', '2018-07-05 10:33:43', '', '0');
 INSERT INTO `sys_menu` VALUES ('af9b8c36092b40b2864054e75890608e', '0', '0,', '代码生成', 1020, '0', 0, '', '', 'fa fa-file-code-o', '1', '', '1', '2018-05-14 16:26:49', '1', '2018-06-14 16:53:20', '', '0');
@@ -717,6 +758,8 @@ INSERT INTO `sys_office` VALUES ('1', '0', '0,', 'JSite 测试公司', 10, 'f762
 INSERT INTO `sys_office` VALUES ('3', '1', '0,1,', '综合部', 20, 'f762fb569d8445f28a226a9b831cfb90', '100002', '2', '1', '', '', '', '', '', '', '1', '', '', '1', 1, '1', '2013-05-27 08:00:00', '1', '2018-02-02 17:40:19', '', '0');
 INSERT INTO `sys_office` VALUES ('4', '1', '0,1,', '市场部', 30, 'f762fb569d8445f28a226a9b831cfb90', '100003', '2', '1', '', '', '', '', '', '', '1', '', '', '1', 1, '1', '2013-05-27 08:00:00', '1', '2018-02-02 17:40:28', '', '0');
 INSERT INTO `sys_office` VALUES ('5', '1', '0,1,', '技术部', 40, 'f762fb569d8445f28a226a9b831cfb90', '100004', '2', '1', '', '', '', '', '', '', '1', '', '', '1', 1, '1', '2013-05-27 08:00:00', '1', '2018-02-02 17:40:37', '', '0');
+INSERT INTO `sys_office` VALUES ('dd872755880842bc826290fc96e00270', 'f976e8760ae944389694cdc12c91a18d', '0,f976e8760ae944389694cdc12c91a18d,', '总部', 30, 'f762fb569d8445f28a226a9b831cfb90', '', '1', '2', '', '', '', '', '', '', '', '', '', '1', 1, '1', '2019-01-08 09:45:00', '1', '2019-01-08 09:45:00', '', '0');
+INSERT INTO `sys_office` VALUES ('f976e8760ae944389694cdc12c91a18d', '0', '0,', '测试公司', 30, 'f762fb569d8445f28a226a9b831cfb90', '', '1', '1', '', '', '', '', '', '', '', '', '', '0', 0, '1', '2019-01-08 09:44:19', '1', '2019-01-08 09:45:00', '', '0');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -966,10 +1009,10 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', '1', '5', 'jsite', '57b89d1421898c692ebf98b530c3869b56d32e1e80f2bb703aba8a39', '0001', '系统管理员', 'admin@admin.com', '1111', '1111', '1', '/jsite/userfiles/headphoto/1.jpg', '0:0:0:0:0:0:0:1', '2018-12-29 14:29:57', '1', '1', '2013-05-27 08:00:00', '1', '2018-12-28 09:23:21', '11221', '0');
-INSERT INTO `sys_user` VALUES ('43f6a4a84e784e5e98b5b1c530bef73b', '1', '5', 'dept', '56c52163316679d8c83c84f03d44a592246d76a70bacb1da76cdc149', '000002', '部门经理', '', '', '', '2', NULL, '220.191.161.100', '2018-12-28 11:43:08', '1', '1', '2018-12-22 22:22:25', '1', '2018-12-22 22:22:25', '', '0');
-INSERT INTO `sys_user` VALUES ('56620c5ef567427c8debe68875c0eda2', '1', '3', 'jsitehr', '7e14e4c693492493db3bc12ba2bdd9cec2629613deae9ebd9c42dac1', '000003', '人力资源', '', '', '', '4', NULL, '220.191.161.100', '2018-12-28 11:45:57', '1', '1', '2018-12-22 22:23:39', '1', '2018-12-28 13:52:29', '', '0');
-INSERT INTO `sys_user` VALUES ('68225048f4b7465293feb9779448d0af', '1', '5', 'jsiteuser', '2f445129a012d18383f4fbdc9fdaca446794a89e80c384dc3a1e1f1a', '000005', '普通用户', '', '', '', '3', NULL, NULL, NULL, '1', '1', '2018-12-28 13:55:56', '1', '2018-12-28 16:44:40', '', '0');
+INSERT INTO `sys_user` VALUES ('1', '1', '5', 'jsite', '57b89d1421898c692ebf98b530c3869b56d32e1e80f2bb703aba8a39', '0001', '系统管理员', 'admin@admin.com', '1111', '1111', '1', '/jsite/userfiles/headphoto/1.jpg', '0:0:0:0:0:0:0:1', '2019-01-08 15:24:30', '1', '1', '2013-05-27 08:00:00', '1', '2019-01-04 14:22:13', '11221', '0');
+INSERT INTO `sys_user` VALUES ('43f6a4a84e784e5e98b5b1c530bef73b', '1', '5', 'dept', '56c52163316679d8c83c84f03d44a592246d76a70bacb1da76cdc149', '000002', '部门经理', '', '', '', '2', NULL, '220.191.161.100', '2019-01-08 15:00:18', '1', '1', '2018-12-22 22:22:25', '1', '2018-12-22 22:22:25', '', '0');
+INSERT INTO `sys_user` VALUES ('56620c5ef567427c8debe68875c0eda2', '1', '3', 'jsitehr', '7e14e4c693492493db3bc12ba2bdd9cec2629613deae9ebd9c42dac1', '000003', '人力资源', '', '', '', '4', NULL, '222.85.178.2', '2019-01-08 13:41:14', '1', '1', '2018-12-22 22:23:39', '1', '2018-12-28 13:52:29', '', '0');
+INSERT INTO `sys_user` VALUES ('68225048f4b7465293feb9779448d0af', '1', '5', 'jsiteuser', '2f445129a012d18383f4fbdc9fdaca446794a89e80c384dc3a1e1f1a', '000005', '普通用户', '', '', '', '3', NULL, '118.117.68.100', '2019-01-02 10:48:42', '1', '1', '2018-12-28 13:55:56', '1', '2018-12-28 16:44:40', '', '0');
 
 -- ----------------------------
 -- Table structure for sys_user_role
@@ -1013,6 +1056,14 @@ CREATE TABLE `test_data`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '业务数据表' ROW_FORMAT = Compact;
 
 -- ----------------------------
+-- Records of test_data
+-- ----------------------------
+INSERT INTO `test_data` VALUES ('1308ea640764443898a5673b3712c447', '', '', '', '', '', NULL, '1', '2019-01-03 01:55:41', '1', '2019-01-03 01:55:41', '', '0');
+INSERT INTO `test_data` VALUES ('4491abf519834a078b307fcfb1aee334', '56620c5ef567427c8debe68875c0eda2', '3', '', '', '', NULL, '1', '2019-01-02 11:19:24', '1', '2019-01-02 11:19:24', '', '1');
+INSERT INTO `test_data` VALUES ('bbd94222359142af97c01e5f9920ea32', '56620c5ef567427c8debe68875c0eda2', '4', '3fbaf3a3f58a47118f13976cb2e2544d', '改革', '', '2019-01-02', '1', '2019-01-02 11:10:22', '1', '2019-01-07 15:07:09', '', '0');
+INSERT INTO `test_data` VALUES ('e55163dab0e74737968584bc6c2d7507', '43f6a4a84e784e5e98b5b1c530bef73b', '3', 'da2da01621b64be5a85b07a8c883228f', '', '', '2019-01-02', '1', '2019-01-02 13:07:00', '1', '2019-01-02 13:07:00', '', '1');
+
+-- ----------------------------
 -- Table structure for test_data_child
 -- ----------------------------
 DROP TABLE IF EXISTS `test_data_child`;
@@ -1029,6 +1080,19 @@ CREATE TABLE `test_data_child`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `test_data_child_del_flag`(`del_flag`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '业务数据子表' ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of test_data_child
+-- ----------------------------
+INSERT INTO `test_data_child` VALUES ('2357df346f1642d99a15a49e1be09cfb', '40a0fd9625e742f19e310a9469341260', 'aaabb', '1', '2019-01-04 15:59:34', '1', '2019-01-04 15:59:34', 'abbb', '1');
+INSERT INTO `test_data_child` VALUES ('4fd234bb5ba147cf8103ab5e97ff0a08', NULL, '333', '1', '2019-01-05 21:49:14', '1', '2019-01-05 21:55:37', '444', '0');
+INSERT INTO `test_data_child` VALUES ('6c4be2cc266c44baa087d6a71dfee9e2', NULL, 'wre', '1', '2019-01-07 13:35:47', '1', '2019-01-08 11:53:29', 'ewr', '0');
+INSERT INTO `test_data_child` VALUES ('6cbf4b86873840c08954387b3898084d', NULL, 'rwerw', '1', '2019-01-07 13:35:47', '1', '2019-01-08 11:53:29', 'erwewr', '0');
+INSERT INTO `test_data_child` VALUES ('a6b8d00d29664df99bf6dbecb08f719b', 'c557c0a63c854975beed9ec276129b3f', 'sfsadf', '1', '2019-01-02 12:28:28', '1', '2019-01-02 12:28:28', 'sadf', '1');
+INSERT INTO `test_data_child` VALUES ('b49de329fb6f4663b026576eab6cb729', NULL, '111', '1', '2019-01-05 21:49:14', '1', '2019-01-05 21:55:37', '222', '0');
+INSERT INTO `test_data_child` VALUES ('c048e370336e41bb92c7f45791aa4872', NULL, 'erwrw', '1', '2019-01-07 13:35:47', '1', '2019-01-08 11:53:29', 'rewrew', '0');
+INSERT INTO `test_data_child` VALUES ('e09ddbd55180465f9a8ab4dc8e6fd990', '838616e721d440c88c56605aee981c99', '', '1', '2019-01-07 09:40:27', '1', '2019-01-07 09:40:27', '', '0');
+INSERT INTO `test_data_child` VALUES ('e4f228d237204430a18eeea8101c7a1f', '40a0fd9625e742f19e310a9469341260', 'bbbbcc', '1', '2019-01-04 15:59:34', '1', '2019-01-04 15:59:34', 'ccdd', '1');
 
 -- ----------------------------
 -- Table structure for test_data_main
@@ -1053,6 +1117,15 @@ CREATE TABLE `test_data_main`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '业务数据表' ROW_FORMAT = Compact;
 
 -- ----------------------------
+-- Records of test_data_main
+-- ----------------------------
+INSERT INTO `test_data_main` VALUES ('135e474961044a42b1d480c7dfe816f0', '3', '4', 'f762fb569d8445f28a226a9b831cfb90', '站点', '难', '2019-01-05', '1', '2019-01-05 21:49:14', '1', '2019-01-08 11:53:29', '', '0');
+INSERT INTO `test_data_main` VALUES ('40a0fd9625e742f19e310a9469341260', '68225048f4b7465293feb9779448d0af', '5', 'da2da01621b64be5a85b07a8c883228f', 'aaaabbb', 'a', '2019-01-04', '1', '2019-01-04 15:59:34', '1', '2019-01-05 21:32:22', 'aaa', '0');
+INSERT INTO `test_data_main` VALUES ('838616e721d440c88c56605aee981c99', '', '', '', '', '', NULL, '1', '2019-01-07 09:40:27', '1', '2019-01-07 09:40:27', '', '0');
+INSERT INTO `test_data_main` VALUES ('bf07d5f74023446db5b070e25bbdae26', '4', '3', 'f762fb569d8445f28a226a9b831cfb90', '', 'a', NULL, '1', '2019-01-02 12:28:49', '1', '2019-01-02 17:27:17', 'asdf', '1');
+INSERT INTO `test_data_main` VALUES ('c557c0a63c854975beed9ec276129b3f', '', '', '', '', '', NULL, '1', '2019-01-02 12:28:28', '1', '2019-01-02 12:28:28', '', '1');
+
+-- ----------------------------
 -- Table structure for test_tree
 -- ----------------------------
 DROP TABLE IF EXISTS `test_tree`;
@@ -1062,6 +1135,8 @@ CREATE TABLE `test_tree`  (
   `parent_ids` varchar(2000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '所有父级编号',
   `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '名称',
   `sort` decimal(10, 0) NOT NULL COMMENT '排序',
+  `tree_leaf` char(1) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '是否树形叶子节点（0:不是,1:是）',
+  `tree_level` decimal(4, 0) NULL DEFAULT NULL COMMENT '树形层级(0:根级)',
   `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '创建者',
   `create_date` datetime(0) NOT NULL COMMENT '创建时间',
   `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '更新者',
@@ -1072,5 +1147,11 @@ CREATE TABLE `test_tree`  (
   INDEX `test_tree_del_flag`(`del_flag`) USING BTREE,
   INDEX `test_data_parent_id`(`parent_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '树结构表' ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of test_tree
+-- ----------------------------
+INSERT INTO `test_tree` VALUES ('e323c4775e6240fbb924b6442ab8a49d', '0', '0,', '树结构父节点', 30, '0', 0, '1', '2019-01-07 16:55:15', '1', '2019-01-08 15:01:48', 'aa', '0');
+INSERT INTO `test_tree` VALUES ('e5a9917fecb94db4b1e6ceede9716715', 'e323c4775e6240fbb924b6442ab8a49d', '0,e323c4775e6240fbb924b6442ab8a49d,', '树结构子节点', 30, '1', 1, '1', '2019-01-07 17:39:06', '1', '2019-01-08 15:02:06', '啊啊', '0');
 
 SET FOREIGN_KEY_CHECKS = 1;
