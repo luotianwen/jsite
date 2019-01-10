@@ -118,13 +118,13 @@ angular.module('flowableModeler')
 
 	  $scope.importProcess = function () {
 	      //演示模式不允许导入操作
-          _internalCreateModal({
+          /*_internalCreateModal({
               template: 'views/popup/demo-mode.html?version=' + Date.now()
-          }, $modal, $scope);
-          //正常模式
-         /* _internalCreateModal({
-              template: 'views/popup/process-import.html?version=' + Date.now()
           }, $modal, $scope);*/
+          //正常模式
+          _internalCreateModal({
+              template: 'views/popup/process-import.html?version=' + Date.now()
+          }, $modal, $scope);
 	  };
 
 	  $scope.showProcessDetails = function(process) {
