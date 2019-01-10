@@ -497,6 +497,23 @@ TabPanel.prototype = {
       if(!tabitem.lazyload && !tabitem.notExecuteMoveSee) {
         this.moveToRight();
       }
+
+      $("#" + tabitem.id).ctxMenu(tabitem.id + "-ctxmenu", {
+          menuList: [
+              {
+                  title: "关闭其他页签",
+                  clickEvent: "$('#" + tabitem.id + "').click();$('#" + $(tabEntity.render).attr("id") + " .tabpanel_tab_content li:not(.active) .closer:not(.display_none)').click();"
+              },
+              {
+                  title: "关闭左侧页签",
+                  clickEvent: "$('#" + tabitem.id + "').click();$('#" + $(tabEntity.render).attr("id") + " .tabpanel_tab_content li:lt('+$('#" + $(tabEntity.render).attr("id") + " .tabpanel_tab_content li.active').index()+') .closer:not(.display_none)').click();"
+              },
+              {
+                  title: "关闭右侧页签",
+                  clickEvent: "$('#" + tabitem.id + "').click();$('#" + $(tabEntity.render).attr("id") + " .tabpanel_tab_content li:gt('+$('#" + $(tabEntity.render).attr("id") + " .tabpanel_tab_content li.active').index()+') .closer:not(.display_none)').click();"
+              }
+           ]
+      });
     }
   },
   /**
@@ -631,6 +648,8 @@ TabPanel.prototype = {
     this.tabs[position].title.remove();
     this.tabs[position].tab.remove();
     this.tabs[position].content.remove();
+
+    $("#" + this.tabs[position].id + "-ctxmenu").remove();
     //remove from tabs 
     this.tabs.splice(position,1);
     
@@ -831,4 +850,66 @@ TabPanel.prototype = {
       this.resize();
     }
   }
+};
+
+var posx_y;
+$(function() {
+    document.oncontextmenu = function() {
+        return false;
+    };
+    document.onmousemove = function(event) {
+        var e = event || window.event;
+        if (e.pageX || e.pageY) {
+            posx_y = {
+                x: e.pageX,
+                y: e.pageY
+            }
+        } else {
+            posx_y = {
+                x: e.clientX,
+                y: e.clientY + $(document).scrollTop()
+            }
+        }
+    };
+});
+
+$.fn.ctxMenu = function(menuId, json) {
+    if ($("#" + menuId).length <= 0) {
+
+        var ctxMenuLayout = '<div id="' + menuId + '" class="ctx-menu"><div><ul>';
+        for (var i = 0; i < json.menuList.length; i++) {
+            ctxMenuLayout += '<li><a href="javascript:void(0);" onclick="' + json.menuList[i].clickEvent + '">' + json.menuList[i].title + "</a></li>"
+        }
+        ctxMenuLayout += "</ul></div><div>";
+        $("body").append(ctxMenuLayout);
+
+        var ctxMenu = $("#" + menuId);
+        var task;
+
+        ctxMenu.find("a").bind("click",
+            function () {
+                window.clearTimeout(task);
+                ctxMenu.hide()
+            });
+
+        ctxMenu.hover(function () {
+                window.clearTimeout(task)
+            },
+            function () {
+                window.clearTimeout(task);
+                task = window.setTimeout(function () {
+                        ctxMenu.hide()
+                    },
+                    400);
+            });
+    }
+    return this.each(function() {
+        this.oncontextmenu = function() {
+            $(".ctx-menu").hide();
+            $("#" + menuId).hide().css({
+                top: posx_y.y,
+                left: posx_y.x
+            }).show();
+        };
+    });
 };

@@ -152,3 +152,35 @@
     margin:-4px 2px 0 0;
     vertical-align:middle;
 }
+
+.ctx-menu {
+    position: absolute;
+    list-style: none;
+    width: 120px;
+    z-index: 999999;
+}
+.ctx-menu ul{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+    margin:0;
+    padding:1px 0 1px 0;
+}
+.ctx-menu li{
+    list-style: none;
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+.ctx-menu ul li a{
+    color: #444444;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 7px;
+    display: block;
+    border-bottom: 1px solid #f4f4f4;
+}
+.ctx-menu ul li a:hover{
+    background: #f7f7f7;
+}
+
+
