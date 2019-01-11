@@ -5,7 +5,7 @@
 <div class="row cropper-wrapper cropper-circle">
 	<div class="col-xs-8">
 		<div class="img-container">
-			<img id="image" src="${user.photo}" onError="this.src='${ctxStatic}/${defaultBigUrl}';this.onError=null">
+			<img id="image" src="${user.photo}" onerror="this.onerror=null;this.src='${ctxStatic}/${defaultBigUrl}';">
 		</div>
 	</div>
 	<div class="col-xs-4 pl0">

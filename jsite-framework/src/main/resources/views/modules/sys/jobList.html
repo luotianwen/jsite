@@ -1,0 +1,74 @@
+<% layout('/layout/default.html', {title: '定时任务', libs: ['dataGrid','icheck']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header">
+			<div class="box-title">
+				<i class="fa fa-sitemap"></i> 定时任务管理
+			</div>
+			<div class="box-tools pull-right">
+				<a href="#" class="btn btn-default" id="btnSearch" title="查询"><i class="fa fa-filter"></i> 查询</a>
+				<a href="#" class="btn btn-default"  id="btnRefreshTree" title="刷新"><i class="fa fa-refresh"></i> 刷新</a>
+				<% if(hasPermi('sys:job:edit')){ %>
+					<a href="/sys/job/form" class="btn btn-default btnTool" title="任务添加"><i class="fa fa-plus"></i>添加</a>
+				<% } %>
+			</div>
+		</div>
+		<div class="box-body">
+			<form id="searchForm" action="${ctx}/sys/job/listAll" class="form-inline hide">
+				<div class="form-group">
+					<label class="control-label">任务类名：</label>
+					<div class="control-inline">
+						<input name="jobClassName" class="form-control"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">任务所在组：</label>
+					<div class="control-inline">
+						<input name="jobGroupName" class="form-control"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-sm">查询</button>
+					<button type="reset" class="btn btn-default btn-sm">重置</button>
+				</div>
+			</form>			
+			<table id="dataGrid"></table>
+			<div id="dataGridPage"></div>
+		</div>
+	</div>
+</div>
+<% } %>
+<script>
+//初始化DataGrid对象
+	$('#dataGrid').dataGrid({
+		searchForm: $("#searchForm"),
+		columnModel: [
+			/*{header:'任务名称', name:'jobName', index:'', width:80, align:"center"},*/
+			{header:'任务类名', name:'jobClassName', index:'', width:140, align:"center"},
+            {header:'任务所在组', name:'jobGroupName', index:'', width:50, align:"center"},
+			/*{header:'触发器名称', name:'triggerName', index:'', width:80, align:"center"},
+			{header:'触发器所在组', name:'triggerGroupName', index:'', width:50, align:"center"},*/
+            {header:'表达式', name:'cronExpression', index:'', width:50, align:"center"},
+            {header:'上次执行时间', name:'prevFireTime', index:'', width:80, align:"center"},
+            {header:'下次执行时间', name:'nextFireTime', index:'', width:80, align:"center"},
+            {header:'状态', name:'triggerState', index:'', width:50, align:"center", formatter: function(val, obj, row, act){
+                    return js.transDictLabel(${@DictUtils.getDictListJson('sys_job_status')}, val, '未知');
+             }},
+			{header:'操作', name:'actions', width:50, align:"center",sortable:false, title:false, formatter: function(val, obj, row, act){
+				var actions = [];
+                var operate = row.triggerState=="PAUSED"?'<a href="${ctx}/sys/job/resume?jobClassName='+row.jobClassName+'&jobGroupName='+row.jobGroupName+'" class="btnList" title="恢复" data-confirm="确认要恢复任务吗？"><i class="fa fa-play"></i></a>':
+                    	      '<a href="${ctx}/sys/job/pause?jobClassName='+row.jobClassName+'&jobGroupName='+row.jobGroupName+'" class="btnList" title="暂停" data-confirm="确认要暂停任务吗？"><i class="fa fa-pause"></i></a>'
+                <% if(hasPermi('sys:dict:edit')){ %>
+					actions.push(operate);
+					actions.push('<a href="${ctx}/sys/job/del?jobClassName='+row.jobClassName+'&jobGroupName='+row.jobGroupName+'" class="btnList" title="删除" data-confirm="确认要删除定时任务吗?"><i class="fa fa-trash-o"></i></a>');
+                    actions.push('<a href="/sys/job/resetform?jobClassName='+row.jobClassName+'&jobGroupName='+row.jobGroupName+'&cronExpression='+row.cronExpression+'" class="btnList" title="重置任务"><i class="fa fa-pencil"></i></a>');
+				<% } %>
+				return actions.join('');
+			}}
+		],
+		// 加载成功后执行事件
+		ajaxSuccess: function(data){
+			
+		}
+	});
+</script>

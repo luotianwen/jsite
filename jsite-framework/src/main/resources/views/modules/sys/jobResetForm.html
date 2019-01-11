@@ -1,0 +1,74 @@
+<% layout('/layout/default.html', {title: '定时任务管理', libs: ['validate','icheck']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header with-border">
+			<div class="box-title">
+				<i class="fa fa-pencil-square-o"></i>重置定时任务
+			</div>
+		</div>
+		<#form:form id="inputForm"  model="${jobAndTrigger}" action="${ctx}/sys/job/reschedule" method="post" class="form-horizontal">
+			<div class="box-body">
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="完整的类路径名称，例如:cn.org.jsite....quartz.DemoJob">
+								<span class="required hide">*</span>任务类名称:<i class="fa icon-question"></i>
+							</label>
+							<div class="col-sm-8">
+								<#form:input path="jobClassName"  maxlength="100" class="form-control readonly" />
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="定时任务分组">
+								<span class="required hide">*</span> 定时任务所在组:<i class="fa icon-question"></i>
+							</label>
+							<div class="col-sm-8">
+								<#form:input path="jobGroupName"  maxlength="100" class="form-control readonly" />
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="表达式，可以参考java quartzs关于时间配置说明"> 表达式:
+							<i class="fa icon-question"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="cronExpression"  maxlength="100" class="form-control" placeholder="0/6 * * * *?" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="box-footer">
+				<div class="row">
+					<div class="col-sm-offset-2 col-sm-10">
+						<% if (hasPermi('sys:job:edit')){ %>
+							<button type="submit" class="btn btn-sm btn-primary" id="btnSubmit"><i class="fa fa-check"></i> 保 存</button>
+						<% } %>
+						<button type="button" class="btn btn-sm btn-default" id="btnCancel" onclick="window.parent.closeCurrentTabPage()"><i class="fa fa-reply-all"></i> 关 闭</button>
+					</div>
+				</div>
+			</div>
+		</#form:form>
+	</div>
+</div>
+<% } %>
+
+<script type="text/javascript">
+	$("#inputForm").validate({
+		submitHandler: function(form){
+			js.ajaxSubmitForm($(form), function(data){
+				js.showMessage(data.message);
+				if(data.result == 'true'){
+					window.parent.closeCurrentTabPage(window.parent.refreshTab);
+				}
+			});
+	    }
+	});
+</script>
+

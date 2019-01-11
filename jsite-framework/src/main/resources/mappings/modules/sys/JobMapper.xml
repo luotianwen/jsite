@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >  
+<mapper namespace="com.jsite.modules.sys.dao.JobAndTriggerDao">
+
+	<select id="findList" resultType="JobAndTrigger">
+		  SELECT
+				jd.JOB_NAME AS jobName,
+				jd.DESCRIPTION AS jobDescription,
+				jd.JOB_GROUP AS jobGroupName,
+				jd.JOB_CLASS_NAME AS jobClassName,
+				t.TRIGGER_NAME AS triggerName,
+				t.TRIGGER_GROUP AS triggerGroupName,
+				FROM_UNIXTIME(t.PREV_FIRE_TIME/1000,'%Y-%m-%d %T') AS prevFireTime,
+				FROM_UNIXTIME(t.NEXT_FIRE_TIME/1000,'%Y-%m-%d %T') AS nextFireTime,
+				ct.CRON_EXPRESSION AS cronExpression,
+				t.TRIGGER_STATE AS triggerState
+			FROM
+				QRTZ_JOB_DETAILS jd
+			JOIN QRTZ_TRIGGERS t
+			JOIN QRTZ_CRON_TRIGGERS ct ON jd.JOB_NAME = t.JOB_NAME
+			AND jd.JOB_GROUP = t.TRIGGER_GROUP
+			AND t.TRIGGER_NAME = ct.TRIGGER_NAME
+			AND t.TRIGGER_GROUP = ct.TRIGGER_GROUP
+			<if test="jobClassName != null and jobClassName != ''">
+				AND jd.JOB_CLASS_NAME LIKE
+				<if test="dbName == 'oracle'">'%'||#{jobClassName}||'%'</if>
+				<if test="dbName == 'mssql'">'%'+#{jobClassName}+'%'</if>
+				<if test="dbName == 'mysql'">CONCAT('%', #{jobClassName}, '%')</if>
+			</if>
+			<if test="jobGroupName != null and jobGroupName != ''">
+				AND jd.JOB_GROUP LIKE
+				<if test="dbName == 'oracle'">'%'||#{jobGroupName}||'%'</if>
+				<if test="dbName == 'mssql'">'%'+#{jobGroupName}+'%'</if>
+				<if test="dbName == 'mysql'">CONCAT('%', #{jobGroupName}, '%')</if>
+			</if>
+	</select>
+
+    <select id="getJobAndTriggerDetails" resultType="JobAndTrigger">
+			SELECT
+				jd.JOB_NAME AS jobName,
+				jd.DESCRIPTION AS jobDescription,
+				jd.JOB_GROUP AS jobGroupName,
+				jd.JOB_CLASS_NAME AS jobClassName,
+				t.TRIGGER_NAME AS triggerName,
+				t.TRIGGER_GROUP AS triggerGroupName,
+				FROM_UNIXTIME(t.PREV_FIRE_TIME/1000,'%Y-%m-%d %T') AS prevFireTime,
+				FROM_UNIXTIME(t.NEXT_FIRE_TIME/1000,'%Y-%m-%d %T') AS nextFireTime,
+				ct.CRON_EXPRESSION AS cronExpression,
+				t.TRIGGER_STATE AS triggerState
+			FROM
+				QRTZ_JOB_DETAILS jd
+
+			JOIN QRTZ_TRIGGERS t
+			JOIN QRTZ_CRON_TRIGGERS ct ON jd.JOB_NAME = t.JOB_NAME
+			AND jd.JOB_GROUP = t.TRIGGER_GROUP
+			AND t.TRIGGER_NAME = ct.TRIGGER_NAME
+			AND t.TRIGGER_GROUP = ct.TRIGGER_GROUP
+    </select>
+    
+    <select id="getJobAndTriggerByJobName" resultType="JobAndTrigger" parameterType="java.lang.String">
+			SELECT
+				jd.JOB_NAME AS jobName,
+				jd.DESCRIPTION AS jobDescription,
+				jd.JOB_GROUP AS jobGroupName,
+				jd.JOB_CLASS_NAME AS jobClassName,
+				t.TRIGGER_NAME AS triggerName,
+				t.TRIGGER_GROUP AS triggerGroupName,
+				FROM_UNIXTIME(t.PREV_FIRE_TIME/1000,'%Y-%m-%d %T') AS prevFireTime,
+				FROM_UNIXTIME(t.NEXT_FIRE_TIME/1000,'%Y-%m-%d %T') AS nextFireTime,
+				ct.CRON_EXPRESSION AS cronExpression,
+				t.TRIGGER_STATE AS triggerState
+			FROM
+				QRTZ_JOB_DETAILS jd
+			JOIN QRTZ_TRIGGERS t
+			JOIN QRTZ_CRON_TRIGGERS ct ON jd.JOB_NAME = t.JOB_NAME
+			AND jd.JOB_GROUP = t.TRIGGER_GROUP
+			AND t.TRIGGER_NAME = ct.TRIGGER_NAME
+			AND t.TRIGGER_GROUP = ct.TRIGGER_GROUP
+			AND t.JOB_NAME = #{jobName}
+    </select>
+
+
+    
+</mapper>
