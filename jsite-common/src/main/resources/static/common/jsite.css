@@ -158,6 +158,7 @@
     list-style: none;
     width: 120px;
     z-index: 999999;
+    display:none;
 }
 .ctx-menu ul{
     border: 1px solid #ddd;
