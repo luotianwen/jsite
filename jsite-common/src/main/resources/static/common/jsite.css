@@ -136,6 +136,10 @@
     color:#333;resize:none
 }
 
+.table thead tr, .ui-jqgrid-htable thead tr, .ui-jqgrid-hdiv, .ui-jqgrid-hbox {
+    background-color: #eee;
+}
+
 .check-form label{
     height:30px;
     line-height:23px;
