@@ -39,7 +39,7 @@
 %>
 
 <div class="input-group">
-	<input id="${p.id}Id" name="${p.name}" class="${p.cssClass}" type="hidden" value="${p.value}"/>
+	<input id="${p.id}Id" name="${p.name}" type="hidden" value="${p.value}"/>
 	<input id="${p.id}Name" name="${p.labelName}" ${p.allowInput?'':'readonly="readonly"'} type="text" value="${p.labelValue}" data-msg-required="${p.dataMsgRequired}"
 		class="form-control ${p.cssClass}" style="${p.cssStyle}"/>
 	<span class="input-group-btn">
