@@ -5,12 +5,6 @@
 }
 
 .lowin {
-	/* variables */
-	--color-primary: #44a0b3;
-	--color-grey: rgba(68, 160, 179, .06);
-	--color-dark: rgba(68, 160, 179, .5);
-	--color-semidark: rgba(68, 160, 179, .5);
-
 	text-align: center;
 	margin: 80px 0 0 0;
 	font-family: 'Segoe UI';
@@ -28,39 +22,12 @@
 	width: 360px;
 	margin: 20px auto;
 }
-.lowin.lowin-red {
-	--color-primary: #ff6464;
-	--color-grey: rgba(255, 100, 100, .06);
-	--color-dark: rgba(255, 100, 100, .8);
-	--color-semidark: rgba(255, 100, 100, .55);
-}
-.lowin.lowin-green {
-	--color-primary: #D0EF84;
-	--color-grey: rgba(208, 239, 132, .15);
-	--color-dark: rgba(208, 239, 132, 1);
-	--color-semidark: rgba(208, 239, 132, .6);
-}
 
-.lowin.lowin-purple {
-	--color-primary: #6C567B;
-	--color-grey: rgba(108, 86, 123, .08);
-	--color-dark: rgba(108, 86, 123, .7);
-	--color-semidark: rgba(108, 86, 123, .45);
-}
-
-.lowin.lowin-blue {
-	--color-primary: #3c8dbc;
-	--color-grey: rgba(0, 129, 198, .05);
-	--color-dark: rgba(0, 129, 198, .7);
-	--color-semidark: rgba(0, 129, 198, .45);
-	--color-semiblack:rgb(68, 64, 64);
-	--color-quietblack:rgb(132, 129, 129);
-}
 lowin-input
 .lowin a {
-	color: var(--color-primary);
+	color: #3c8dbc;
 	text-decoration: none;
-	border-bottom: 1px dashed var(--color-semidark);
+	border-bottom: 1px dashed rgba(0, 129, 198, .45);
 	margin-top: -3px;
 	padding-bottom: 2px;
 }
@@ -128,7 +95,7 @@ lowin-input
 }
 
 .lowin .lowin-box p {
-	color: var(--color-semidark);
+	color: rgba(0, 129, 198, .45);
 	font-weight: 700;
 	margin-bottom: 20px;
 	text-align: center;
@@ -142,7 +109,7 @@ lowin-input
 	margin-bottom: 5px;
 	display: inline-block;
 	width: 100%;
-	color: var(--color-quietblack);
+	color: rgb(132, 129, 129);
 	font-weight: 100;
 }
 
@@ -151,8 +118,8 @@ lowin-input
 }
 
 .lowin .lowin-box .lowin-input {
-	background-color: var(--color-grey);
-	color: var(--color-semiblack);
+	background-color: rgba(0, 129, 198, .05);
+	color: rgb(68, 64, 64);
 	border: none;
 	border-radius: 3px;
 	padding: 15px 20px;
@@ -161,7 +128,7 @@ lowin-input
 }
 
 .lowin-input::-webkit-input-placeholder {
-	color: var(--color-semidark);
+	color: rgba(0, 129, 198, .45);
 }
 
 .lowin .lowin-box .lowin-btn {
@@ -171,9 +138,9 @@ lowin-input
 	color: #fff;
 	padding: 15px;
 	border-radius: 3px;
-	background-color: var(--color-primary);
-	-webkit-box-shadow: 0 2px 7px var(--color-semidark);
-	        box-shadow: 0 2px 7px var(--color-semidark);
+	background-color: #3c8dbc;
+	-webkit-box-shadow: 0 2px 7px rgba(0, 129, 198, .45);
+	        box-shadow: 0 2px 7px rgba(0, 129, 198, .45);
 	font-weight: 700;
 	outline: 0;
 	cursor: pointer;
@@ -196,14 +163,14 @@ lowin-input
 	padding: 10px;
 	font-weight: 700;
 	margin-top: 20px;
-	color: var(--color-quietblack);
+	color: rgb(132, 129, 129);
 }
 
 .lowin .lowin-footer {
 	text-align: center;
 	margin: 30px 0;
 	font-size: 12px;
-	color: var(--color-dark);
+	color: rgba(0, 129, 198, .7);
 	font-weight: 700;
 }
 
