@@ -1,11 +1,5 @@
-<% layout('/layout/default.html', {title: '登录', libs: ['layout','validate'], bodyClass: 'login-page'}){ %>
-	<!-- iCheck -->
-	<link rel="stylesheet" href="${ctxPath}/static/iCheck/square/blue.css">
-	<link rel="stylesheet" href="${ctxPath}/static/jquery-toastr/toastr.min.css">
-    <link rel="stylesheet" href="${ctxPath}/static/modules/sys/login.css">
-	<link rel="stylesheet" href="${ctxPath}/static/jquery-validation/1.16/jquery.validate.css">
+<% layout('/layout/default.html', {title: '登录', libs: ['layout','validate', 'login'], bodyClass: 'login-page'}){ %>
 <% var productName = @Global.getProperty('productName'), productVersion = @Global.getProperty('version'); %>
-
 
 <div class="lowin lowin-blue">
 	<h1><b>${productName}</b> <small>${productVersion}</small></h1>
@@ -50,7 +44,3 @@
 	</div>
 </div>
 <% } %>
-
-<script src="${ctxPath}/static/jquery-toastr/toastr.min.js"></script>
-<script src="${ctxPath}/static/iCheck/icheck.js"></script>
-<script src="${ctxPath}/static/modules/sys/login.js"></script>

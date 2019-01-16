@@ -2,6 +2,11 @@
 <link rel="stylesheet" href="${ctxStatic}/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="${ctxStatic}/adminLTE/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="${ctxStatic}/jquery-toastr/toastr.min.css">
+<% if (inArrayString('login', libs!)){ %>
+<link rel="stylesheet" href="${ctxStatic}/iCheck/square/blue.css">
+<link rel="stylesheet" href="${ctxStatic}/modules/sys/login.css">
+<link rel="stylesheet" href="${ctxStatic}/jquery-validation/1.16/jquery.validate.css">
+<% } %>
 <% if (inArrayString('zTree', libs!)){ %>
 <link rel="stylesheet" href="${ctxStatic}/jquery-ztree/3.5/css/metro/zTreeStyle.css">
 <% } %>

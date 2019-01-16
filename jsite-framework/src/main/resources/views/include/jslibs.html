@@ -4,6 +4,10 @@
 <script src="${ctxStatic}/My97DatePicker/WdatePicker.js"></script>
 <script src="${ctxStatic}/jquery-validation/1.16/jquery.form.js"></script>
 <script src="${ctxStatic}/jquery-toastr/toastr.min.js"></script>
+<% if (inArrayString('login', libs!)){ %>
+<script src="${ctxStatic}/modules/sys/login.js"></script>
+<script src="${ctxStatic}/iCheck/icheck.js"></script>
+<% } %>
 <% if (inArrayString('zTree', libs!)){ %>
 <script src="${ctxStatic}/jquery-ztree/3.5/js/jquery.ztree.all.js"></script>
 <% } %>
