@@ -48,6 +48,9 @@
 	<select id="findByParentIdsLike" resultType="Menu">
 		SELECT
 			a.id,
+			a.name,
+			a.tree_leaf,
+			a.tree_level,
 			a.parent_id AS "parent.id",
 			a.parent_ids
 		FROM sys_menu a
@@ -138,7 +141,8 @@
 	<update id="updateParentIds">
 		UPDATE sys_menu SET 
 			parent_id = #{parent.id}, 
-			parent_ids = #{parentIds}
+			parent_ids = #{parentIds},
+			tree_level = #{treeLevel}
 		WHERE id = #{id}
 	</update>
 	
