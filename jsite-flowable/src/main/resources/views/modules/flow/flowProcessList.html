@@ -54,7 +54,7 @@ $('#dataGrid').dataGrid({
 			var actions = [];
 			<% if(hasPermi('act:process:edit')){ %>
 				if(row.suspensionState == 1) {
-					actions.push('<a href="${ctx}/act/process/update/active?procDefId='+row.id+'" class="btnList" title="挂起流程" data-confirm="确认要挂起该流程吗？">挂起</a>&nbsp;');
+					actions.push('<a href="${ctx}/act/process/update/suspend?procDefId='+row.id+'" class="btnList" title="挂起流程" data-confirm="确认要挂起该流程吗？">挂起</a>&nbsp;');
 				} else {
 					actions.push('<a href="${ctx}/act/process/update/active?procDefId='+row.id+'" class="btnList" title="激活流程" data-confirm="确认要激活该流程吗？>激活</a>&nbsp;');
 				}

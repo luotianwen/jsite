@@ -111,7 +111,7 @@ public class ReProcDefController extends BaseController {
 	@RequiresPermissions("act:process:edit")
 	@RequestMapping(value = "update/{state}")
 	@ResponseBody
-	public String updateState(@PathVariable("state") String state, String procDefId, RedirectAttributes redirectAttributes) {
+	public String updateState(@PathVariable("state") String state, String procDefId) {
 		String message = actProcessService.updateState(state, procDefId);
 		
 		return renderResult(Global.TRUE, message);
