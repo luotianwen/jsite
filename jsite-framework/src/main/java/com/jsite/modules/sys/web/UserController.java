@@ -186,7 +186,7 @@ public class UserController extends BaseController {
     public void exportFile(User user, HttpServletRequest request, HttpServletResponse response) {
 		try {
             String fileName = "用户数据"+DateUtils.getDate("yyyyMMddHHmmss")+".xlsx";
-            Page<User> page = systemService.findUser(new Page<User>(request, response, -1), user);
+            Page<User> page = systemService.findUser(new Page<>(request, response, -1), user);
     		new ExportExcel("用户数据", User.class).setDataList(page.getList()).write(response, fileName).dispose();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -250,13 +250,14 @@ public class UserController extends BaseController {
     public String importFileTemplate(HttpServletResponse response) {
 		try {
             String fileName = "用户数据导入模板.xlsx";
-    		List<User> list = Lists.newArrayList(); list.add(UserUtils.getUser());
+    		List<User> list = Lists.newArrayList();
+    		list.add(UserUtils.getUser());
     		new ExportExcel("用户数据", User.class, 2).setDataList(list).write(response, fileName).dispose();
     		return null;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:" + adminPath + "/sys/user/list";
+		return "modules/sys/userList";
     }
 
 	/**

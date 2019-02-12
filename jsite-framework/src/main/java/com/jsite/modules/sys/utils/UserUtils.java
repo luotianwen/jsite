@@ -81,7 +81,11 @@ public class UserUtils {
 		}
 		return user;
 	}
-	
+
+	public static List<User> getUserList() {
+		return userDao.findAllList(new User());
+	}
+
 	/**
 	 * 清除当前用户缓存
 	 */
