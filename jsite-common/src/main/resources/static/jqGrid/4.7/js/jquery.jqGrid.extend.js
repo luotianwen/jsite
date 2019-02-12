@@ -318,10 +318,17 @@ var DataGrid = function(options, $this){
 								
 								var formTitle = se.data('formtitle');
 								var formUrl = se.data('formurl');
-								
+								var wh = se.data('wh');
+
 								js.form(formTitle, url, formUrl, function(data) {
-									js.showMessage(data.message);
-								}, "json");
+                                    if(data.result == "true") {
+                                        js.showMessage(data.message);
+                                        refresh();
+                                    } else {
+                                        js.showErrorMessage(data.message);
+                                    }
+
+								}, "json", wh);
 								
 							} else {
 								var win;

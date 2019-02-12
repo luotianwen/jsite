@@ -36,6 +36,17 @@
         decodeURI: function(url) {
             return decodeURIComponent(url)
         },
+        trim: function(str) {
+            return jQuery.trim(str)
+        },
+        startWith: function(str, start) {
+            var reg = new RegExp("^" + start);
+            return reg.test(str)
+        },
+        endWith: function(str, end) {
+            var reg = new RegExp(end + "$");
+            return reg.test(str)
+        },
         transDictLabel: function (dictList, val, defVal) {
             var label = "";
             // for(dict in dictList) dict.value 取不到值 undefined
@@ -156,13 +167,14 @@
             return false
         },
 
-        form : function(message, url, formUrl, callback, dataType) {
-            var excuAjax = function(category) {
+        form : function(formTitle, url, formUrl, callback, dataType, wh) {
+            var excuAjax = function(jsonData) {
                 js.loading("正在处理...");
                 $.ajax({
                     type: "POST",
-                    url: url+"&category="+category,
+                    url: url,
                     dataType: dataType == undefined ? "json" : dataType,
+                    data: jsonData,
                     async: true,
                     error: function(data) {
                         js.showErrorMessage(data.responseText);
@@ -177,23 +189,39 @@
                 })
             };
 
+            var width = '400px';
+            var height = '300px';
+            if (wh != null) {
+                var arr = wh.split('|');
+                width = arr[0]+'px';
+                height = arr[1]+'px';
+            }
+
             js.layer.open({
                 type: 2,
-                title: message,
+                title: formTitle,
                 shade: 0.3,
                 shadeClose: true,
                 //maxmin: true, //开启最大化最小化按钮
-                area: ['400px', '300px'],
+                area: [width, height],
                 content: formUrl,
-                btn: ['<i class="fa fa-plus"></i> 确定部署', '<i class="fa fa-times"></i> 取消'],
+                btn: ['<i class="fa fa-plus"></i> 确定', '<i class="fa fa-times"></i> 取消'],
                 btn1: function(index, layero){
                     var win = js.layer.iframeWindow(index);
-                    var category = win.$("#category").val();
-                    if($.isEmptyObject(category)) {
-                        js.showErrorMessage("请先选择流程分类");
+                    var jsonData = win.$("#formID").serializeArray();
+
+                    var hasEmpty = false;
+                    $.each(jsonData,function(i,item){
+                        if(item['value'] == '') {
+                            hasEmpty = true;
+                            return false
+                        }
+                    });
+                    if(hasEmpty) {
+                        js.showErrorMessage("请先选择" + formTitle);
                         return;
                     }
-                    excuAjax(category);
+                    excuAjax(jsonData);
                     js.layer.close(index);
                 },
                 btn2: function(index, layero){
