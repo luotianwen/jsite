@@ -385,8 +385,8 @@ public class ExportExcel {
                         // val = DictUtils.getDictLabel(val==null?"":val.toString(), ef.dictType(), "");
 						try{
 							Class<?> dictUtils = Class.forName("com.jsite.modules.sys.utils.DictUtils");
-							val = dictUtils.getMethod("getDictValue", String.class, String.class,
-									String.class).invoke(null, ef.dictType(), val.toString(), "");
+							val = dictUtils.getMethod("getDictLabel", String.class, String.class,
+									String.class).invoke(null, val.toString(), ef.dictType(), "");
 						} catch (Exception ex) {
                             ex.printStackTrace();
 							val = null;
@@ -429,7 +429,7 @@ public class ExportExcel {
 	
 	/**
 	 * 输出到文件
-	 * @param fileName 输出文件名
+	 * @param name 输出文件名
 	 */
 	public ExportExcel writeFile(String name) throws FileNotFoundException, IOException{
 		FileOutputStream os = new FileOutputStream(name);

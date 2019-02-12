@@ -52,7 +52,7 @@ public class ImportExcel {
 	
 	/**
 	 * 构造函数
-	 * @param path 导入文件，读取第一个工作表
+	 * @param fileName 导入文件，读取第一个工作表
 	 * @param headerNum 标题行号，数据行号=标题行号+1
 	 * @throws InvalidFormatException 
 	 * @throws IOException 
@@ -64,7 +64,7 @@ public class ImportExcel {
 	
 	/**
 	 * 构造函数
-	 * @param path 导入文件对象，读取第一个工作表
+	 * @param file 导入文件对象，读取第一个工作表
 	 * @param headerNum 标题行号，数据行号=标题行号+1
 	 * @throws InvalidFormatException 
 	 * @throws IOException 
@@ -76,7 +76,7 @@ public class ImportExcel {
 
 	/**
 	 * 构造函数
-	 * @param path 导入文件
+	 * @param fileName 导入文件
 	 * @param headerNum 标题行号，数据行号=标题行号+1
 	 * @param sheetIndex 工作表编号
 	 * @throws InvalidFormatException 
@@ -89,7 +89,7 @@ public class ImportExcel {
 	
 	/**
 	 * 构造函数
-	 * @param path 导入文件对象
+	 * @param file 导入文件对象
 	 * @param headerNum 标题行号，数据行号=标题行号+1
 	 * @param sheetIndex 工作表编号
 	 * @throws InvalidFormatException 
@@ -102,7 +102,7 @@ public class ImportExcel {
 	
 	/**
 	 * 构造函数
-	 * @param file 导入文件对象
+	 * @param fileItem 导入文件对象
 	 * @param headerNum 标题行号，数据行号=标题行号+1
 	 * @param sheetIndex 工作表编号
 	 * @throws InvalidFormatException 
@@ -117,7 +117,7 @@ public class ImportExcel {
 
 	/**
 	 * 构造函数
-	 * @param path 导入文件对象
+	 * @param fileName 导入文件对象
 	 * @param headerNum 标题行号，数据行号=标题行号+1
 	 * @param sheetIndex 工作表编号
 	 * @throws InvalidFormatException 
@@ -285,7 +285,7 @@ public class ImportExcel {
                         try{
                             Class<?> dictUtils = Class.forName("com.jsite.modules.sys.utils.DictUtils");
                             val = dictUtils.getMethod("getDictValue", String.class, String.class,
-                                    String.class).invoke(null, ef.dictType(), val.toString(), "");
+                                    String.class).invoke(null, val.toString(), ef.dictType(), "");
                         } catch (Exception ex) {
                             ex.printStackTrace();
                             val = null;
@@ -331,7 +331,7 @@ public class ImportExcel {
 							}
 						}
 					} catch (Exception ex) {
-						log.info("Get cell value ["+i+","+column+"] error: " + ex.toString());
+						log.error("Get cell value ["+i+","+column+"] error: " + ex.toString());
 						val = null;
 					}
 					// set entity value
