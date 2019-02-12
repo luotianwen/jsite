@@ -70,7 +70,7 @@
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-				ORDER BY a.tree_level ASC
+				ORDER BY a.sort ASC
 			</otherwise>
 		</choose>
 	</select>
@@ -81,7 +81,7 @@
 		FROM sys_office a
 		<include refid="officeJoins"/>
 		WHERE a.del_flag = #{DEL_FLAG_NORMAL}
-		ORDER BY a.tree_level
+		ORDER BY a.sort  ASC
 	</select>
 	
 	<select id="findByParentIdsLike" resultType="Office">
@@ -166,6 +166,7 @@
 			phone = #{phone}, 
 			fax = #{fax}, 
 			email = #{email},
+			sort = #{sort},
 			tree_leaf = #{treeLeaf},
 			tree_level = #{treeLevel},
 			update_by = #{updateBy.id}, 
