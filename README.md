@@ -42,8 +42,8 @@
 3. 其他组件：jquery 1.12.4  jqGrid 4.7  jquery-zTree 3.5  jquery-toastr  jquery-validation  layer 3.1 webuploader  select2.4.0 cropper3.1.3
 
 ### 使用说明
-1. 框架基于IntelliJ IDEA 开发
-2. 初始化数据库 jsite-web module 下 jsite-init.sql
+1. 建议使用 IntelliJ IDEA 开发
+2. 初始化数据库脚本在 jsite-web 的 resources/db/ 目录下，详细步骤请查阅 [JSite Docs](http://doc.jsite.org.cn)
 3. 数据库字符集：utf8   排序规则：utf8_bin
 4. 初次运行项目，需要修改jsite-web模块下config/jsite-web.properties配置文件中的数据库连接配置！
 ### 系统展示
