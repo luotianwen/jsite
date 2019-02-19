@@ -1,46 +1,4 @@
-/*
- Navicat Premium Data Transfer
-
- Source Server         : jsite
- Source Server Type    : MySQL
- Source Server Version : 80013
- Source Schema         : jsite
-
- Target Server Type    : MySQL
- Target Server Version : 80013
- File Encoding         : 65001
-
-Date: 2019-01-11 21:15:13
-*/
-
-SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
--- Table structure for gen_scheme
--- ----------------------------
-DROP TABLE IF EXISTS `gen_scheme`;
-CREATE TABLE `gen_scheme` (
-  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '编号',
-  `name` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '名称',
-  `category` varchar(2000) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '分类',
-  `package_name` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '生成包路径',
-  `module_name` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '生成模块名',
-  `sub_module_name` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '生成子模块名',
-  `function_name` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '生成功能名',
-  `function_name_simple` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '生成功能名（简写）',
-  `function_author` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '生成功能作者',
-  `gen_table_id` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '生成表编号',
-  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '创建者',
-  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '更新者',
-  `update_date` datetime DEFAULT NULL COMMENT '更新时间',
-  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '备注信息',
-  `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '删除标记（0：正常；1：删除）',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `gen_scheme_del_flag` (`del_flag`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='生成方案';
-
 -- ----------------------------
 -- Records of gen_scheme
 -- ----------------------------
@@ -48,27 +6,6 @@ INSERT INTO `gen_scheme` VALUES ('325d42709242476aab909b8d54a5ad73', '树结构�
 INSERT INTO `gen_scheme` VALUES ('c544bf7da3744ab1aa285fa3bfef6000', '主子表生成', 'curd_many', 'com.jsite.modules', 'test', '', '主子表生成测试', '主子表生成', 'liuruijun', 'd7c3fff144a046698aa3766844582a4c', '1', '2018-12-29 11:50:24', '1', '2019-01-02 10:06:04', '', '0');
 INSERT INTO `gen_scheme` VALUES ('f09437aa6b9c440481e40aa63daf81d7', '单表生成', 'curd', 'com.jsite.modules', 'test', '', '单表生成测试', '单表生成', 'liuruijun', '39c9a49ccd87400b9b19606a46b12dd6', '1', '2018-12-29 11:46:43', '1', '2019-01-02 10:01:38', '', '0');
 
--- ----------------------------
--- Table structure for gen_table
--- ----------------------------
-DROP TABLE IF EXISTS `gen_table`;
-CREATE TABLE `gen_table` (
-  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '编号',
-  `name` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '名称',
-  `comments` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '描述',
-  `class_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '实体类名称',
-  `parent_table` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '关联父表',
-  `parent_table_fk` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '关联父表外键',
-  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '创建者',
-  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '更新者',
-  `update_date` datetime DEFAULT NULL COMMENT '更新时间',
-  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '备注信息',
-  `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '删除标记（0：正常；1：删除）',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `gen_table_name` (`name`) USING BTREE,
-  KEY `gen_table_del_flag` (`del_flag`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='业务表';
 
 -- ----------------------------
 -- Records of gen_table
@@ -78,42 +15,6 @@ INSERT INTO `gen_table` VALUES ('39c9a49ccd87400b9b19606a46b12dd6', 'test_data',
 INSERT INTO `gen_table` VALUES ('794ea2d0349e4590ba4366529d499833', 'test_data_child', '业务数据子表', 'TestDataChild', 'test_data_main', 'test_data_main_id', '1', '2018-12-29 11:21:18', '1', '2018-12-29 11:21:18', null, '0');
 INSERT INTO `gen_table` VALUES ('d7c3fff144a046698aa3766844582a4c', 'test_data_main', '业务数据表', 'TestDataMain', '', '', '1', '2018-12-29 11:20:51', '1', '2018-12-29 11:20:51', null, '0');
 
--- ----------------------------
--- Table structure for gen_table_column
--- ----------------------------
-DROP TABLE IF EXISTS `gen_table_column`;
-CREATE TABLE `gen_table_column` (
-  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '编号',
-  `gen_table_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '归属表编号',
-  `name` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '名称',
-  `comments` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '描述',
-  `jdbc_type` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '列的数据类型的字节长度',
-  `java_type` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT 'JAVA类型',
-  `java_field` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT 'JAVA字段名',
-  `is_row` char(1) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '是否独占一行(流程页面布局使用)',
-  `is_pk` char(1) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '是否主键',
-  `is_null` char(1) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '是否可为空',
-  `is_insert` char(1) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '是否为插入字段',
-  `is_edit` char(1) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '是否编辑字段',
-  `is_list` char(1) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '是否列表字段',
-  `is_query` char(1) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '是否查询字段',
-  `query_type` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '查询方式（等于、不等于、大于、小于、范围、左LIKE、右LIKE、左右LIKE）',
-  `show_type` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '字段生成方案（文本框、文本域、下拉框、复选框、单选框、字典选择、人员选择、部门选择、区域选择）',
-  `dict_type` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '字典类型',
-  `settings` varchar(2000) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '其它设置（扩展字段JSON）',
-  `sort` decimal(10,0) DEFAULT NULL COMMENT '排序（升序）',
-  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '创建者',
-  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '更新者',
-  `update_date` datetime DEFAULT NULL COMMENT '更新时间',
-  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '备注信息',
-  `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '删除标记（0：正常；1：删除）',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `gen_table_column_table_id` (`gen_table_id`) USING BTREE,
-  KEY `gen_table_column_name` (`name`) USING BTREE,
-  KEY `gen_table_column_sort` (`sort`) USING BTREE,
-  KEY `gen_table_column_del_flag` (`del_flag`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='业务表字段';
 
 -- ----------------------------
 -- Records of gen_table_column
@@ -167,465 +68,17 @@ INSERT INTO `gen_table_column` VALUES ('f4e277e2ae97497fa3ebef882f3ac50d', 'd7c3
 INSERT INTO `gen_table_column` VALUES ('f610077a6e774855802b92389241fef7', 'd7c3fff144a046698aa3766844582a4c', 'update_by', '更新者', 'varchar(64)', 'com.jsite.modules.sys.entity.User', 'updateBy.id', '0', '0', '0', '1', '1', '0', '0', '=', 'input', '', null, '100', '1', '2018-12-29 11:20:52', '1', '2018-12-29 11:20:52', null, '0');
 INSERT INTO `gen_table_column` VALUES ('fe3e9323ad1841a99ad7788770ea3101', '794ea2d0349e4590ba4366529d499833', 'name', '名称', 'varchar(100)', 'String', 'name', '0', '0', '1', '1', '1', '1', '1', 'like', 'input', '', null, '30', '1', '2018-12-29 11:21:19', '1', '2018-12-29 11:21:19', null, '0');
 
--- ----------------------------
--- Table structure for gen_template
--- ----------------------------
-DROP TABLE IF EXISTS `gen_template`;
-CREATE TABLE `gen_template` (
-  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '编号',
-  `name` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '名称',
-  `category` varchar(2000) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '分类',
-  `file_path` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '生成文件路径',
-  `file_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '生成文件名',
-  `content` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT '内容',
-  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '创建者',
-  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '更新者',
-  `update_date` datetime DEFAULT NULL COMMENT '更新时间',
-  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '备注信息',
-  `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '删除标记（0：正常；1：删除）',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `gen_template_del_falg` (`del_flag`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='代码模板表';
-
--- ----------------------------
--- Records of gen_template
--- ----------------------------
-
--- ----------------------------
--- Table structure for oa_leave
--- ----------------------------
-DROP TABLE IF EXISTS `oa_leave`;
-CREATE TABLE `oa_leave` (
-  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '编号',
-  `proc_ins_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '流程实例编号',
-  `start_time` datetime DEFAULT NULL COMMENT '开始时间',
-  `end_time` datetime DEFAULT NULL COMMENT '结束时间',
-  `leave_type` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '请假类型',
-  `reason` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '请假理由',
-  `dept_lead_text` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `hr_text` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `apply_time` datetime DEFAULT NULL COMMENT '申请时间',
-  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '创建者',
-  `create_date` datetime NOT NULL COMMENT '创建时间',
-  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '更新者',
-  `update_date` datetime NOT NULL COMMENT '更新时间',
-  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '备注信息',
-  `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '删除标记',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `oa_leave_create_by` (`create_by`) USING BTREE,
-  KEY `oa_leave_process_instance_id` (`proc_ins_id`) USING BTREE,
-  KEY `oa_leave_del_flag` (`del_flag`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='请假流程表';
-
--- ----------------------------
--- Records of oa_leave
--- ----------------------------
-INSERT INTO `oa_leave` VALUES ('0387efb30b3e49738b582c5d854a32b6', '577d6e71-06a1-11e9-8afd-00163e2e65eb', '2018-12-17 18:57:10', '2018-12-28 18:57:13', '1', '123132', null, null, '2018-12-23 18:56:04', '1', '2018-12-23 18:56:04', '1', '2018-12-23 18:56:04', null, '0');
-INSERT INTO `oa_leave` VALUES ('0e559a88fe7f4c6a81eaeafff2dd59ea', '98dc997c-0d8b-11e9-a3dc-00163e2e65eb', '2019-01-01 14:07:45', '2019-01-09 14:07:51', '3', '888', null, null, '2019-01-01 14:08:03', '1', '2019-01-01 14:08:03', '1', '2019-01-01 14:08:03', null, '0');
-INSERT INTO `oa_leave` VALUES ('0f172aa5b70c4de2b7b80b9778b5188e', '8037c359-1483-11e9-937e-00163e2e65eb', '2019-01-10 11:28:12', '2019-01-12 10:57:35', '2', '本人由于得了胃肠炎，需要去医院检测，特请假2天，望领导批准！！！', '[同意] 部门领导同意你的请假！！！！1233', '[同意] 人力资源部同意你的假期！！！！好嗨哦', '2019-01-10 10:57:44', '1', '2019-01-10 10:57:44', '1', '2019-01-10 11:29:29', null, '0');
-INSERT INTO `oa_leave` VALUES ('11bc5f9e1c8d4372ad74791e3d045143', '08f682c5-0f3f-11e9-bf4e-00163e2e65eb', '2019-01-03 18:04:53', '2019-01-04 18:04:55', '1', '请假', null, null, '2019-01-03 18:05:02', '1', '2019-01-03 18:05:02', '1', '2019-01-03 18:05:02', null, '0');
-INSERT INTO `oa_leave` VALUES ('15b0f661d6834f7987020209a87a149c', '1dd76279-066c-11e9-8afd-00163e2e65eb', '2018-11-29 12:34:57', '2018-12-20 12:34:59', '1', '222', null, null, '2018-12-23 12:35:04', '1', '2018-12-23 12:35:04', '1', '2018-12-23 12:35:04', null, '0');
-INSERT INTO `oa_leave` VALUES ('17131d05e7ee4316a31e8d9a8f9832e4', 'e90cd7b3-1313-11e9-8749-00163e2e65eb', '2019-01-08 15:07:07', '2019-01-10 15:07:09', '2', 'asasdas dafasff2q casdad', null, null, '2019-01-08 15:06:25', '1', '2019-01-08 15:06:25', '1', '2019-01-08 15:06:25', null, '0');
-INSERT INTO `oa_leave` VALUES ('1b7f965e3986433db15f396511a326b8', 'e9847b8d-0fbd-11e9-9113-08002700081f', '2019-01-04 09:12:45', '2019-01-04 09:12:48', '3', '有事', '[同意] 同意！', '[同意] 同意', '2019-01-04 09:13:15', '1', '2019-01-04 09:13:15', '1', '2019-01-04 09:13:15', null, '0');
-INSERT INTO `oa_leave` VALUES ('21ea8e5c7b974b4ca6719811a2bdf94c', '1a6ec4f6-123e-11e9-afb8-00163e2e65eb', '2019-01-07 13:34:39', '2019-01-24 13:34:41', '5', '66666666666666', null, null, '2019-01-07 13:35:55', '1', '2019-01-07 13:35:55', '1', '2019-01-07 13:35:55', null, '0');
-INSERT INTO `oa_leave` VALUES ('25936b689fdd4971b0f016187a479862', '417496af-0e6b-11e9-bf4e-00163e2e65eb', '2019-01-02 16:48:52', '2019-01-03 16:48:54', '1', '21312全额翁多群翁群无', null, null, '2019-01-02 16:49:03', '1', '2019-01-02 16:49:03', '1', '2019-01-02 16:49:03', null, '0');
-INSERT INTO `oa_leave` VALUES ('27f0984675c6417386e88debec42b582', 'fa721c00-148c-11e9-937e-00163e2e65eb', '2019-01-10 12:05:22', '2019-01-10 12:05:25', '2', '我去二群翁群无', null, null, '2019-01-10 12:05:34', '1', '2019-01-10 12:05:34', '1', '2019-01-10 12:05:34', null, '0');
-INSERT INTO `oa_leave` VALUES ('2d86f74a951c4ddc974f35e3c48ca157', '20ac3d8b-0e42-11e9-bf4e-00163e2e65eb', '2019-01-02 11:54:27', '2019-01-03 11:54:30', '1', 'dadada', null, null, '2019-01-02 11:54:39', '1', '2019-01-02 11:54:39', '1', '2019-01-02 11:54:39', null, '0');
-INSERT INTO `oa_leave` VALUES ('35196bf71d1642379f8e44fc9df1f106', '298ca60d-1214-11e9-afb8-00163e2e65eb', '2019-01-07 08:35:32', '2019-01-25 08:35:34', '1', '555', null, null, '2019-01-07 08:35:42', '1', '2019-01-07 08:35:42', '1', '2019-01-07 08:35:42', null, '0');
-INSERT INTO `oa_leave` VALUES ('3e94e688ed5e40b181bcdeb68dfa3cf5', '4d585731-0ce5-11e9-a3dc-00163e2e65eb', '2018-12-11 18:17:32', '2018-12-20 18:17:35', '1', 'asdas', '[同意] r4ere3e234', null, '2018-12-31 18:17:40', '1', '2018-12-31 18:17:40', '1', '2018-12-31 18:17:40', null, '0');
-INSERT INTO `oa_leave` VALUES ('3fc208d5104547078f20c1d235c490b7', '0429fd25-1578-11e9-8586-00163e2e65eb', '2019-01-11 16:07:53', '2019-01-10 16:07:56', '1', '11', null, null, '2019-01-11 16:08:02', '1', '2019-01-11 16:08:02', '1', '2019-01-11 16:08:02', null, '0');
-INSERT INTO `oa_leave` VALUES ('411c01ef309641da8132b3c4d222a05d', 'b16ac953-13b3-11e9-8084-00163e2e65eb', '2019-01-18 10:09:52', '2019-01-18 10:09:56', '2', 'test请假', null, null, '2019-01-09 10:10:11', '1', '2019-01-09 10:10:11', '1', '2019-01-09 10:10:11', null, '0');
-INSERT INTO `oa_leave` VALUES ('4b87a0820d124133b860a4ecd8f61440', 'e2ae35a9-06ac-11e9-8afd-00163e2e65eb', '2018-12-12 20:18:29', '2018-12-29 20:18:33', '2', '1', null, null, '2018-12-23 20:18:42', '1', '2018-12-23 20:18:42', '1', '2018-12-23 20:18:42', null, '0');
-INSERT INTO `oa_leave` VALUES ('5553ed8243a042dbbad2e70f12b5382e', '2968bed4-1096-11e9-afb8-00163e2e65eb', '2019-01-15 11:01:00', '2019-01-24 11:01:04', '1', '111', null, null, '2019-01-05 11:01:14', '1', '2019-01-05 11:01:14', '1', '2019-01-05 11:01:14', null, '0');
-INSERT INTO `oa_leave` VALUES ('56c892cfc7624d11b3a1ffa0ea0d221f', '08249e19-0692-11e9-8afd-00163e2e65eb', '2018-12-25 17:04:38', '2018-12-28 17:04:42', '1', '333', null, null, '2018-12-23 17:06:28', '1', '2018-12-23 17:06:28', '1', '2018-12-23 17:06:28', null, '0');
-INSERT INTO `oa_leave` VALUES ('5b0025eaaee2458ba5bbc5678de4ecf5', '2000c06e-05f4-11e9-b751-c85b7643dd9e', '2018-12-22 22:15:55', '2018-12-24 22:15:58', '1', '测试', null, null, '2018-12-22 22:16:08', '1', '2018-12-22 22:16:08', '1', '2018-12-22 22:16:08', null, '0');
-INSERT INTO `oa_leave` VALUES ('5ce3aebeb4d34664b3b2cc916cf74d64', '616a0ae8-148b-11e9-937e-00163e2e65eb', '2019-01-11 11:54:08', '2019-01-10 11:54:13', '1', 'a', null, null, '2019-01-10 11:54:08', '1', '2019-01-10 11:54:08', '1', '2019-01-10 11:54:08', null, '0');
-INSERT INTO `oa_leave` VALUES ('6095ceced2c54ce09cdf11ab2262768c', 'e82c7fc9-0998-11e9-a3c9-00163e2e65eb', '2018-12-27 13:33:23', '2018-12-28 13:33:25', '1', 'fsdfsd', null, null, '2018-12-27 13:33:15', '1', '2018-12-27 13:33:15', '1', '2018-12-27 13:33:15', null, '0');
-INSERT INTO `oa_leave` VALUES ('61880d5973a6401194d5af8098f68494', '5ea8c1c2-0a50-11e9-a98a-00163e2e65eb', '2018-12-03 11:26:51', '2018-12-28 11:26:54', '1', '666', '[同意] 飒飒的的', '[同意] 实打实大苏打是大大的', '2018-12-28 11:26:31', '1', '2018-12-28 11:26:31', '1', '2018-12-28 11:26:31', null, '0');
-INSERT INTO `oa_leave` VALUES ('6623a4f922754f9cae5d210ef8e02ce0', '6a2402bc-05cd-11e9-8544-00163e2e65eb', '2018-12-22 17:38:56', '2018-12-29 17:39:01', '1', '1', '[同意] 同意', '[同意] 同意', '2018-12-22 17:39:02', '1', '2018-12-22 17:39:02', '1', '2018-12-22 17:39:02', null, '0');
-INSERT INTO `oa_leave` VALUES ('6a07d4ed0ca447c5a677efd368f64d77', 'd6f8647b-13b2-11e9-8084-00163e2e65eb', '2019-01-09 10:03:57', '2019-01-16 10:03:58', '1', '222222', null, null, '2019-01-09 10:04:04', '1', '2019-01-09 10:04:04', '1', '2019-01-09 10:04:04', null, '0');
-INSERT INTO `oa_leave` VALUES ('6b52d027d2d0449a8ad5f8e6f97aaf7c', 'a14ae262-0d68-11e9-a3dc-00163e2e65eb', '2019-01-15 09:57:34', '2019-01-01 09:57:39', '4', '快捷键', null, null, '2019-01-01 09:57:45', '1', '2019-01-01 09:57:45', '1', '2019-01-01 09:57:45', null, '0');
-INSERT INTO `oa_leave` VALUES ('6edd39c56047432796ce9bd4759f482a', '48e8d1ec-0662-11e9-8afd-00163e2e65eb', '2018-12-13 11:24:21', '2018-12-29 11:24:25', '1', 'kkkk', '[驳回] sdsds', null, '2018-12-23 11:24:41', '1', '2018-12-23 11:24:41', '1', '2018-12-23 11:45:11', null, '0');
-INSERT INTO `oa_leave` VALUES ('6fa3f412cac74940bf118883d58a47d8', 'e252dd16-0b6e-11e9-a3dc-00163e2e65eb', '2018-12-29 21:37:12', '2019-01-31 21:37:15', '1', '大大', '[同意] 可以', null, '2018-12-29 21:37:28', '1', '2018-12-29 21:37:28', '1', '2018-12-29 21:37:28', null, '0');
-INSERT INTO `oa_leave` VALUES ('7790f91457a4450e9cae9e34512bbdf5', '06449ad1-068f-11e9-8afd-00163e2e65eb', '2018-12-23 16:44:45', '2018-12-23 16:44:47', '2', '显存v', null, null, '2018-12-23 16:44:57', '1', '2018-12-23 16:44:57', '1', '2018-12-23 16:44:57', null, '0');
-INSERT INTO `oa_leave` VALUES ('7cf4a1e9775b4c33a142944a31762581', '4e8a2777-0ffd-11e9-afb8-00163e2e65eb', '2019-01-04 16:46:32', '2019-01-04 18:46:35', '2', 'CESHI', '[同意] dept', null, '2019-01-04 16:47:03', '1', '2019-01-04 16:47:03', '1', '2019-01-04 16:47:03', null, '0');
-INSERT INTO `oa_leave` VALUES ('7cff819c53ce4c25872d0c74f9c9dccd', '6654ecc5-11c2-11e9-afb8-00163e2e65eb', '2019-01-06 22:50:13', '2019-01-26 22:50:16', '1', 'ww', null, null, '2019-01-06 22:50:25', '1', '2019-01-06 22:50:25', '1', '2019-01-06 22:50:25', null, '0');
-INSERT INTO `oa_leave` VALUES ('7d4818d456af4a0b97baa553e56b5545', 'f5db4016-0e2b-11e9-a3dc-00163e2e65eb', '2019-01-02 09:15:41', '2019-01-09 09:15:43', '2', 'test', '[同意] 阿法士大夫', null, '2019-01-02 09:15:58', '1', '2019-01-02 09:15:58', '1', '2019-01-02 09:15:58', null, '0');
-INSERT INTO `oa_leave` VALUES ('819c66bb295a4789a9500dd674a795a1', 'a5dd243a-0a52-11e9-a98a-00163e2e65eb', '2018-12-28 11:37:31', '2018-12-28 11:37:48', '2', '阿萨德&middot;1', null, null, '2018-12-28 11:42:50', '1', '2018-12-28 11:42:50', '1', '2018-12-28 11:42:50', null, '0');
-INSERT INTO `oa_leave` VALUES ('81d37452db0646cb9ed93f199ec9f2cc', '0ff64c49-0684-11e9-8afd-00163e2e65eb', '2018-12-23 15:26:21', '2018-12-28 15:26:24', '1', '1', null, null, '2018-12-23 15:26:28', '1', '2018-12-23 15:26:28', '1', '2018-12-23 15:26:28', null, '0');
-INSERT INTO `oa_leave` VALUES ('825ebaad47eb4286a33d0e63dec47fe9', '82efd342-0601-11e9-8544-00163e2e65eb', '2018-10-02 23:51:48', '2018-12-22 23:51:51', '1', '//。', '[同意] 我同意啦啊啊啊啊啊啊啊', '[同意] 我同意', '2018-12-22 23:51:57', '1', '2018-12-22 23:51:57', '1', '2018-12-22 23:51:57', null, '0');
-INSERT INTO `oa_leave` VALUES ('83e41ab4a51848ff9a6f2c345d985cf6', '3f8cbdc5-0f4c-11e9-bf4e-00163e2e65eb', '2019-01-03 19:39:28', '2019-01-04 19:39:30', '2', 'jtghuhkjbgvbmnj', null, null, '2019-01-03 19:39:37', '1', '2019-01-03 19:39:37', '1', '2019-01-03 19:39:37', null, '0');
-INSERT INTO `oa_leave` VALUES ('84376647d07344ec80667cc0636cec15', 'eb31d9b5-1407-11e9-8084-00163e2e65eb', '2019-01-09 20:12:55', '2019-01-09 20:12:58', '1', 'ddd', null, null, '2019-01-09 20:13:05', '1', '2019-01-09 20:13:05', '1', '2019-01-09 20:13:05', null, '0');
-INSERT INTO `oa_leave` VALUES ('847595ad8066406baadbb1c30b759b77', '7f9302bf-0fec-11e9-afb8-00163e2e65eb', '2019-01-04 14:46:35', '2019-01-26 14:46:36', '1', 'AAA', null, null, '2019-01-04 14:46:43', '1', '2019-01-04 14:46:43', '1', '2019-01-04 14:46:43', null, '0');
-INSERT INTO `oa_leave` VALUES ('86a14a1dfd1c48f1a2a3cc0dbd6099ab', 'bb4e8c95-12f7-11e9-8749-00163e2e65eb', '2019-01-08 11:44:33', '2019-01-09 11:44:35', '2', '测试', null, null, '2019-01-08 11:44:42', '1', '2019-01-08 11:44:42', '1', '2019-01-08 11:44:42', null, '0');
-INSERT INTO `oa_leave` VALUES ('8825b0660e244c90bb0175a55500c869', 'a403b72f-0ffd-11e9-afb8-00163e2e65eb', '2019-01-04 16:49:18', '2019-01-04 16:49:20', '2', '....', '[同意] 测试意见', '[驳回] butongyi', '2019-01-04 16:49:26', '1', '2019-01-04 16:49:26', '1', '2019-01-04 20:02:34', null, '0');
-INSERT INTO `oa_leave` VALUES ('8bb6d1cde46b43a783b0d12e9fcd5e72', 'cf55be3b-1313-11e9-8749-00163e2e65eb', '2019-01-08 15:06:28', '2019-01-10 15:06:29', '1', 'dsaadsd as', null, null, '2019-01-08 15:05:42', '1', '2019-01-08 15:05:42', '1', '2019-01-08 15:05:42', null, '0');
-INSERT INTO `oa_leave` VALUES ('8cebc8d8bccf439392aed5707a4d638f', 'fafa3b3d-121f-11e9-afb8-00163e2e65eb', '2019-01-07 10:00:08', '2019-01-26 10:00:10', '2', '侧擦拭', null, null, '2019-01-07 10:00:18', '1', '2019-01-07 10:00:18', '1', '2019-01-07 10:00:18', null, '0');
-INSERT INTO `oa_leave` VALUES ('8e3a44b1ea034146b54eac7dc1f87c4d', '75f1521e-124a-11e9-afb8-00163e2e65eb', '2019-01-07 15:04:14', '2019-01-08 15:04:16', '1', 'test', '[同意] 同意', '[同意] 根据领导批示，同意', '2019-01-07 15:04:23', '1', '2019-01-07 15:04:23', '1', '2019-01-07 15:04:23', null, '0');
-INSERT INTO `oa_leave` VALUES ('9192b3ce286c436e92630fc572b9489c', '6f29e41f-0fee-11e9-afb8-00163e2e65eb', '2019-01-01 15:00:56', '2019-01-04 15:01:01', '1', '1', null, null, '2019-01-04 15:00:35', '1', '2019-01-04 15:00:35', '1', '2019-01-04 15:00:35', null, '0');
-INSERT INTO `oa_leave` VALUES ('945ed101245c4427aeb2e466ee09566a', 'a02ba20e-065d-11e9-8afd-00163e2e65eb', '2018-12-23 10:51:13', '2018-12-21 10:51:17', '1', 'mnm', '[驳回] jgjhg', null, '2018-12-23 10:51:20', '1', '2018-12-23 10:51:20', '1', '2018-12-23 11:05:14', null, '0');
-INSERT INTO `oa_leave` VALUES ('9ed0488f0d8748768c263957422a164d', '16ff9aa1-1480-11e9-937e-00163e2e65eb', '2019-01-09 10:33:10', '2019-01-18 10:33:13', '2', '11', null, null, '2019-01-10 10:33:19', '1', '2019-01-10 10:33:19', '1', '2019-01-10 10:33:19', null, '0');
-INSERT INTO `oa_leave` VALUES ('9f2b1719b01d4ecfaa32de04a855ed68', '47d78153-0fba-11e9-bf4e-00163e2e65eb', '2019-01-04 08:46:41', '2019-01-09 08:46:43', '4', '流程发起测试2019.1.4 08:47', null, null, '2019-01-04 08:47:16', '1', '2019-01-04 08:47:16', '1', '2019-01-04 08:47:16', null, '0');
-INSERT INTO `oa_leave` VALUES ('a20e6feefab045b3bc09286357f693a4', 'd971cfa1-0e39-11e9-a3dc-00163e2e65eb', '2019-01-02 10:55:06', '2019-01-31 10:55:16', '1', 'asda', null, null, '2019-01-02 10:55:24', '1', '2019-01-02 10:55:24', '1', '2019-01-02 10:55:24', null, '0');
-INSERT INTO `oa_leave` VALUES ('a23311e53c2f451e9ff7a4d0d7fd545d', 'b178d2c7-0fea-11e9-afb8-00163e2e65eb', '2019-01-12 14:33:38', '2019-01-08 14:33:33', '1', '333', null, null, '2019-01-04 14:33:49', '1', '2019-01-04 14:33:49', '1', '2019-01-04 14:33:49', null, '0');
-INSERT INTO `oa_leave` VALUES ('a55d193828f24e17a72b051d0b94dd11', '7766ba40-0e34-11e9-a3dc-00163e2e65eb', '2019-01-03 10:16:39', '2019-01-04 10:16:42', '1', 'www', null, null, '2019-01-02 10:16:52', '1', '2019-01-02 10:16:52', '1', '2019-01-02 10:16:52', null, '0');
-INSERT INTO `oa_leave` VALUES ('a57eb8f4b67b4ba09bee5d49ff0882e9', '2f44cdf2-061c-11e9-8afd-00163e2e65eb', '2018-12-23 03:02:42', '2018-12-25 03:02:49', '2', '1', '[同意] fddfdfdfdfdffd', '[同意] 同意', '2018-12-23 03:02:53', '1', '2018-12-23 03:02:53', '1', '2018-12-23 03:02:53', null, '0');
-INSERT INTO `oa_leave` VALUES ('a77b9db71cec468d9af81611a3cc0027', '8991360c-13ee-11e9-8084-00163e2e65eb', '2019-01-09 17:11:18', '2019-01-09 17:11:20', '5', 'u', null, null, '2019-01-09 17:11:24', '1', '2019-01-09 17:11:24', '1', '2019-01-09 17:11:24', null, '0');
-INSERT INTO `oa_leave` VALUES ('b201788165c24f388ffabd40fc9ddd33', 'ee0c55ad-0f40-11e9-bf4e-00163e2e65eb', '2019-01-03 18:18:29', '2019-01-04 18:18:31', '1', '3爱迪生大', null, null, '2019-01-03 18:18:36', '1', '2019-01-03 18:18:36', '1', '2019-01-03 18:18:36', null, '0');
-INSERT INTO `oa_leave` VALUES ('b4473b6b41b34d87a893a66b7dce309d', '6d243915-121e-11e9-afb8-00163e2e65eb', '2019-01-07 09:49:03', '2019-01-26 09:49:06', '1', 'erre', null, null, '2019-01-07 09:49:10', '1', '2019-01-07 09:49:10', '1', '2019-01-07 09:49:10', null, '0');
-INSERT INTO `oa_leave` VALUES ('b4e0c5a334974725a656a8c2b372acef', '0646908f-1242-11e9-afb8-00163e2e65eb', '2019-01-07 14:04:01', '2019-01-10 14:04:07', '1', '就是想请个假', null, null, '2019-01-07 14:03:59', '1', '2019-01-07 14:03:59', '1', '2019-01-07 14:03:59', null, '0');
-INSERT INTO `oa_leave` VALUES ('c4fdeec6a2e148029d798d7b908b11f5', '5ef97ed4-05d6-11e9-8544-00163e2e65eb', '2018-12-06 18:43:01', '2018-12-12 18:43:03', '1', 'dfffff', null, null, '2018-12-22 18:43:09', '1', '2018-12-22 18:43:09', '1', '2018-12-22 18:43:09', null, '0');
-INSERT INTO `oa_leave` VALUES ('c509e028a2484a3dbc95acfaa4a26653', '79532014-0da0-11e9-a3dc-00163e2e65eb', '2019-01-01 16:37:17', '2019-01-01 16:37:19', '1', '564', null, null, '2019-01-01 16:37:29', '1', '2019-01-01 16:37:29', '1', '2019-01-01 16:37:29', null, '0');
-INSERT INTO `oa_leave` VALUES ('c5c4b1526f694dd78b2cbc798a54c105', '135adde3-130f-11e9-8749-00163e2e65eb', '2019-01-08 14:31:34', '2019-01-08 14:31:36', '1', '121212', null, null, '2019-01-08 14:31:48', '1', '2019-01-08 14:31:48', '1', '2019-01-08 14:31:48', null, '0');
-INSERT INTO `oa_leave` VALUES ('cc2617b405e84c1fb147fa6ab38c79c5', '24de2173-12a2-11e9-8749-00163e2e65eb', '2019-01-08 01:31:54', '2019-01-31 01:31:56', '1', '111', '[驳回] 111', null, '2019-01-08 01:32:02', '1', '2019-01-08 01:32:02', '1', '2019-01-08 12:49:37', null, '0');
-INSERT INTO `oa_leave` VALUES ('cc3488b847cd45c6b93c4d13be6f42e7', '80b24d63-0e42-11e9-bf4e-00163e2e65eb', '2019-01-02 11:57:13', '2019-01-02 11:57:15', '2', '钱钱钱钱', null, null, '2019-01-02 11:57:20', '1', '2019-01-02 11:57:20', '1', '2019-01-02 11:57:20', null, '0');
-INSERT INTO `oa_leave` VALUES ('d0ab26c0c07345aeb8636a47c7420d88', '7f41fac3-1307-11e9-8749-00163e2e65eb', '2019-01-08 13:37:22', '2019-01-10 13:37:23', '1', '公休', '[同意] 同意', '[同意] 用意', '2019-01-08 13:37:33', '1', '2019-01-08 13:37:33', '1', '2019-01-08 13:37:33', null, '0');
-INSERT INTO `oa_leave` VALUES ('d41e43e01c3b4f0692967902791b9575', 'e471c991-1019-11e9-afb8-00163e2e65eb', '2019-01-04 20:11:30', '2019-01-25 20:11:32', '1', '无', '[同意] asfssaf', '[同意] 大概', '2019-01-04 20:11:40', '1', '2019-01-04 20:11:40', '1', '2019-01-04 20:11:40', null, '0');
-INSERT INTO `oa_leave` VALUES ('d4bbdb92bfc047a59a8166902a20ba84', 'd8018b9b-13bc-11e9-8084-00163e2e65eb', '2019-01-01 11:15:25', '2019-01-06 11:15:33', '4', 'test', null, null, '2019-01-09 11:15:41', '1', '2019-01-09 11:15:41', '1', '2019-01-09 11:15:41', null, '0');
-INSERT INTO `oa_leave` VALUES ('d50018cd1a624582ac662e309c734b58', 'ba10d469-0ce5-11e9-a3dc-00163e2e65eb', '2019-01-01 18:22:48', '2019-01-02 18:22:53', '1', 'ddssdsd', '[同意] 12321', null, '2018-12-31 18:20:42', '1', '2018-12-31 18:20:42', '1', '2018-12-31 18:20:42', null, '0');
-INSERT INTO `oa_leave` VALUES ('d6683098b04243a7a4e77aaa35553127', 'e2bcc474-13de-11e9-8084-00163e2e65eb', '2019-01-08 15:19:00', '2019-01-10 15:19:07', '3', 'test', null, null, '2019-01-09 15:19:22', '1', '2019-01-09 15:19:22', '1', '2019-01-09 15:19:22', null, '0');
-INSERT INTO `oa_leave` VALUES ('da171f3bad104697b0ec90a7c5c2844e', 'a9c75b89-147e-11e9-937e-00163e2e65eb', '2019-01-11 10:22:14', '2019-01-12 10:22:27', '2', '生病住院', null, null, '2019-01-10 10:23:06', '1', '2019-01-10 10:23:06', '1', '2019-01-10 10:23:06', null, '0');
-INSERT INTO `oa_leave` VALUES ('dc416053d9a949de96a61f4317900fc8', '5770972d-0cf8-11e9-a3dc-00163e2e65eb', '2018-12-03 20:33:46', '2018-12-19 20:33:50', '1', '11111', null, null, '2018-12-31 20:33:57', '1', '2018-12-31 20:33:57', '1', '2018-12-31 20:33:57', null, '0');
-INSERT INTO `oa_leave` VALUES ('dc7e248585204875999f40ac680087a5', '761b373f-0e48-11e9-bf4e-00163e2e65eb', '2019-01-02 12:39:51', '2019-01-11 12:39:53', '2', '5555', '[同意] 555', null, '2019-01-02 12:39:59', '1', '2019-01-02 12:39:59', '1', '2019-01-02 12:39:59', null, '0');
-INSERT INTO `oa_leave` VALUES ('e0d72394bd254d09b8194f340e7934c5', 'ea57c1bd-154f-11e9-8586-00163e2e65eb', '2019-01-11 11:20:52', '2019-01-11 11:20:54', '3', '999', null, null, '2019-01-11 11:20:59', '1', '2019-01-11 11:20:59', '1', '2019-01-11 11:20:59', null, '0');
-INSERT INTO `oa_leave` VALUES ('e2d8edd7252940acab33f5f7899f8c40', '1efafe8d-118c-11e9-afb8-00163e2e65eb', '2019-01-06 16:21:40', '2019-01-10 16:21:43', '1', 'fdtf', null, null, '2019-01-06 16:21:52', '1', '2019-01-06 16:21:52', '1', '2019-01-06 16:21:52', null, '0');
-INSERT INTO `oa_leave` VALUES ('e9a4a14296e24e24bd7a659f019456ca', '44dadf4d-1429-11e9-8084-00163e2e65eb', '2019-01-15 00:11:34', '2019-01-01 00:11:38', '1', 'gg', '[同意] dd', '[同意] asfasf', '2019-01-10 00:11:49', '1', '2019-01-10 00:11:49', '1', '2019-01-10 00:11:49', null, '0');
-INSERT INTO `oa_leave` VALUES ('ebd651f8d8d340619b2f9a4a027ff1bb', '1b471351-066f-11e9-8afd-00163e2e65eb', '2018-12-06 12:56:22', '2018-12-23 12:56:25', '1', '11', null, null, '2018-12-23 12:56:28', '1', '2018-12-23 12:56:28', '1', '2018-12-23 12:56:28', null, '0');
-INSERT INTO `oa_leave` VALUES ('ee68825296924fa1bae04954715b4148', '5e0d17b7-0fee-11e9-afb8-00163e2e65eb', '2019-01-16 14:59:59', '2019-01-26 15:00:02', '2', 'h\'h\'h', null, null, '2019-01-04 15:00:07', '1', '2019-01-04 15:00:07', '1', '2019-01-04 15:00:07', null, '0');
-INSERT INTO `oa_leave` VALUES ('eeb5ba51e4de416d87e13cd8ee087cf4', '943f42a9-102c-11e9-afb8-00163e2e65eb', '2019-01-04 22:25:14', '2019-01-25 22:25:17', '3', 'dafsdfsa', '[同意] dept', '[驳回] vbuasdf', '2019-01-04 22:25:26', '1', '2019-01-04 22:25:26', '1', '2019-01-11 18:16:39', null, '0');
-INSERT INTO `oa_leave` VALUES ('f9fe90cbf5474b37b6c6ce4747a55b0c', '01ac5e41-06c8-11e9-8afd-00163e2e65eb', '2018-12-12 23:32:32', '2018-12-23 23:32:37', '3', 'yy', null, null, '2018-12-23 23:32:50', '1', '2018-12-23 23:32:50', '1', '2018-12-23 23:32:50', null, '0');
-
--- ----------------------------
--- Table structure for oa_notify
--- ----------------------------
-DROP TABLE IF EXISTS `oa_notify`;
-CREATE TABLE `oa_notify` (
-  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '编号',
-  `type` char(1) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '类型',
-  `title` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '标题',
-  `content` varchar(2000) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '内容',
-  `files` varchar(2000) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '附件',
-  `status` char(1) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '状态',
-  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '创建者',
-  `create_date` datetime NOT NULL COMMENT '创建时间',
-  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '更新者',
-  `update_date` datetime NOT NULL COMMENT '更新时间',
-  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '备注信息',
-  `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '删除标记',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `oa_notify_del_flag` (`del_flag`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='通知通告';
-
--- ----------------------------
--- Records of oa_notify
--- ----------------------------
-
--- ----------------------------
--- Table structure for oa_notify_record
--- ----------------------------
-DROP TABLE IF EXISTS `oa_notify_record`;
-CREATE TABLE `oa_notify_record` (
-  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '编号',
-  `oa_notify_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '通知通告ID',
-  `user_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '接受人',
-  `read_flag` char(1) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT '0' COMMENT '阅读标记',
-  `read_date` date DEFAULT NULL COMMENT '阅读时间',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `oa_notify_record_notify_id` (`oa_notify_id`) USING BTREE,
-  KEY `oa_notify_record_user_id` (`user_id`) USING BTREE,
-  KEY `oa_notify_record_read_flag` (`read_flag`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='通知通告发送记录';
-
--- ----------------------------
--- Records of oa_notify_record
--- ----------------------------
-
--- ----------------------------
--- Table structure for QRTZ_BLOB_TRIGGERS
--- ----------------------------
-DROP TABLE IF EXISTS `QRTZ_BLOB_TRIGGERS`;
-CREATE TABLE `QRTZ_BLOB_TRIGGERS` (
-  `SCHED_NAME` varchar(120) NOT NULL,
-  `TRIGGER_NAME` varchar(200) NOT NULL,
-  `TRIGGER_GROUP` varchar(200) NOT NULL,
-  `BLOB_DATA` blob,
-  PRIMARY KEY (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`),
-  CONSTRAINT `QRTZ_BLOB_TRIGGERS_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`) REFERENCES `QRTZ_TRIGGERS` (`sched_name`, `trigger_name`, `trigger_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of QRTZ_BLOB_TRIGGERS
--- ----------------------------
-
--- ----------------------------
--- Table structure for QRTZ_CALENDARS
--- ----------------------------
-DROP TABLE IF EXISTS `QRTZ_CALENDARS`;
-CREATE TABLE `QRTZ_CALENDARS` (
-  `SCHED_NAME` varchar(120) NOT NULL,
-  `CALENDAR_NAME` varchar(200) NOT NULL,
-  `CALENDAR` blob NOT NULL,
-  PRIMARY KEY (`SCHED_NAME`,`CALENDAR_NAME`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of QRTZ_CALENDARS
--- ----------------------------
-
--- ----------------------------
--- Table structure for QRTZ_CRON_TRIGGERS
--- ----------------------------
-DROP TABLE IF EXISTS `QRTZ_CRON_TRIGGERS`;
-CREATE TABLE `QRTZ_CRON_TRIGGERS` (
-  `SCHED_NAME` varchar(120) NOT NULL,
-  `TRIGGER_NAME` varchar(200) NOT NULL,
-  `TRIGGER_GROUP` varchar(200) NOT NULL,
-  `CRON_EXPRESSION` varchar(200) NOT NULL,
-  `TIME_ZONE_ID` varchar(80) DEFAULT NULL,
-  PRIMARY KEY (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`),
-  CONSTRAINT `QRTZ_CRON_TRIGGERS_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`) REFERENCES `QRTZ_TRIGGERS` (`sched_name`, `trigger_name`, `trigger_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of QRTZ_CRON_TRIGGERS
--- ----------------------------
-INSERT INTO `QRTZ_CRON_TRIGGERS` VALUES ('quartzScheduler', 'com.jsite.common.quartz.job.HelloJob', '1', '0/30 * * * * ?', 'Asia/Shanghai');
-INSERT INTO `QRTZ_CRON_TRIGGERS` VALUES ('quartzScheduler', 'com.jsite.common.quartz.job.NewJob', '2', '0/55 * * * * ?', 'Asia/Shanghai');
-INSERT INTO `QRTZ_CRON_TRIGGERS` VALUES ('quartzScheduler', 'com.jsite.common.quartz.job.TestJob', '3', '0/40 * * * * ?', 'Asia/Shanghai');
-
--- ----------------------------
--- Table structure for QRTZ_FIRED_TRIGGERS
--- ----------------------------
-DROP TABLE IF EXISTS `QRTZ_FIRED_TRIGGERS`;
-CREATE TABLE `QRTZ_FIRED_TRIGGERS` (
-  `SCHED_NAME` varchar(120) NOT NULL,
-  `ENTRY_ID` varchar(95) NOT NULL,
-  `TRIGGER_NAME` varchar(200) NOT NULL,
-  `TRIGGER_GROUP` varchar(200) NOT NULL,
-  `INSTANCE_NAME` varchar(200) NOT NULL,
-  `FIRED_TIME` bigint(13) NOT NULL,
-  `SCHED_TIME` bigint(13) NOT NULL,
-  `PRIORITY` int(11) NOT NULL,
-  `STATE` varchar(16) NOT NULL,
-  `JOB_NAME` varchar(200) DEFAULT NULL,
-  `JOB_GROUP` varchar(200) DEFAULT NULL,
-  `IS_NONCONCURRENT` varchar(1) DEFAULT NULL,
-  `REQUESTS_RECOVERY` varchar(1) DEFAULT NULL,
-  PRIMARY KEY (`SCHED_NAME`,`ENTRY_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of QRTZ_FIRED_TRIGGERS
--- ----------------------------
-
--- ----------------------------
--- Table structure for QRTZ_JOB_DETAILS
--- ----------------------------
-DROP TABLE IF EXISTS `QRTZ_JOB_DETAILS`;
-CREATE TABLE `QRTZ_JOB_DETAILS` (
-  `SCHED_NAME` varchar(120) NOT NULL,
-  `JOB_NAME` varchar(200) NOT NULL,
-  `JOB_GROUP` varchar(200) NOT NULL,
-  `DESCRIPTION` varchar(250) DEFAULT NULL,
-  `JOB_CLASS_NAME` varchar(250) NOT NULL,
-  `IS_DURABLE` varchar(1) NOT NULL,
-  `IS_NONCONCURRENT` varchar(1) NOT NULL,
-  `IS_UPDATE_DATA` varchar(1) NOT NULL,
-  `REQUESTS_RECOVERY` varchar(1) NOT NULL,
-  `JOB_DATA` blob,
-  PRIMARY KEY (`SCHED_NAME`,`JOB_NAME`,`JOB_GROUP`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of QRTZ_JOB_DETAILS
--- ----------------------------
-INSERT INTO `QRTZ_JOB_DETAILS` VALUES ('quartzScheduler', 'com.jsite.common.quartz.job.HelloJob', '1', null, 'com.jsite.common.quartz.job.HelloJob', '0', '0', '0', '0', 0xACED0005737200156F72672E71756172747A2E4A6F62446174614D61709FB083E8BFA9B0CB020000787200266F72672E71756172747A2E7574696C732E537472696E674B65794469727479466C61674D61708208E8C3FBC55D280200015A0013616C6C6F77735472616E7369656E74446174617872001D6F72672E71756172747A2E7574696C732E4469727479466C61674D617013E62EAD28760ACE0200025A000564697274794C00036D617074000F4C6A6176612F7574696C2F4D61703B787000737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F40000000000010770800000010000000007800);
-INSERT INTO `QRTZ_JOB_DETAILS` VALUES ('quartzScheduler', 'com.jsite.common.quartz.job.NewJob', '2', null, 'com.jsite.common.quartz.job.NewJob', '0', '0', '0', '0', 0xACED0005737200156F72672E71756172747A2E4A6F62446174614D61709FB083E8BFA9B0CB020000787200266F72672E71756172747A2E7574696C732E537472696E674B65794469727479466C61674D61708208E8C3FBC55D280200015A0013616C6C6F77735472616E7369656E74446174617872001D6F72672E71756172747A2E7574696C732E4469727479466C61674D617013E62EAD28760ACE0200025A000564697274794C00036D617074000F4C6A6176612F7574696C2F4D61703B787000737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F40000000000010770800000010000000007800);
-INSERT INTO `QRTZ_JOB_DETAILS` VALUES ('quartzScheduler', 'com.jsite.common.quartz.job.TestJob', '3', null, 'com.jsite.common.quartz.job.TestJob', '0', '0', '0', '0', 0xACED0005737200156F72672E71756172747A2E4A6F62446174614D61709FB083E8BFA9B0CB020000787200266F72672E71756172747A2E7574696C732E537472696E674B65794469727479466C61674D61708208E8C3FBC55D280200015A0013616C6C6F77735472616E7369656E74446174617872001D6F72672E71756172747A2E7574696C732E4469727479466C61674D617013E62EAD28760ACE0200025A000564697274794C00036D617074000F4C6A6176612F7574696C2F4D61703B787000737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F40000000000010770800000010000000007800);
-
--- ----------------------------
--- Table structure for QRTZ_LOCKS
--- ----------------------------
-DROP TABLE IF EXISTS `QRTZ_LOCKS`;
-CREATE TABLE `QRTZ_LOCKS` (
-  `SCHED_NAME` varchar(120) NOT NULL,
-  `LOCK_NAME` varchar(40) NOT NULL,
-  PRIMARY KEY (`SCHED_NAME`,`LOCK_NAME`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of QRTZ_LOCKS
--- ----------------------------
-INSERT INTO `QRTZ_LOCKS` VALUES ('quartzScheduler', 'TRIGGER_ACCESS');
-
--- ----------------------------
--- Table structure for QRTZ_PAUSED_TRIGGER_GRPS
--- ----------------------------
-DROP TABLE IF EXISTS `QRTZ_PAUSED_TRIGGER_GRPS`;
-CREATE TABLE `QRTZ_PAUSED_TRIGGER_GRPS` (
-  `SCHED_NAME` varchar(120) NOT NULL,
-  `TRIGGER_GROUP` varchar(200) NOT NULL,
-  PRIMARY KEY (`SCHED_NAME`,`TRIGGER_GROUP`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of QRTZ_PAUSED_TRIGGER_GRPS
--- ----------------------------
-
--- ----------------------------
--- Table structure for QRTZ_SCHEDULER_STATE
--- ----------------------------
-DROP TABLE IF EXISTS `QRTZ_SCHEDULER_STATE`;
-CREATE TABLE `QRTZ_SCHEDULER_STATE` (
-  `SCHED_NAME` varchar(120) NOT NULL,
-  `INSTANCE_NAME` varchar(200) NOT NULL,
-  `LAST_CHECKIN_TIME` bigint(13) NOT NULL,
-  `CHECKIN_INTERVAL` bigint(13) NOT NULL,
-  PRIMARY KEY (`SCHED_NAME`,`INSTANCE_NAME`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of QRTZ_SCHEDULER_STATE
--- ----------------------------
-
--- ----------------------------
--- Table structure for QRTZ_SIMPLE_TRIGGERS
--- ----------------------------
-DROP TABLE IF EXISTS `QRTZ_SIMPLE_TRIGGERS`;
-CREATE TABLE `QRTZ_SIMPLE_TRIGGERS` (
-  `SCHED_NAME` varchar(120) NOT NULL,
-  `TRIGGER_NAME` varchar(200) NOT NULL,
-  `TRIGGER_GROUP` varchar(200) NOT NULL,
-  `REPEAT_COUNT` bigint(7) NOT NULL,
-  `REPEAT_INTERVAL` bigint(12) NOT NULL,
-  `TIMES_TRIGGERED` bigint(10) NOT NULL,
-  PRIMARY KEY (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`),
-  CONSTRAINT `QRTZ_SIMPLE_TRIGGERS_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`) REFERENCES `QRTZ_TRIGGERS` (`sched_name`, `trigger_name`, `trigger_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of QRTZ_SIMPLE_TRIGGERS
--- ----------------------------
-
--- ----------------------------
--- Table structure for QRTZ_SIMPROP_TRIGGERS
--- ----------------------------
-DROP TABLE IF EXISTS `QRTZ_SIMPROP_TRIGGERS`;
-CREATE TABLE `QRTZ_SIMPROP_TRIGGERS` (
-  `SCHED_NAME` varchar(120) NOT NULL,
-  `TRIGGER_NAME` varchar(200) NOT NULL,
-  `TRIGGER_GROUP` varchar(200) NOT NULL,
-  `STR_PROP_1` varchar(512) DEFAULT NULL,
-  `STR_PROP_2` varchar(512) DEFAULT NULL,
-  `STR_PROP_3` varchar(512) DEFAULT NULL,
-  `INT_PROP_1` int(11) DEFAULT NULL,
-  `INT_PROP_2` int(11) DEFAULT NULL,
-  `LONG_PROP_1` bigint(20) DEFAULT NULL,
-  `LONG_PROP_2` bigint(20) DEFAULT NULL,
-  `DEC_PROP_1` decimal(13,4) DEFAULT NULL,
-  `DEC_PROP_2` decimal(13,4) DEFAULT NULL,
-  `BOOL_PROP_1` varchar(1) DEFAULT NULL,
-  `BOOL_PROP_2` varchar(1) DEFAULT NULL,
-  PRIMARY KEY (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`),
-  CONSTRAINT `QRTZ_SIMPROP_TRIGGERS_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`) REFERENCES `QRTZ_TRIGGERS` (`sched_name`, `trigger_name`, `trigger_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of QRTZ_SIMPROP_TRIGGERS
--- ----------------------------
-
--- ----------------------------
--- Table structure for QRTZ_TRIGGERS
--- ----------------------------
-DROP TABLE IF EXISTS `QRTZ_TRIGGERS`;
-CREATE TABLE `QRTZ_TRIGGERS` (
-  `SCHED_NAME` varchar(120) NOT NULL,
-  `TRIGGER_NAME` varchar(200) NOT NULL,
-  `TRIGGER_GROUP` varchar(200) NOT NULL,
-  `JOB_NAME` varchar(200) NOT NULL,
-  `JOB_GROUP` varchar(200) NOT NULL,
-  `DESCRIPTION` varchar(250) DEFAULT NULL,
-  `NEXT_FIRE_TIME` bigint(13) DEFAULT NULL,
-  `PREV_FIRE_TIME` bigint(13) DEFAULT NULL,
-  `PRIORITY` int(11) DEFAULT NULL,
-  `TRIGGER_STATE` varchar(16) NOT NULL,
-  `TRIGGER_TYPE` varchar(8) NOT NULL,
-  `START_TIME` bigint(13) NOT NULL,
-  `END_TIME` bigint(13) DEFAULT NULL,
-  `CALENDAR_NAME` varchar(200) DEFAULT NULL,
-  `MISFIRE_INSTR` smallint(2) DEFAULT NULL,
-  `JOB_DATA` blob,
-  PRIMARY KEY (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`),
-  KEY `SCHED_NAME` (`SCHED_NAME`,`JOB_NAME`,`JOB_GROUP`),
-  CONSTRAINT `QRTZ_TRIGGERS_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `JOB_NAME`, `JOB_GROUP`) REFERENCES `QRTZ_JOB_DETAILS` (`sched_name`, `job_name`, `job_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of QRTZ_TRIGGERS
--- ----------------------------
-INSERT INTO `QRTZ_TRIGGERS` VALUES ('quartzScheduler', 'com.jsite.common.quartz.job.HelloJob', '1', 'com.jsite.common.quartz.job.HelloJob', '1', null, '1547209260000', '1547209230000', '5', 'PAUSED', 'CRON', '1547207629000', '0', null, '0', '');
-INSERT INTO `QRTZ_TRIGGERS` VALUES ('quartzScheduler', 'com.jsite.common.quartz.job.NewJob', '2', 'com.jsite.common.quartz.job.NewJob', '2', null, '1547207815000', '1547207793711', '5', 'PAUSED', 'CRON', '1547092828000', '0', null, '0', '');
-INSERT INTO `QRTZ_TRIGGERS` VALUES ('quartzScheduler', 'com.jsite.common.quartz.job.TestJob', '3', 'com.jsite.common.quartz.job.TestJob', '3', null, '1547197680000', '1547197660000', '5', 'PAUSED', 'CRON', '1547092566000', '0', null, '0', '');
-
--- ----------------------------
--- Table structure for sys_area
--- ----------------------------
-DROP TABLE IF EXISTS `sys_area`;
-CREATE TABLE `sys_area` (
-  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '编号',
-  `parent_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '父级编号',
-  `parent_ids` varchar(2000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '所有父级编号',
-  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '名称',
-  `sort` decimal(10,0) NOT NULL COMMENT '排序',
-  `code` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '区域编码',
-  `type` char(1) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '区域类型',
-  `tree_leaf` char(1) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT '0' COMMENT '是否树形叶子节点（0:不是,1:是）',
-  `tree_level` decimal(4,0) DEFAULT NULL COMMENT '树形层级(0:根级)',
-  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '创建者',
-  `create_date` datetime NOT NULL COMMENT '创建时间',
-  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '更新者',
-  `update_date` datetime NOT NULL COMMENT '更新时间',
-  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '备注信息',
-  `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '删除标记',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `sys_area_parent_id` (`parent_id`) USING BTREE,
-  KEY `sys_area_del_flag` (`del_flag`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='区域表';
 
 -- ----------------------------
 -- Records of sys_area
 -- ----------------------------
-INSERT INTO `sys_area` VALUES ('015345144e9e40d6bbe832a9f1cba1f7', 'd36735ce07044a49ad205854fb2ca078', '0,d36735ce07044a49ad205854fb2ca078,', 'California', '10', '01', '2', '1', '1', '1', '2018-06-20 17:32:51', '1', '2019-01-02 00:11:18', '', '0');
-INSERT INTO `sys_area` VALUES ('1', '0', '0,', '中国', '10', '1', '1', '0', '0', '1', '2013-05-27 08:00:00', '1', '2018-12-28 00:19:15', '', '0');
-INSERT INTO `sys_area` VALUES ('3fbaf3a3f58a47118f13976cb2e2544d', 'd36735ce07044a49ad205854fb2ca078', '0,d36735ce07044a49ad205854fb2ca078,', '佛罗里达州', '20', '02', '2', '1', '1', '1', '2018-06-20 17:38:08', '1', '2018-06-20 17:38:08', '', '0');
-INSERT INTO `sys_area` VALUES ('d36735ce07044a49ad205854fb2ca078', '0', '0,', '美国', '30', '2', '1', '0', '0', '1', '2018-06-20 15:36:19', '1', '2018-06-20 15:36:19', '', '0');
-INSERT INTO `sys_area` VALUES ('da2da01621b64be5a85b07a8c883228f', '1', '0,1,', '上海', '30', '34243', '2', '1', '1', '1', '2018-12-10 14:01:09', '1', '2018-12-29 20:56:31', '', '0');
-INSERT INTO `sys_area` VALUES ('f762fb569d8445f28a226a9b831cfb90', '1', '0,1,', '北京', '30', '150', '2', '1', '1', '1', '2018-02-02 17:37:51', '1', '2018-11-20 10:22:36', '', '0');
-
--- ----------------------------
--- Table structure for sys_dict
--- ----------------------------
-DROP TABLE IF EXISTS `sys_dict`;
-CREATE TABLE `sys_dict` (
-  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '编号',
-  `value` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '数据值',
-  `label` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '标签名',
-  `type` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '类型',
-  `description` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '描述',
-  `sort` decimal(10,0) NOT NULL COMMENT '排序（升序）',
-  `parent_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT '0' COMMENT '父级编号',
-  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '创建者',
-  `create_date` datetime NOT NULL COMMENT '创建时间',
-  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '更新者',
-  `update_date` datetime NOT NULL COMMENT '更新时间',
-  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '备注信息',
-  `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '删除标记',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `sys_dict_value` (`value`) USING BTREE,
-  KEY `sys_dict_label` (`label`) USING BTREE,
-  KEY `sys_dict_del_flag` (`del_flag`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='字典表';
+INSERT INTO `sys_area` VALUES ('015345144e9e40d6bbe832a9f1cba1f7', 'd36735ce07044a49ad205854fb2ca078', '0,d36735ce07044a49ad205854fb2ca078,', 'California', 10, '1', 1, '01', '2', '1', '2018-06-20 17:32:51', '1', '2019-01-02 00:11:18', '', '0');
+INSERT INTO `sys_area` VALUES ('1', '0', '0,', '中国', 10, '0', 0, '1', '1', '1', '2013-05-27 08:00:00', '1', '2018-12-28 00:19:15', '', '0');
+INSERT INTO `sys_area` VALUES ('16166c3ecb954be0ad47159c087cd8af', 'd36735ce07044a49ad205854fb2ca078', '0,d36735ce07044a49ad205854fb2ca078,', '明尼苏达', 30, '1', 1, '', '2', '1', '2019-01-25 17:40:25', '1', '2019-01-25 17:40:25', '', '0');
+INSERT INTO `sys_area` VALUES ('3fbaf3a3f58a47118f13976cb2e2544d', 'd36735ce07044a49ad205854fb2ca078', '0,d36735ce07044a49ad205854fb2ca078,', '佛罗里达州', 20, '1', 1, '02', '2', '1', '2018-06-20 17:38:08', '1', '2018-06-20 17:38:08', '', '0');
+INSERT INTO `sys_area` VALUES ('d36735ce07044a49ad205854fb2ca078', '0', '0,', '美国', 30, '0', 0, '2', '1', '1', '2018-06-20 15:36:19', '1', '2018-06-20 15:36:19', '', '0');
+INSERT INTO `sys_area` VALUES ('da2da01621b64be5a85b07a8c883228f', '1', '0,1,', '上海', 30, '1', 1, '34243', '2', '1', '2018-12-10 14:01:09', '1', '2019-01-18 21:22:55', '', '0');
+INSERT INTO `sys_area` VALUES ('f762fb569d8445f28a226a9b831cfb90', '1', '0,1,', '北京', 30, '1', 1, '150', '2', '1', '2018-02-02 17:37:51', '1', '2018-11-20 10:22:36', '', '0');
 
 -- ----------------------------
 -- Records of sys_dict
@@ -729,25 +182,6 @@ INSERT INTO `sys_dict` VALUES ('da5b5781a8604398aea411a3949b8486', '0', '隐藏'
 INSERT INTO `sys_dict` VALUES ('edc2e89282bb4eeba397857a2cfb6b33', 'com.jsite.modules.oa.leave', '请假流程1', 'act_category', '请假流程111', '10', '0', '1', '2018-08-03 10:37:05', '1', '2018-08-03 10:37:05', '', '0');
 INSERT INTO `sys_dict` VALUES ('ee843534a2884752bf2ebd2444551771', 'images/userinfo.png', '默认头像', 'default_headphoto_small', '默认头像(缩略图)', '10', '0', '1', '2018-07-30 11:52:22', '1', '2018-07-30 11:56:54', '默认小头像(缩略图)图片路径', '0');
 
--- ----------------------------
--- Table structure for sys_file
--- ----------------------------
-DROP TABLE IF EXISTS `sys_file`;
-CREATE TABLE `sys_file` (
-  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '编号',
-  `file_tree_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '文件分类',
-  `name` varchar(256) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '文件名称',
-  `save_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '服务器文件保存名称',
-  `file_size` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '文件大小',
-  `path` varchar(256) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '文件路径',
-  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '创建者',
-  `create_date` datetime NOT NULL COMMENT '创建时间',
-  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '更新者',
-  `update_date` datetime NOT NULL COMMENT '更新时间',
-  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '备注信息',
-  `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '删除标记（0：正常；1：删除）',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='文件';
 
 -- ----------------------------
 -- Records of sys_file
@@ -769,120 +203,24 @@ INSERT INTO `sys_file` VALUES ('d67606c039784624955e8155032662de', '8c5b5246330e
 INSERT INTO `sys_file` VALUES ('da2ac86c3d934295a4d2bfd15518698b', '7a0440b426f94db1b5b79772210437d2', 'note.html', null, '1063', 'common/7a0440b426f94db1b5b79772210437d2/20180612/note.html', '1', '2018-06-12 11:56:54', '1', '2018-06-12 11:56:54', null, '1');
 INSERT INTO `sys_file` VALUES ('fc7cb4ccf7ae42dfa6f81463006bf8eb', '8c5b5246330e42f4adb0593b1db498b4', 'aac.txt', null, '3484', 'common/8c5b5246330e42f4adb0593b1db498b4\\20180823\\aac.txt', '1', '2018-08-23 10:57:50', '1', '2018-08-23 10:57:50', null, '0');
 
--- ----------------------------
--- Table structure for sys_file_tree
--- ----------------------------
-DROP TABLE IF EXISTS `sys_file_tree`;
-CREATE TABLE `sys_file_tree` (
-  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '编号',
-  `parent_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '父级编号',
-  `parent_ids` varchar(2000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '所有父级编号',
-  `tree_leaf` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '是否树形叶子节点（0:不是,1:是）',
-  `tree_level` decimal(4,0) NOT NULL COMMENT '树形层级(0:根级)',
-  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '名称',
-  `sort` decimal(10,0) NOT NULL COMMENT '排序',
-  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '创建者',
-  `create_date` datetime NOT NULL COMMENT '创建时间',
-  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '更新者',
-  `update_date` datetime NOT NULL COMMENT '更新时间',
-  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '备注信息',
-  `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '删除标记（0：正常；1：删除）',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='文件分类';
 
 -- ----------------------------
 -- Records of sys_file_tree
 -- ----------------------------
-INSERT INTO `sys_file_tree` VALUES ('018abc93050045dd8f419c14c1a5bfd5', '2bacb604df77451d9ef9c60494c4a5b3', '0,c9265b260c1845b6b46462acd36e4304,2bacb604df77451d9ef9c60494c4a5b3', '1', '2', 'ffff', '1', '1', '2018-06-04 14:40:37', '1', '2018-06-04 14:40:37', '', '0');
-INSERT INTO `sys_file_tree` VALUES ('11da634ddacb4129bb2c4f14854585f5', '5dbb8533c98b4869901270ae2eb4d0ad', '0,5dbb8533c98b4869901270ae2eb4d0ad', '0', '1', 'aaa', '3', '1', '2018-06-05 09:58:58', '1', '2018-06-06 18:11:33', '', '0');
-INSERT INTO `sys_file_tree` VALUES ('12fe7758f865410283b26ee134f8a0bf', '11da634ddacb4129bb2c4f14854585f5', '0,5dbb8533c98b4869901270ae2eb4d0ad,11da634ddacb4129bb2c4f14854585f5', '1', '2', 'bbb', '5', '1', '2018-06-05 09:59:24', '1', '2018-06-06 18:11:33', '', '0');
-INSERT INTO `sys_file_tree` VALUES ('2bacb604df77451d9ef9c60494c4a5b3', 'c9265b260c1845b6b46462acd36e4304', '0,c9265b260c1845b6b46462acd36e4304', '0', '1', '2', '2', '1', '2018-03-28 14:41:39', '1', '2018-06-04 17:01:59', '2', '0');
-INSERT INTO `sys_file_tree` VALUES ('5dbb8533c98b4869901270ae2eb4d0ad', '0', '0', '0', '0', 'mmm', '4', '1', '2018-06-06 09:58:30', '1', '2018-06-06 18:11:32', '', '0');
-INSERT INTO `sys_file_tree` VALUES ('7a0440b426f94db1b5b79772210437d2', 'f1d7c9459a5a44adb38ed662bd5d682f', '0,c9265b260c1845b6b46462acd36e4304,2bacb604df77451d9ef9c60494c4a5b3,f1d7c9459a5a44adb38ed662bd5d682f', '1', '3', 'ccc', '10', '1', '2018-06-05 09:59:11', '1', '2018-06-06 18:11:55', '', '0');
-INSERT INTO `sys_file_tree` VALUES ('885944d2b2784fe68a4a33c276eaa229', '9e31a73796a242009c89995c2de86bbb', '0,5dbb8533c98b4869901270ae2eb4d0ad,9e31a73796a242009c89995c2de86bbb', '1', '2', 'ggg', '3', '1', '2018-06-04 13:56:48', '1', '2018-06-06 17:34:56', 'dxxa', '0');
-INSERT INTO `sys_file_tree` VALUES ('8c5b5246330e42f4adb0593b1db498b4', 'b7803810cc734b90a3f44643fad06bd7', '0,c9265b260c1845b6b46462acd36e4304,b7803810cc734b90a3f44643fad06bd7', '1', '2', '5', '3', '1', '2018-06-04 13:54:18', '1', '2018-06-04 13:54:18', '', '0');
-INSERT INTO `sys_file_tree` VALUES ('9e31a73796a242009c89995c2de86bbb', '5dbb8533c98b4869901270ae2eb4d0ad', '0,5dbb8533c98b4869901270ae2eb4d0ad', '0', '1', 'wowowow', '4', '1', '2018-06-04 16:45:08', '1', '2018-06-06 17:45:28', '', '0');
-INSERT INTO `sys_file_tree` VALUES ('b7803810cc734b90a3f44643fad06bd7', 'c9265b260c1845b6b46462acd36e4304', '0,c9265b260c1845b6b46462acd36e4304', '0', '1', '1', '1', '1', '2018-03-28 14:41:23', '1', '2018-03-28 14:41:23', '1', '0');
-INSERT INTO `sys_file_tree` VALUES ('c07436d34ed8412ebfd65c7d7139283d', '0', '0', '0', '0', 'testMode', '120', '1', '2018-07-27 15:30:33', '1', '2018-07-27 16:55:25', 'safsf', '0');
-INSERT INTO `sys_file_tree` VALUES ('c9265b260c1845b6b46462acd36e4304', '0', '0', '0', '0', '默认', '0', '1', '2018-03-28 14:33:54', '1', '2018-06-05 10:01:53', null, '0');
-INSERT INTO `sys_file_tree` VALUES ('f1d7c9459a5a44adb38ed662bd5d682f', '2bacb604df77451d9ef9c60494c4a5b3', '0,c9265b260c1845b6b46462acd36e4304,2bacb604df77451d9ef9c60494c4a5b3', '0', '2', 'test', '3', '1', '2018-06-04 14:39:45', '1', '2018-06-06 18:11:55', '1111', '0');
+INSERT INTO `sys_file_tree` VALUES ('018abc93050045dd8f419c14c1a5bfd5', '2bacb604df77451d9ef9c60494c4a5b3', '0,c9265b260c1845b6b46462acd36e4304,2bacb604df77451d9ef9c60494c4a5b3', 'ffff', '1', '1', '2', '1', '2018-06-04 14:40:37', '1', '2018-06-04 14:40:37', '', '0');
+INSERT INTO `sys_file_tree` VALUES ('11da634ddacb4129bb2c4f14854585f5', '5dbb8533c98b4869901270ae2eb4d0ad', '0,5dbb8533c98b4869901270ae2eb4d0ad', 'aaa', '3', '0', '1', '1', '2018-06-05 09:58:58', '1', '2018-06-06 18:11:33', '', '0');
+INSERT INTO `sys_file_tree` VALUES ('12fe7758f865410283b26ee134f8a0bf', '11da634ddacb4129bb2c4f14854585f5', '0,5dbb8533c98b4869901270ae2eb4d0ad,11da634ddacb4129bb2c4f14854585f5', 'bbb', '5', '1', '2', '1', '2018-06-05 09:59:24', '1', '2018-06-06 18:11:33', '', '0');
+INSERT INTO `sys_file_tree` VALUES ('2bacb604df77451d9ef9c60494c4a5b3', 'c9265b260c1845b6b46462acd36e4304', '0,c9265b260c1845b6b46462acd36e4304', '2', '2', '0', '1', '1', '2018-03-28 14:41:39', '1', '2018-06-04 17:01:59', '2', '0');
+INSERT INTO `sys_file_tree` VALUES ('5dbb8533c98b4869901270ae2eb4d0ad', '0', '0', 'mmm', '4', '0', '0', '1', '2018-06-06 09:58:30', '1', '2018-06-06 18:11:32', '', '0');
+INSERT INTO `sys_file_tree` VALUES ('7a0440b426f94db1b5b79772210437d2', 'f1d7c9459a5a44adb38ed662bd5d682f', '0,c9265b260c1845b6b46462acd36e4304,2bacb604df77451d9ef9c60494c4a5b3,f1d7c9459a5a44adb38ed662bd5d682f', 'ccc', '10', '1', '3', '1', '2018-06-05 09:59:11', '1', '2018-06-06 18:11:55', '', '0');
+INSERT INTO `sys_file_tree` VALUES ('885944d2b2784fe68a4a33c276eaa229', '9e31a73796a242009c89995c2de86bbb', '0,5dbb8533c98b4869901270ae2eb4d0ad,9e31a73796a242009c89995c2de86bbb', 'ggg', '3', '1', '2', '1', '2018-06-04 13:56:48', '1', '2018-06-06 17:34:56', 'dxxa', '0');
+INSERT INTO `sys_file_tree` VALUES ('8c5b5246330e42f4adb0593b1db498b4', 'b7803810cc734b90a3f44643fad06bd7', '0,c9265b260c1845b6b46462acd36e4304,b7803810cc734b90a3f44643fad06bd7', '5', '3', '1', '2', '1', '2018-06-04 13:54:18', '1', '2018-06-04 13:54:18', '', '0');
+INSERT INTO `sys_file_tree` VALUES ('9e31a73796a242009c89995c2de86bbb', '5dbb8533c98b4869901270ae2eb4d0ad', '0,5dbb8533c98b4869901270ae2eb4d0ad', 'wowowow', '4', '0', '1', '1', '2018-06-04 16:45:08', '1', '2018-06-06 17:45:28', '', '0');
+INSERT INTO `sys_file_tree` VALUES ('b7803810cc734b90a3f44643fad06bd7', 'c9265b260c1845b6b46462acd36e4304', '0,c9265b260c1845b6b46462acd36e4304', '1', '1', '0', '1', '1', '2018-03-28 14:41:23', '1', '2018-03-28 14:41:23', '1', '0');
+INSERT INTO `sys_file_tree` VALUES ('c07436d34ed8412ebfd65c7d7139283d', '0', '0', 'testMode', '120', '0', '0', '1', '2018-07-27 15:30:33', '1', '2018-07-27 16:55:25', 'safsf', '0');
+INSERT INTO `sys_file_tree` VALUES ('c9265b260c1845b6b46462acd36e4304', '0', '0', '默认', '0', '0', '0', '1', '2018-03-28 14:33:54', '1', '2018-06-05 10:01:53', null, '0');
+INSERT INTO `sys_file_tree` VALUES ('f1d7c9459a5a44adb38ed662bd5d682f', '2bacb604df77451d9ef9c60494c4a5b3', '0,c9265b260c1845b6b46462acd36e4304,2bacb604df77451d9ef9c60494c4a5b3', 'test', '3', '0', '2', '1', '2018-06-04 14:39:45', '1', '2018-06-06 18:11:55', '1111', '0');
 
--- ----------------------------
--- Table structure for sys_log
--- ----------------------------
-DROP TABLE IF EXISTS `sys_log`;
-CREATE TABLE `sys_log` (
-  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '编号',
-  `type` char(1) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT '1' COMMENT '日志类型',
-  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT '' COMMENT '日志标题',
-  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '创建者',
-  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
-  `remote_addr` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '操作IP地址',
-  `user_agent` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '用户代理',
-  `request_uri` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '请求URI',
-  `method` varchar(5) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '操作方式',
-  `params` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT '操作提交的数据',
-  `exception` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT '异常信息',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `sys_log_create_by` (`create_by`) USING BTREE,
-  KEY `sys_log_request_uri` (`request_uri`) USING BTREE,
-  KEY `sys_log_type` (`type`) USING BTREE,
-  KEY `sys_log_create_date` (`create_date`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='日志表';
-
--- ----------------------------
--- Table structure for sys_mdict
--- ----------------------------
-DROP TABLE IF EXISTS `sys_mdict`;
-CREATE TABLE `sys_mdict` (
-  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '编号',
-  `parent_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '父级编号',
-  `parent_ids` varchar(2000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '所有父级编号',
-  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '名称',
-  `sort` decimal(10,0) NOT NULL COMMENT '排序',
-  `description` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '描述',
-  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '创建者',
-  `create_date` datetime NOT NULL COMMENT '创建时间',
-  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '更新者',
-  `update_date` datetime NOT NULL COMMENT '更新时间',
-  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '备注信息',
-  `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '删除标记',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `sys_mdict_parent_id` (`parent_id`) USING BTREE,
-  KEY `sys_mdict_del_flag` (`del_flag`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='多级字典表';
-
--- ----------------------------
--- Records of sys_mdict
--- ----------------------------
-
--- ----------------------------
--- Table structure for sys_menu
--- ----------------------------
-DROP TABLE IF EXISTS `sys_menu`;
-CREATE TABLE `sys_menu` (
-  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '编号',
-  `parent_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '父级编号',
-  `parent_ids` varchar(2000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '所有父级编号',
-  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '名称',
-  `sort` decimal(10,0) NOT NULL COMMENT '排序',
-  `tree_leaf` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '是否树形叶子节点（0:不是,1:是）',
-  `tree_level` decimal(4,0) NOT NULL COMMENT '树形层级(0:根级)',
-  `href` varchar(2000) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '链接',
-  `target` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '目标',
-  `icon` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '图标',
-  `is_show` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '是否在菜单中显示',
-  `permission` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '权限标识',
-  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '创建者',
-  `create_date` datetime NOT NULL COMMENT '创建时间',
-  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '更新者',
-  `update_date` datetime NOT NULL COMMENT '更新时间',
-  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '备注信息',
-  `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '删除标记',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `sys_menu_parent_id` (`parent_id`) USING BTREE,
-  KEY `sys_menu_del_flag` (`del_flag`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='菜单表';
 
 -- ----------------------------
 -- Records of sys_menu
@@ -981,77 +319,18 @@ INSERT INTO `sys_menu` VALUES ('f6bc0ba744ed4b08b491ec00460d21c2', '20', '0,2,13
 INSERT INTO `sys_menu` VALUES ('fbe403d809b0400d9d36df16cb56abf2', '0', '0,', '代码生成测试', '5030', '0', '0', '', '', 'icon-direction', '1', '', '1', '2018-12-19 16:59:07', '1', '2018-12-19 16:59:07', '', '0');
 INSERT INTO `sys_menu` VALUES ('fed13e36e0f84d9aa438741c3142b651', '05fd7c19569e419abef02c703669b90f', '0,2,3,05fd7c19569e419abef02c703669b90f,', '查看', '30', '1', '3', '', '', 'fa fa-circle-thin', '1', 'sys:job:view', '1', '2019-01-07 16:33:42', '1', '2019-01-07 16:33:42', '', '0');
 
--- ----------------------------
--- Table structure for sys_office
--- ----------------------------
-DROP TABLE IF EXISTS `sys_office`;
-CREATE TABLE `sys_office` (
-  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '编号',
-  `parent_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '父级编号',
-  `parent_ids` varchar(2000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '所有父级编号',
-  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '名称',
-  `sort` decimal(10,0) NOT NULL COMMENT '排序',
-  `area_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '归属区域',
-  `code` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '区域编码',
-  `type` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '机构类型',
-  `grade` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '机构等级',
-  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '联系地址',
-  `zip_code` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '邮政编码',
-  `master` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '负责人',
-  `phone` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '电话',
-  `fax` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '传真',
-  `email` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '邮箱',
-  `USEABLE` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '是否启用',
-  `PRIMARY_PERSON` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '主负责人',
-  `DEPUTY_PERSON` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '副负责人',
-  `tree_leaf` char(1) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '是否树形叶子节点（0:不是,1:是）',
-  `tree_level` decimal(4,0) DEFAULT NULL COMMENT '树形层级(0:根级)',
-  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '创建者',
-  `create_date` datetime NOT NULL COMMENT '创建时间',
-  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '更新者',
-  `update_date` datetime NOT NULL COMMENT '更新时间',
-  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '备注信息',
-  `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '删除标记',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `sys_office_parent_id` (`parent_id`) USING BTREE,
-  KEY `sys_office_del_flag` (`del_flag`) USING BTREE,
-  KEY `sys_office_type` (`type`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='机构表';
 
 -- ----------------------------
 -- Records of sys_office
 -- ----------------------------
-INSERT INTO `sys_office` VALUES ('1', '0', '0,', 'JSite 测试公司', '10', 'f762fb569d8445f28a226a9b831cfb90', '100000', '1', '1', '', '', '', '', '', '', '1', '', '', '0', '0', '1', '2013-05-27 08:00:00', '1', '2018-12-06 14:38:45', '', '0');
-INSERT INTO `sys_office` VALUES ('3', '1', '0,1,', '综合部', '20', 'f762fb569d8445f28a226a9b831cfb90', '100002', '2', '1', '', '', '', '', '', '', '1', '', '', '1', '1', '1', '2013-05-27 08:00:00', '1', '2018-02-02 17:40:19', '', '0');
-INSERT INTO `sys_office` VALUES ('4', '1', '0,1,', '市场部', '30', 'f762fb569d8445f28a226a9b831cfb90', '100003', '2', '1', '', '', '', '', '', '', '1', '', '', '1', '1', '1', '2013-05-27 08:00:00', '1', '2018-02-02 17:40:28', '', '0');
-INSERT INTO `sys_office` VALUES ('5', '1', '0,1,', '技术部', '40', 'f762fb569d8445f28a226a9b831cfb90', '100004', '2', '1', '', '', '', '', '', '', '1', '', '', '1', '1', '1', '2013-05-27 08:00:00', '1', '2018-02-02 17:40:37', '', '0');
-INSERT INTO `sys_office` VALUES ('dd872755880842bc826290fc96e00270', 'f976e8760ae944389694cdc12c91a18d', '0,f976e8760ae944389694cdc12c91a18d,', '总部', '30', 'f762fb569d8445f28a226a9b831cfb90', '', '1', '2', '', '', '', '', '', '', '', '', '', '1', '1', '1', '2019-01-08 09:45:00', '1', '2019-01-08 09:45:00', '', '0');
-INSERT INTO `sys_office` VALUES ('f976e8760ae944389694cdc12c91a18d', '0', '0,', '测试公司', '30', 'f762fb569d8445f28a226a9b831cfb90', '', '1', '1', '', '', '', '', '', '', '', '', '', '0', '0', '1', '2019-01-08 09:44:19', '1', '2019-01-08 09:45:00', '', '0');
-
--- ----------------------------
--- Table structure for sys_role
--- ----------------------------
-DROP TABLE IF EXISTS `sys_role`;
-CREATE TABLE `sys_role` (
-  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '编号',
-  `office_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '归属机构',
-  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '角色名称',
-  `enname` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '英文名称',
-  `role_type` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '角色类型',
-  `user_type` char(1) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '用户类型',
-  `data_scope` char(1) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '数据范围',
-  `is_sys` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '是否系统数据',
-  `useable` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '是否可用',
-  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '创建者',
-  `create_date` datetime NOT NULL COMMENT '创建时间',
-  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '更新者',
-  `update_date` datetime NOT NULL COMMENT '更新时间',
-  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '备注信息',
-  `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '删除标记',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `sys_role_del_flag` (`del_flag`) USING BTREE,
-  KEY `sys_role_enname` (`enname`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='角色表';
+INSERT INTO `sys_office` VALUES ('1', '0', '0,', 'Jsite测试公司', 10, '0', 0, 'f762fb569d8445f28a226a9b831cfb90', '100000', '1', '1', '', '', '', '', '', '', '1', '', '', '1', '2013-05-27 08:00:00', '1', '2019-02-01 10:17:54', '', '0');
+INSERT INTO `sys_office` VALUES ('171eb600266c4d32998c7265a20a8648', '1', '0,1,', '北京分公司', 30, '1', 1, 'f762fb569d8445f28a226a9b831cfb90', '100', '2', '2', '', '', '', '', '', '', '1', '', '', '1', '2019-02-01 10:13:32', '1', '2019-02-01 10:13:32', '', '0');
+INSERT INTO `sys_office` VALUES ('3', '1', '0,1,', '综合部', 20, '0', 1, 'f762fb569d8445f28a226a9b831cfb90', '100002', '2', '1', '', '', '', '', '', '', '1', '', '', '1', '2013-05-27 08:00:00', '1', '2019-01-29 09:42:45', '', '0');
+INSERT INTO `sys_office` VALUES ('4', '1', '0,1,', '市场部', 30, '1', 1, 'f762fb569d8445f28a226a9b831cfb90', '100003', '2', '1', '', '', '', '', '', '', '1', '', '', '1', '2013-05-27 08:00:00', '1', '2018-02-02 17:40:28', '', '0');
+INSERT INTO `sys_office` VALUES ('5', '1', '0,1,', '技术部', 40, '1', 1, 'f762fb569d8445f28a226a9b831cfb90', '100004', '2', '1', '', '', '', '', '', '', '1', '', '', '1', '2013-05-27 08:00:00', '1', '2018-02-02 17:40:37', '', '0');
+INSERT INTO `sys_office` VALUES ('a242a3d625c44281b267b91ec6449524', '3', '0,1,3,', '测试', 30, '1', 2, 'da2da01621b64be5a85b07a8c883228f', '110000', '2', '2', '', '', '', '', '', '', '', '56620c5ef567427c8debe68875c0eda2', '', '1', '2019-01-29 09:42:45', '1', '2019-01-29 09:42:45', '', '0');
+INSERT INTO `sys_office` VALUES ('dd872755880842bc826290fc96e00270', 'f976e8760ae944389694cdc12c91a18d', '0,f976e8760ae944389694cdc12c91a18d,', '总部', 30, '1', 1, 'f762fb569d8445f28a226a9b831cfb90', '', '1', '2', '', '', '', '', '', '', '', '', '', '1', '2019-01-08 09:45:00', '1', '2019-01-15 11:13:24', '', '0');
+INSERT INTO `sys_office` VALUES ('f976e8760ae944389694cdc12c91a18d', '0', '0,', '测试公司', 30, '0', 0, 'f762fb569d8445f28a226a9b831cfb90', '', '1', '1', '', '', '', '', '', '', '', '', '', '1', '2019-01-08 09:44:19', '1', '2019-01-08 09:45:00', '', '0');
 
 -- ----------------------------
 -- Records of sys_role
@@ -1061,15 +340,6 @@ INSERT INTO `sys_role` VALUES ('1042c40b2d2d496c9af546bba7006623', '3', 'hr', 'h
 INSERT INTO `sys_role` VALUES ('6', '4', '普通用户', 'Comuser', 'assignment', '3', '8', '1', '1', '1', '2013-05-27 08:00:00', '1', '2018-07-05 11:54:44', '', '0');
 INSERT INTO `sys_role` VALUES ('a868b9836f664b43909757005390022f', '5', '部门经理', 'dept', 'security-role', '2', '3', '1', '1', '1', '2018-12-22 22:21:56', '1', '2018-12-22 22:25:33', '', '0');
 
--- ----------------------------
--- Table structure for sys_role_menu
--- ----------------------------
-DROP TABLE IF EXISTS `sys_role_menu`;
-CREATE TABLE `sys_role_menu` (
-  `role_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '角色编号',
-  `menu_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '菜单编号',
-  PRIMARY KEY (`role_id`,`menu_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='角色-菜单';
 
 -- ----------------------------
 -- Records of sys_role_menu
@@ -1236,53 +506,6 @@ INSERT INTO `sys_role_menu` VALUES ('a868b9836f664b43909757005390022f', '9c37ebf
 INSERT INTO `sys_role_menu` VALUES ('a868b9836f664b43909757005390022f', 'b06b6eae9f714d028480d6b6c114d498');
 INSERT INTO `sys_role_menu` VALUES ('a868b9836f664b43909757005390022f', 'c1a03d4ac6e6461f8a3f8bc083ebb83e');
 
--- ----------------------------
--- Table structure for sys_role_office
--- ----------------------------
-DROP TABLE IF EXISTS `sys_role_office`;
-CREATE TABLE `sys_role_office` (
-  `role_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '角色编号',
-  `office_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '机构编号',
-  PRIMARY KEY (`role_id`,`office_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='角色-机构';
-
--- ----------------------------
--- Records of sys_role_office
--- ----------------------------
-
--- ----------------------------
--- Table structure for sys_user
--- ----------------------------
-DROP TABLE IF EXISTS `sys_user`;
-CREATE TABLE `sys_user` (
-  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '编号',
-  `company_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '归属公司',
-  `office_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '归属部门',
-  `login_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '登录名',
-  `password` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '密码',
-  `no` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '工号',
-  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '姓名',
-  `email` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '邮箱',
-  `phone` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '电话',
-  `mobile` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '手机',
-  `user_type` char(1) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '用户类型',
-  `photo` varchar(1000) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '用户头像',
-  `login_ip` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '最后登陆IP',
-  `login_date` datetime DEFAULT NULL COMMENT '最后登陆时间',
-  `login_flag` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '是否可登录',
-  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '创建者',
-  `create_date` datetime NOT NULL COMMENT '创建时间',
-  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '更新者',
-  `update_date` datetime NOT NULL COMMENT '更新时间',
-  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '备注信息',
-  `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '删除标记',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `sys_user_office_id` (`office_id`) USING BTREE,
-  KEY `sys_user_login_name` (`login_name`) USING BTREE,
-  KEY `sys_user_company_id` (`company_id`) USING BTREE,
-  KEY `sys_user_update_date` (`update_date`) USING BTREE,
-  KEY `sys_user_del_flag` (`del_flag`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='用户表';
 
 -- ----------------------------
 -- Records of sys_user
@@ -1292,15 +515,6 @@ INSERT INTO `sys_user` VALUES ('43f6a4a84e784e5e98b5b1c530bef73b', '1', '5', 'de
 INSERT INTO `sys_user` VALUES ('56620c5ef567427c8debe68875c0eda2', '1', '3', 'jsitehr', '7e14e4c693492493db3bc12ba2bdd9cec2629613deae9ebd9c42dac1', '000003', '人力资源', '', '', '', '4', null, '39.128.26.20', '2019-01-10 22:51:08', '1', '1', '2018-12-22 22:23:39', '1', '2018-12-28 13:52:29', '', '0');
 INSERT INTO `sys_user` VALUES ('68225048f4b7465293feb9779448d0af', '1', '5', 'jsiteuser', '2f445129a012d18383f4fbdc9fdaca446794a89e80c384dc3a1e1f1a', '000005', '普通用户', '', '', '', '3', null, '118.117.68.100', '2019-01-02 10:48:42', '1', '1', '2018-12-28 13:55:56', '1', '2018-12-28 16:44:40', '', '0');
 
--- ----------------------------
--- Table structure for sys_user_role
--- ----------------------------
-DROP TABLE IF EXISTS `sys_user_role`;
-CREATE TABLE `sys_user_role` (
-  `user_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '用户编号',
-  `role_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '角色编号',
-  PRIMARY KEY (`user_id`,`role_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='用户-角色';
 
 -- ----------------------------
 -- Records of sys_user_role
@@ -1311,27 +525,6 @@ INSERT INTO `sys_user_role` VALUES ('56620c5ef567427c8debe68875c0eda2', '1042c40
 INSERT INTO `sys_user_role` VALUES ('68225048f4b7465293feb9779448d0af', '1042c40b2d2d496c9af546bba7006623');
 INSERT INTO `sys_user_role` VALUES ('68225048f4b7465293feb9779448d0af', '6');
 
--- ----------------------------
--- Table structure for test_data
--- ----------------------------
-DROP TABLE IF EXISTS `test_data`;
-CREATE TABLE `test_data` (
-  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '编号',
-  `user_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '归属用户',
-  `office_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '归属部门',
-  `area_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '归属区域',
-  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '名称',
-  `sex` char(1) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '性别',
-  `in_date` date DEFAULT NULL COMMENT '加入日期',
-  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '创建者',
-  `create_date` datetime NOT NULL COMMENT '创建时间',
-  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '更新者',
-  `update_date` datetime NOT NULL COMMENT '更新时间',
-  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '备注信息',
-  `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '删除标记',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `test_data_del_flag` (`del_flag`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='业务数据表';
 
 -- ----------------------------
 -- Records of test_data
@@ -1342,23 +535,6 @@ INSERT INTO `test_data` VALUES ('ba7c670abe4a49d1af8ded2256810f36', '56620c5ef56
 INSERT INTO `test_data` VALUES ('bbd94222359142af97c01e5f9920ea32', '56620c5ef567427c8debe68875c0eda2', '4', '3fbaf3a3f58a47118f13976cb2e2544d', '改革', '', '2019-01-02', '1', '2019-01-02 11:10:22', '1', '2019-01-11 19:12:13', '', '0');
 INSERT INTO `test_data` VALUES ('e55163dab0e74737968584bc6c2d7507', '43f6a4a84e784e5e98b5b1c530bef73b', '3', 'da2da01621b64be5a85b07a8c883228f', '', '', '2019-01-02', '1', '2019-01-02 13:07:00', '1', '2019-01-02 13:07:00', '', '1');
 
--- ----------------------------
--- Table structure for test_data_child
--- ----------------------------
-DROP TABLE IF EXISTS `test_data_child`;
-CREATE TABLE `test_data_child` (
-  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '编号',
-  `test_data_main_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '业务主表ID',
-  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '名称',
-  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '创建者',
-  `create_date` datetime NOT NULL COMMENT '创建时间',
-  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '更新者',
-  `update_date` datetime NOT NULL COMMENT '更新时间',
-  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '备注信息',
-  `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '删除标记',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `test_data_child_del_flag` (`del_flag`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='业务数据子表';
 
 -- ----------------------------
 -- Records of test_data_child
@@ -1374,27 +550,6 @@ INSERT INTO `test_data_child` VALUES ('c048e370336e41bb92c7f45791aa4872', null, 
 INSERT INTO `test_data_child` VALUES ('e09ddbd55180465f9a8ab4dc8e6fd990', '838616e721d440c88c56605aee981c99', '', '1', '2019-01-07 09:40:27', '1', '2019-01-07 09:40:27', '', '0');
 INSERT INTO `test_data_child` VALUES ('e4f228d237204430a18eeea8101c7a1f', '40a0fd9625e742f19e310a9469341260', 'bbbbcc', '1', '2019-01-04 15:59:34', '1', '2019-01-04 15:59:34', 'ccdd', '1');
 
--- ----------------------------
--- Table structure for test_data_main
--- ----------------------------
-DROP TABLE IF EXISTS `test_data_main`;
-CREATE TABLE `test_data_main` (
-  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '编号',
-  `user_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '归属用户',
-  `office_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '归属部门',
-  `area_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '归属区域',
-  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '名称',
-  `sex` char(1) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '性别',
-  `in_date` date DEFAULT NULL COMMENT '加入日期',
-  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '创建者',
-  `create_date` datetime NOT NULL COMMENT '创建时间',
-  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '更新者',
-  `update_date` datetime NOT NULL COMMENT '更新时间',
-  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '备注信息',
-  `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '删除标记',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `test_data_main_del_flag` (`del_flag`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='业务数据表';
 
 -- ----------------------------
 -- Records of test_data_main
@@ -1405,28 +560,6 @@ INSERT INTO `test_data_main` VALUES ('838616e721d440c88c56605aee981c99', '', '',
 INSERT INTO `test_data_main` VALUES ('bf07d5f74023446db5b070e25bbdae26', '4', '3', 'f762fb569d8445f28a226a9b831cfb90', '', 'a', null, '1', '2019-01-02 12:28:49', '1', '2019-01-02 17:27:17', 'asdf', '1');
 INSERT INTO `test_data_main` VALUES ('c557c0a63c854975beed9ec276129b3f', '', '', '', '', '', null, '1', '2019-01-02 12:28:28', '1', '2019-01-02 12:28:28', '', '1');
 
--- ----------------------------
--- Table structure for test_tree
--- ----------------------------
-DROP TABLE IF EXISTS `test_tree`;
-CREATE TABLE `test_tree` (
-  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '编号',
-  `parent_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '父级编号',
-  `parent_ids` varchar(2000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '所有父级编号',
-  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '名称',
-  `sort` decimal(10,0) NOT NULL COMMENT '排序',
-  `tree_leaf` char(1) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '是否树形叶子节点（0:不是,1:是）',
-  `tree_level` decimal(4,0) DEFAULT NULL COMMENT '树形层级(0:根级)',
-  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '创建者',
-  `create_date` datetime NOT NULL COMMENT '创建时间',
-  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '更新者',
-  `update_date` datetime NOT NULL COMMENT '更新时间',
-  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '备注信息',
-  `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '删除标记',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `test_tree_del_flag` (`del_flag`) USING BTREE,
-  KEY `test_data_parent_id` (`parent_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='树结构表';
 
 -- ----------------------------
 -- Records of test_tree
@@ -1434,3 +567,5 @@ CREATE TABLE `test_tree` (
 INSERT INTO `test_tree` VALUES ('0e5f08e37f354783b83d4c12292bb8ce', '0', '0,', '', '30', '1', '0', '1', '2019-01-10 21:44:15', '1', '2019-01-10 21:44:15', '', '0');
 INSERT INTO `test_tree` VALUES ('e323c4775e6240fbb924b6442ab8a49d', '0', '0,', '树结构父节点', '30', '0', '0', '1', '2019-01-07 16:55:15', '1', '2019-01-08 15:01:48', 'aa', '0');
 INSERT INTO `test_tree` VALUES ('e5a9917fecb94db4b1e6ceede9716715', 'e323c4775e6240fbb924b6442ab8a49d', '0,e323c4775e6240fbb924b6442ab8a49d,', '树结构子节点', '30', '1', '1', '1', '2019-01-07 17:39:06', '1', '2019-01-08 15:02:06', '啊啊', '0');
+
+SET FOREIGN_KEY_CHECKS = 1;

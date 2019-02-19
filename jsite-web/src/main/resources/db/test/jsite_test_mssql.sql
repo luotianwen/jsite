@@ -1,15 +1,4 @@
 
-/* Drop Indexes */
-
-DROP INDEX [test_data_del_flag];
-DROP INDEX [test_data_child_del_flag];
-DROP INDEX [test_data_main_del_flag];
-DROP INDEX [test_tree_del_flag];
-DROP INDEX [test_data_parent_id];
-DROP INDEX [test_data_parent_ids];
-
-
-
 /* Drop Tables */
 
 IF ObJECt_ID('[test_data]') IS NOT NULL DROP TABLE [test_data];
@@ -35,7 +24,7 @@ CREATE TABLE [test_data]
 	[area_id] nvarchar(64),
 	-- 名称
 	[name] varchar(100),
-	-- 性别（字典类型：sex）
+	-- 性别
 	[sex] char(1),
 	-- 加入日期
 	[in_date] date,
@@ -49,7 +38,7 @@ CREATE TABLE [test_data]
 	[update_date] datetime NOT NULL,
 	-- 备注信息
 	[remarks] nvarchar(255),
-	-- 删除标记（0：正常；1：删除）
+	-- 删除标记
 	[del_flag] char(1) DEFAULT '0' NOT NULL,
 	PRIMARY KEY ([id])
 );
@@ -74,7 +63,7 @@ CREATE TABLE [test_data_child]
 	[update_date] datetime NOT NULL,
 	-- 备注信息
 	[remarks] nvarchar(255),
-	-- 删除标记（0：正常；1：删除）
+	-- 删除标记
 	[del_flag] char(1) DEFAULT '0' NOT NULL,
 	PRIMARY KEY ([id])
 );
@@ -93,7 +82,7 @@ CREATE TABLE [test_data_main]
 	[area_id] nvarchar(64),
 	-- 名称
 	[name] varchar(100),
-	-- 性别（字典类型：sex）
+	-- 性别
 	[sex] char(1),
 	-- 加入日期
 	[in_date] date,
@@ -107,7 +96,7 @@ CREATE TABLE [test_data_main]
 	[update_date] datetime NOT NULL,
 	-- 备注信息
 	[remarks] nvarchar(255),
-	-- 删除标记（0：正常；1：删除）
+	-- 删除标记
 	[del_flag] char(1) DEFAULT '0' NOT NULL,
 	PRIMARY KEY ([id])
 );
@@ -126,9 +115,9 @@ CREATE TABLE [test_tree]
 	[name] varchar(100),
 	-- 排序
 	[sort] decimal(10,0),
-	-- 是否树形叶子节点（0:不是,1:是）
+	-- 是否树形叶子节点
 	[tree_leaf] char,
-	-- 树形层级(0:根级)
+	-- 树形层级
 	[tree_level] int,
 	-- 创建者
 	[create_by] varchar(64) NOT NULL,
@@ -140,7 +129,7 @@ CREATE TABLE [test_tree]
 	[update_date] datetime NOT NULL,
 	-- 备注信息
 	[remarks] nvarchar(255),
-	-- 删除标记（0：正常；1：删除）
+	-- 删除标记
 	[del_flag] char(1) DEFAULT '0' NOT NULL,
 	PRIMARY KEY ([id])
 );
@@ -155,17 +144,6 @@ ALTER TABLE [test_data_child]
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
-
-
-
-/* Create Indexes */
-
-CREATE INDEX [test_data_del_flag] ON [test_data] ();
-CREATE INDEX [test_data_child_del_flag] ON [test_data_child] ();
-CREATE INDEX [test_data_main_del_flag] ON [test_data_main] ();
-CREATE INDEX [test_tree_del_flag] ON [test_tree] ();
-CREATE INDEX [test_data_parent_id] ON [test_tree] ();
-CREATE INDEX [test_data_parent_ids] ON [test_tree] ();
 
 
 

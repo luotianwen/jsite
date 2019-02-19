@@ -1,16 +1,5 @@
 SET SESSION FOREIGN_KEY_CHECKS=0;
 
-/* Drop Indexes */
-
-DROP INDEX test_data_del_flag ON test_data;
-DROP INDEX test_data_child_del_flag ON test_data_child;
-DROP INDEX test_data_main_del_flag ON test_data_main;
-DROP INDEX test_tree_del_flag ON test_tree;
-DROP INDEX test_data_parent_id ON test_tree;
-DROP INDEX test_data_parent_ids ON test_tree;
-
-
-
 /* Drop Tables */
 
 DROP TABLE IF EXISTS test_data;
@@ -37,7 +26,7 @@ CREATE TABLE test_data
 	-- 名称
 	name varchar(100) COMMENT '名称',
 	-- 性别（字典类型：sex）
-	sex char(1) COMMENT '性别（字典类型：sex）',
+	sex char(1) COMMENT '性别',
 	-- 加入日期
 	in_date date COMMENT '加入日期',
 	-- 创建者
@@ -51,7 +40,7 @@ CREATE TABLE test_data
 	-- 备注信息
 	remarks varchar(255) COMMENT '备注信息',
 	-- 删除标记（0：正常；1：删除）
-	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记（0：正常；1：删除）',
+	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记',
 	PRIMARY KEY (id)
 ) COMMENT = '业务数据表';
 
@@ -76,7 +65,7 @@ CREATE TABLE test_data_child
 	-- 备注信息
 	remarks varchar(255) COMMENT '备注信息',
 	-- 删除标记（0：正常；1：删除）
-	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记（0：正常；1：删除）',
+	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记',
 	PRIMARY KEY (id)
 ) COMMENT = '业务数据子表';
 
@@ -95,7 +84,7 @@ CREATE TABLE test_data_main
 	-- 名称
 	name varchar(100) COMMENT '名称',
 	-- 性别（字典类型：sex）
-	sex char(1) COMMENT '性别（字典类型：sex）',
+	sex char(1) COMMENT '性别',
 	-- 加入日期
 	in_date date COMMENT '加入日期',
 	-- 创建者
@@ -109,7 +98,7 @@ CREATE TABLE test_data_main
 	-- 备注信息
 	remarks varchar(255) COMMENT '备注信息',
 	-- 删除标记（0：正常；1：删除）
-	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记（0：正常；1：删除）',
+	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记',
 	PRIMARY KEY (id)
 ) COMMENT = '业务数据表';
 
@@ -128,9 +117,9 @@ CREATE TABLE test_tree
 	-- 排序
 	sort decimal(10,0) COMMENT '排序',
 	-- 是否树形叶子节点（0:不是,1:是）
-	tree_leaf char COMMENT '是否树形叶子节点（0:不是,1:是）',
+	tree_leaf char COMMENT '是否树形叶子节点',
 	-- 树形层级(0:根级)
-	tree_level int COMMENT '树形层级(0:根级)',
+	tree_level int COMMENT '树形层级',
 	-- 创建者
 	create_by varchar(64) NOT NULL COMMENT '创建者',
 	-- 创建时间
@@ -142,7 +131,7 @@ CREATE TABLE test_tree
 	-- 备注信息
 	remarks varchar(255) COMMENT '备注信息',
 	-- 删除标记（0：正常；1：删除）
-	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记（0：正常；1：删除）',
+	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记',
 	PRIMARY KEY (id)
 ) COMMENT = '树结构表';
 
@@ -156,17 +145,6 @@ ALTER TABLE test_data_child
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
-
-
-
-/* Create Indexes */
-
-CREATE INDEX test_data_del_flag ON test_data ();
-CREATE INDEX test_data_child_del_flag ON test_data_child ();
-CREATE INDEX test_data_main_del_flag ON test_data_main ();
-CREATE INDEX test_tree_del_flag ON test_tree ();
-CREATE INDEX test_data_parent_id ON test_tree ();
-CREATE INDEX test_data_parent_ids ON test_tree ();
 
 
 
