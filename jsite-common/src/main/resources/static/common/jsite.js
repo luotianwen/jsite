@@ -5,8 +5,7 @@
                 return "0 Bytes";
             }
             var unitArr = new Array("Bytes","KB","MB","GB","TB","PB","EB","ZB","YB");
-            var index = 0
-                , srcsize = parseFloat(value);
+            var index = 0 , srcsize = parseFloat(value);
             index = Math.floor(Math.log(srcsize) / Math.log(1024));
             var size = srcsize / Math.pow(1024, index);
             //  保留的小数位数
@@ -31,21 +30,21 @@
             }
         },
         encodeURI: function(url) {
-            return encodeURIComponent(url)
+            return encodeURIComponent(url);
         },
         decodeURI: function(url) {
-            return decodeURIComponent(url)
+            return decodeURIComponent(url);
         },
         trim: function(str) {
-            return jQuery.trim(str)
+            return jQuery.trim(str);
         },
         startWith: function(str, start) {
             var reg = new RegExp("^" + start);
-            return reg.test(str)
+            return reg.test(str);
         },
         endWith: function(str, end) {
             var reg = new RegExp(end + "$");
-            return reg.test(str)
+            return reg.test(str);
         },
         transDictLabel: function (dictList, val, defVal) {
             var label = "";
@@ -62,34 +61,45 @@
         layer: function() {
             try {
                 if (top.layer) {
-                    return top.layer
+                    return top.layer;
                 }
                 if (parent.parent.layer) {
-                    return parent.parent.layer
+                    return parent.parent.layer;
                 }
                 if (parent.layer) {
-                    return parent.layer
+                    return parent.layer;
                 }
             } catch (e) {}
             if (window.layer) {
                 return layer;
             }
-            return null
+            return null;
         }(),
         loading: function(message) {
             if (message == undefined || message == "") {
-                message = "正在提交，请稍等..."
+                message = "正在提交，请稍等...";
+            }
+            if (!js.loadingNum) {
+                js.loadingNum = 0;
             }
 
-            js.layer.load(2,{shade: [0.05,'#000']});
+            message += '<em onclick="js.closeLoading(0, true)">×</em>';
+            if ($("#data-loading").length == 0) {
+                $("body").append('<div id="data-loading" onmouseover="$(this).find(\'em\').show()" onmouseout="$(this).find(\'em\').hide()">' + message + "</div>");
+            } else {
+                $("#data-loading").html(message);
+            }
 
-            setTimeout(function(){
-                js.layer.closeAll('loading');
-            }, 8000);
-
+            js.loadingNum++;
         },
-        closeLoading: function() {
-            js.layer.closeAll('loading');
+        closeLoading: function(timeout, forceClose) {
+            setTimeout(function() {
+                js.loadingNum--;
+                if (forceClose || js.loadingNum <= 0) {
+                    $("#data-loading").remove();
+                    js.loadingNum = 0;
+                }
+            }, timeout == undefined ? 0 : timeout);
         },
         showMessage: function(title, message, type) {
             if (top.toastr) {
@@ -105,7 +115,7 @@
             js.showMessage("错误信息", msg, "error");
         },
         showWarningMessage: function(msg) {
-            js.showMessage("警告信息", msg, "warning")
+            js.showMessage("警告信息", msg, "warning");
         },
         prompt : function(message, url, callback, dataType) {
             var excuAjax = function(text) {
@@ -117,15 +127,15 @@
                     async: true,
                     error: function(data) {
                         js.showErrorMessage(data.responseText);
-                        js.closeLoading()
+                        js.closeLoading();
                     },
                     success: function(data) {
                         if (typeof callback == "function") {
-                            callback(data)
+                            callback(data);
                         }
-                        js.closeLoading()
+                        js.closeLoading();
                     }
-                })
+                });
             };
 
             js.layer.prompt({title: message, formType: 2}, function(text, index){
@@ -145,15 +155,15 @@
                     async: true,
                     error: function(data) {
                         js.showErrorMessage(data.responseText);
-                        js.closeLoading()
+                        js.closeLoading();
                     },
                     success: function(data) {
                         if (typeof callback == "function") {
-                            callback(data)
+                            callback(data);
                         }
-                        js.closeLoading()
+                        js.closeLoading();
                     }
-                })
+                });
             };
 
             js.layer.confirm(message, {icon: 3, shadeClose: true}, function(index) {
@@ -178,15 +188,15 @@
                     async: true,
                     error: function(data) {
                         js.showErrorMessage(data.responseText);
-                        js.closeLoading()
+                        js.closeLoading();
                     },
                     success: function(data) {
                         if (typeof callback == "function") {
                             callback(data)
                         }
-                        js.closeLoading()
+                        js.closeLoading();
                     }
-                })
+                });
             };
 
             var width = '400px';
@@ -246,12 +256,12 @@
                 success: function(data, status, xhr) {
                     js.closeLoading();
                     if (typeof callback == "function") {
-                        callback(data, status, xhr)
+                        callback(data, status, xhr);
                     } else {
-                        js.print(data)
+                        js.print(data);
                     }
                 }
-            })
+            });
         },
         ajaxSubmitForm: function(formObj, callback) {
             js.loading("正在提交，请稍后...");
