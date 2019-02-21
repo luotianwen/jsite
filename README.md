@@ -91,6 +91,8 @@
 6. 您可以应用于商业软件，但必须遵循以上条款原则（请协助改进本作品）。
 
 ### 获得支持
+
 QQ群：881252801
+
 
 ![image](https://gitee.com/baseweb/JSite/raw/master/img/jsite-qrcode.png)
