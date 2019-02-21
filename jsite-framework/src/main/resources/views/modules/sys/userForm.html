@@ -43,7 +43,7 @@
 								<%if(!user.isNewRecord){%>
 									<input id="oldLoginName" name="oldLoginName" type="hidden" value="${user.loginName}" />
 								<%}%>
-								<#form:input path="loginName" maxlength="50" class="form-control required ${user.isNewRecord?'userName':''}"/>
+								<#form:input path="loginName" maxlength="50" class="form-control required "/>
 							</div>
 						</div>
 					</div>
@@ -173,13 +173,6 @@
 <% } %>
 <script>
 $("#inputForm").validate({
-	rules: {
-		loginName: {remote: "${ctx}/sys/user/checkLoginName?oldLoginName=" + encodeURIComponent('${user.loginName}')}
-	},
-	messages: {
-		loginName: {remote: "用户登录名已存在"},
-		confirmNewPassword: {equalTo: "输入与上面相同的密码"}
-	},
 	submitHandler: function(form){
 		js.ajaxSubmitForm($(form), function(data){
 			js.showMessage(data.message);
@@ -187,15 +180,6 @@ $("#inputForm").validate({
 				window.parent.closeCurrentTabPage(window.parent.refreshTab);
 			}
 		});
-	},
-	errorPlacement: function(error, element) {
-		//js.showMessage("输入有误，请先更正。");
-		//$("#messageBox").text("输入有误，请先更正。");
-		/* if (element.is(":checkbox")||element.is(":radio")||element.parent().is(".input-append")){
-			error.appendTo(element.parent().parent());
-		} else {
-			error.insertAfter(element);
-		} */
 	}
 });
 </script>
