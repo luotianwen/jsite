@@ -1,4 +1,4 @@
-
+SET SESSION FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
 -- Table structure for QRTZ_BLOB_TRIGGERS
