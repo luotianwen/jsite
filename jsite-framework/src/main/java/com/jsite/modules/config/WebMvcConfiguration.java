@@ -164,6 +164,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
                 .excludePathPatterns(
                         adminPath+"/",
                         adminPath+"/login",
+                        adminPath+"/logout",
                         adminPath+"/sys/menu/tree",
                         adminPath+"/sys/menu/treeData",
                         adminPath+"/oa/oaNotify/self/count");

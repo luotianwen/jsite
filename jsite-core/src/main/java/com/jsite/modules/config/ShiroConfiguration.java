@@ -5,12 +5,14 @@ import com.jsite.common.security.shiro.session.CacheSessionDAO;
 import com.jsite.common.security.shiro.session.SessionManager;
 import com.jsite.modules.sys.security.FormAuthenticationFilter;
 import com.jsite.modules.sys.security.SystemAuthorizingRealm;
+import com.jsite.modules.sys.security.SystemLogoutFilter;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.cas.CasFilter;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.filter.authc.LogoutFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.Cookie;
 import org.apache.shiro.web.servlet.SimpleCookie;
@@ -72,19 +74,27 @@ public class ShiroConfiguration {
         Map<String, Filter> filterMap = new HashMap<>();
         filterMap.put("cas", casFilter());
         filterMap.put("authc", formAuthenticationFilter);
+        filterMap.put("logout", sysLogoutFilter());
         shiroFilterFactoryBean.setFilters(filterMap);
 
         LinkedHashMap<String, String> filterChainDefinitionMap=new LinkedHashMap<>();
         filterChainDefinitionMap.put("/static/**","anon");
         filterChainDefinitionMap.put("/userfiles/**","anon");
         filterChainDefinitionMap.put(adminPath+"/cas","cas");
-        filterChainDefinitionMap.put(adminPath+"/login","authc");
-        filterChainDefinitionMap.put(adminPath+"/logout","logout");
-        filterChainDefinitionMap.put(adminPath+"/**","user");
+        filterChainDefinitionMap.put(adminPath+"/login","anon");
         filterChainDefinitionMap.put("/act/editor/**","user");
+        filterChainDefinitionMap.put(adminPath+"/logout","logout");
+
+        filterChainDefinitionMap.put(adminPath+"/**","authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 
         return shiroFilterFactoryBean;
+    }
+
+    public LogoutFilter sysLogoutFilter() {
+        LogoutFilter sysLogoutFilter = new SystemLogoutFilter();
+        sysLogoutFilter.setRedirectUrl("/a/login");
+        return sysLogoutFilter;
     }
 
     @Bean(name="securityManager")
