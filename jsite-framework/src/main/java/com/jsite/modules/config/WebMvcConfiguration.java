@@ -2,6 +2,8 @@ package com.jsite.modules.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jsite.common.config.Global;
+import com.jsite.common.i18n.I18nLocaleResolver;
+import com.jsite.common.i18n.I18nMessageSource;
 import com.jsite.common.mapper.JsonMapper;
 import com.jsite.common.persistence.BaseEntity;
 import com.jsite.common.utils.SpringContextHolder;
@@ -10,9 +12,11 @@ import com.thoughtworks.xstream.io.xml.StaxDriver;
 import org.beetl.ext.spring.BeetlSpringViewResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.MediaType;
@@ -23,7 +27,9 @@ import org.springframework.http.converter.xml.MarshallingHttpMessageConverter;
 import org.springframework.http.converter.xml.SourceHttpMessageConverter;
 import org.springframework.oxm.xstream.XStreamMarshaller;
 import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import java.nio.charset.Charset;
@@ -124,6 +130,17 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
         return new JsonMapper();
     }
 
+    @Bean
+    public LocaleResolver localeResolver() {
+        return new I18nLocaleResolver();
+    }
+
+    @Primary
+    @Bean
+    public MessageSource reloadableResourceBundleMessageSource() {
+        return new I18nMessageSource();
+    }
+
     public MarshallingHttpMessageConverter marshallingHttpMessageConverter(){
         XStreamMarshaller xStreamMarshaller=new XStreamMarshaller();
         xStreamMarshaller.setStreamDriver(new StaxDriver());
@@ -182,6 +199,10 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
                 e.printStackTrace();
             }
         }
+
+        LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
+        localeChangeInterceptor.setParamName("lang");
+        registry.addInterceptor(localeChangeInterceptor);
 
         super.addInterceptors(registry);
     }

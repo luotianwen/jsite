@@ -4,12 +4,22 @@
 package com.jsite.common.config;
 
 import com.google.common.collect.Maps;
+import com.jsite.common.i18n.I18nLocaleResolver;
+import com.jsite.common.i18n.I18nMessageSource;
 import com.jsite.common.io.PropertiesUtils;
 import com.jsite.common.lang.StringUtils;
+import com.jsite.common.utils.SpringContextHolder;
+import com.jsite.common.web.Servlets;
+import org.apache.commons.lang3.LocaleUtils;
+import org.springframework.context.NoSuchMessageException;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.core.io.DefaultResourceLoader;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.text.MessageFormat;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -65,7 +75,6 @@ public class Global {
 	public static String getProperty(String key) {
 		String value = map.get(key);
 		if (value == null) {
-//			value = loader.getProperty(key);
             value = PropertiesUtils.getInstance().getProperty(key);
 			map.put(key, value != null ? value : StringUtils.EMPTY);
 		}
@@ -80,7 +89,6 @@ public class Global {
 	public static String getProperty(String key, String defValue) {
 		String value = map.get(key);
 		if (value == null) {
-//			value = loader.getProperty(key);
             value = PropertiesUtils.getInstance().getProperty(key);
 			map.put(key, value != null ? value : defValue);
 		}
@@ -120,6 +128,16 @@ public class Global {
 	public static Boolean isFlowableEnable() {
 		String dm = getProperty("flowableEnable");
 		return "true".equals(dm) || "1".equals(dm);
+	}
+
+	public static Boolean getPropertyBoolean(String key, String defValue) {
+		String value = map.get(key);
+		if (value == null) {
+		    String tmp = PropertiesUtils.getInstance().getProperty(key);
+			value = tmp==null?defValue:tmp;
+			map.put(key, value != null ? value : defValue);
+		}
+		return value.equals("true");
 	}
 
 	/**
@@ -177,4 +195,38 @@ public class Global {
 		return projectPath;
 	}
 
+
+    public static String getLang() {
+        if(I18nLocaleResolver.enabled()) {
+            HttpServletRequest httpServletRequest = Servlets.getRequest();
+			Locale locale = httpServletRequest==null?null:I18nUtils.i18nLocaleResolver().resolveLocale(httpServletRequest);
+
+            if(locale != null) {
+                return locale.toString();
+            }
+        }
+
+        return Locale.CHINA.toString();
+    }
+
+
+    public static String getText(String code, String ... params) {
+        if(StringUtils.isBlank(code)) {
+            return code;
+        } else {
+            Locale locale = Locale.CHINA;
+
+            try {
+                locale = LocaleUtils.toLocale(getLang());
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                return I18nUtils.i18nMessageSource().getMessage(code, params, locale);
+            } catch (NoSuchMessageException var5) {
+                return (params != null && params.length > 0) ? new MessageFormat(code != null?code:"", LocaleContextHolder.getLocale()).format(params):code;
+            }
+        }
+    }
 }
