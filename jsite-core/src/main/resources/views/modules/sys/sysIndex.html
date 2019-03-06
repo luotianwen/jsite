@@ -3,7 +3,7 @@
 var defaultSkinName = @Global.getProperty('sys.index.skinName', 'skin-blue');
 // 从cookie里获取样式名，取不到使用默认样式
 var skinName = cookie('skinName_'+user.id, false, defaultSkinName);
-var bodyClass = 'fixed noscroll sidebar-mini ' + skinName;
+var bodyClass = 'fixed sidebar-mini ' + skinName;
 %>
 <% layout('/layout/default.html', {title: '', bodyClass: bodyClass, libs: ['tabPage']}){ %>
 <link rel="stylesheet" href="${ctxStatic}/adminLTE/css/skins/${skinName}.css">
