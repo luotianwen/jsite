@@ -9,16 +9,21 @@ $(function() {
                 checkboxClass: "icheckbox_" + ($(this).data("style") || "minimal-grey"),
                 radioClass: "iradio_" + ($(this).data("style") || "minimal-grey")
             }).on("ifChanged", function() {
-                $(this).valid()
-            })
-        })
+                try {
+                    $(this).valid();
+                } catch(e) {}
+            });
+        });
     }
 
     if ($.fn.select2 !== undefined) {
+        //$.fn.select2.defaults.set('width', '200px');
         $("select").each(function() {
             $(this).select2().on("change", function() {
-                $(this).valid()
-            })
-        })
+                try {
+                    $(this).valid();
+                } catch(e) {}
+            });
+        });
     }
 });
