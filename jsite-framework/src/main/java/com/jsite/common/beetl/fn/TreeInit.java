@@ -41,11 +41,11 @@ public class TreeInit implements Function {
 							
 							htmlStr.append(href.equals("blank")?"<li class='treeview'>\n":"");
 							htmlStr.append(href.equals("blank")?"<a title='" + menu1.getName() + "' href='javascript:' data-href='" + href + "' class='addTabPage'>\n":"");
-							htmlStr.append(href.equals("blank")?"<i class='" + menu1.getIcon() + "'></i> &nbsp;" + menu1.getName() + " \n":"");
+							htmlStr.append(href.equals("blank")?"<i class='" + menu1.getIcon() + "'></i>&nbsp;" + menu1.getName() + " \n":"");
 							htmlStr.append(href.equals("blank")?rightContainer:"");
 							htmlStr.append(href.equals("blank")?"</a>\n":"");
 							
-							htmlStr.append(href.equals("blank")?"":"<li class='treeview'><a title='" + menu1.getName() + "' href='javascript:' data-href='" + href + "' class='addTabPage'><i class='" + menu1.getIcon() + "'></i> " + menu1.getName() + "</a></li>\n");
+							htmlStr.append(href.equals("blank")?"":"<li class='treeview'><a title='" + menu1.getName() + "' href='javascript:' data-href='" + href + "' class='addTabPage'><i class='" + menu1.getIcon() + "'></i>&nbsp;" + menu1.getName() + "</a></li>\n");
 							
 							if(href.equals("blank")) {
 								htmlStr.append("<ul class='treeview-menu'>");
@@ -56,11 +56,11 @@ public class TreeInit implements Function {
 										
 										htmlStr.append(href.equals("blank")?"<li class='treeview'>\n":"");
 										htmlStr.append(href.equals("blank")?"<a title='" + menu2.getName() + "' href='javascript:' data-href='" + href + "' class='addTabPage'>\n":"");
-										htmlStr.append(href.equals("blank")?"<i class='" + menu2.getIcon() + "'></i> &nbsp;" + menu2.getName() + " \n":"");
+										htmlStr.append(href.equals("blank")?"<i class='" + menu2.getIcon() + "'></i>&nbsp;" + menu2.getName() + " \n":"");
 										htmlStr.append(href.equals("blank")?rightContainer:"");
 										htmlStr.append(href.equals("blank")?"</a>\n":"");
 										
-										htmlStr.append(href.equals("blank")?"":"<li class='treeview'><a title='" + menu2.getName() + "' href='javascript:' data-href='" + href + "' class='addTabPage'><i class='" + menu2.getIcon() + "'></i> " + menu2.getName() + "</a></li>\n");
+										htmlStr.append(href.equals("blank")?"":"<li class='treeview'><a title='" + menu2.getName() + "' href='javascript:' data-href='" + href + "' class='addTabPage'><i class='" + menu2.getIcon() + "'></i>&nbsp;" + menu2.getName() + "</a></li>\n");
 										
 										if(href.equals("blank")) {
 											htmlStr.append("<ul class='treeview-menu'>");
