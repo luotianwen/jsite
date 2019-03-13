@@ -78,24 +78,20 @@
 				</div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary btn-sm">查询</button>
-					<button type="button" class="btn btn-default btn-sm" onclick="resetForm()">重置</button>
+					<button id="reset" type="reset" class="btn btn-default btn-sm">重置</button>
 				</div>
 			</#form:form>
-			<script type="text/javascript">
-				function resetForm(){
-					$(':input', '#searchForm')
-					        .val('')
-					        .removeAttr('checked')
-					         .removeAttr('selected');
-				}
-			</script>
 			<table id="dataGrid"></table>
 			<div id="dataGridPage"></div>
 		</div>
 	</div>
 </div>
 <script type="text/javascript">
-	$('#btnImport').click(function(){
+    $('#reset').click(function(){
+        $('#loginFlag').val(null).trigger("change");
+    });
+
+    $('#btnImport').click(function(){
 		js.layer.open({
 			type: 1,
 			area: ['400px'],

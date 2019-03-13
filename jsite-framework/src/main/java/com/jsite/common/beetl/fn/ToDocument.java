@@ -60,7 +60,7 @@ public class ToDocument implements Function {
 //				logger.info("id- " + id + " name- " + name);
 				
 				String idKey = StringUtils.isBlank(val)?"id":val;
-				StringBuilder sb = new StringBuilder("<option value=\"\" >请选择</option>\n");
+				StringBuilder sb = new StringBuilder("<option value=\"\" ></option>\n");
 				
 				String opStr = paras[2].toString();
 				if(opStr.startsWith("getDictList")) {

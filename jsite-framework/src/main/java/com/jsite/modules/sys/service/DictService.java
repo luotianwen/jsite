@@ -27,7 +27,7 @@ public class DictService extends CrudService<DictDao, Dict> {
 	 * 查询字段类型列表
 	 * @return
 	 */
-	public List<String> findTypeList(){
+	public List<Dict> findTypeList(){
 		return dao.findTypeList(new Dict());
 	}
 	

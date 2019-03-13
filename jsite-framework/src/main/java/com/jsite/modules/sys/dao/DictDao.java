@@ -17,6 +17,6 @@ import java.util.List;
 @MyBatisDao
 public interface DictDao extends CrudDao<Dict> {
 
-	public List<String> findTypeList(Dict dict);
+	public List<Dict> findTypeList(Dict dict);
 	
 }

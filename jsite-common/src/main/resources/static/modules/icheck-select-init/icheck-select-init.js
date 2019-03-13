@@ -18,6 +18,9 @@ $(function() {
 
     if ($.fn.select2 !== undefined) {
         //$.fn.select2.defaults.set('width', '200px');
+        $.fn.select2.defaults.set('placeholder', '请选择');
+        $.fn.select2.defaults.set('placeholderOption', 'first');
+        $.fn.select2.defaults.set('allowClear', 'true');
         $("select").each(function() {
             $(this).select2().on("change", function() {
                 try {

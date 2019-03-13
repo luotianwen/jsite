@@ -34,12 +34,11 @@
 		ORDER BY type, sort, update_date DESC
 	</select>
 	
-	<select id="findTypeList" resultType="string">
+	<select id="findTypeList" resultType="Dict">
 		SELECT 
-			type 
+			*
 		FROM sys_dict 
 		WHERE del_flag = #{DEL_FLAG_NORMAL} 
-		GROUP BY type
 		ORDER BY type
 	</select>
 	

@@ -46,7 +46,7 @@ public class DictController extends BaseController {
 	@RequiresPermissions("sys:dict:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(Model model) {
-		List<String> typeList = dictService.findTypeList();
+		List<Dict> typeList = dictService.findTypeList();
 		model.addAttribute("typeList", typeList);
 		return "modules/sys/dictList";
 	}

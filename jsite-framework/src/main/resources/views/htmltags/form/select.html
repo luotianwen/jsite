@@ -2,6 +2,7 @@
 <%
 	var p = {
 		// 标签参数
+		id: id!path,
     	path: path!,
     	class:class!"",
 	    data:data!,
@@ -16,7 +17,7 @@
 
 %>
 
-<select id="${p.path}" name="${p.path}" class="${p.class}" onchange="${p.onchange}" <% if(!isEmpty(p.disabled)) {%> disabled="disabled" <%}%> >
+<select id="${p.id}" name="${p.path}" class="${p.class}" onchange="${p.onchange}" <% if(!isEmpty(p.disabled)) {%> disabled="disabled" <%}%> >
 	<%
 		var html = toDocument("select", tagBody, p.data, p.name, p.value, p.onValue);
 	 	print(html);

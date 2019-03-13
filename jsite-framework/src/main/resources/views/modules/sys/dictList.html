@@ -17,14 +17,7 @@
 				<div class="form-group">
 					<label class="control-label">类型：</label>
 					<div class="control-inline">
-						<select name="type" class="form-control required ">
-							<option value="">==请选择==</option>
-							<%
-								for(str in typeList){
-								   print('<option value="'+str+'">'+str+'</option>');
-								}
-							%>
-						</select>
+						<#form:select path="type" name="type" value="type" data="${typeList}" class="form-control " />
 					</div>
 				</div>
 				<div class="form-group">
@@ -35,7 +28,7 @@
 				</div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary btn-sm">查询</button>
-					<button type="reset" class="btn btn-default btn-sm">重置</button>
+					<button id="reset" type="reset" class="btn btn-default btn-sm">重置</button>
 				</div>
 			</form>			
 			<table id="dataGrid"></table>
@@ -45,6 +38,7 @@
 </div>
 <% } %>
 <script>
+    $.fn.select2.defaults.set('width', '200px');
 //初始化DataGrid对象
 	$('#dataGrid').dataGrid({
 		searchForm: $("#searchForm"),
@@ -69,4 +63,11 @@
 			
 		}
 	});
+</script>
+
+<script type="text/javascript">
+    $('#reset').click(function(){
+        $('#type').val(null).trigger("change");
+    });
+
 </script>

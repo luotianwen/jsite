@@ -20,7 +20,7 @@
 				</div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary btn-sm">查询</button>
-					<button type="reset" class="btn btn-default btn-sm">重置</button>
+					<button id="reset" type="reset" class="btn btn-default btn-sm">重置</button>
 				</div>
 			</form>			
 			<table id="dataGrid"></table>
@@ -29,6 +29,7 @@
 </div>
 <% } %>
 <script>
+    $.fn.select2.defaults.set('width', '200px');
 //初始化DataGrid对象
 $('#dataGrid').dataGrid({
 	searchForm: $("#searchForm"),
@@ -71,5 +72,10 @@ $('#dataGrid').dataGrid({
 		
 	}
 });
+
+
+    $('#reset').click(function(){
+        $('#category').val(null).trigger("change");
+    });
 
 </script>
