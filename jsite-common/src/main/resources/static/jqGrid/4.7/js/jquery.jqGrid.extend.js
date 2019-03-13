@@ -490,7 +490,7 @@ var DataGrid = function(options, $this){
 		
 		// 绑定刷新按钮
 		options.btnRefreshTree.click(function(){
-			$('input[type=reset]', searchForm).click();
+			$('#reset').trigger("click");
 			refreshTree();
 			return false;
 		});
