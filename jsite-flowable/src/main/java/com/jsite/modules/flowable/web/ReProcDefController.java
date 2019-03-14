@@ -112,6 +112,9 @@ public class ReProcDefController extends BaseController {
 	@RequestMapping(value = "update/{state}")
 	@ResponseBody
 	public String updateState(@PathVariable("state") String state, String procDefId) {
+		if(Global.isDemoMode()){
+			return renderResult(Global.FALSE, "演示模式，不允许操作！");
+		}
 		String message = actProcessService.updateState(state, procDefId);
 		
 		return renderResult(Global.TRUE, message);
