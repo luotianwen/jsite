@@ -227,9 +227,10 @@ INSERT INTO `sys_file_tree` VALUES ('f1d7c9459a5a44adb38ed662bd5d682f', '2bacb60
 -- ----------------------------
 INSERT INTO `sys_menu` VALUES ('1', '0', '0,', '在线办公', 30, '0', 0, '', '', 'icon-cloud-upload', '1', '', '1', '2013-05-27 08:00:00', '1', '2018-06-28 08:48:13', '', '0');
 INSERT INTO `sys_menu` VALUES ('100', '1', '0,1,', '待办任务', 20, '1', 1, '/act/task/todo', '', 'fa fa-circle-thin', '1', 'act:process:view,act:process:edit', '1', '2018-08-07 14:57:37', '1', '2018-12-22 22:47:45', '', '0');
-INSERT INTO `sys_menu` VALUES ('101', '1', '0,1,', '已办任务', 30, '1', 1, '/act/task/historic', '', 'fa fa-circle-thin', '1', '', '1', '2018-08-07 14:58:35', '1', '2018-08-07 14:58:35', '', '0');
-INSERT INTO `sys_menu` VALUES ('102', '1', '0,1,', '已发任务', 40, '1', 1, '/act/task/hasSent', '', 'fa fa-circle-thin', '1', '', '1', '2018-08-09 20:28:01', '1', '2018-08-13 18:14:55', '', '0');
-INSERT INTO `sys_menu` VALUES ('103', '1', '0,1,', '发起流程', 50, '1', 1, '/act/task/process', '', 'fa fa-circle-thin', '1', '', '1', '2018-08-07 15:07:41', '1', '2018-08-20 14:22:31', '', '0');
+INSERT INTO `sys_menu` VALUES ('101', '1', '0,1,', '已办任务', 30, '1', 1, '/act/task/historic', '', 'fa fa-circle-thin', '1', 'act:process:view,act:process:edit', '1', '2018-08-07 14:58:35', '1', '2019-03-14 11:09:18', '', '0');
+INSERT INTO `sys_menu` VALUES ('102', '1', '0,1,', '已发任务', 40, '1', 1, '/act/task/hasSent', '', 'fa fa-circle-thin', '1', 'act:process:view,act:process:edit', '1', '2018-08-09 20:28:01', '1', '2019-03-14 11:09:25', '', '0');
+INSERT INTO `sys_menu` VALUES ('103', '1', '0,1,', '发起流程', 50, '1', 1, '/act/task/process', '', 'fa fa-circle-thin', '1', 'act:process:view,act:process:edit', '1', '2018-08-07 15:07:41', '1', '2019-03-14 11:09:37', '', '0');
+INSERT INTO `sys_menu` VALUES ('104', '1', '0,1,', '请假流程：发起|办理权限', 60, '1', 1, '', '', '', '0', 'oa:leave:view,oa:leave:edit', '1', '2018-08-15 14:40:25', '1', '2018-08-15 17:22:11', '', '0');
 INSERT INTO `sys_menu` VALUES ('2', '0', '0,', '机构用户', 60, '0', 0, '', '', 'icon-social-dropbox', '1', '', '1', '2013-05-27 08:00:00', '1', '2019-03-13 10:17:25', '', '0');
 INSERT INTO `sys_menu` VALUES ('200', '2', '0,2,', '用户管理', 20, '0', 1, '/sys/user/index', '', 'fa fa-users', '1', '', '1', '2013-05-27 08:00:00', '1', '2018-07-05 10:32:22', '', '0');
 INSERT INTO `sys_menu` VALUES ('2000', '200', '0,2,200,', '查看', 30, '1', 2, '', '', 'fa fa-circle-thin', '0', 'sys:user:view', '1', '2018-07-05 10:32:42', '1', '2018-07-05 10:32:42', '', '0');
