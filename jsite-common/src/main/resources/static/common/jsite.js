@@ -5,7 +5,8 @@
                 return "0 Bytes";
             }
             var unitArr = new Array("Bytes","KB","MB","GB","TB","PB","EB","ZB","YB");
-            var index = 0 , srcsize = parseFloat(value);
+            var index = 0
+                , srcsize = parseFloat(value);
             index = Math.floor(Math.log(srcsize) / Math.log(1024));
             var size = srcsize / Math.pow(1024, index);
             //  保留的小数位数
@@ -30,21 +31,21 @@
             }
         },
         encodeURI: function(url) {
-            return encodeURIComponent(url);
+            return encodeURIComponent(url)
         },
         decodeURI: function(url) {
-            return decodeURIComponent(url);
+            return decodeURIComponent(url)
         },
         trim: function(str) {
-            return jQuery.trim(str);
+            return jQuery.trim(str)
         },
         startWith: function(str, start) {
             var reg = new RegExp("^" + start);
-            return reg.test(str);
+            return reg.test(str)
         },
         endWith: function(str, end) {
             var reg = new RegExp(end + "$");
-            return reg.test(str);
+            return reg.test(str)
         },
         transDictLabel: function (dictList, val, defVal) {
             var label = "";
@@ -61,19 +62,19 @@
         layer: function() {
             try {
                 if (top.layer) {
-                    return top.layer;
+                    return top.layer
                 }
                 if (parent.parent.layer) {
-                    return parent.parent.layer;
+                    return parent.parent.layer
                 }
                 if (parent.layer) {
-                    return parent.layer;
+                    return parent.layer
                 }
             } catch (e) {}
             if (window.layer) {
                 return layer;
             }
-            return null;
+            return null
         }(),
         loading: function(message) {
             if (message == undefined || message == "") {
@@ -85,9 +86,9 @@
 
             message += '<em onclick="js.closeLoading(0, true)">×</em>';
             if ($("#data-loading").length == 0) {
-                $("body").append('<div id="data-loading" onmouseover="$(this).find(\'em\').show()" onmouseout="$(this).find(\'em\').hide()">' + message + "</div>");
+                $("body").append('<div id="data-loading" onmouseover="$(this).find(\'em\').show()" onmouseout="$(this).find(\'em\').hide()">' + message + "</div>")
             } else {
-                $("#data-loading").html(message);
+                $("#data-loading").html(message)
             }
 
             js.loadingNum++;
@@ -293,4 +294,46 @@
     window.js = js;
 })(window.jQuery, window);
 
+// https://blog.csdn.net/qq_23944441/article/details/79753436
+(function($, window, undefined) {
+// outside the scope of the jQuery plugin to
+// keep track of all dropdowns
+var $allDropdowns = $();
 
+// if instantlyCloseOthers is true, then it will instantly
+// shut other nav items when a new one is hovered over
+$.fn.dropdownHover = function(options) {
+
+    // the element we really care about
+    // is the dropdown-toggle's parent
+    $allDropdowns = $allDropdowns.add(this.parent());
+
+    return this.each(function() {
+        var $this = $(this).parent(),
+            defaults = {
+                delay: 500,
+                instantlyCloseOthers: true
+            },
+            data = {
+                delay: $(this).data('delay'),
+                instantlyCloseOthers: $(this).data('close-others')
+            },
+            options = $.extend(true, {}, defaults, options, data),
+            timeout;
+
+        $this.hover(function() {
+            if(options.instantlyCloseOthers === true)
+                $allDropdowns.removeClass('open');
+
+            window.clearTimeout(timeout);
+            $(this).addClass('open');
+        }, function() {
+            timeout = window.setTimeout(function() {
+                $this.removeClass('open');
+            }, options.delay);
+        });
+    });
+};
+
+$('[data-hover="dropdown"]').dropdownHover();
+})(jQuery, this);
