@@ -19,7 +19,7 @@
 	        perspective: 1000px;
 	position: relative;
 	height: 100%;
-	width: 360px;
+	width: 370px;
 	margin: 20px auto;
 }
 
@@ -65,7 +65,7 @@ lowin-input
 	background-color: #fff;
 	-webkit-box-shadow: 0 7px 25px rgba(0, 0, 0, .08);
 	        box-shadow: 0 7px 25px rgba(0, 0, 0, .08);
-	padding: 25px;
+	padding: 30px 25px;
 	text-align: left;
 	border-radius: 3px;
 }
@@ -85,13 +85,12 @@ lowin-input
 }
 
 .lowin .lowin-box .lowin-group {
-	margin-bottom: 15px;
+	margin-bottom: 25px;
 }
 
 .lowin .lowin-box label {
 	margin-bottom: 5px;
 	display: inline-block;
-	width: 100%;
 	color: rgb(132, 129, 129);
 	font-weight: 100;
 }
@@ -105,7 +104,7 @@ lowin-input
 	color: rgb(68, 64, 64);
 	border: none;
 	border-radius: 3px;
-	padding: 15px 20px;
+	padding: 10px 20px;
 	width: 100%;
 	outline: 0;
 }
@@ -119,7 +118,7 @@ lowin-input
 	width: 100%;
 	border: none;
 	color: #fff;
-	padding: 15px;
+	padding: 10px 15px;
 	border-radius: 3px;
 	background-color: #3c8dbc;
 	-webkit-box-shadow: 0 2px 7px rgba(0, 129, 198, .45);
@@ -492,4 +491,10 @@ lowin-input
 	.lowin .lowin-box {
 		padding: 0 10px;
 	}
+}
+
+.form-control-feedback {
+	cursor: pointer;
+	pointer-events: auto;
+    margin-top: 3px;
 }

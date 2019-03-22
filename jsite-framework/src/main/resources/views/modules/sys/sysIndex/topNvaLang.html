@@ -5,8 +5,9 @@
 	</a>
 	<ul class="dropdown-menu">
 		<li class="mt5"></li>
-			<li><a href="${ctx}?lang=zh_CN">中文</a></li>
-			<li><a href="${ctx}?lang=en_US">English</a></li>
+		<% for(var dict in @DictUtils.getDictList('sys_lang_type')){ %>
+		<li><a href="${ctx}?lang=${dict.value}">${dict.label}</a></li>
+		<% } %>
 		<li class="mt10"></li>
 	</ul>
 </li>
