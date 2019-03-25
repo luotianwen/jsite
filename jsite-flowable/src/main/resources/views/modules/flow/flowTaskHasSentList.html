@@ -46,7 +46,7 @@ $('#dataGrid').dataGrid({
 		{header:'开始时间', name:'createTime', index:'createTime', width:100, align:"center",formatter:"date",formatoptions:{srcformat: 'Y-m-d H:i:s',newformat: 'Y-m-d H:i:s'}},
 		{header:'操作', name:'actions', width:100, sortable:false, title:false, align:"center",formatter: function(val, obj, row, act){
 			var actions = [];
-			<% if(hasPermi('act:model:edit')){ %>
+			<% if(hasPermi('act:process:edit')){ %>
 				if(row.processIsFinished=="finished"){
 					actions.push('<a href="${ctx}/act/task/diagramViewer?definitionId='+row.procDefId+'&hisInsId='+row.procInsId+'" class="btnList" data-type="diagram" title="流程追踪">跟踪</a>&nbsp;');
 				}else{

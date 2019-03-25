@@ -54,7 +54,7 @@ $('#dataGrid').dataGrid({
 		{header:'完成时间', name:'hisTaskEndTime', index:'hisTaskEndTime', width:100, align:"center", formatter:"date",formatoptions:{srcformat: 'Y-m-d H:i:s',newformat: 'Y-m-d H:i:s'} },
 		{header:'操作', name:'actions', width:100, sortable:false, title:false, align:"center",formatter: function(val, obj, row, act){
 			var actions = [];
-			<% if(hasPermi('act:model:edit')){ %>
+			<% if(hasPermi('act:process:edit')){ %>
 				actions.push('<a href="/act/task/form?taskId='+row.taskId+'&taskName='+row.taskName+'&taskDefKey='+row.taskDefKey+'&procInsId='+row.procInsId+'&procDefId='+row.procDefId+'&status='+row.status+' " class="btnList" title="详情查看" >查看详情</a>')
 			<% } %>
 			return actions.join('');
